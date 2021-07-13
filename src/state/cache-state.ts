@@ -1,6 +1,13 @@
 import { computed, reactive } from "vue";
 
 const state = reactive({
+  'filter': {
+    pages          : [],
+    isOpen         : false,
+    reversed       : false,
+    authorIndexMap : [],
+    isPersisting   : false,
+  },
   'titlebar-menu-open'        : false,
   'lazyimg-data'              : [],
   'blog'                      : [],
@@ -11,22 +18,31 @@ const state = reactive({
   '/data/library/videos.json' : [],
 } as { [key: string]: any });
 
-type DataArrayKeys = 'lazyimg-data'|string;
-type DataKeys = 'titlebar-menu-open'|string;
+export interface DataCacheFilterObj {
+  pages          : any[];
+  isOpen         : boolean;
+  reversed       : boolean;
+  authorIndexMap : any[];
+  isPersisting   : boolean;
+}
+
+export type DataCacheObjKeys   = 'filter';
+export type DataCacheArrayKeys = 'lazyimg-data'|string;
+export type DataCacheKeys      = 'titlebar-menu-open'|string;
 
 // NOTE: We are assuming that all contained non-primitive types will
 //       NOT be mutated. E.g. [Object, Object] or { foo: ['bar'] }
 export function useDateCache() {
   return {
-    setArrayData: (key: DataArrayKeys, val: any[]) => {
+    setArrayData: (key: DataCacheArrayKeys, val: any[]) => {
       catchMissingState(key);
       state[key] = val.slice();
     },
-    updArrayData: (key: DataArrayKeys, val: string|boolean|number) => {
+    updArrayData: (key: DataCacheArrayKeys, val: string|boolean|number) => {
       catchMissingState(key);
       (state[key] as any[]).push(val);
     },
-    getArrayData: <T>(key: DataArrayKeys) => {
+    getArrayData: <T>(key: DataCacheArrayKeys) => {
       catchMissingState(key);
       return computed(() => (state[key]?.slice() || []) as T[]);
     },
@@ -35,16 +51,26 @@ export function useDateCache() {
       catchMissingState(key);
       state[key] = { ...val };
     },
-    getObjData: <T>(key: string) => {
+    updObjData: <T>(key: DataCacheObjKeys, prop: keyof T, val: any) => {
+      catchMissingState(key);
+      const data = state[key][prop];
+      const hasSameType =
+        (typeof data == typeof val) && (data instanceof Array == val instanceof Array)
+      ;
+      if (undefined == data) throw Error(`Property "${prop}" does not exist on Object`);
+      if (!hasSameType)      throw Error('Value must be of the same type as the Object Property');
+      state[key][prop] = val;
+    },
+    getObjData: <T>(key: DataCacheObjKeys) => {
       catchMissingState(key);
       return computed(() => ({ ...state[key] } as T));
     },
 
-    setData: (key: DataKeys, val: string|boolean|number) => {
+    setData: (key: DataCacheKeys, val: string|boolean|number) => {
       catchMissingState(key);
       state[key] = val;
     },
-    getData: <T>(key: DataKeys) => {
+    getData: <T>(key: DataCacheKeys) => {
       catchMissingState(key);
       return computed(() => state[key] as T);
     }
