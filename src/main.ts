@@ -2,7 +2,6 @@
 import { createApp } from 'vue';
 import App from './app.vue';
 import router from './router';
-import vuex from './vuex/vuex-store';
 import './styles/_main.css';
 import { useAPI } from './services/api_internal';
 
@@ -46,7 +45,6 @@ const cookiesAreEnabled = (() => {
 
 if (cookiesAreEnabled && browserIsSupported) {
   window['app'] = createApp(App)
-    .use(vuex)
     .use(router)
     .mount('#app')
   ;
