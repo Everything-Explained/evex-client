@@ -45,6 +45,7 @@ import eeCheckboxVue  from "../ui/ee-checkbox.vue";
 import eeIconVue      from "../ui/ee-icon.vue";
 import eeToggleVue    from "../ui/ee-toggle.vue";
 import { VuexStore } from "@/vuex/vuex-store";
+import { useEventBus } from "@/state/event-bus";
 
 interface FilterData {
   // Allow ignorable props
@@ -68,7 +69,7 @@ export default defineComponent({
   emits: ['filter'],
   setup({items, persist, reverseOrder}, {emit}) {
     const isChecked        = ref([]);
-    const store            = useStore<VuexStore>();
+    const eventBus         = useEventBus();
 
     const {
       toggleFilter,
@@ -86,7 +87,7 @@ export default defineComponent({
     return {
       filter: (i: number, v: boolean) => {
         emit('filter', filterAuthor(i, v));
-        store.commit('update-footer');
+        eventBus.emit('update-footer');
       },
 
       toggleAge: () => {
