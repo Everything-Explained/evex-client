@@ -1,4 +1,3 @@
-
 <template>
   <div ref="containerRef" class="lazyimg">
     <div
@@ -56,14 +55,14 @@ export default defineComponent({
 function useImageObserver(props: IMGProps) {
   const imgRef        = ref<HTMLImageElement>();
   const containerRef  = ref<HTMLElement>();
-  const dataCache     = useDateCache();
+  const dataCache     = useDateCache<string>();
 
   const state = reactive({
     img           : computed(() => imgRef.value!),
     loaded        : false,
     showPreloader : false,
     activeSrc     : computed(() => props.src!),
-    cache         : dataCache.getArrayData<string>('lazyimg-data'),
+    cache         : dataCache.getArrayData('lazyimg-data'),
   });
 
   function isImageCached(uri: string) {
