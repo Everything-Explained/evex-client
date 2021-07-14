@@ -4,6 +4,8 @@ const stateOfArrays = reactive({
   'lazyimg-data'              : [],
   'blog'                      : [],
   'changelog'                 : [],
+  'support/qnaform'           : [],
+  'red33m/qnaform'            : [],
   'library/literature'        : [],
   'red33m/literature'         : [],
   '/data/red33m/videos.json'  : [],
@@ -21,7 +23,7 @@ const stateOfObjects = reactive({
 });
 
 const stateOfPrimitives = reactive({
-  'titlebar-menu-open'        : false,
+  'titlebar-menu-open' : false,
 });
 
 export interface DataCacheFilterObj {

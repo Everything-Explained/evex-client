@@ -87,7 +87,7 @@
       <div v-else-if="!isSubmitted">
         <div class="support__content">
           <ee-qnaform
-            :id="formID"
+            id="support/qnaform"
             :questions="questions"
             :type="formType"
             :name-label="'Name or Preferred Title'"

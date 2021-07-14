@@ -74,7 +74,7 @@
           </ee-text>
         </div>
         <ee-qnaform
-          id="red33mForm"
+          id="red33m/qnaform"
           :type="3"
           name-label="Name or Preferred Title"
           :questions="questions"
