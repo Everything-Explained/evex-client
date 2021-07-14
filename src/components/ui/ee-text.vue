@@ -7,7 +7,15 @@
   <div v-else-if="type == 'block'" :class="['md', customClass]">
     <p><slot /></p>
   </div>
-  <span v-else :class="['md', 'ee-text', customClass, { '--block': isSpanBlock}]">
+  <span
+    v-else
+    :class="[
+      { 'md': !noMD },
+      'ee-text',
+      customClass,
+      { '--block': isSpanBlock}
+    ]"
+  >
     <slot />
   </span>
 </template>
@@ -22,6 +30,7 @@ export default defineComponent({
   props: {
     href:  { type: String, default: ''     },
     type:  { type: String, default: 'text' },
+    noMD:  { type: Boolean, default: false  },
     class: { type: String, default: ''     },
   },
   setup(props) {
