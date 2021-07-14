@@ -1,14 +1,6 @@
 import { computed, reactive } from "vue";
 
-const state = reactive({
-  'filter': {
-    pages          : [],
-    isOpen         : false,
-    reversed       : false,
-    authorIndexMap : [],
-    isPersisting   : false,
-  },
-  'titlebar-menu-open'        : false,
+const stateOfArrays = reactive({
   'lazyimg-data'              : [],
   'blog'                      : [],
   'changelog'                 : [],
@@ -16,7 +8,21 @@ const state = reactive({
   'red33m/literature'         : [],
   '/data/red33m/videos.json'  : [],
   '/data/library/videos.json' : [],
-} as { [key: string]: any });
+});
+
+const stateOfObjects = reactive({
+  filter: {
+    pages          : [],
+    isOpen         : false,
+    reversed       : false,
+    authorIndexMap : [],
+    isPersisting   : false,
+  },
+});
+
+const stateOfPrimitives = reactive({
+  'titlebar-menu-open'        : false,
+});
 
 export interface DataCacheFilterObj {
   pages          : any[];
@@ -26,58 +32,58 @@ export interface DataCacheFilterObj {
   isPersisting   : boolean;
 }
 
-export type DataCacheObjKeys   = 'filter';
-export type DataCacheArrayKeys = 'lazyimg-data'|string;
-export type DataCacheKeys      = 'titlebar-menu-open'|string;
+export type DataCacheObjKeys   = keyof typeof stateOfObjects;
+export type DataCacheArrayKeys = keyof typeof stateOfArrays;
+export type DataCacheKeys      = keyof typeof stateOfPrimitives;
 
 // NOTE: We are assuming that all contained non-primitive types will
 //       NOT be mutated. E.g. [Object, Object] or { foo: ['bar'] }
-export function useDateCache() {
+export function useDateCache<T>() {
   return {
     setArrayData: (key: DataCacheArrayKeys, val: any[]) => {
-      catchMissingState(key);
-      state[key] = val.slice();
+      catchMissingState(key as string, stateOfArrays);
+      (stateOfArrays[key] as any[]) = val.slice();
     },
-    updArrayData: (key: DataCacheArrayKeys, val: string|boolean|number) => {
-      catchMissingState(key);
-      (state[key] as any[]).push(val);
+    updArrayData: (key: DataCacheArrayKeys, val: any) => {
+      catchMissingState(key as string, stateOfArrays);
+      (stateOfArrays[key] as any[]).push(val);
     },
-    getArrayData: <T>(key: DataCacheArrayKeys) => {
-      catchMissingState(key);
-      return computed(() => (state[key]?.slice() || []) as T[]);
+    getArrayData: (key: DataCacheArrayKeys) => {
+      catchMissingState(key as string, stateOfArrays);
+      return computed(() => (stateOfArrays[key]?.slice() || []) as T[]);
     },
 
-    setObjData: (key: string, val: any) => {
-      catchMissingState(key);
-      state[key] = { ...val };
+    setObjData: (key: DataCacheObjKeys, val: any) => {
+      catchMissingState(key as string, stateOfObjects);
+      stateOfObjects[key] = { ...val };
     },
-    updObjData: <T>(key: DataCacheObjKeys, prop: keyof T, val: any) => {
-      catchMissingState(key);
-      const data = state[key][prop];
+    updObjData: (key: DataCacheObjKeys, prop: keyof T, val: any) => {
+      catchMissingState(key as string, stateOfObjects);
+      const data = (stateOfObjects[key] as any)[prop];
       const hasSameType =
         (typeof data == typeof val) && (data instanceof Array == val instanceof Array)
       ;
       if (undefined == data) throw Error(`Property "${prop}" does not exist on Object`);
       if (!hasSameType)      throw Error('Value must be of the same type as the Object Property');
-      state[key][prop] = val;
+      (stateOfObjects[key] as any)[prop] = val;
     },
-    getObjData: <T>(key: DataCacheObjKeys) => {
-      catchMissingState(key);
-      return computed(() => ({ ...state[key] } as T));
+    getObjData: (key: DataCacheObjKeys) => {
+      catchMissingState(key as string, stateOfObjects);
+      return computed(() => ({ ...(stateOfObjects[key] as any) } as T));
     },
 
     setData: (key: DataCacheKeys, val: string|boolean|number) => {
-      catchMissingState(key);
-      state[key] = val;
+      catchMissingState(key as string, stateOfPrimitives);
+      (stateOfPrimitives[key] as any) = val;
     },
-    getData: <T>(key: DataCacheKeys) => {
-      catchMissingState(key);
-      return computed(() => state[key] as T);
+    getData: (key: DataCacheKeys) => {
+      catchMissingState(key as string, stateOfPrimitives);
+      return computed(() => (stateOfPrimitives[key] as any) as T);
     }
   };
 }
 
-function catchMissingState(key: string) {
+function catchMissingState(key: string, state: any) {
   if (undefined == state[key]) throw Error(`Missing Cache Entry::${key}`);
 }
 

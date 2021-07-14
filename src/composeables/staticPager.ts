@@ -1,5 +1,5 @@
 import { APIResponse, useAPI } from "@/services/api_internal";
-import { useDateCache } from "@/state/cache-state";
+import { DataCacheArrayKeys, useDateCache } from "@/state/cache-state";
 import { computed, ref, watch } from "vue";
 import { useTask } from "vue-concurrency";
 import { useRouter } from "vue-router";
@@ -12,13 +12,13 @@ export interface StaticPage {
   date: string;
 }
 
-export function useStaticPager<T extends StaticPage>(url: string) {
+export function useStaticPager<T extends StaticPage>(url: DataCacheArrayKeys) {
   const router     = useRouter();
   const route      = router.currentRoute;
-  const dataCache  = useDateCache();
+  const dataCache  = useDateCache<T>();
   const activePage = ref<T|null>();
   const pageURI    = route.value.params.page as string|undefined;
-  const pages      = dataCache.getArrayData<T>(url);
+  const pages      = dataCache.getArrayData(url);
   const pageTitle  = ref('');
 
   function displayPage(uri: string) {

@@ -69,7 +69,7 @@
 
 
 <script lang="ts">
-import { computed, defineComponent, onUnmounted, ref } from "vue";
+import { computed, defineComponent, onUnmounted, PropType, ref } from "vue";
 import { useDate } from '@/composeables/date'
 ;
 import eeIconVue      from "@/components/ui/ee-icon.vue";
@@ -82,6 +82,7 @@ import { VuexStore } from "@/vuex/vuex-store";
 import { useStore } from "vuex";
 import { isEthan } from "@/composeables/globals";
 import eeHtmlVue from "../ui/ee-html.vue";
+import { DataCacheArrayKeys, DataCacheFilterObj, useDateCache } from "@/state/cache-state";
 
 
 
@@ -103,7 +104,7 @@ export default defineComponent({
   },
   props: {
     size              : { type: String,  default: 'compact'       },
-    uri               : { type: String,  default: ''              },
+    uri               : { type: String as PropType<DataCacheArrayKeys>,  default: ''              },
     title             : { type: String,  default: 'Default Title' },
     contentClass      : { type: String,  default: ''              },
     showAuthor        : { type: Boolean, default: true            },
