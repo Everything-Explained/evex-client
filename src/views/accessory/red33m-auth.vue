@@ -62,14 +62,14 @@
 
 <script lang='ts'>
 import { defineComponent, ref } from "vue";
-import eeButton from "@/components/ui/ee-button.vue";
-import eeInputField from "@/components/ui/ee-input.vue";
+import eeButton from "@/components/model/UxButton.vue";
+import eeInputField from "@/components/model/UxInput.vue";
 import { APIErrorResp, useAPI } from "@/services/api_internal";
-import eeText from '@/components/ui/ee-text.vue';
+import eeText from '@/components/model/UxText.vue';
 import { useRouter } from "vue-router";
-import eeTitlebarVue from "@/components/layout/ee-titlebar.vue";
-import eeFooterVue from "@/components/layout/ee-footer.vue";
-import eeFormErrorVue from "@/components/ui/ee-form-error.vue";
+import eeTitlebarVue from "@/components/model/PageTitlebar.vue";
+import eeFooterVue from "@/components/model/PageFooter.vue";
+import eeFormErrorVue from "@/components/model/FormError.vue";
 import useInputValidation from "@/composeables/inputValidation";
 
 export default defineComponent({

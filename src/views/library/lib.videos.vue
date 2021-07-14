@@ -80,15 +80,15 @@
 <script lang="ts">
 import { computed, defineComponent, ref, watch } from "vue"
 ;
-import eeFooterVue   from "@/components/layout/ee-footer.vue";
-import eeVideo       from "@/components/ui/ee-video.vue";
-import eeTitlebarVue from "@/components/layout/ee-titlebar.vue";
+import eeFooterVue   from "@/components/model/PageFooter.vue";
+import eeVideo       from "@/components/model/UxVideo.vue";
+import eeTitlebarVue from "@/components/model/PageTitlebar.vue";
 import useVideos from "@/composeables/useVideos";
 import { Video } from "@/typings/global-types";
 import { useDate } from "@/composeables/date";
 import { isEthan } from "@/composeables/globals";
 import { useDynamicPager } from "@/composeables/dynamicPager";
-import eeFilterVue from "@/components/layout/ee-filter.vue";
+import eeFilterVue from "@/components/model/UxFilter.vue";
 
 type VideoCategory = { name: string; description: string; videos: Video[] };
 

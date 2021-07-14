@@ -35,13 +35,13 @@
 <script lang='ts'>
 import { defineComponent, onUnmounted, Ref, ref } from "vue";
 // Components
-import eeTitlebarVue from "@/components/layout/ee-titlebar.vue";
-import eeFooterVue   from "@/components/layout/ee-footer.vue";
-import eeVideo       from "@/components/ui/ee-video.vue";
+import eeTitlebarVue from "@/components/model/PageTitlebar.vue";
+import eeFooterVue   from "@/components/model/PageFooter.vue";
+import eeVideo       from "@/components/model/UxVideo.vue";
 import useVideos from "@/composeables/useVideos";
 import { Video } from "@/typings/global-types";
 import { isMobile } from "@/globals";
-import eeFilterVue from "@/components/layout/ee-filter.vue";
+import eeFilterVue from "@/components/model/UxFilter.vue";
 
 
 

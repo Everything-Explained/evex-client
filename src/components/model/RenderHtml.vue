@@ -22,7 +22,7 @@
 <script lang="ts">
 import { defineComponent } from "@vue/runtime-core";
 import { PropType } from "vue";
-import eeImgVue from "./ee-img.vue";
+import eeImgVue from "./UxImg.vue";
 
 
 export default defineComponent({

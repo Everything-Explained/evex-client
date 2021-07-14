@@ -21,7 +21,7 @@
 
 <script lang='ts'>
 import { defineComponent } from "vue";
-import eeIconVue from '@/components/ui/ee-icon.vue';
+import eeIconVue from '@/components/model/UxIcon.vue';
 import { useDateCache } from "@/state/cache-state";
 
 
@@ -34,8 +34,8 @@ export default defineComponent({
   },
   setup(props) {
     const stateStr   = 'titlebar-menu-open';
-    const dataCache = useDateCache();
-    const isMenuOpen = dataCache.getData<boolean>(stateStr);
+    const dataCache = useDateCache<boolean>();
+    const isMenuOpen = dataCache.getData(stateStr);
     const duration = {
       enter: props.easeIn ?? 400,
       leave: props.easeOut ?? 400

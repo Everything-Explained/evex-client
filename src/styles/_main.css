@@ -8,47 +8,47 @@
 /*###### COMPONENTS #####*/
 /*#######################*/
 /*** Title Bar ***/
-@import '../components/layout/ee-titlebar.css';
-@import '../components/layout/ee-titlebar.mobile.css';
+@import '../components/style/PageTitlebar.css';
+@import '../components/style/PageTitlebar.mobile.css';
 /*** Menu ***/
-@import '../components/layout/ee-menu.css';
-@import '../components/layout/ee-menu.mobile.css';
+@import '../components/style/TheMenu.css';
+@import '../components/style/TheMenu.mobile.css';
 /*** Footer ***/
-@import '../components/layout/ee-footer.css';
+@import '../components/style/PageFooter.css';
 /*** Filter ***/
-@import '../components/layout/ee-filter.css';
-@import '../components/layout/ee-filter.mobile.css';
+@import '../components/style/UxFilter.css';
+@import '../components/style/UxFilter.mobile.css';
 /*** QnA Form ***/
-@import '../components/layout/ee-qnaform.css';
-@import '../components/layout/ee-qnaform.mobile.css';
+@import '../components/style/FormQnA.css';
+@import '../components/style/FormQnA.mobile.css';
 
 /*** Icon ***/
-@import '../components/ui/ee-icon.css';
+@import '../components/style/UxIcon.css';
 /*** Form Error **/
-@import '../components/ui/ee-form-error.css';
+@import '../components/style/FormError.css';
 /*** Input Field ***/
-@import '../components/ui/ee-input.css';
-@import '../components/ui/ee-input.mobile.css';
-/*** EE Button ***/
-@import '../components/ui/ee-button.css';
-@import '../components/ui/ee-button.mobile.css';
-/*** EE Text ***/
-@import '../components/ui/ee-text.css';
-/*** Lazy Image ***/
-@import '../components/ui/ee-img.css';
+@import '../components/style/UxInput.css';
+@import '../components/style/UxInput.mobile.css';
+/*** UX Button ***/
+@import '../components/style/UxButton.css';
+@import '../components/style/UxButton.mobile.css';
+/*** UX Text ***/
+@import '../components/style/UxText.css';
+/*** Image ***/
+@import '../components/style/UxImg.css';
 /*** on/off Switch ***/
-@import '../components/ui/ee-switch.css';
+@import '../components/style/UxSwitch.css';
 /*** EE Video ***/
-@import '../components/ui/ee-video.css';
+@import '../components/style/UxVideo.css';
 /*** Toggle ***/
-@import '../components/ui/ee-toggle.css';
+@import '../components/style/UxToggle.css';
 /*** Preloader ***/
 @import './_preloader.css';
 /*** Literature ***/
-@import '../components/layout/ee-literature.css';
-@import '../components/layout/ee-literature.mobile.css';
+@import '../components/style/Literature.css';
+@import '../components/style/Literature.mobile.css';
 /*** Checkbox ***/
-@import '../components/ui/ee-checkbox.css';
+@import '../components/style/UxCheckbox.css';
 
 
 

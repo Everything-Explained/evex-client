@@ -36,7 +36,7 @@
 <script lang='ts'>
 import { computed, defineComponent, onMounted, ref, watch, Ref } from "vue";
 import { useRouteMap } from "@/router/map";
-import eeIconVue from '@/components/ui/ee-icon.vue';
+import eeIconVue from '@/components/model/UxIcon.vue';
 import { useDateCache } from "@/state/cache-state";
 
 interface ExternalElements {
@@ -56,8 +56,8 @@ export default defineComponent({
   setup(props) {
     const menuElRef = ref<HTMLDivElement|null>(null);
     const opened  = ref(false);
-    const dataCache = useDateCache();
-    const isMenuOpening = dataCache.getData<boolean>('titlebar-menu-open');
+    const dataCache = useDateCache<boolean>();
+    const isMenuOpening = dataCache.getData('titlebar-menu-open');
     const routeMap = useRouteMap();
 
     if (!props.contentId) throw Error('Missing content ID');

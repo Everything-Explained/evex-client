@@ -12,7 +12,7 @@
 
 <script lang='ts'>
 import { defineComponent } from "vue";
-import titlebar from '@/components/layout/ee-titlebar.vue';
+import titlebar from '@/components/model/PageTitlebar.vue';
 
 export default defineComponent({
   components: { 'title-bar': titlebar },

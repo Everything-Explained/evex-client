@@ -11,7 +11,7 @@
 <script lang="ts">
 import { defineComponent } from "vue"
 ;
-import eeLiteratureVue from "@/components/layout/ee-literature.vue";
+import eeLiteratureVue from "@/components/model/LiteraturePage.vue";
 
 
 export default defineComponent({

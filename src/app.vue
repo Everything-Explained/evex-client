@@ -32,8 +32,8 @@
 <script lang='ts'>
 import { computed, defineComponent, onMounted, onUnmounted, Ref, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import eeMenuVue from "@/components/layout/ee-menu.vue";
-import eeIconVue from "./components/ui/ee-icon.vue";
+import eeMenuVue from "@/components/model/TheMenu.vue";
+import eeIconVue from "./components/model/UxIcon.vue";
 import { useDate } from "./composeables/date";
 import { ISODateString } from "./typings/global-types";
 

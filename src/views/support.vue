@@ -111,11 +111,12 @@
 </template>
 
 
-<script lang='ts'>import eeFooterVue from "@/components/layout/ee-footer.vue";
-import eeQnaformVue, { FormQuestion } from "@/components/layout/ee-qnaform.vue";
-import eeTitlebarVue from "@/components/layout/ee-titlebar.vue";
-import eeButtonVue from "@/components/ui/ee-button.vue";
-import eeTextVue from "@/components/ui/ee-text.vue";
+<script lang='ts'>
+import eeFooterVue from "@/components/model/PageFooter.vue";
+import eeQnaformVue, { FormQuestion } from "@/components/model/FormQnA.vue";
+import eeTitlebarVue from "@/components/model/PageTitlebar.vue";
+import eeButtonVue from "@/components/model/UxButton.vue";
+import eeTextVue from "@/components/model/UxText.vue";
 import { computed, defineComponent, ref } from "@vue/runtime-core";
 
 

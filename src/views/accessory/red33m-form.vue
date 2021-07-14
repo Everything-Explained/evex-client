@@ -108,11 +108,11 @@
 
 <script lang='ts'>
 import { computed, defineComponent, reactive, toRefs } from "vue";
-import titlebarVue  from "@/components/layout/ee-titlebar.vue";
-import eeButton     from "@/components/ui/ee-button.vue";
-import eeTextVue    from "@/components/ui/ee-text.vue";
-import eeFooterVue  from '@/components/layout/ee-footer.vue';
-import eeQnaformVue, { FormQuestion } from "@/components/layout/ee-qnaform.vue";
+import titlebarVue  from "@/components/model/PageTitlebar.vue";
+import eeButton     from "@/components/model/UxButton.vue";
+import eeTextVue    from "@/components/model/UxText.vue";
+import eeFooterVue  from '@/components/model/PageFooter.vue';
+import eeQnaformVue, { FormQuestion } from "@/components/model/FormQnA.vue";
 
 
 const _risks = [

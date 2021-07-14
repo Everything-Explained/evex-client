@@ -72,14 +72,14 @@
 import { computed, defineComponent, onUnmounted, PropType, ref } from "vue";
 import { useDate } from '@/composeables/date'
 ;
-import eeIconVue      from "@/components/ui/ee-icon.vue";
-import eeTitlebarVue  from "@/components/layout/ee-titlebar.vue";
+import eeIconVue      from "@/components/model/UxIcon.vue";
+import eeTitlebarVue  from "@/components/model/PageTitlebar.vue";
 import { StaticPage, useStaticPager } from "@/composeables/staticPager";
-import eeBulletVue from "../ui/ee-bullet.vue";
-import eeFooterVue from "./ee-footer.vue";
-import eeFilterVue from "./ee-filter.vue";
+import eeBulletVue from "./UxBullet.vue";
+import eeFooterVue from "../model/PageFooter.vue";
+import eeFilterVue from "./UxFilter.vue";
 import { isEthan } from "@/composeables/globals";
-import eeHtmlVue from "../ui/ee-html.vue";
+import eeHtmlVue from "./RenderHtml.vue";
 import { DataCacheArrayKeys, DataCacheFilterObj, useDateCache } from "@/state/cache-state";
 
 

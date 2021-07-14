@@ -43,8 +43,8 @@
 
 
 <script lang='ts'>import { computed, defineComponent, ref, toRefs } from "vue";
-import eeIconVue from '@/components/ui/ee-icon.vue';
-import eeImgVue from "./ee-img.vue";
+import eeIconVue from '@/components/model/UxIcon.vue';
+import eeImgVue from "./UxImg.vue";
 import { useDate } from "@/composeables/date";
 import { isEthan } from "@/composeables/globals";
 

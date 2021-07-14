@@ -40,9 +40,9 @@
 
 <script lang="ts">
 import { defineComponent, PropType, ref } from "vue";
-import eeCheckboxVue  from "../ui/ee-checkbox.vue";
-import eeIconVue      from "../ui/ee-icon.vue";
-import eeToggleVue    from "../ui/ee-toggle.vue";
+import eeCheckboxVue  from "./UxCheckbox.vue";
+import eeIconVue      from "./UxIcon.vue";
+import eeToggleVue    from "./UxToggle.vue";
 import { DataCacheFilterObj, useDateCache } from "@/state/cache-state";
 import { useEventBus } from "@/state/event-bus";
 

@@ -12,7 +12,7 @@
 </template>
 
 <script lang='ts'>
-import eeLiteratureVue from "@/components/layout/ee-literature.vue";
+import eeLiteratureVue from "@/components/model/LiteraturePage.vue";
 import { defineComponent } from "vue";
 
 export default defineComponent({
