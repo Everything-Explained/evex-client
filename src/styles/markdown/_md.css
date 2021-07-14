@@ -58,7 +58,8 @@
   color            : var(--md-p-hov-c);
 }
 
-
+.md-bold b,
+.md-bold strong,
 .md b,
 .md strong {
   font-weight : 400;
