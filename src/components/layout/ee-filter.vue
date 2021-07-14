@@ -40,11 +40,10 @@
 
 <script lang="ts">
 import { defineComponent, PropType, ref } from "vue";
-import { useStore }   from "vuex";
 import eeCheckboxVue  from "../ui/ee-checkbox.vue";
 import eeIconVue      from "../ui/ee-icon.vue";
 import eeToggleVue    from "../ui/ee-toggle.vue";
-import { VuexStore } from "@/vuex/vuex-store";
+import { DataCacheFilterObj, useDateCache } from "@/state/cache-state";
 import { useEventBus } from "@/state/event-bus";
 
 interface FilterData {
@@ -107,8 +106,8 @@ export default defineComponent({
 
 
 function usePageFilter(pages: FilterData[], isPersisting: boolean, areReversed = false) {
-  const store            = useStore<VuexStore>();
-  const filterStore      = store.state.filter;
+  const cache            = useDateCache<DataCacheFilterObj>();
+  const filterStore      = cache.getObjData('filter').value;
   const clonedPages      = pages.slice();
   const authors          = getAuthors(clonedPages);
   const isFilterOpen     = ref(filterStore.isPersisting && filterStore.isOpen || false);
@@ -132,21 +131,21 @@ function usePageFilter(pages: FilterData[], isPersisting: boolean, areReversed =
     clonedPages.reverse();
   }
 
-  store.commit('filter-upd-persist', isPersisting);
-  store.commit('filter-upd-map', authorIndexMap);
-  store.commit('filter-upd-pages', filteredPages);
+  cache.updObjData('filter', 'isPersisting', isPersisting);
+  cache.updObjData('filter', 'authorIndexMap', authorIndexMap);
+  cache.updObjData('filter', 'pages', filteredPages);
 
   return {
     toggleFilter: () => {
       isFilterOpen.value = !isFilterOpen.value;
-      store.commit('filter-upd-isOpen', isFilterOpen.value);
+      cache.updObjData('filter', 'isOpen', isFilterOpen.value);
     },
 
     reversePages: () => {
       // Original pages must also reflect reverse order
       clonedPages.reverse();
       const pages = filteredPages.reverse().slice();
-      store.commit('filter-upd-reversed', !filterStore.reversed);
+      cache.updObjData('filter', 'reversed', !filterStore.reversed);
       return pages;
     },
 
@@ -154,11 +153,11 @@ function usePageFilter(pages: FilterData[], isPersisting: boolean, areReversed =
       if (val)  authorIndexMap.push(index);
       if (!val) authorIndexMap.splice(authorIndexMap.indexOf(index), 1)
       ;
-      store.commit('filter-upd-map', authorIndexMap);
+      cache.updObjData('filter', 'authorIndexMap', authorIndexMap);
       filteredPages = clonedPages.filter(item => {
         return authorIndexMap.some(i => authors[i] == item.author);
       });
-      store.commit('filter-upd-pages', filteredPages);
+      cache.updObjData('filter', 'pages', filteredPages);
       return filteredPages;
     },
 

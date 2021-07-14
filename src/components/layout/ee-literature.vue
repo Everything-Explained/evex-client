@@ -78,8 +78,6 @@ import { StaticPage, useStaticPager } from "@/composeables/staticPager";
 import eeBulletVue from "../ui/ee-bullet.vue";
 import eeFooterVue from "./ee-footer.vue";
 import eeFilterVue from "./ee-filter.vue";
-import { VuexStore } from "@/vuex/vuex-store";
-import { useStore } from "vuex";
 import { isEthan } from "@/composeables/globals";
 import eeHtmlVue from "../ui/ee-html.vue";
 import { DataCacheArrayKeys, DataCacheFilterObj, useDateCache } from "@/state/cache-state";
@@ -116,8 +114,8 @@ export default defineComponent({
   setup(props) {
     const { size, uri } = props;
     const sizeClass = { '--expanded': size == 'expanded' };
-    const store = useStore<VuexStore>()
-    ;
+    const cache = useDateCache<DataCacheFilterObj>();
+
     if (!uri) throw Error('literature::Missing URL');
     if (!_sizes.includes(size)) throw Error('literature::Invalid Size')
     ;
@@ -135,7 +133,7 @@ export default defineComponent({
 
     onUnmounted(() => {
       // Reset filter on page navigation
-      store.commit('filter-upd-persist', false);
+      cache.updObjData('filter', 'isPersisting', false);
     });
 
     return {
