@@ -1,5 +1,5 @@
 <template>
-  <ee-literature
+  <literature-page
     uri="changelog"
     size="expanded"
     :show-date-time="true"
@@ -12,11 +12,11 @@
 </template>
 
 <script lang='ts'>
-import eeLiteratureVue from "@/components/model/LiteraturePage.vue";
+import LiteraturePageVue from "@/components/model/LiteraturePage.vue";
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  components: { 'ee-literature': eeLiteratureVue, },
+  components: { 'literature-page': LiteraturePageVue, },
 });
 </script>
 

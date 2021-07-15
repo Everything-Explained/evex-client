@@ -1,6 +1,6 @@
 <template>
   <div class="lit">
-    <ee-titlebar
+    <pg-titlebar
       :ease-in="350"
       :ease-out="350"
       :text="titleRef"
@@ -8,7 +8,7 @@
     <transition name="fade" mode="out-in">
       <div v-if="isRunning" class="preloader page" />
       <div v-else-if="!activePage" class="lit-cards__container">
-        <ee-filter
+        <ux-filter
           v-if="showFilter"
           :items="pages"
           :reverse-order="reverseOrder"
@@ -27,7 +27,7 @@
             </article>
             <footer>
               <span v-if="showAuthor" class="lit-card__author">
-                <ee-icon type="user" />
+                <ux-icon type="user" />
                 <span :class="['lit-card__author-text', { '--is-ethan': isEthan(article.author) }]">
                   {{ article.author }}
                 </span>
@@ -38,30 +38,30 @@
                     {{ useDate(article.date).toShortDate() }}
                   </span>
                   <span class="lit-card__time">
-                    <ee-bullet />
+                    <ux-bullet />
                     {{ useDate(article.date).to12HourTime() }}
                   </span>
                 </span>
                 <span v-else class="lit-card__relative-time">
-                  <ee-bullet />
+                  <ux-bullet />
                   {{ useDate(article.date).toRelativeTime() }}
                 </span>
               </span>
             </footer>
           </div>
         </div>
-        <ee-footer />
+        <pg-footer />
       </div>
       <div v-else-if="activePage">
-        <ee-html v-if="useCustomRenderer"
-                 :class="['md', contentClass]"
-                 :html="activePage.content"
+        <render-html v-if="useCustomRenderer"
+                     :class="['md', contentClass]"
+                     :html="activePage.content"
         />
         <article v-else
                  :class="['md', contentClass]"
                  v-html="activePage.content"
         />
-        <ee-footer />
+        <pg-footer />
       </div>
     </transition>
   </div>
@@ -70,17 +70,16 @@
 
 <script lang="ts">
 import { computed, defineComponent, onUnmounted, PropType, ref } from "vue";
-import { useDate } from '@/composeables/date'
-;
-import eeIconVue      from "@/components/model/UxIcon.vue";
-import eeTitlebarVue  from "@/components/model/PageTitlebar.vue";
-import { StaticPage, useStaticPager } from "@/composeables/staticPager";
-import eeBulletVue from "./UxBullet.vue";
-import eeFooterVue from "../model/PageFooter.vue";
-import eeFilterVue from "./UxFilter.vue";
+import { useDate } from '@/composeables/date';
 import { isEthan } from "@/composeables/globals";
-import eeHtmlVue from "./RenderHtml.vue";
+import { StaticPage, useStaticPager } from "@/composeables/staticPager";
 import { DataCacheArrayKeys, DataCacheFilterObj, useDateCache } from "@/state/cache-state";
+import PageTitlebarVue  from "@/components/model/PageTitlebar.vue";
+import PageFooterVue from "../model/PageFooter.vue";
+import RenderHtmlVue from "./RenderHtml.vue";
+import uxIconVue     from "@/components/model/UxIcon.vue";
+import uxBulletVue   from "./UxBullet.vue";
+import uxFilterVue   from "./UxFilter.vue";
 
 
 
@@ -93,12 +92,12 @@ const _sizes = ['compact', 'expanded'];
 
 export default defineComponent({
   components: {
-    'ee-titlebar': eeTitlebarVue,
-    'ee-icon': eeIconVue,
-    'ee-bullet': eeBulletVue,
-    'ee-footer': eeFooterVue,
-    'ee-filter': eeFilterVue,
-    'ee-html'  : eeHtmlVue,
+    'pg-titlebar': PageTitlebarVue,
+    'ux-icon': uxIconVue,
+    'ux-bullet': uxBulletVue,
+    'pg-footer': PageFooterVue,
+    'ux-filter': uxFilterVue,
+    'render-html'  : RenderHtmlVue,
   },
   props: {
     size              : { type: String,  default: 'compact'       },

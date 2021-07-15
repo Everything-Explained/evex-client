@@ -1,9 +1,9 @@
 <template>
   <div class="red33m-auth">
-    <ee-titlebar class="r3d-auth__titlebar">
+    <pg-titlebar class="r3d-auth__titlebar">
       RED33M
-    </ee-titlebar>
-    <ee-text type="block" class="r3d-auth__disclaimer">
+    </pg-titlebar>
+    <ux-text type="block" class="r3d-auth__disclaimer">
       This page contains sensitive content which <em>requires authentication</em>.
       If you have a passcode, use the form below to grant yourself access.
       <br><br>
@@ -15,9 +15,9 @@
       </router-link>
       to gain eligibility; filling out the form <em>does not</em>
       guarantee a Passcode, it only makes you eligible.
-    </ee-text>
+    </ux-text>
     <form class="r3d-auth__form">
-      <ee-input
+      <ux-input
         v-model="code"
         class="r3d-auth__passcode"
         :minchars="6"
@@ -25,9 +25,9 @@
         :validate="validate"
       >
         Passcode
-      </ee-input>
+      </ux-input>
 
-      <ee-button
+      <ux-button
         class="r3d-auth__button"
         type="submit"
         theme="attention"
@@ -36,50 +36,50 @@
         @click="submit"
       >
         ENTER
-      </ee-button>
+      </ux-button>
       <br>
-      <ee-form-error
+      <form-error
         class="r3d-auth__error"
         :update="errorUpdVal"
         :text="errorText"
       />
     </form>
     <br>
-    <ee-text type="span-block" class="r3d-auth__note">
+    <ux-text type="span-block" class="r3d-auth__note">
       <strong>NOTE:</strong> Do not clear your browser cache, otherwise you
       will need to enter the code again, when you come back to this page
       later.
-    </ee-text>
-    <ee-text type="span-block" class="r3d-auth__note">
+    </ux-text>
+    <ux-text type="span-block" class="r3d-auth__note">
       <strong>CAVEAT:</strong> The passcode will only be saved for <em>this device</em>.
       In order to view this content on your other devices:
       <strong>computer, phone, tablet, etc...</strong>
       You <em>must enter the passcode again</em> on those devices.<br><br>
-    </ee-text>
-    <ee-footer />
+    </ux-text>
+    <pg-footer />
   </div>
 </template>
 
 <script lang='ts'>
 import { defineComponent, ref } from "vue";
-import eeButton from "@/components/model/UxButton.vue";
-import eeInputField from "@/components/model/UxInput.vue";
-import { APIErrorResp, useAPI } from "@/services/api_internal";
-import eeText from '@/components/model/UxText.vue';
 import { useRouter } from "vue-router";
-import eeTitlebarVue from "@/components/model/PageTitlebar.vue";
-import eeFooterVue from "@/components/model/PageFooter.vue";
-import eeFormErrorVue from "@/components/model/FormError.vue";
+import { APIErrorResp, useAPI } from "@/services/api_internal";
 import useInputValidation from "@/composeables/inputValidation";
+import PageTitlebarVue from "@/components/model/PageTitlebar.vue";
+import PageFooterVue from "@/components/model/PageFooter.vue";
+import FormErrorVue from "@/components/model/FormError.vue";
+import uxButtonVue from "@/components/model/UxButton.vue";
+import uxInputVue from "@/components/model/UxInput.vue";
+import uxTextVue from '@/components/model/UxText.vue';
 
 export default defineComponent({
   components: {
-    'ee-input'      : eeInputField,
-    'ee-button'     : eeButton,
-    'ee-titlebar'   : eeTitlebarVue,
-    'ee-text'       : eeText,
-    'ee-footer'     : eeFooterVue,
-    'ee-form-error' : eeFormErrorVue,
+    'pg-titlebar' : PageTitlebarVue,
+    'pg-footer'   : PageFooterVue,
+    'form-error'  : FormErrorVue,
+    'ux-input'    : uxInputVue,
+    'ux-button'   : uxButtonVue,
+    'ux-text'     : uxTextVue,
   },
   setup() {
     const codeLength   = 6;

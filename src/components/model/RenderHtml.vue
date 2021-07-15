@@ -7,7 +7,7 @@
         :start="n[2] || 1"
         v-html="n[1]"
       />
-      <ee-img
+      <ux-img
         v-else-if="'img' == n[0]"
         :src="n[1]"
         :asset="true"
@@ -22,16 +22,12 @@
 <script lang="ts">
 import { defineComponent } from "@vue/runtime-core";
 import { PropType } from "vue";
-import eeImgVue from "./UxImg.vue";
+import uxImgVue from "./UxImg.vue";
 
 
 export default defineComponent({
-  components: {
-    'ee-img': eeImgVue,
-  },
-  props: {
-    html: { type: String as PropType<string>, required: true },
-  },
+  components: { 'ux-img': uxImgVue, },
+  props     : { html: { type: String as PropType<string>, required: true }, },
   setup({html}) {
     const { getNodesUsingBQ, getNodesUsingP } = useHTMLNodeParser(html);
 

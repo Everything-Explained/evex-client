@@ -1,6 +1,6 @@
 <template>
   <div class="lib-vid">
-    <ee-titlebar
+    <pg-titlebar
       :ease-in="350"
       :ease-out="350"
       :text="title"
@@ -52,13 +52,13 @@
         <ee-footer />
       </div>
       <div v-else-if="activePage">
-        <ee-filter
+        <ux-filter
           :items="activePage.data"
           :persist="false"
           @filter="onFilter"
         />
         <div class="lib-vid__video-list">
-          <ee-video
+          <ux-video
             v-for="(v, j) of activeVideos"
             :key="j"
             class="lib-videos__video"
@@ -68,9 +68,9 @@
             :author="v.author"
           >
             {{ v.title }}
-          </ee-video>
+          </ux-video>
         </div>
-        <ee-footer />
+        <pg-footer />
       </div>
     </transition>
   </div>
@@ -78,26 +78,25 @@
 
 
 <script lang="ts">
-import { computed, defineComponent, ref, watch } from "vue"
-;
-import eeFooterVue   from "@/components/model/PageFooter.vue";
-import eeVideo       from "@/components/model/UxVideo.vue";
-import eeTitlebarVue from "@/components/model/PageTitlebar.vue";
-import useVideos from "@/composeables/useVideos";
-import { Video } from "@/typings/global-types";
-import { useDate } from "@/composeables/date";
-import { isEthan } from "@/composeables/globals";
+import { computed, defineComponent, ref, watch } from "vue";
+import useVideos           from "@/composeables/useVideos";
 import { useDynamicPager } from "@/composeables/dynamicPager";
-import eeFilterVue from "@/components/model/UxFilter.vue";
+import { useDate }         from "@/composeables/date";
+import { isEthan }         from "@/composeables/globals";
+import { Video }           from "@/typings/global-types";
+import PageTitleBarVue     from "@/components/model/PageTitlebar.vue";
+import PageFooterVue       from "@/components/model/PageFooter.vue";
+import uxFilterVue         from "@/components/model/UxFilter.vue";
+import uxVideoVue          from "@/components/model/UxVideo.vue";
 
 type VideoCategory = { name: string; description: string; videos: Video[] };
 
 export default defineComponent({
   components: {
-    'ee-titlebar' : eeTitlebarVue,
-    'ee-video'    : eeVideo,
-    'ee-footer'   : eeFooterVue,
-    'ee-filter'   : eeFilterVue,
+    'pg-titlebar' : PageTitleBarVue,
+    'pg-footer'   : PageFooterVue,
+    'ux-video'    : uxVideoVue,
+    'ux-filter'   : uxFilterVue,
   },
   setup() {
     const { videos: categories, getVideoTask } = useVideos<VideoCategory>('/data/library/videos.json');

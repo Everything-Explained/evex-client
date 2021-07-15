@@ -2,24 +2,24 @@
   <div class="ee-video">
     <div class="ee-video_img-container">
       <div class="ee-video__thumbnail-container">
-        <ee-img :src="thumbnail" class="ee-video_img" />
+        <ux-img :src="thumbnail" class="ee-video_img" />
       </div>
       <div :class="['ee-video_text-widget', { '--open': descState }]">
         {{ useDate(date).toRelativeTime() }}
       </div>
-      <ee-icon
+      <ux-icon
         :class="['ee-video_widget ee-video_widget-open-video', { '--open': descState }]"
         type="export"
         @click="openVideo"
       />
-      <ee-icon
+      <ux-icon
         v-if="description"
         :class="['ee-video_widget ee-video_widget-open-desc', { '--open': descState }]"
         type="info"
         @click="setDescState('open')"
       />
       <div :class="['ee-video_desc', { '--open': descState }]">
-        <ee-icon
+        <ux-icon
           class="ee-video_widget ee-video_widget-close-desc"
           type="cross"
           @click="setDescState('closed')"
@@ -35,24 +35,23 @@
         <slot />
       </div>
       <div v-if="author" :class="['ee-video__author', { '--is-ethan': isEthan(author) }]">
-        <ee-icon type="user" /> {{ author }}
+        <ux-icon type="user" /> {{ author }}
       </div>
     </div>
   </div>
 </template>
 
 
-<script lang='ts'>import { computed, defineComponent, ref, toRefs } from "vue";
-import eeIconVue from '@/components/model/UxIcon.vue';
-import eeImgVue from "./UxImg.vue";
+<script lang='ts'>
+import { computed, defineComponent, ref, toRefs } from "vue";
 import { useDate } from "@/composeables/date";
 import { isEthan } from "@/composeables/globals";
+// components
+import uxIconVue from '@/components/model/UxIcon.vue';
+import uxImgVue from "./UxImg.vue";
 
 export default defineComponent({
-  components: {
-    'ee-img': eeImgVue,
-    'ee-icon': eeIconVue,
-  },
+  components: { 'ux-img': uxImgVue, 'ux-icon': uxIconVue, },
   props: {
     desc    : { type: String, default: '' },
     videoId : { type: String, default: '' },

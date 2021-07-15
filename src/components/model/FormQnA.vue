@@ -1,7 +1,7 @@
 <template>
   <div class="qnaf ee__page-content">
     <div class="qnaf__form">
-      <ee-input
+      <ux-input
         v-model="name"
         class="qnaf__input"
         :minchars="3"
@@ -12,17 +12,17 @@
         :errmsg="'<em>Special characters</em> are not allowed'"
       >
         {{ nameLabel }}
-      </ee-input>
+      </ux-input>
       <br>
 
-      <ee-input
+      <ux-input
         v-model="email"
         class="qnaf__input"
         type="email"
         :validate="validateInput"
       >
         E-Mail
-      </ee-input>
+      </ux-input>
       <br>
 
       <div
@@ -41,7 +41,7 @@
             {{ q.subtext }}
           </div>
         </div>
-        <ee-input
+        <ux-input
           v-model="q.answer"
           type="area"
           class="qnaf__area-input"
@@ -52,26 +52,26 @@
         />
       </div>
       <div class="qnaf__controls">
-        <ee-button
+        <ux-button
           v-if="showBack"
           class="qnaf__back-button"
           type="neutral"
           @click="$emit('back')"
         >
           BACK
-        </ee-button>
-        <ee-button
+        </ux-button>
+        <ux-button
           :theme="'attention'"
           :disabled="!areInputsValidated"
           :loading="isSubmitting"
           @click="submit"
         >
           SUBMIT
-        </ee-button>
-        <ee-text v-if="remainingInputs > 0" class="qnaf__validation-text">
+        </ux-button>
+        <ux-text v-if="remainingInputs > 0" class="qnaf__validation-text">
           <strong>{{ remainingInputs }}</strong> field(s) require(s) attention
-        </ee-text>
-        <ee-form-error
+        </ux-text>
+        <form-error
           v-else
           class="qnaf__error-text"
           :update="errorUpdate"
@@ -87,10 +87,10 @@
 import { defineComponent, PropType, reactive, toRefs } from "@vue/runtime-core";
 import useInputValidation from "@/composeables/inputValidation";
 import { APIErrorResp, useAPI }         from "@/services/api_internal";
-import eeButtonVue        from "./UxButton.vue";
-import eeFormErrorVue     from "./FormError.vue";
-import eeInputVue         from "./UxInput.vue";
-import eeTextVue          from "./UxText.vue";
+import uxButtonVue        from "./UxButton.vue";
+import FormErrorVue     from "./FormError.vue";
+import uxInputVue         from "./UxInput.vue";
+import uxTextVue          from "./UxText.vue";
 import { DataCacheArrayKeys, useDateCache } from "@/state/cache-state";
 
 
@@ -105,10 +105,10 @@ interface ReactiveQuestion {
 
 export default defineComponent({
   components: {
-    'ee-text'       : eeTextVue,
-    'ee-input'      : eeInputVue,
-    'ee-button'     : eeButtonVue,
-    'ee-form-error' : eeFormErrorVue,
+    'ux-text'       : uxTextVue,
+    'ux-input'      : uxInputVue,
+    'ux-button'     : uxButtonVue,
+    'form-error'    : FormErrorVue,
   },
   props: {
     id        : { type: String  as PropType<DataCacheArrayKeys>,         required: true       },

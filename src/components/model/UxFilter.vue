@@ -2,14 +2,14 @@
   <div class="ee-filter">
     <fieldset :class="['ee-filter__fieldset', { '--visible': isFilterOpen }]">
       <legend>Filter</legend>
-      <ee-toggle
+      <ux-toggle
         :init-state="areItemsReversed"
         left-text="Oldest"
         right-text="Latest"
         @toggle="toggleAge"
       />
       <div class="ee-filter__authors">
-        <ee-checkbox
+        <ux-checkbox
           v-for="(author, i) of authors"
           :key="i"
           :value="author"
@@ -24,11 +24,11 @@
       @mousedown="toggleFilter"
     >
       <span v-if="isFilterOpen">
-        <ee-icon type="chev-up" />
+        <ux-icon type="chev-up" />
         less
       </span>
       <span v-else>
-        <ee-icon type="chev-down" />
+        <ux-icon type="chev-down" />
         more
       </span>
     </div>
@@ -40,11 +40,12 @@
 
 <script lang="ts">
 import { defineComponent, PropType, ref } from "vue";
-import eeCheckboxVue  from "./UxCheckbox.vue";
-import eeIconVue      from "./UxIcon.vue";
-import eeToggleVue    from "./UxToggle.vue";
 import { DataCacheFilterObj, useDateCache } from "@/state/cache-state";
 import { useEventBus } from "@/state/event-bus";
+// Components
+import uxCheckboxVue  from "./UxCheckbox.vue";
+import uxIconVue      from "./UxIcon.vue";
+import uxToggleVue    from "./UxToggle.vue";
 
 interface FilterData {
   // Allow ignorable props
@@ -55,9 +56,9 @@ interface FilterData {
 
 export default defineComponent({
   components: {
-    'ee-checkbox': eeCheckboxVue,
-    'ee-toggle': eeToggleVue,
-    'ee-icon': eeIconVue,
+    'ux-checkbox' : uxCheckboxVue,
+    'ux-toggle'   : uxToggleVue,
+    'ux-icon'     : uxIconVue,
   },
   props: {
     ageOnly:      { type: Boolean as PropType<boolean>,    default: false,             },

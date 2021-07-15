@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-    <ee-titlebar>About Us</ee-titlebar>
+    <pg-titlebar>About Us</pg-titlebar>
     <div class="home md" v-html="content" />
-    <ee-footer />
+    <pg-footer />
   </div>
 </template>
 
@@ -12,13 +12,13 @@
 import mdHomePages from '../../release/web_client/_data/home.json';
 import { defineComponent } from "vue"
 ;
-import eeTitlebarVue from '@/components/model/PageTitlebar.vue';
-import eeFooterVue from '@/components/model/PageFooter.vue';
+import PageTitlebarVue from '@/components/model/PageTitlebar.vue';
+import PageFooterVue from '@/components/model/PageFooter.vue';
 
 
 
 export default defineComponent({
-  components: { 'ee-titlebar': eeTitlebarVue, 'ee-footer': eeFooterVue },
+  components: { 'pg-titlebar': PageTitlebarVue, 'pg-footer': PageFooterVue },
   setup() { return { content: mdHomePages[0].content }; }
 });
 </script>

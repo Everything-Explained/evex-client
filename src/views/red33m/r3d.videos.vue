@@ -1,17 +1,17 @@
 <template>
   <div class="red33m">
-    <ee-titlebar>RED33M Videos</ee-titlebar>
+    <pg-titlebar>RED33M Videos</pg-titlebar>
     <transition name="fade" mode="out-in">
       <div v-if="isVideoTaskRunning" class="preloader page" />
       <div v-else>
-        <ee-filter
+        <ux-filter
           :age-only="true"
           :persist="false"
           :items="rawVideos"
           @filter="onFilter"
         />
         <div ref="observedEl" class="red33m-video-list">
-          <ee-video
+          <ux-video
             v-for="(v, i) of videos"
             :key="i"
             :video-id="v.id"
@@ -20,10 +20,10 @@
             class="red33m-video"
           >
             {{ v.title }}
-          </ee-video>
+          </ux-video>
         </div>
         <!-- Loading footer before videos 'fixes' it to bottom -->
-        <ee-footer v-if="videos.length" />
+        <pg-footer v-if="videos.length" />
       </div>
     </transition>
   </div>
@@ -34,23 +34,23 @@
 
 <script lang='ts'>
 import { defineComponent, onUnmounted, Ref, ref } from "vue";
-// Components
-import eeTitlebarVue from "@/components/model/PageTitlebar.vue";
-import eeFooterVue   from "@/components/model/PageFooter.vue";
-import eeVideo       from "@/components/model/UxVideo.vue";
-import useVideos from "@/composeables/useVideos";
-import { Video } from "@/typings/global-types";
+import useVideos    from "@/composeables/useVideos";
+import { Video }    from "@/typings/global-types";
 import { isMobile } from "@/globals";
-import eeFilterVue from "@/components/model/UxFilter.vue";
+// Components
+import PageTitlebarVue from "@/components/model/PageTitlebar.vue";
+import PageFooterVue   from "@/components/model/PageFooter.vue";
+import uxVideoVue      from "@/components/model/UxVideo.vue";
+import uxFilterVue     from "@/components/model/UxFilter.vue";
 
 
 
 export default defineComponent({
   components: {
-    'ee-titlebar' : eeTitlebarVue,
-    'ee-video'    : eeVideo,
-    'ee-footer'   : eeFooterVue,
-    'ee-filter'   : eeFilterVue,
+    'pg-titlebar' : PageTitlebarVue,
+    'pg-footer'   : PageFooterVue,
+    'ux-filter'   : uxFilterVue,
+    'ux-video'    : uxVideoVue,
   },
   setup() {
     const maxVideosToStart = isMobile() ? 10 : 30;

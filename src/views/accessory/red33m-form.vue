@@ -1,6 +1,6 @@
 <template>
   <div class="red33m-form">
-    <ee-titlebar
+    <pg-titlebar
       :ease-in="350"
       :ease-out="350"
       :text="titleBarVal"
@@ -9,20 +9,20 @@
     <transition name="fade" mode="out-in">
       <div v-if="!isAccepted">
         <div class="ee__page-content">
-          <ee-text type="block">
+          <ux-text type="block">
             This form functions as an application for access to EC (exclusive content).
             It is <em>by no means</em> a test for a single specific type of personality, intelligence,
             or level of advancement in spirituality. <br><br>
             <strong>Our team keeps this content exclusive for various significant reasons:</strong>
-          </ee-text>
-          <ee-text
+          </ux-text>
+          <ux-text
             v-for="(risk, i) of risks"
             :key="i"
             class="r3d-form__list-item"
             type="block"
           >
             <ul><li v-html="risk" /></ul>
-          </ee-text>
+          </ux-text>
           <br>
           <div class="r3d-form__iframe-parent">
             <iframe src="//www.youtube-nocookie.com/embed/qskMClpUmvk?vq=hd1080&modestbranding=1&rel=0"
@@ -32,48 +32,48 @@
             />
           </div>
           <br>
-          <ee-text class="r3d-form__begin-text" type="block">
+          <ux-text class="r3d-form__begin-text" type="block">
             <em>This application is meant to gauge you on the following:</em>
-          </ee-text>
-          <ee-text
+          </ux-text>
+          <ux-text
             v-for="(aptitude, i) of aptitudes"
             :key="i"
             class="r3d-form__list-item"
             type="block"
           >
             <ul><li v-html="aptitude" /></ul>
-          </ee-text>
+          </ux-text>
           <br>
-          <ee-text type="block">
+          <ux-text type="block">
             By clicking the <strong>ACCEPT</strong> button below, you're agreeing to take full responsibility for
             all your (re)actions based on the exclusive content, <em>including but not limited to</em>,
             <strong>all risks mentioned above</strong>. You also agree that <strong>everything-explained.org</strong>
             and all associated persons are <em>not</em> responsible in any way for your (re)actions based on
             the exclusive content.
-          </ee-text>
-          <ee-button
+          </ux-text>
+          <ux-button
             class="r3d-form__button"
             theme="attention"
             @click="accept"
           >
             ACCEPT AND BEGIN
-          </ee-button>
+          </ux-button>
         </div>
-        <ee-footer />
+        <pg-footer />
       </div>
 
       <div v-else-if="!isSubmitted" class="r3d-form__form">
         <div class="r3d-form__disclaimer">
-          <ee-text type="block">
+          <ux-text type="block">
             <strong>Please respond to the following questions in an honest manner.</strong> This form will
             determine if you’re more or less likely to <strong>gain value</strong> from the exclusive content.
             <br><br>
             <em>Do not</em> enter responses that are intended to make you seem more advanced or Enlightened.
             This isn’t necessarily a test and even if you’re very Enlightened, it <strong>doesn’t</strong>
             mean that this content is going to be beneficial to you.
-          </ee-text>
+          </ux-text>
         </div>
-        <ee-qnaform
+        <form-qna
           id="red33m/qnaform"
           :type="3"
           name-label="Name or Preferred Title"
@@ -84,11 +84,11 @@
           @back="back"
           @submitted="submitted"
         />
-        <ee-footer />
+        <pg-footer />
       </div>
 
       <div v-else>
-        <ee-text class="r3d-form__text-block submitted" type="block">
+        <ux-text class="r3d-form__text-block submitted" type="block">
           <strong>Thank you for your interest in this exclusive content.</strong> Our team will get back to
           you as soon as possible. Whatever the results may be, <em>do not take them personally</em>.<br><br>
 
@@ -98,8 +98,8 @@
 
           Expect a response <strong>within 7 days</strong>, whether that response is to <strong>grant</strong> or
           <em>reject</em> access to this content.
-        </ee-text>
-        <ee-footer />
+        </ux-text>
+        <pg-footer />
       </div>
     </transition>
   </div>
@@ -108,11 +108,11 @@
 
 <script lang='ts'>
 import { computed, defineComponent, reactive, toRefs } from "vue";
-import titlebarVue  from "@/components/model/PageTitlebar.vue";
-import eeButton     from "@/components/model/UxButton.vue";
-import eeTextVue    from "@/components/model/UxText.vue";
-import eeFooterVue  from '@/components/model/PageFooter.vue';
-import eeQnaformVue, { FormQuestion } from "@/components/model/FormQnA.vue";
+import PageTitlebarVue              from "@/components/model/PageTitlebar.vue";
+import PageFooterVue                from '@/components/model/PageFooter.vue';
+import FormQnAVue, { FormQuestion } from "@/components/model/FormQnA.vue";
+import uxButtonVue                  from "@/components/model/UxButton.vue";
+import uxTextVue                    from "@/components/model/UxText.vue";
 
 
 const _risks = [
@@ -184,11 +184,11 @@ const _aptitudes = [
 
 export default defineComponent({
   components: {
-    'ee-titlebar'   : titlebarVue,
-    'ee-text'       : eeTextVue,
-    'ee-button'     : eeButton,
-    'ee-footer'     : eeFooterVue,
-    'ee-qnaform'    : eeQnaformVue,
+    'pg-titlebar' : PageTitlebarVue,
+    'ux-text'     : uxTextVue,
+    'ux-button'   : uxButtonVue,
+    'pg-footer'   : PageFooterVue,
+    'form-qna'    : FormQnAVue,
   },
   setup() {
     const titleBarVal = computed(() =>

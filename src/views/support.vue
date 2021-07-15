@@ -1,6 +1,6 @@
 <template>
   <div class="support">
-    <ee-titlebar
+    <pg-titlebar
       :class="{ '--submitted': isSubmitted}"
       :text="pageTitle"
       :ease-in="350"
@@ -9,25 +9,25 @@
     <transition name="fade" mode="out-in">
       <div v-if="!isFormActive">
         <div class="ee__page-content">
-          <ee-text type="block">
+          <ux-text type="block">
             Our team is committed to bringing you top-grade content for <b>no cost at all</b>.
             Furthermore, you - the customer - are granted the freedom to help us steer
             this platform. If there’s <em>anything</em> you’d like to see our community
             accomplish, consider giving back to the providers.
-          </ee-text>
-          <ee-text type="block">
+          </ux-text>
+          <ux-text type="block">
             Donations can contribute to a <b>variety of matters</b> including but not limited to:
             upgraded video-producing equipment; community out-reach programs (e.g. spiritual
             counseling, academic collaboration, providing for the underprivileged etc.);
             entrepreneurship; seminars; research; documentaries; podcast production; etc...
-          </ee-text>
-          <ee-text type="block">
+          </ux-text>
+          <ux-text type="block">
             Even if you’d simply like to help our contributors <b>make a living</b> through producing
             more content, <em>your support furthers that possibility</em>. If any single one of these
             communal benefits appeals to your vision, then consider becoming one of our beloved
             benefactors!
-          </ee-text>
-          <ee-text class="support__patreon" :no-m-d="true">
+          </ux-text>
+          <ux-text class="support__patreon" :no-m-d="true">
             <span class="md-bold">Support our <b>ORG</b> on</span>
             <a href="https://www.patreon.com/user?u=10855808&fan_landing=true" target="_blank">
               <img
@@ -35,58 +35,58 @@
                 alt=""
               >
             </a>
-          </ee-text>
-          <ee-text type="block">
+          </ux-text>
+          <ux-text type="block">
             Donations of any amount are <b>highly appreciated</b> and you can trust our commitment
             to create the transformations you’re passionate about!
-          </ee-text>
-          <ee-text type="header">
+          </ux-text>
+          <ux-text type="header">
             want to share your own content?
-          </ee-text>
-          <ee-text type="block" class="support__after-header">
+          </ux-text>
+          <ux-text type="block" class="support__after-header">
             Think you’ve got something of significant value and want to produce your own content for the community?
             <b>Click the button below</b> and shoot us a message. We’re excited to see what you
             can bring to the table!
-          </ee-text>
-          <ee-button class="support__button"
+          </ux-text>
+          <ux-button class="support__button"
                      theme="dangerous"
                      @click="activateForm(0)"
           >
             {{ typeText[0] }}
-          </ee-button>
-          <ee-text type="header">
+          </ux-button>
+          <ux-text type="header">
             want to collaborate?
-          </ee-text>
-          <ee-text type="block" class="support__after-header">
+          </ux-text>
+          <ux-text type="block" class="support__after-header">
             Have the urge to collaborate with a member of the team? <b>Click the button below</b> and give yourself
             the chance to make it happen!
-          </ee-text>
-          <ee-button class="support__button"
+          </ux-text>
+          <ux-button class="support__button"
                      theme="dangerous"
                      @click="activateForm(1)"
           >
             {{ typeText[1] }}
-          </ee-button>
-          <ee-text type="header">
+          </ux-button>
+          <ux-text type="header">
             is something incorrect?
-          </ee-text>
-          <ee-text type="block" class="support__after-header">
+          </ux-text>
+          <ux-text type="block" class="support__after-header">
             Did you see something posted in an article or video that you felt <em>inaccurately</em> represented
             your organization or area of expertise? <b>Click the button below</b> and let us know what we
             need to correct.
-          </ee-text>
-          <ee-button class="support__button"
+          </ux-text>
+          <ux-button class="support__button"
                      theme="dangerous"
                      @click="activateForm(2)"
           >
             {{ typeText[2] }}
-          </ee-button>
+          </ux-button>
         </div>
-        <ee-footer />
+        <pg-footer />
       </div>
       <div v-else-if="!isSubmitted">
         <div class="support__content">
-          <ee-qnaform
+          <form-qna
             id="support/qnaform"
             :questions="questions"
             :type="formType"
@@ -97,14 +97,14 @@
             @submitted="submitted"
           />
         </div>
-        <ee-footer />
+        <pg-footer />
       </div>
       <div v-else>
-        <ee-text class="support__submitted" type="block">
+        <ux-text class="support__submitted" type="block">
           Thank you for your interest in our content! Our team will try to get
           back to you <strong>within 7 days</strong> for our response.
-        </ee-text>
-        <ee-footer />
+        </ux-text>
+        <pg-footer />
       </div>
     </transition>
   </div>
@@ -112,12 +112,12 @@
 
 
 <script lang='ts'>
-import eeFooterVue from "@/components/model/PageFooter.vue";
-import eeQnaformVue, { FormQuestion } from "@/components/model/FormQnA.vue";
-import eeTitlebarVue from "@/components/model/PageTitlebar.vue";
-import eeButtonVue from "@/components/model/UxButton.vue";
-import eeTextVue from "@/components/model/UxText.vue";
-import { computed, defineComponent, ref } from "@vue/runtime-core";
+import { computed, defineComponent, ref } from "vue";
+import PageTitlebarVue              from "@/components/model/PageTitlebar.vue";
+import PageFooterVue                from "@/components/model/PageFooter.vue";
+import FormQnAVue, { FormQuestion } from "@/components/model/FormQnA.vue";
+import uxButtonVue                  from "@/components/model/UxButton.vue";
+import uxTextVue                    from "@/components/model/UxText.vue";
 
 
 
@@ -150,11 +150,11 @@ const _typeText = [
 
 export default defineComponent({
   components: {
-    'ee-titlebar' : eeTitlebarVue,
-    'ee-footer'   : eeFooterVue,
-    'ee-text'     : eeTextVue,
-    'ee-button'   : eeButtonVue,
-    'ee-qnaform'  : eeQnaformVue,
+    'pg-titlebar' : PageTitlebarVue,
+    'pg-footer'   : PageFooterVue,
+    'form-qna'    : FormQnAVue,
+    'ux-text'     : uxTextVue,
+    'ux-button'   : uxButtonVue,
   },
   setup() {
     const isFormActive = ref(false);
