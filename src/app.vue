@@ -4,7 +4,7 @@
     <div :class="['app__toast-buffer', { '--show': !isToastClosed }]" />
     <div :class="['app__toast', { '--show': isToastVisible }]" @click="openVersion">
       Click here to see the New Release Changes!
-      <ee-icon class="app__toast-icon"
+      <ux-icon class="app__toast-icon"
                :type="'cross'"
                @click.stop="closeToast"
       />
@@ -15,7 +15,7 @@
       </router-link>
     </header>
     <section class="app-body">
-      <ee-menu :header-id="'AppHeader'" :content-id="'AppBodyContent'" />
+      <app-menu :header-id="'AppHeader'" :content-id="'AppBodyContent'" />
       <div id="AppBodyContent" class="app-body__content">
         <router-view v-slot="{ Component }">
           <transition name="fade" mode="out-in">
@@ -32,19 +32,16 @@
 <script lang='ts'>
 import { computed, defineComponent, onMounted, onUnmounted, Ref, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import eeMenuVue from "@/components/model/TheMenu.vue";
-import eeIconVue from "./components/model/UxIcon.vue";
 import { useDate } from "./composeables/date";
 import { ISODateString } from "./typings/global-types";
+// components
+import TheMenuVue from "@/components/TheMenu.vue";
+import uxIconVue from "./components/UxIcon.vue";
 
 export default defineComponent({
-  components: {
-    'ee-menu': eeMenuVue,
-    'ee-icon': eeIconVue,
-  },
+  components: { 'app-menu': TheMenuVue, 'ux-icon': uxIconVue, },
   setup() {
     const body = computed(() => document.body);
-
     const {
       isToastVisible,
       isToastClosed,
