@@ -12,8 +12,8 @@
 import mdHomePages from '../../release/web_client/_data/home.json';
 import { defineComponent } from "vue"
 ;
-import PageTitlebarVue from '@/components/model/PageTitlebar.vue';
-import PageFooterVue from '@/components/model/PageFooter.vue';
+import PageTitlebarVue from '@/components/PageTitlebar.vue';
+import PageFooterVue from '@/components/PageFooter.vue';
 
 
 

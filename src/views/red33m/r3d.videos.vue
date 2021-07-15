@@ -38,10 +38,10 @@ import useVideos    from "@/composeables/useVideos";
 import { Video }    from "@/typings/global-types";
 import { isMobile } from "@/globals";
 // Components
-import PageTitlebarVue from "@/components/model/PageTitlebar.vue";
-import PageFooterVue   from "@/components/model/PageFooter.vue";
-import uxVideoVue      from "@/components/model/UxVideo.vue";
-import uxFilterVue     from "@/components/model/UxFilter.vue";
+import PageTitlebarVue from "@/components/PageTitlebar.vue";
+import PageFooterVue   from "@/components/PageFooter.vue";
+import uxVideoVue      from "@/components/UxVideo.vue";
+import uxFilterVue     from "@/components/UxFilter.vue";
 
 
 

@@ -36,7 +36,7 @@
 <script lang='ts'>
 import { computed, defineComponent, onMounted, ref, watch, Ref } from "vue";
 import { useRouteMap } from "@/router/map";
-import eeIconVue from '@/components/model/UxIcon.vue';
+import eeIconVue from '@/components/UxIcon.vue';
 import { useDateCache } from "@/state/cache-state";
 
 interface ExternalElements {

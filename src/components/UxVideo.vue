@@ -47,8 +47,8 @@ import { computed, defineComponent, ref, toRefs } from "vue";
 import { useDate } from "@/composeables/date";
 import { isEthan } from "@/composeables/globals";
 // components
-import uxIconVue from '@/components/model/UxIcon.vue';
-import uxImgVue from "./UxImg.vue";
+import uxIconVue from '@/components/UxIcon.vue';
+import uxImgVue from "../UxImg.vue";
 
 export default defineComponent({
   components: { 'ux-img': uxImgVue, 'ux-icon': uxIconVue, },

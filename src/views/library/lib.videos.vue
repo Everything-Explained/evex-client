@@ -84,10 +84,10 @@ import { useDynamicPager } from "@/composeables/dynamicPager";
 import { useDate }         from "@/composeables/date";
 import { isEthan }         from "@/composeables/globals";
 import { Video }           from "@/typings/global-types";
-import PageTitleBarVue     from "@/components/model/PageTitlebar.vue";
-import PageFooterVue       from "@/components/model/PageFooter.vue";
-import uxFilterVue         from "@/components/model/UxFilter.vue";
-import uxVideoVue          from "@/components/model/UxVideo.vue";
+import PageTitleBarVue     from "@/components/PageTitlebar.vue";
+import PageFooterVue       from "@/components/PageFooter.vue";
+import uxFilterVue         from "@/components/UxFilter.vue";
+import uxVideoVue          from "@/components/UxVideo.vue";
 
 type VideoCategory = { name: string; description: string; videos: Video[] };
 

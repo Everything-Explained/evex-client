@@ -113,11 +113,11 @@
 
 <script lang='ts'>
 import { computed, defineComponent, ref } from "vue";
-import PageTitlebarVue              from "@/components/model/PageTitlebar.vue";
-import PageFooterVue                from "@/components/model/PageFooter.vue";
-import FormQnAVue, { FormQuestion } from "@/components/model/FormQnA.vue";
-import uxButtonVue                  from "@/components/model/UxButton.vue";
-import uxTextVue                    from "@/components/model/UxText.vue";
+import PageTitlebarVue              from "@/components/PageTitlebar.vue";
+import PageFooterVue                from "@/components/PageFooter.vue";
+import FormQnAVue, { FormQuestion } from "@/components/FormQnA.vue";
+import uxButtonVue                  from "@/components/UxButton.vue";
+import uxTextVue                    from "@/components/UxText.vue";
 
 
 

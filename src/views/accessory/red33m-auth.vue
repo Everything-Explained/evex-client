@@ -65,12 +65,12 @@ import { defineComponent, ref } from "vue";
 import { useRouter } from "vue-router";
 import { APIErrorResp, useAPI } from "@/services/api_internal";
 import useInputValidation from "@/composeables/inputValidation";
-import PageTitlebarVue from "@/components/model/PageTitlebar.vue";
-import PageFooterVue from "@/components/model/PageFooter.vue";
-import FormErrorVue from "@/components/model/FormError.vue";
-import uxButtonVue from "@/components/model/UxButton.vue";
-import uxInputVue from "@/components/model/UxInput.vue";
-import uxTextVue from '@/components/model/UxText.vue';
+import PageTitlebarVue from "@/components/PageTitlebar.vue";
+import PageFooterVue from "@/components/PageFooter.vue";
+import FormErrorVue from "@/components/FormError.vue";
+import uxButtonVue from "@/components/UxButton.vue";
+import uxInputVue from "@/components/UxInput.vue";
+import uxTextVue from '@/components/UxText.vue';
 
 export default defineComponent({
   components: {

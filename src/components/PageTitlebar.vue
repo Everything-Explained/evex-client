@@ -21,7 +21,7 @@
 
 <script lang='ts'>
 import { defineComponent } from "vue";
-import eeIconVue from '@/components/model/UxIcon.vue';
+import eeIconVue from '@/components/UxIcon.vue';
 import { useDateCache } from "@/state/cache-state";
 
 
