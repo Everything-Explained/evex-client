@@ -75,11 +75,11 @@ import { isEthan } from "@/composeables/globals";
 import { StaticPage, useStaticPager } from "@/composeables/staticPager";
 import { DataCacheArrayKeys, DataCacheFilterObj, useDateCache } from "@/state/cache-state";
 import PageTitlebarVue  from "@/components/PageTitlebar.vue";
-import PageFooterVue from "../PageFooter.vue";
-import RenderHtmlVue from "../RenderHtml.vue";
+import PageFooterVue from "./PageFooter.vue";
+import RenderHtmlVue from "./RenderHtml.vue";
 import uxIconVue     from "@/components/UxIcon.vue";
-import uxBulletVue   from "../UxBullet.vue";
-import uxFilterVue   from "../UxFilter.vue";
+import uxBulletVue   from "./UxBullet.vue";
+import uxFilterVue   from "./UxFilter.vue";
 
 
 

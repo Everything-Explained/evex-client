@@ -1,6 +1,6 @@
 import { computed, ref, watch } from "vue";
 import { useRouter } from "vue-router";
-import { useURI } from "./useURI";
+import { useURI } from "./URI";
 
 
 type DynamicPage = {

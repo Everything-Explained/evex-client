@@ -4,22 +4,22 @@ import { createRouter,
          RouteLocationNormalized,
          RouteRecordRaw } from 'vue-router';
 import { isAuthed }       from '@/globals';
-import Home               from '@/views/home.vue';
-import i404               from '@/views/errors/i404.vue';
-import R3dVideos          from '@/views/red33m/r3d.videos.vue';
-import Blog               from '@/views/blog.vue';
-import Videos             from '@/views/library/lib.videos.vue';
-import Literature         from '@/views/library/lib.literature.vue';
-import red33mAuth         from '@/views/accessory/red33m-auth.vue';
-import red33mForm         from '@/views/accessory/red33m-form.vue';
-import r3d_litVue         from '@/views/red33m/r3d.literature.vue';
-import changelogVue       from '@/views/utility/changelog.vue';
+import Home               from '@/views/Home.vue';
+import i404               from '@/views/404Error.vue';
+import R3dVideos          from '@/views/Red33mVideos.vue';
+import Blog               from '@/views/Blog.vue';
+import Videos             from '@/views/LibraryVideos.vue';
+import Literature         from '@/views/LibraryLiterature.vue';
+import red33mAuth         from '@/views/Red33mAuthPrompt.vue';
+import red33mForm         from '@/views/Red33mAccessForm.vue';
+import r3d_litVue         from '@/views/Red33mLiterature.vue';
+import changelogVue       from '@/views/Changelog.vue';
 
 
 const routes: Array<RouteRecordRaw> = [
   { path: '/home', alias: '/',          name: 'home',        component: Home,         },
   { path: '/blog/:page?',               name: 'blog',        component: Blog,         },
-  { path: '/support',                   name: 'support',     component: () => import('@/views/support.vue'),   },
+  { path: '/support',                   name: 'support',     component: () => import('@/views/Support.vue'),   },
   { path: '/red33m/videos',             name: 'r3d-videos',  component: R3dVideos,  beforeEnter: isAuthedGuard },
   { path: '/red33m/literature/:page?',  name: 'r3d-lit',     component: r3d_litVue, beforeEnter: isAuthedGuard },
   { path: '/red33m/auth',               name: 'red33m-auth', component: red33mAuth,   },

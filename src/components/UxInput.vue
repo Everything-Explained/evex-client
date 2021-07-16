@@ -65,7 +65,7 @@
 
 
 <script lang='ts'>
-import useUniqueIDGen from "@/composeables/useUniqueID";
+import useUniqueIDGen from "@/composeables/uniqueID";
 import { computed, defineComponent, onMounted, PropType, ref, watch } from "vue";
 
 
@@ -85,7 +85,7 @@ export default defineComponent({
     errmsg      : { type: String  , default: '<b>Invalid</b>' },
     placeholder : { type: String  , default: ''               },
     modelValue  : { type: String  , default: ''               },
-    validate    : { type: Function as PropType<ValidateFn>, default: () => void(0)    },
+    validate    : { type: Function as PropType<ValidateFn>, default: () => false   },
   },
   emits: ['update:modelValue'],
   setup(props) {

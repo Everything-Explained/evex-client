@@ -43,9 +43,9 @@ import { defineComponent, PropType, ref } from "vue";
 import { DataCacheFilterObj, useDateCache } from "@/state/cache-state";
 import { useEventBus } from "@/state/event-bus";
 // Components
-import uxCheckboxVue  from "../UxCheckbox.vue";
-import uxIconVue      from "../UxIcon.vue";
-import uxToggleVue    from "../UxToggle.vue";
+import uxCheckboxVue  from "./UxCheckbox.vue";
+import uxIconVue      from "./UxIcon.vue";
+import uxToggleVue    from "./UxToggle.vue";
 
 interface FilterData {
   // Allow ignorable props

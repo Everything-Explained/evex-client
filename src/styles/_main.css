@@ -8,47 +8,47 @@
 /*###### COMPONENTS #####*/
 /*#######################*/
 /*** Title Bar ***/
-@import '../components/style/PageTitlebar.css';
-@import '../components/style/PageTitlebar.mobile.css';
+@import '../components/styles/page-titlebar.css';
+@import '../components/styles/page-titlebar.mobile.css';
 /*** Menu ***/
-@import '../components/style/TheMenu.css';
-@import '../components/style/TheMenu.mobile.css';
+@import '../components/styles/app-menu.css';
+@import '../components/styles/app-menu.mobile.css';
 /*** Footer ***/
-@import '../components/style/PageFooter.css';
+@import '../components/styles/page-footer.css';
 /*** Filter ***/
-@import '../components/style/UxFilter.css';
-@import '../components/style/UxFilter.mobile.css';
+@import '../components/styles/ux-filter.css';
+@import '../components/styles/ux-filter.mobile.css';
 /*** QnA Form ***/
-@import '../components/style/FormQnA.css';
-@import '../components/style/FormQnA.mobile.css';
+@import '../components/styles/form-qna.css';
+@import '../components/styles/form-qna.mobile.css';
 
 /*** Icon ***/
-@import '../components/style/UxIcon.css';
+@import '../components/styles/ux-icon.css';
 /*** Form Error **/
-@import '../components/style/FormError.css';
+@import '../components/styles/form-error.css';
 /*** Input Field ***/
-@import '../components/style/UxInput.css';
-@import '../components/style/UxInput.mobile.css';
+@import '../components/styles/ux-input.css';
+@import '../components/styles/ux-input.mobile.css';
 /*** UX Button ***/
-@import '../components/style/UxButton.css';
-@import '../components/style/UxButton.mobile.css';
+@import '../components/styles/ux-button.css';
+@import '../components/styles/ux-button.mobile.css';
 /*** UX Text ***/
-@import '../components/style/UxText.css';
+@import '../components/styles/ux-text.css';
 /*** Image ***/
-@import '../components/style/UxImg.css';
+@import '../components/styles/ux-img.css';
 /*** on/off Switch ***/
-@import '../components/style/UxSwitch.css';
+@import '../components/styles/ux-switch.css';
 /*** EE Video ***/
-@import '../components/style/UxVideo.css';
+@import '../components/styles/ux-video.css';
 /*** Toggle ***/
-@import '../components/style/UxToggle.css';
+@import '../components/styles/ux-toggle.css';
 /*** Preloader ***/
 @import './_preloader.css';
 /*** Literature ***/
-@import '../components/style/Literature.css';
-@import '../components/style/Literature.mobile.css';
+@import '../components/styles/app-literature.css';
+@import '../components/styles/app-literature.mobile.css';
 /*** Checkbox ***/
-@import '../components/style/UxCheckbox.css';
+@import '../components/styles/ux-checkbox.css';
 
 
 
@@ -61,23 +61,23 @@
 @import '../app.watermark.css';
 /*** Blog View -- Not Required ***/
 /*** Support ***/
-@import '../views/support.css';
-@import '../views/support.mobile.css';
+@import '../views/styles/support.css';
+@import '../views/styles/support.mobile.css';
 /*** Red33m ***/
-@import '../views/red33m/r3d.videos.css';
-@import '../views/red33m/r3d.videos.mobile.css';
-@import '../views/red33m/r3d.literature.css';
+@import '../views/styles/red33m-videos.css';
+@import '../views/styles/red33m-videos.mobile.css';
+@import '../views/styles/red33m-literature.css';
 /*** Library Videos ***/
-@import '../views/library/lib.videos.css';
-@import '../views/library/lib.videos.mobile.css';
+@import '../views/styles/library-videos.css';
+@import '../views/styles/library-videos.mobile.css';
 /*** Red33m Authentication ***/
-@import '../views/accessory/red33m-auth.css';
-@import '../views/accessory/red33m-auth.mobile.css';
+@import '../views/styles/red33m-auth-form.css';
+@import '../views/styles/red33m-auth-form.mobile.css';
 /*** Red33m Access Form ***/
-@import '../views/accessory/red33m-form.css';
-@import '../views/accessory/red33m-form.mobile.css';
+@import '../views/styles/red33m-form.css';
+@import '../views/styles/red33m-form.mobile.css';
 /*** Changelog ***/
-@import '../views/utility/changelog.css';
-@import '../views/utility/changelog.mobile.css';
+@import '../views/styles/changelog.css';
+@import '../views/styles/changelog.mobile.css';
 /*** 404 View ***/
-@import '../views/errors/i404.css';
+@import '../views/styles/i404.css';

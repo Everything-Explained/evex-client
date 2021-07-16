@@ -1,6 +1,5 @@
 <template>
   <div class="i404__error-container">
-    <!-- <img :src="$dataImages.lambBlush" /> -->
     <title-bar>Page Not Found</title-bar>
     <h1 class="i404__h1">
       <span class="i404__fail-text">Oops</span>, is there

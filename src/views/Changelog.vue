@@ -1,5 +1,5 @@
 <template>
-  <literature-page
+  <app-literature
     uri="changelog"
     size="expanded"
     :show-date-time="true"
@@ -12,11 +12,11 @@
 </template>
 
 <script lang='ts'>
-import LiteraturePageVue from "@/components/LiteraturePage.vue";
+import AppLiteratureVue from "@/components/AppLiterature.vue";
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  components: { 'literature-page': LiteraturePageVue, },
+  components: { 'app-literature': AppLiteratureVue, },
 });
 </script>
 

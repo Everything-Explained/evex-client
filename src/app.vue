@@ -35,7 +35,7 @@ import { useRoute, useRouter } from "vue-router";
 import { useDate } from "./composeables/date";
 import { ISODateString } from "./typings/global-types";
 // components
-import TheMenuVue from "@/components/TheMenu.vue";
+import TheMenuVue from "@/components/AppMenu.vue";
 import uxIconVue from "./components/UxIcon.vue";
 
 export default defineComponent({

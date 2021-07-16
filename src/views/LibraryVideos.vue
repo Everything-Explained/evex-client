@@ -49,7 +49,7 @@
             </div>
           </div>
         </div>
-        <ee-footer />
+        <pg-footer />
       </div>
       <div v-else-if="activePage">
         <ux-filter
@@ -79,7 +79,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, ref, watch } from "vue";
-import useVideos           from "@/composeables/useVideos";
+import useVideos           from "@/composeables/videos";
 import { useDynamicPager } from "@/composeables/dynamicPager";
 import { useDate }         from "@/composeables/date";
 import { isEthan }         from "@/composeables/globals";

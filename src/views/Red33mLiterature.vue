@@ -1,5 +1,5 @@
 <template>
-  <literature-page
+  <app-literature
     title="RED33M Literature"
     uri="red33m/literature"
   />
@@ -9,10 +9,10 @@
 <script lang="ts">
 import { defineComponent } from "vue"
 ;
-import LiteraturePageVue from "@/components/LiteraturePage.vue";
+import AppLiteratureVue from "@/components/AppLiterature.vue";
 
 
 export default defineComponent({
-  components: { 'literature-page': LiteraturePageVue, }
+  components: { 'app-literature': AppLiteratureVue, }
 });
 </script>

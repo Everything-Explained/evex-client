@@ -34,7 +34,7 @@
 
 <script lang='ts'>
 import { defineComponent, onUnmounted, Ref, ref } from "vue";
-import useVideos    from "@/composeables/useVideos";
+import useVideos    from "@/composeables/videos";
 import { Video }    from "@/typings/global-types";
 import { isMobile } from "@/globals";
 // Components
