@@ -3,7 +3,7 @@
     <header class="app-menu__header">
       <span class="app-menu__header_text">Menu</span>
       <ee-icon
-        class="app-menu__header_exit-icon"
+        class="app-menu__exit-icon"
         :type="'cross'"
         @mousedown="closeMenu"
       />
@@ -12,14 +12,14 @@
       <template v-for="(map, i) of routeMap" :key="i">
         <li
           v-if="map.name != 'root' && !map.hidden"
-          class="app-menu_category"
+          class="app-menu__category"
         >
           {{ map.name }}
         </li>
         <li
           v-for="(route, j) of map.routes"
           :key="j"
-          class="app-menu_item"
+          class="app-menu__item"
           @click="closeMenu"
         >
           <router-link :to="route.path">
