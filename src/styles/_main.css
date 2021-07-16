@@ -25,7 +25,7 @@
 /*** Icon ***/
 @import '../components/styles/ux-icon.css';
 /*** Form Error **/
-@import '../components/styles/form-error.css';
+@import '../components/styles/form-submit-error.css';
 /*** Input Field ***/
 @import '../components/styles/ux-input.css';
 @import '../components/styles/ux-input.mobile.css';

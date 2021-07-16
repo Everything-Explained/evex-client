@@ -1,5 +1,5 @@
 <template>
-  <span :class="['eeform-error',{ '--show': showError}, customClass]">
+  <span :class="['form__error',{ '--show': showError}, customClass]">
     {{ text }}
   </span>
 </template>

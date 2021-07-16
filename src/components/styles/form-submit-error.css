@@ -1,0 +1,17 @@
+.form__error {
+  opacity        : 0;
+  visibility     : hidden;
+  text-shadow    :  0  0   0   transparent,
+                    0  0  10px hsl(0, 100%, 65%),
+                    0  0  20px hsl(0, 100%, 65%),
+                    0  0  40px hsl(0, 100%, 65%);
+  font-size      : 1.3rem;
+  font-weight    : 400;
+  letter-spacing : 2px;
+  word-spacing   : 3px;
+  color          : hsl(0, 100%, 80%);
+  transition     : opacity 2s ease-in, visibility 2s ease-in; }
+  .form__error.--show {
+    opacity    : 1;
+    visibility : visible;
+    transition : opacity 0.15s ease-out, visibility 0.15s ease-out; }

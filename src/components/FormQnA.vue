@@ -88,7 +88,7 @@ import { defineComponent, PropType, reactive, toRefs } from "@vue/runtime-core";
 import useInputValidation from "@/composeables/inputValidation";
 import { APIErrorResp, useAPI }         from "@/services/api_internal";
 import uxButtonVue        from "./UxButton.vue";
-import FormErrorVue     from "./FormError.vue";
+import FormErrorVue     from "./FormSubmitError.vue";
 import uxInputVue         from "./UxInput.vue";
 import uxTextVue          from "./UxText.vue";
 import { DataCacheArrayKeys, useDateCache } from "@/state/cache-state";

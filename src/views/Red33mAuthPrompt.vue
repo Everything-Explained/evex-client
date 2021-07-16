@@ -67,7 +67,7 @@ import { APIErrorResp, useAPI } from "@/services/api_internal";
 import useInputValidation from "@/composeables/inputValidation";
 import PageTitlebarVue from "@/components/PageTitlebar.vue";
 import PageFooterVue from "@/components/PageFooter.vue";
-import FormErrorVue from "@/components/FormError.vue";
+import FormErrorVue from "@/components/FormSubmitError.vue";
 import uxButtonVue from "@/components/UxButton.vue";
 import uxInputVue from "@/components/UxInput.vue";
 import uxTextVue from '@/components/UxText.vue';
