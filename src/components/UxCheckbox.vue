@@ -2,14 +2,14 @@
   <div class="ee-chkbx__container">
     <input
       :id="chkbxID"
-      class="ee-chkbx"
+      class="ux-checkbox"
       type="checkbox"
       :checked="checked"
       @change="$emit('changed', getVal($event)), $emit('update:modelValue', getVal($event))"
     >
-    <label :for="chkbxID" class="ee-chkbx__label">
+    <label :for="chkbxID" class="ux-checkbox__label">
       <div>
-        <svg class="ee-chkbx__checkmark" viewbox="0 0 12 10">
+        <svg class="ux-checkbox__checkmark" viewbox="0 0 12 10">
           <polyline points="1.5 6 4.5 9 10.5 1" />
         </svg>
       </div>
