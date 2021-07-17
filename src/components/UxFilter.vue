@@ -1,6 +1,6 @@
 <template>
-  <div class="ee-filter">
-    <fieldset :class="['ee-filter__fieldset', { '--visible': isFilterOpen }]">
+  <div class="ux-filter">
+    <fieldset :class="['ux-filter__fieldset', { '--visible': isFilterOpen }]">
       <legend>Filter</legend>
       <ux-toggle
         :init-state="areItemsReversed"
@@ -8,7 +8,7 @@
         right-text="Latest"
         @toggle="toggleAge"
       />
-      <div class="ee-filter__authors">
+      <div class="ux-filter__authors">
         <ux-checkbox
           v-for="(author, i) of authors"
           :key="i"
@@ -20,7 +20,7 @@
     </fieldset>
     <div
       v-if="!ageOnly"
-      class="ee-filter__expand-filter"
+      class="ux-filter__expand-filter"
       @mousedown="toggleFilter"
     >
       <span v-if="isFilterOpen">
