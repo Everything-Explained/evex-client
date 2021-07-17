@@ -39,7 +39,7 @@
   font-weight      : 400;
   color            : var(--toggle-legend-c);
   cursor           : pointer; }
-  .ux-filter__expand-filter .icon {
+  .ux-filter__expand-filter .ux-icon {
     top  : 0.3rem;
     left : 3px; }
 
