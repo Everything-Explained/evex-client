@@ -3,7 +3,7 @@
 }
 /*** 540px ***/
 @media only screen and (--medium-screen) {
-  .ee-btn { font-size: 0.95rem; }
+  .ux-button { font-size: 0.95rem; }
 }
 /*** 420px ***/
 @media only screen and (--small-screen) {

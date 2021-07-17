@@ -1,6 +1,6 @@
 <template>
   <button
-    :class="['ee-btn', theme, { '--loading': loading }]"
+    :class="['ux-button', theme, { '--loading': loading }]"
     :type="undefined"
     :disabled="isDisabled"
   >
