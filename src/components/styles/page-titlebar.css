@@ -1,35 +1,33 @@
-.title-bar {
+.pg-titlebar {
   position         : sticky;
   top              : 0;
+  z-index          : 5;
   padding          : 0.45rem 0 0.3rem 0;
-  color            : var(--app-titlebar-c);
-  font-size        : 1.7rem;
-  font-weight      : 300;
-  text-align       : center;
-  background-color : var(--sub-panel-c);
   box-shadow       : 0 10px 8px -3px black;
   overflow         : visible;
-  z-index          : 5;
+  text-align       : center;
+  font-size        : 1.7rem;
+  font-weight      : 300;
+  background-color : var(--sub-panel-c);
+  color            : var(--app-titlebar-c);
 }
-.title-bar__text {
-  padding-right: 5px;
-}
-.title-bar__menu-icon {
+
+
+.pg-titlebar__text { padding-right: 5px; }
+
+
+.pg-titlebar__menu-icon {
   position   : absolute;
   top        : 0.45rem; left: 10px;
-  font-size  : 2rem;
-  color      : var(--app-titlebar-icon-c);
-  opacity    : 1;
   z-index    : 2;
-  cursor     : pointer;
+  opacity    : 1;
+  font-size  : 2rem;
   text-shadow: 2px 2px 1px black;
-  transition : opacity .3s, color .3s;
-}
-.title-bar__menu-icon:hover {
-  color: var(--app-titlebar-icon-hov-c);
-}
-.title-bar__menu-icon.--menu-open {
-  opacity: 0;
-  pointer-events: none;
-  user-select: none;
-}
+  color      : var(--app-titlebar-icon-c);
+  cursor     : pointer;
+  transition : opacity .3s, color .3s; }
+  .pg-titlebar__menu-icon:hover { color: var(--app-titlebar-icon-hov-c); }
+  .pg-titlebar__menu-icon.--menu-open {
+    opacity: 0;
+    pointer-events: none;
+    user-select: none; }

@@ -1,20 +1,20 @@
 /*** 768px ***/
 @media only screen and (--large-screen) {
-  .title-bar__text {
+  .pg-titlebar__text {
     margin-left: 3.3rem;
     text-align: left;
   }
 }
 /*** 540px ***/
 @media only screen and (--medium-screen) {
-  .title-bar { font-size: 1.5rem; }
-  .title-bar__text { margin-left: 3rem; }
-  .title-bar__menu-icon { font-size: 1.8rem; }
+  .pg-titlebar { font-size: 1.5rem; }
+  .pg-titlebar__text { margin-left: 3rem; }
+  .pg-titlebar__menu-icon { font-size: 1.8rem; }
 }
 /*** 420px ***/
 @media only screen and (--small-screen) {
-  .title-bar { font-size: 1.4rem; }
-  .title-bar__menu-icon { font-size: 1.7rem; }
+  .pg-titlebar { font-size: 1.4rem; }
+  .pg-titlebar__menu-icon { font-size: 1.7rem; }
 }
 /*** 320px ***/
 @media only screen and (--tiny-screen) {

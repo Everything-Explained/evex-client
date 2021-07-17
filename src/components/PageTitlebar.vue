@@ -1,7 +1,7 @@
 <template>
-  <div class="title-bar">
+  <div class="pg-titlebar">
     <ee-icon
-      :class="['title-bar__menu-icon', { '--menu-open': isMenuOpen }]"
+      :class="['pg-titlebar__menu-icon', { '--menu-open': isMenuOpen }]"
       :type="'menu'"
       @mousedown="openMenu"
     />
@@ -10,7 +10,7 @@
       :duration="{ enter, leave }"
       mode="out-in"
     >
-      <div :key="text" class="title-bar__text">
+      <div :key="text" class="pg-titlebar__text">
         {{ text }} <slot />
       </div>
     </transition>
