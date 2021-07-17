@@ -1,26 +1,28 @@
 <template>
-  <div class="toggle">
+  <div class="ux-toggle">
     <input
       id="toggleLeft"
+      class="ux-toggle__input"
       type="radio"
       name="toggle"
       :checked="!state"
       :disabled="props.prevent"
     >
     <label
-      :class="{ '--wait': props.prevent }"
+      :class="['ux-toggle__label', { '--wait': props.prevent }]"
       for="toggleLeft"
       @click="toggle(false)"
     >{{ leftText }}</label>
     <input
       id="toggleRight"
+      class="ux-toggle__input"
       type="radio"
       name="toggle"
       :checked="state"
       :disabled="props.prevent"
     >
     <label
-      :class="{ '--wait': props.prevent }"
+      :class="['ux-toggle__label', { '--wait': props.prevent }]"
       for="toggleRight"
       @click="toggle(true)"
     >{{ rightText }}</label>
