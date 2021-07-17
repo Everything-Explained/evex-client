@@ -1,12 +1,12 @@
 <template>
-  <div ref="containerRef" class="lazyimg">
+  <div ref="containerRef" class="ux-img">
     <div
       v-if="showPreloader"
-      :class="['preloader lazyimg_preloader', { '--disabled': loaded }]"
+      :class="['preloader ux-img__preloader', { '--disabled': loaded }]"
     />
     <img
       ref="imgRef"
-      :class="['lazyimg_image', { '--loaded': loaded }]"
+      :class="['ux-img__image', { '--loaded': loaded }]"
       alt=""
     >
   </div>

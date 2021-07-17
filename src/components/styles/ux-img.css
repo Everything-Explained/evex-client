@@ -1,19 +1,27 @@
-.lazyimg {
-  position: relative;
-  width: 100%;
+.ux-img {
+  position : relative;
+  width    : 100%;
 }
-.lazyimg_preloader {
-  position: absolute;
-  top: 50%; left: 50%;
-  min-width: 150px;
-  min-height: 150px;
-  transform: translate(-50%, -50%);
-  transition: opacity 0.5s, visibility 0.5s;
+
+
+.ux-img__preloader {
+  position   : absolute;
+  top        : 50%;
+  left       : 50%;
+  transform  : translate(-50%, -50%);
+  min-width  : 150px;
+  min-height : 150px;
+  transition : opacity 0.5s, visibility 0.5s;
 }
-.lazyimg_image, .lazyimg_preloader.--disabled {
-  opacity: 0;
+
+
+.ux-img__image,
+.ux-img__preloader.--disabled { opacity: 0;}
+
+
+.ux-img__image.--loaded {
+  animation           : fadeIn 0.3s ease-in;
+  animation-fill-mode : forwards;
 }
-.lazyimg_image.--loaded {
-  animation: fadeIn 0.3s ease-in;
-  animation-fill-mode: forwards;
-}
+
+
