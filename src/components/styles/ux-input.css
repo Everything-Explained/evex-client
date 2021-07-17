@@ -1,10 +1,11 @@
-.ee-input__container {
-  display: inline-block;
-  margin-bottom: 3rem;
-  text-align : left;
+.ux-input__container {
+  display       : inline-block;
+  margin-bottom : 3rem;
+  text-align    : left;
 }
 
-.ee-input__label {
+
+.ux-input__label {
   position       : absolute;
   top            : 0;
   left           : 0.5rem;
@@ -12,112 +13,114 @@
   font-family    : "Nunito Sans";
   font-weight    : 400;
   font-size      : 1.15rem;
+  text-transform : none;
   color          : var(--input-label-c);
   pointer-events : none;
-  text-transform : none;
-  transition     : 0.25s;
-}
-.ee-input__text:placeholder-shown ~ .ee-input__label {
-  top       : 1.7rem; left: 0;
-  color     : var(--input-placeholder-c);
-  font-size : 1.3rem;
-}
-.ee-input__text:focus ~ .ee-input__label {
-  display   : block;
-  position  : absolute;
-  top       : 0;
-  font-size : 1.15rem;
-  left      : 0.5rem;
-  color     : var(--input-focus-label-c);
-}
+  transition     : 0.25s; }
+  .ux-input__text:placeholder-shown ~ .ux-input__label {
+    top       : 1.7rem;
+    left      : 0;
+    font-size : 1.3rem;
+    color     : var(--input-placeholder-c); }
+  .ux-input__text:focus ~ .ux-input__label {
+    display   : block;
+    position  : absolute;
+    top       : 0;
+    left      : 0.5rem;
+    font-size : 1.15rem;
+    color     : var(--input-focus-label-c); }
 
-.ee-input__text { font-size: 1.25rem; }
-.ee-input__area { font-size: 1.45rem; }
 
-.ee-input__text,
-.ee-input__area {
+.ux-input__text { font-size: 1.25rem; }
+  .ux-input__text::placeholder {
+    color          : transparent;
+    font-family    : inherit;
+    text-transform : none; }
+
+
+.ux-input__area { font-size: 1.45rem; }
+
+
+.ux-input__text,
+.ux-input__area {
+  width          : 100%;
   margin         : 0 auto;
   margin-top     : 1.3rem;
   padding        : 7px 0 5px 3px;
-  width          : 100%;
   border-bottom  : 1px solid var(--input-bdr-c);
-  font-family    : "Verdana";
   text-transform : inherit;
-  transition     : border .25s, color 0.3s;
-}
-.ee-input__text::placeholder {
-  color          : transparent;
-  font-family    : inherit;
-  text-transform : none;
-}
-.ee-input__text:focus,
-.ee-input__area:focus
-{ color : var(--input-focus-c); }
+  font-family    : "Verdana";
+  transition     : border .25s, color 0.3s; }
+  .ux-input__text:focus,
+  .ux-input__area:focus
+    { color : var(--input-focus-c); }
+  .ux-input__text.--limit-reached,
+  .ux-input__area.--limit-reached
+    { border-color : var(--input-valid-c); }
 
-.ee-input__bar {
+
+.ux-input__bar {
   position         : absolute;
   bottom           : -1px;
   width            : 0;
   height           : 2px;
   background-color : var(--input-bar-c);
   pointer-events   : none;
-  transition       : width 0.29s ease-in-out, background 0.3s;
-}
-.ee-input__text:focus ~ .ee-input__bar,
-.ee-input__area:focus ~ .ee-input__bar {
-  width : 100%;
-}
+  transition       : width 0.29s ease-in-out, background 0.3s; }
+  .ux-input__text:focus ~ .ux-input__bar,
+  .ux-input__area:focus ~ .ux-input__bar { width : 100%; }
+  .ux-input__bar.--limit-reached
+    { background-color : var(--input-bar-valid-c); }
 
-.ee-input__area {
+
+.ux-input__area {
   margin-top    : 0;
   height        : 44px;
-  resize        : none;
   overflow      : hidden;
-  font-family   : 'Nunito Sans';
-  font-weight   : 300;
-  line-height   : 2rem;
   overflow-wrap : break-word;
-}
-.ee-input__area::placeholder {
-  color       : var(--input-placeholder-c);
-  font-weight : 400;
-}
+  line-height   : 2rem;
+  font-weight   : 300;
+  font-family   : 'Nunito Sans';
+  resize        : none; }
+  .ux-input__area::placeholder {
+    font-weight : 400;
+    color       : var(--input-placeholder-c); }
 
-.ee-input__char-limit-msg,
-.ee-input__error-msg {
-  position    : absolute;
-  left        : 0.5rem; bottom: -1.65rem;
-  color       : var(--input-metadata-c);
-  font-weight : 400;
-  font-size   : 1.1rem;
-}
-.ee-input__char-limit-msg em,
-.ee-input__error-msg em {
-  color       : var(--input-metadata-em-c);
-  font-weight : 400;
-}
 
-.ee-input__char-limit {
+.ux-input__char-limit {
   position    : absolute;
   right       : 0;
   bottom      : -1.5rem;
   font-weight : 400;
   color       : var(--input-metadata-c);
-  transition  : color 0.3s;
-}
+  transition  : color 0.3s; }
+  .ux-input__char-limit.--limit-reached
+    { color: var(--input-valid-c); }
+  .ux-input__char-limit.--length-reached
+    { color : var(--input-metadata-em-c); }
 
-.ee-input__bar.--limit-reached
-{ background-color : var(--input-bar-valid-c); }
 
-.ee-input__char-limit.--limit-reached
-{ color: var(--input-valid-c); }
+.ux-input__char-limit-msg,
+.ux-input__error-msg {
+  position    : absolute;
+  left        : 0.5rem;
+  bottom      : -1.65rem;
+  font-size   : 1.1rem;
+  font-weight : 400;
+  color       : var(--input-metadata-c); }
+  .ux-input__char-limit-msg em,
+  .ux-input__error-msg em {
+    font-weight : 400;
+    color       : var(--input-metadata-em-c); }
 
-.ee-input__area.--limit-reached,
-.ee-input__text.--limit-reached
-{ border-color : var(--input-valid-c); }
 
-.ee-input__char-limit.--length-reached
-{ color : var(--input-metadata-em-c); }
+
+
+
+
+
+
+
 
 
 

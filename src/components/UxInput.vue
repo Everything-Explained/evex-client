@@ -1,10 +1,10 @@
 <template>
-  <div class="ee-input__container">
+  <div class="ux-input__container">
     <!-- TEXT FIELD -->
     <input
       v-if="isTextField"
       :id="id"
-      :class="['ee-input__text', { '--limit-reached': charLimitReached && hasValidInput }]"
+      :class="['ux-input__text', { '--limit-reached': charLimitReached && hasValidInput }]"
       :type="type"
       :minlength="minchars"
       :maxlength="maxchars"
@@ -15,7 +15,7 @@
     <!-- Floating LABEL -->
     <label
       v-if="isTextField"
-      class="ee-input__label"
+      class="ux-input__label"
       :for="id"
     ><slot /></label>
 
@@ -23,7 +23,7 @@
       v-if="type == 'area'"
       :id="id"
       ref="areaText"
-      :class="['ee-input__area', { '--limit-reached': charLimitReached }]"
+      :class="['ux-input__area', { '--limit-reached': charLimitReached }]"
       :value="modelValue"
       :placeholder="placeholder"
       :maxlength="maxchars"
@@ -32,14 +32,14 @@
     />
 
     <!-- Animated Bottom Border -->
-    <span :class="['ee-input__bar', { '--limit-reached': charLimitReached && hasValidInput }]" />
+    <span :class="['ux-input__bar', { '--limit-reached': charLimitReached && hasValidInput }]" />
 
     <!-- Character Length Tally **/** -->
     <transition name="fade">
       <span
         v-if="isTextField ? showCharTally && tally : tally || showCharTally"
         :class="[
-          'ee-input__char-limit',
+          'ux-input__char-limit',
           { '--length-reached': charLengthReached,
             '--limit-reached' : charLimitReached }
         ]"
@@ -50,13 +50,13 @@
     <transition name="fade">
       <span
         v-if="isTextField ? showCharLimit && tally : showCharLimit"
-        class="ee-input__char-limit-msg"
+        class="ux-input__char-limit-msg"
       >
         <em>{{ charsRequired }}</em> more chars required
       </span>
       <span
         v-else-if="!hasValidInput && charLength > 0"
-        class="ee-input__error-msg"
+        class="ux-input__error-msg"
         v-html="errorMessage"
       />
     </transition>
@@ -106,9 +106,9 @@ export default defineComponent({
     const isValidated       = computed(() => charLimitReached.value && hasValidInput.value);
 
     if (maxchars > 255 && isTextField)
-      throw Error('ee-input:: text input has a 255 character max-limit.')
+      throw Error('ux-input:: text input has a 255 character max-limit.')
     ;
-    if (!_inputTypes.includes(props.type)) throw Error('ee-input:: invalid input type');
+    if (!_inputTypes.includes(props.type)) throw Error('ux-input:: invalid input type');
 
     function autoHeight(el: HTMLTextAreaElement) {
       el.style.height = '44px';
