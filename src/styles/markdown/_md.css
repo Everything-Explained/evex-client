@@ -65,7 +65,8 @@
   font-weight : 400;
   color       : var(--md-b-c);
 }
-.md > p:hover strong { color: var(--md-p-hov-b-c); }
+.md > p:hover strong,
+.md > p:hover b { color: var(--md-p-hov-b-c); }
 
 
 .md i,
