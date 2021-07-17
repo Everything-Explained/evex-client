@@ -11,7 +11,7 @@
     v-else
     :class="[
       { 'md': !noMD },
-      'ee-text',
+      'ux-text',
       customClass,
       { '--block': isSpanBlock}
     ]"
