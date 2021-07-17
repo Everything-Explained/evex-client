@@ -1,9 +1,9 @@
 <template>
-  <footer ref="footRef" class="app-footer">
-    <span class="app-footer__version">
+  <footer ref="footRef" class="pg-footer">
+    <span class="pg-footer__version">
       α<sup>3<sub><router-link :to="'/changelog/a3-insulation'">insulation</router-link></sub></sup>
     </span>
-    <span class="app-footer_copyright">
+    <span class="pg-footer__copyright">
       <span>Copyright &#169; 2020 - 2021</span><br>
       <span>Everything Explained, Some Rights Reserved</span> <br>
       <a
