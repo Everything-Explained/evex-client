@@ -1,5 +1,5 @@
 <template>
-  <div class="ee-chkbx__container">
+  <div class="ux-checkbox__container">
     <input
       :id="chkbxID"
       class="ux-checkbox"
