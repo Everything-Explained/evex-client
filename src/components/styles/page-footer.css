@@ -72,7 +72,7 @@
     transition      : color .3s, border .3s; }
   .pg-footer__copyright a:hover {
     border-color : var(--footer-copyright-link-hov-c);
-    color        : var(--footer-copyright-link-hov-c); };
+    color        : var(--footer-copyright-link-hov-c); }
 
 
 
