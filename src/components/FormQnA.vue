@@ -28,12 +28,12 @@
       <div
         v-for="(q, i) of questionRefs"
         :key="i"
-        class="qnaf__question-block"
+        class="qnaf__q-block"
       >
-        <div class="qnaf__question-container">
+        <div class="qnaf__q-container">
           <span
             :data-num="i + 1 + '⁍'"
-            class="qnaf__question md"
+            class="qnaf__q md"
             v-html="q.text"
           />
           <br>
