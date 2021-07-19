@@ -6,7 +6,7 @@
     :show-author="false"
     :show-filter="false"
     :use-custom-renderer="false"
-    content-class="chglog"
+    content-class="vw-chglog"
     title="Changelog"
   />
 </template>

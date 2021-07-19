@@ -3,8 +3,8 @@
 }
 /*** 540px ***/
 @media only screen and (--medium-screen) {
-  .chglog blockquote { width: 97%; margin-bottom: 2rem; }
-  .chglog h1 {
+  .vw-chglog blockquote { width: 97%; margin-bottom: 2rem; }
+  .vw-chglog h1 {
     padding-left: 1rem;
     margin-top: 3rem;
   }
