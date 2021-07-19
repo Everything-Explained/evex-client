@@ -1,7 +1,7 @@
 /*** 768px ***/
 @media only screen and (--large-screen) {
   :root { --lib-vid-width: 47%; }
-  .lib-videos__video .ee-video_title {
+  .lib-videos__video .ux-video_title {
     height: 3.1rem;
     font-size: 1.07rem;
   }

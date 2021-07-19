@@ -1,41 +1,47 @@
 <template>
-  <div class="ee-video">
-    <div class="ee-video_img-container">
-      <div class="ee-video__thumbnail-container">
-        <ux-img :src="thumbnail" class="ee-video_img" />
-      </div>
-      <div :class="['ee-video_text-widget', { '--open': descState }]">
+  <div class="ux-video">
+    <div class="ux-video__thumb-container">
+      <ux-img :src="thumbnail" class="ux-video__thumb" />
+    </div>
+    <div class="ux-video__widget-container">
+      <div :class="['ux-video__widget timestamp', { '--open': descState }]">
         {{ useDate(date).toRelativeTime() }}
       </div>
       <ux-icon
-        :class="['ee-video_widget ee-video_widget-open-video', { '--open': descState }]"
+        :class="[
+          'ux-video__widget video-link',
+          { '--open': descState }
+        ]"
         type="export"
         @click="openVideo"
       />
       <ux-icon
         v-if="description"
-        :class="['ee-video_widget ee-video_widget-open-desc', { '--open': descState }]"
+        :class="[
+          'ux-video__widget desc',
+          { '--open': descState }
+        ]"
         type="info"
         @click="setDescState('open')"
       />
-      <div :class="['ee-video_desc', { '--open': descState }]">
+      <div :class="['ux-video__desc', { '--open': descState }]">
         <ux-icon
-          class="ee-video_widget ee-video_widget-close-desc"
+          class="close-desc"
           type="cross"
           @click="setDescState('closed')"
         />
-        <div class="ee-video-desc_text">
+        <div class="text">
           <h1>Description</h1>
           <span class="--default-scrollbar" v-html="description" />
         </div>
       </div>
     </div>
-    <div class="ee-video__info-bar">
-      <div class="ee-video_title">
+    <div class="ux-video__info">
+      <div class="title">
         <slot />
       </div>
-      <div v-if="author" :class="['ee-video__author', { '--is-ethan': isEthan(author) }]">
-        <ux-icon type="user" /> {{ author }}
+      <div v-if="author" :class="['author', { '--is-ethan': isEthan(author) }]">
+        <ux-icon type="user" class="author__icon" /> {{ author }}
       </div>
     </div>
   </div>

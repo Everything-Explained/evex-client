@@ -2,7 +2,7 @@
 /*** 768px ***/
 @media only screen and (--large-screen) {
   :root { --r3d-vid-width: 45% }
-  .red33m-video .ee-video_title { font-size: 1.1rem; }
+  .red33m-video .ux-video_title { font-size: 1.1rem; }
 }
 /*** 540px ***/
 @media only screen and (--medium-screen) {
