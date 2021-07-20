@@ -8,7 +8,7 @@
     />
     <transition name="fade" mode="out-in">
       <div v-if="!isFormActive">
-        <div class="ux__page-container">
+        <div class="ee__page-content">
           <ux-text type="block">
             Our team is committed to bringing you top-grade content for <b>no cost at all</b>.
             Furthermore, you - the customer - are granted the freedom to help us steer
@@ -43,7 +43,7 @@
           <ux-text type="header">
             want to share your own content?
           </ux-text>
-          <ux-text type="block" class="support__after-header">
+          <ux-text type="block">
             Think you’ve got something of significant value and want to produce your own content for the community?
             <b>Click the button below</b> and shoot us a message. We’re excited to see what you
             can bring to the table!
@@ -57,7 +57,7 @@
           <ux-text type="header">
             want to collaborate?
           </ux-text>
-          <ux-text type="block" class="support__after-header">
+          <ux-text type="block">
             Have the urge to collaborate with a member of the team? <b>Click the button below</b> and give yourself
             the chance to make it happen!
           </ux-text>
@@ -70,7 +70,7 @@
           <ux-text type="header">
             is something incorrect?
           </ux-text>
-          <ux-text type="block" class="support__after-header">
+          <ux-text type="block">
             Did you see something posted in an article or video that you felt <em>inaccurately</em> represented
             your organization or area of expertise? <b>Click the button below</b> and let us know what we
             need to correct.
@@ -100,7 +100,7 @@
         <pg-footer />
       </div>
       <div v-else>
-        <ux-text class="support__submitted" type="block">
+        <ux-text class="support__submitted-text" type="block">
           Thank you for your interest in our content! Our team will try to get
           back to you <strong>within 7 days</strong> for our response.
         </ux-text>
