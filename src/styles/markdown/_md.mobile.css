@@ -37,7 +37,6 @@
 
 @media only screen and (--tiny-screen) {
   .md             { font-size : var(--md-mobile-sm-f-sz); }
-  .md:first-child { margin-top: 5px; }
 
   .md p {
     padding-top    : 3px;
