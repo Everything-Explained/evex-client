@@ -8,20 +8,20 @@
     <transition name="fade" mode="out-in">
       <div v-if="videoTask.isRunning.value" class="preloader page" />
       <div v-else-if="categories.length && !activePage">
-        <div class="lib-vid__categories">
+        <div class="lib-vid__category-list">
           <div v-for="(cat, i) of categories"
                :key="i"
-               class="lib-vid-category__container"
+               class="lib-vid__category-container"
           >
             <div class="lib-vid__category">
               <h1 @click="goTo(cat.name)">
                 {{ cat.name }}
               </h1>
-              <div class="lib-vid-category__desc">
+              <div class="desc">
                 {{ cat.description }}
               </div>
               <h2>Contributing Authors</h2>
-              <div class="lib-vid-category__desc --authors">
+              <div class="desc --authors">
                 <ul>
                   <li v-for="(author, j) of getAuthors(cat.videos)"
                       :key="j"
@@ -33,16 +33,16 @@
               </div>
               <h2>
                 Latest Video
-                <span class="lib-vid-category__time">
+                <span class="timestamp">
                   {{ useDate(getLatestVideo(cat.videos).date).toRelativeTime() }}
                 </span>
               </h2>
-              <div class="lib-vid-category__desc">
+              <div class="desc">
                 <a :href="toYouTubeLink(getLatestVideo(cat.videos).id)"
                    target="_blank"
                 >{{ getLatestVideo(cat.videos).title }}</a>
                 <br>
-                <span :class="['lib-vid__latest-author',
+                <span :class="['latest-author',
                                { '--is-ethan': isEthan(getLatestVideo(cat.videos).author) }]"
                 > ~ {{ getLatestVideo(cat.videos).author }}</span>
               </div>
@@ -61,7 +61,7 @@
           <ux-video
             v-for="(v, j) of activeVideos"
             :key="j"
-            class="lib-videos__video"
+            class="lib-vid__video"
             :video-id="v.id"
             :desc="v.content"
             :date="v.date"
