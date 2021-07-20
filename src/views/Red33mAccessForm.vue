@@ -1,14 +1,14 @@
 <template>
-  <div class="red33m-form">
+  <div class="red-form">
     <pg-titlebar
       :ease-in="350"
       :ease-out="350"
       :text="titleBarVal"
-      :class="['r3d-form__titlebar', { '--submitted': isSubmitted }]"
+      :class="['red-form__titlebar', { '--submitted': isSubmitted }]"
     />
     <transition name="fade" mode="out-in">
       <div v-if="!isAccepted">
-        <div class="ee__page-content">
+        <div class="ux__page-container">
           <ux-text type="block">
             This form functions as an application for access to EC (exclusive content).
             It is <em>by no means</em> a test for a single specific type of personality, intelligence,
@@ -18,27 +18,29 @@
           <ux-text
             v-for="(risk, i) of risks"
             :key="i"
-            class="r3d-form__list-item"
+            class="red-form__list-item"
             type="block"
           >
             <ul><li v-html="risk" /></ul>
           </ux-text>
           <br>
-          <div class="r3d-form__iframe-parent">
-            <iframe src="//www.youtube-nocookie.com/embed/qskMClpUmvk?vq=hd1080&modestbranding=1&rel=0"
-                    frameborder="0"
-                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen
+          <div class="red-form__yt-container">
+            <iframe
+              class="yt-video"
+              src="//www.youtube-nocookie.com/embed/qskMClpUmvk?vq=hd1080&modestbranding=1&rel=0"
+              frameborder="0"
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
             />
           </div>
           <br>
-          <ux-text class="r3d-form__begin-text" type="block">
+          <ux-text class="red-form__begin-text" type="block">
             <em>This application is meant to gauge you on the following:</em>
           </ux-text>
           <ux-text
             v-for="(aptitude, i) of aptitudes"
             :key="i"
-            class="r3d-form__list-item"
+            class="red-form__list-item"
             type="block"
           >
             <ul><li v-html="aptitude" /></ul>
@@ -52,7 +54,7 @@
             the exclusive content.
           </ux-text>
           <ux-button
-            class="r3d-form__button"
+            class="red-form__button"
             theme="attention"
             @click="accept"
           >
@@ -63,16 +65,14 @@
       </div>
 
       <div v-else-if="!isSubmitted" class="r3d-form__form">
-        <div class="r3d-form__disclaimer">
-          <ux-text type="block">
-            <strong>Please respond to the following questions in an honest manner.</strong> This form will
-            determine if you’re more or less likely to <strong>gain value</strong> from the exclusive content.
-            <br><br>
-            <em>Do not</em> enter responses that are intended to make you seem more advanced or Enlightened.
-            This isn’t necessarily a test and even if you’re very Enlightened, it <strong>doesn’t</strong>
-            mean that this content is going to be beneficial to you.
-          </ux-text>
-        </div>
+        <ux-text type="block">
+          <strong>Please respond to the following questions in an honest manner.</strong> This form will
+          determine if you’re more or less likely to <strong>gain value</strong> from the exclusive content.
+          <br><br>
+          <em>Do not</em> enter responses that are intended to make you seem more advanced or Enlightened.
+          This isn’t necessarily a test and even if you’re very Enlightened, it <strong>doesn’t</strong>
+          mean that this content is going to be beneficial to you.
+        </ux-text>
         <form-qna
           id="red33m/qnaform"
           :type="3"
@@ -88,7 +88,7 @@
       </div>
 
       <div v-else>
-        <ux-text class="r3d-form__text-block submitted" type="block">
+        <ux-text class="red-form__submitted-text" type="block">
           <strong>Thank you for your interest in this exclusive content.</strong> Our team will get back to
           you as soon as possible. Whatever the results may be, <em>do not take them personally</em>.<br><br>
 

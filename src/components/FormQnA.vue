@@ -1,5 +1,5 @@
 <template>
-  <div class="qnaf ee__page-content">
+  <div class="qnaf ux__page-container">
     <div class="qnaf__form">
       <ux-input
         v-model="name"
