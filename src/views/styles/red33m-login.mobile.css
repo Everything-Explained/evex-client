@@ -3,8 +3,8 @@
 }
 /*** 540px ***/
 @media only screen and (--medium-screen) {
-  .r3d-auth__disclaimer,
-  .r3d-auth__form { width: 100%; }
+  .red-login__disclaimer,
+  .red-login__form { width: 100%; }
 }
 /*** 420px ***/
 @media only screen and (--small-screen) {

@@ -1,9 +1,9 @@
 <template>
-  <div class="red33m-auth">
-    <pg-titlebar class="r3d-auth__titlebar">
+  <div class="red-login">
+    <pg-titlebar class="red-login__titlebar">
       RED33M Login
     </pg-titlebar>
-    <ux-text type="block" class="r3d-auth__disclaimer">
+    <ux-text type="block" class="red-login__disclaimer">
       This page contains sensitive content which <em>requires authentication</em>.
       If you have a passcode, use the form below to grant yourself access.
       <br><br>
@@ -16,10 +16,10 @@
       to gain eligibility; filling out the form <em>does not</em>
       guarantee a Passcode, it only makes you eligible.
     </ux-text>
-    <form class="r3d-auth__form">
+    <form class="red-login__form">
       <ux-input
         v-model="code"
-        class="r3d-auth__passcode"
+        class="passcode"
         :minchars="6"
         :maxchars="6"
         :validate="validate"
@@ -28,7 +28,7 @@
       </ux-input>
 
       <ux-button
-        class="r3d-auth__button"
+        class="button"
         type="submit"
         theme="attention"
         :loading="isLoading"
@@ -39,18 +39,18 @@
       </ux-button>
       <br>
       <form-error
-        class="r3d-auth__error"
+        class="error"
         :update="errorUpdVal"
         :text="errorText"
       />
     </form>
     <br>
-    <ux-text type="span-block" class="r3d-auth__note">
+    <ux-text type="span-block" class="red-login__disclaimer">
       <strong>NOTE:</strong> Do not clear your browser cache, otherwise you
       will need to enter the code again, when you come back to this page
       later.
     </ux-text>
-    <ux-text type="span-block" class="r3d-auth__note">
+    <ux-text type="span-block" class="red-login__disclaimer">
       <strong>CAVEAT:</strong> The passcode will only be saved for <em>this device</em>.
       In order to view this content on your other devices:
       <strong>computer, phone, tablet, etc...</strong>

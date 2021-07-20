@@ -1,28 +1,24 @@
-.r3d-auth__titlebar { color: hsl(47, 100%, 61%); }
 
-.r3d-auth__disclaimer,
-.r3d-auth__note {
+.red-login__titlebar { color: hsl(47, 100%, 61%); }
+
+
+.red-login__disclaimer {
   margin-top: 20px;
   width: 70%;
 }
 
-.r3d-auth__form {
-  margin: 0 auto;
-  margin-top: 30px;
-  width: 500px;
-  text-align: center;
-}
 
-.r3d-auth__passcode {
-  width: 150px;
-  text-transform: uppercase;
-}
+.red-login__form {
+  margin     : 0 auto;
+  margin-top : 30px;
+  width      : 500px;
+  text-align : center; }
+  .red-login__form .passcode {
+    width          : 150px;
+    text-transform : uppercase; }
+  .red-login__form .button {
+    display     : inline-block;
+    margin-left : 1.5rem; }
+  .red-login__form .error { margin-top: 30px; }
 
-.r3d-auth__button {
-  display: inline-block;
-  margin-left: 1.5rem;
-}
 
-.r3d-auth__error {
-  margin-top: 30px;
-}
