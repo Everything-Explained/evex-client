@@ -2,12 +2,12 @@
 /*** 768px ***/
 @media only screen and (--large-screen) {
   :root { --r3d-vid-width: 45% }
-  .red33m-video .ux-video_title { font-size: 1.1rem; }
+  .red-vid__video .title { font-size: 1.1rem; }
 }
 /*** 540px ***/
 @media only screen and (--medium-screen) {
   :root { --r3d-vid-width: 80%; }
-  .red33m-video {
+  .red-vid__video {
     margin-right: 10px;
     margin-bottom: 2px;
   }
@@ -18,5 +18,4 @@
 }
 /*** 320px ***/
 @media only screen and (--tiny-screen) {
-
 }

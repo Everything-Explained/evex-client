@@ -1,6 +1,6 @@
 <template>
   <div class="red33m">
-    <pg-titlebar>RED33M Videos</pg-titlebar>
+    <pg-titlebar class="red-vid__titlebar">RED33M Videos</pg-titlebar>
     <transition name="fade" mode="out-in">
       <div v-if="isVideoTaskRunning" class="preloader page" />
       <div v-else>
@@ -10,14 +10,14 @@
           :items="rawVideos"
           @filter="onFilter"
         />
-        <div ref="observedEl" class="red33m-video-list">
+        <div ref="observedEl" class="red-vid__list">
           <ux-video
             v-for="(v, i) of videos"
             :key="i"
             :video-id="v.id"
             :date="v.date"
             :desc="v.content"
-            class="red33m-video"
+            class="red-vid__video"
           >
             {{ v.title }}
           </ux-video>
