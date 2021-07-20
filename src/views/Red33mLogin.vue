@@ -1,7 +1,7 @@
 <template>
   <div class="red33m-auth">
     <pg-titlebar class="r3d-auth__titlebar">
-      RED33M
+      RED33M Login
     </pg-titlebar>
     <ux-text type="block" class="r3d-auth__disclaimer">
       This page contains sensitive content which <em>requires authentication</em>.
@@ -11,7 +11,7 @@
       <br>
       Fill out the
       <router-link to="/red33m/form">
-        {{ "EC Form" }} <!-- Removes spaces when rendered -->
+        {{ "EC Form" }}
       </router-link>
       to gain eligibility; filling out the form <em>does not</em>
       guarantee a Passcode, it only makes you eligible.

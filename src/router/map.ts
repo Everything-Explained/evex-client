@@ -28,8 +28,8 @@ const routeMap = [
     mapRoute('/changelog', 'ChangeLog')
   ]},
   { name: 'Accessory', hidden: isProduction, routes: [
-    mapRoute('/red33m/auth', 'R3D Auth', isDevelopment),
-    mapRoute('/red33m/form', 'R3D Form', isDevelopment)
+    mapRoute('/red33m/login', 'R3D Login', isDevelopment),
+    mapRoute('/red33m/form',  'R3D Form', isDevelopment)
   ]},
 ];
 

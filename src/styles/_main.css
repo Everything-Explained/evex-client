@@ -71,8 +71,8 @@
 @import '../views/styles/library-videos.css';
 @import '../views/styles/library-videos.mobile.css';
 /*** Red33m Authentication ***/
-@import '../views/styles/red33m-auth-form.css';
-@import '../views/styles/red33m-auth-form.mobile.css';
+@import '../views/styles/red33m-login.css';
+@import '../views/styles/red33m-login.mobile.css';
 /*** Red33m Access Form ***/
 @import '../views/styles/red33m-form.css';
 @import '../views/styles/red33m-form.mobile.css';
