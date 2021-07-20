@@ -74,8 +74,8 @@
 @import '../views/styles/red33m-login.css';
 @import '../views/styles/red33m-login.mobile.css';
 /*** Red33m Access Form ***/
-@import '../views/styles/red33m-form.css';
-@import '../views/styles/red33m-form.mobile.css';
+@import '../views/styles/red33m-access-form.css';
+@import '../views/styles/red33m-access-form.mobile.css';
 /*** Changelog ***/
 @import '../views/styles/changelog.css';
 @import '../views/styles/changelog.mobile.css';
