@@ -6,7 +6,6 @@
   },
   "dependencies": {
     "vue": "^3.1.4",
-    "vue-concurrency": "^2.0.3",
     "vue-router": "^4.0.9",
     "wretch": "^1.7.5"
   },
