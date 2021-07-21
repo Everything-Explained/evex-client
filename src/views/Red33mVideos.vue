@@ -1,18 +1,20 @@
 <template>
   <div class="red33m">
-    <pg-titlebar class="red-vid__titlebar">RED33M Videos</pg-titlebar>
+    <pg-titlebar class="red-vid__titlebar">
+      RED33M Videos
+    </pg-titlebar>
     <transition name="fade" mode="out-in">
-      <div v-if="isVideoTaskRunning" class="preloader page" />
+      <div v-if="isLoadingVideos" class="preloader page" />
       <div v-else>
         <ux-filter
           :age-only="true"
           :persist="false"
-          :items="rawVideos"
+          :items="videos"
           @filter="onFilter"
         />
         <div ref="observedEl" class="red-vid__list">
           <ux-video
-            v-for="(v, i) of videos"
+            v-for="(v, i) of visibleVideos"
             :key="i"
             :video-id="v.id"
             :date="v.date"
@@ -23,7 +25,7 @@
           </ux-video>
         </div>
         <!-- Loading footer before videos 'fixes' it to bottom -->
-        <pg-footer v-if="videos.length" />
+        <pg-footer v-if="visibleVideos.length" />
       </div>
     </transition>
   </div>
@@ -54,42 +56,39 @@ export default defineComponent({
   },
   setup() {
     const maxVideosToStart = isMobile() ? 10 : 30;
-    const { videos: rawVideos, getVideoTask } = useVideos<Video>('/data/red33m/videos.json');
+    const videosRef        = ref<Video[]>([]);
 
-    const videos = ref<Video[]>([]);
+    const pagination           = useVideoPagination(videosRef);
+    const { displayVideoPage } = pagination;
 
-    const { displayVideoPage,
-            observedEl,
-            paginatedVideos } = useVideoPagination(videos)
+    const { videos, isLoadingVideos }
+      = useVideos<Video>('/data/red33m/videos.json', () => displayVideoPage(1, maxVideosToStart))
     ;
 
-    function onFilter(newVideos: Video[]) {
-      videos.value = newVideos;
+    function onFilter(filteredVideos: Video[]) {
+      videosRef.value = filteredVideos;
       displayVideoPage(1, maxVideosToStart);
     }
 
-    const videoTask = getVideoTask(() => { displayVideoPage(1, maxVideosToStart); });
-    videoTask.loadVideos();
-
     return {
-      rawVideos,
-      videos: paginatedVideos,
-      observedEl,
-      isVideoTaskRunning: videoTask.isRunning,
+      videos,
+      visibleVideos: pagination.videos,
+      observedEl: pagination.observedEl,
+      isLoadingVideos,
       onFilter,
     };
   }
 });
 
 
-function useVideoPagination(videos: Ref<Video[]>) {
+function useVideoPagination(allVideos: Ref<Video[]>) {
   const paginatedVideos = ref<Video[]>([]);
   const observedEl      = ref<HTMLElement>();
   const visiblePages    = ref(0);
 
   function displayVideoPage(page: number, amount = isMobile() ? 5 : 30) {
     visiblePages.value = page;
-    paginatedVideos.value = videos.value.slice(0, page * amount);
+    paginatedVideos.value = allVideos.value.slice(0, page * amount);
   }
 
   function renderVideos() {
@@ -106,7 +105,7 @@ function useVideoPagination(videos: Ref<Video[]>) {
   document.body.addEventListener('scroll', renderVideos);
   onUnmounted(() => document.body.removeEventListener('scroll', renderVideos));
 
-  return { displayVideoPage, observedEl, paginatedVideos };
+  return { displayVideoPage, observedEl, videos: paginatedVideos };
 }
 
 </script>

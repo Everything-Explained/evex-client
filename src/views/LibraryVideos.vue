@@ -6,7 +6,7 @@
       :text="title"
     />
     <transition name="fade" mode="out-in">
-      <div v-if="videoTask.isRunning.value" class="preloader page" />
+      <div v-if="isLoadingVideos" class="preloader page" />
       <div v-else-if="categories.length && !activePage">
         <div class="lib-vid__category-list">
           <div v-for="(cat, i) of categories"
@@ -59,7 +59,7 @@
         />
         <div class="lib-vid__video-list">
           <ux-video
-            v-for="(v, j) of activeVideos"
+            v-for="(v, j) of visibleVideos"
             :key="j"
             class="lib-vid__video"
             :video-id="v.id"
@@ -99,22 +99,24 @@ export default defineComponent({
     'ux-filter'   : uxFilterVue,
   },
   setup() {
-    const { videos: categories, getVideoTask } = useVideos<VideoCategory>('/data/library/videos.json');
-    const { setDynPages, goTo, activePage, }   = useDynamicPager('library/videos');
+    const videoURI = '/data/library/videos.json';
 
-    const videoTask = getVideoTask(() => {
+    const { setDynPages, goTo, activePage, } = useDynamicPager('library/videos');
+
+    const {
+      videos: categories,
+      isLoadingVideos
+    } = useVideos<VideoCategory>(videoURI, () => {
       setDynPages(categories.value.map(cat => ({ name: cat.name, data: cat.videos })));
     });
 
     // Prevent loading of inherently cached videos
     watch(() => activePage.value, (page) => {
-      if (!page?.data) { activeVideos.value = []; }
+      if (!page?.data) { visibleVideos.value = []; }
     });
 
-    const activeVideos = ref<Video[]>([]);
-    function onFilter(videos: Video[]) { activeVideos.value = videos; }
-
-    videoTask.loadVideos();
+    const visibleVideos = ref<Video[]>([]);
+    function onFilter(videos: Video[]) { visibleVideos.value = videos; }
 
     return {
       getAuthors:     (videos: Video[]) => videos.reduce(toAuthors, [] as string[]),
@@ -126,13 +128,12 @@ export default defineComponent({
       onFilter,
       title        : computed(() => activePage.value?.title || 'Video Categories'),
       categories,
-      videoTask,
+      isLoadingVideos,
       activePage,
-      activeVideos,
+      visibleVideos,
     };
   }
 });
-
 
 
 
@@ -141,6 +142,8 @@ function toAuthors(authors: string[], video: Video) {
   authors.push(video.author);
   return authors;
 }
+
+
 </script>
 
 

@@ -1,31 +1,23 @@
-import { APIResponse, useAPI } from "@/services/api_internal";
+import { useAPI } from "@/services/api_internal";
 import { DataCacheArrayKeys, useDateCache } from "@/state/cache-state";
-import { computed } from "vue";
-import { useTask } from "vue-concurrency";
 
 
-export default function useVideos<T>(uri: DataCacheArrayKeys) {
+export default function useVideos<T>(uri: DataCacheArrayKeys, onVideosLoaded: () => void) {
   const dataCache = useDateCache<T>();
-  const videos = dataCache.getArrayData(uri);
-  const api    = useAPI();
+  const api       = useAPI();
+  const videos    = dataCache.getArrayData(uri);
 
-  function getVideoTask(onVideosLoaded: () => void) {
-    const videoTask = useTask(function*() {
-      const resp: APIResponse<any[]> = yield api.get(`${uri}`, null, 'static');
-      dataCache.setArrayData(uri, resp.data);
-      onVideosLoaded();
-    });
-    return {
-      isRunning: computed(() => videoTask.isRunning),
-      loadVideos: () => {
-        if (!videos.value.length) videoTask.perform();
-        else onVideosLoaded();
-      }
-    };
+  if (!videos.value.length) {
+    api.get<T[]>(uri, null, 'static')
+       .then((res) => {
+         dataCache.setArrayData(uri, res.data);
+         onVideosLoaded();
+      })
+    ;
   }
 
   return {
+    isLoadingVideos: api.isPending,
     videos,
-    getVideoTask,
   };
 }
