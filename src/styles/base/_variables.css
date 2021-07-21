@@ -88,6 +88,7 @@
   --app-head-f-sz           : 5rem;
   --app-head-c              : var(--app-ribbon-c);
   --app-titlebar-c          : hsl(197, 20%, 87%);
+  --app-titlebar-bg-c       : hsla(197, 11%, 12%, 0.935);
   --app-titlebar-icon-c     : hsl(197, 11%, 60%);
   --app-titlebar-icon-hov-c : hsl(0, 70%, 64%);
 

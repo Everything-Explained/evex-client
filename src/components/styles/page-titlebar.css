@@ -8,7 +8,7 @@
   text-align       : center;
   font-size        : 1.7rem;
   font-weight      : 300;
-  background-color : var(--sub-panel-c);
+  background-color : var(--app-titlebar-bg-c);
   color            : var(--app-titlebar-c);
 }
 
