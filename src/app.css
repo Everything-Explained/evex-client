@@ -7,101 +7,96 @@
 }
 
 
-.app {
-  display    : flex;
-  flex-flow  : column;
-  min-height : 100%;
-}
-
-.app-container {
-  position       : relative;
+.app__container {
   display        : flex;
+  position       : relative;
   flex-direction : column;
   flex           : 1;
 }
 
-.app-ribbon {
-  top: 0; left: 0; right: 0;
-  position     : sticky;
-  margin-right : 7px;
+
+.app__ribbon {
   display      : block;
+  position     : sticky;
+  z-index      : 10;
+  top          : 0;
+  left         : 0;
+  right        : 0;
+  margin-right : 7px;
   height       : 3px;
   box-shadow   : 0 4px 5px 1px black;
   background   : var(--app-ribbon-c);
-  z-index      : 10;
 }
 
-.app__toast-buffer {
-  height: 0;
-  transition: height 0.2s; }
+
+.app__toast-buffer          { height: 0; transition: height 0.2s; }
   .app__toast-buffer.--show { height: 2.3rem; }
 
+
 .app__toast {
-  top: 0; left: 0; right: 16px;
   position    : fixed;
-  text-align  : center;
-  color       : hsl(197, 100%, 99%);
+  z-index     : 10;
+  transform   : translateY(-100%);
+  top         : 0;
+  left        : 0;
+  right       : 16px;
   background  : var(--app-ribbon-c);
+  text-align  : center;
   font-size   : 1.7rem;
   font-weight : 400;
-  z-index     : 10;
+  color       : hsl(197, 100%, 99%);
   cursor      : pointer;
-  transform   : translateY(-100%);
   transition  : transform 0.2s; }
   .app__toast.--show { transform: translateY(0%); }
+  .app__toast .ux-icon {
+    position  : absolute;
+    top       : 0;
+    right     : 3px;
+    font-size : 2.3rem;}
 
-.app__toast-icon {
-  position: absolute;
-  top: 0;
-  right: 3px;
-  font-size: 2.3rem;
-}
 
-.app-header {
-  top: 0; left: 0;
-  height           : 8rem;
+.app__header {
+  top              : 0;
+  left             : 0;
   margin-right     : 7px;
-  border-bottom    : 3px solid var(--panel-c);
-  background-color : var(--body-bg-c);
+  height           : 8rem;
   box-shadow       : 0 4px 5px -1px black;
-}
-.app-header__title {
-  top        : 10px; left: 0; right: 0; bottom: 0;
-  position   : absolute;
-  margin     : 0 auto;
-  text-align : center;
-  color      : var(--app-head-c);
-  font-size  : var(--app-head-f-sz);
-  font-family: 'Pique N Meex';
-  text-shadow: 1px 1px 0 black,
-               2px  0  0 black,
-                0  2px 0 black,
-               3px 3px 0 black,
-               4px 4px 0 black,
-               5px 5px 0 black;
-}
+  border-bottom    : 3px solid var(--panel-c);
+  background-color : var(--body-bg-c); }
+  .app__header .title {
+    position    : absolute;
+    top         : 10px;
+    left        : 0;
+    right       : 0;
+    bottom      : 0;
+    margin      : 0 auto;
+    text-align  : center;
+    font-size   : var(--app-head-f-sz);
+    font-family : 'Pique N Meex';
+    text-shadow : 1px 1px 0 black,
+                  2px  0  0 black,
+                  0   2px 0 black,
+                  3px 3px 0 black,
+                  4px 4px 0 black,
+                  5px 5px 0 black;
+    color       : var(--app-head-c); }
 
 
-.app-body {
-  margin : 0 5px 0 0;
+.app__body {
   flex   : 1;
-}
-.app-body__content {
-  display        : flex;
-  left           : 0;
-  margin         : 0 auto;
-  flex           : 1 0;
-  flex-direction : column;
-  overflow       : visible;
-  transition     : left 0.5s,
-                   opacity 0.3s,
-                   background 0.5s;
-}
-.app-body__content.--menu-open {
-  opacity: 0.15;
-  pointer-events: none;
-  user-select: none;
-}
+  margin : 0 5px 0 0; }
+  .app-body   .content {
+    display        : flex;
+    flex           : 1 0;
+    flex-direction : column;
+    left           : 0;
+    margin         : 0 auto;
+    overflow       : visible;
+    transition     : left 0.5s, opacity 0.3s, background 0.5s; }
+    .app-body .content.--menu-open {
+      opacity        : 0.15;
+      pointer-events : none;
+      user-select    : none; }
 
 
 

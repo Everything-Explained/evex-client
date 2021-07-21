@@ -58,7 +58,6 @@
 /*** App View ***/
 @import '../app.css';
 @import '../app.mobile.css';
-@import '../app.watermark.css';
 /*** Blog View -- Not Required ***/
 /*** Support ***/
 @import '../views/styles/support.css';

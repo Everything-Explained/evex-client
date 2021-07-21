@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { createApp } from 'vue';
-import App from './app.vue';
+import App from './App.vue';
 import router from './router';
 import './styles/_main.css';
 import { useAPI } from './services/api_internal';

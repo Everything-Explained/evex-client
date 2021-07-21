@@ -1,22 +1,19 @@
 <template>
-  <div id="App" class="app-container">
-    <div class="app-ribbon" />
+  <div id="App" class="app__container">
+    <div class="app__ribbon" />
     <div :class="['app__toast-buffer', { '--show': !isToastClosed }]" />
-    <div :class="['app__toast', { '--show': isToastVisible }]" @click="openVersion">
+    <div :class="['app__toast', { '--show': isToastVisible }]" @click="openChangeLog">
       Click here to see the New Release Changes!
-      <ux-icon class="app__toast-icon"
-               :type="'cross'"
-               @click.stop="closeToast"
-      />
+      <ux-icon :type="'cross'" @click.stop="closeToast" />
     </div>
-    <header id="AppHeader" class="app-header">
-      <router-link :to="{ name: 'home' }" class="app-header__title">
+    <header id="AppHeader" class="app__header">
+      <router-link :to="{ name: 'home' }" class="title">
         Everything Explained
       </router-link>
     </header>
-    <section class="app-body">
+    <section class="app__body">
       <app-menu :header-id="'AppHeader'" :content-id="'AppBodyContent'" />
-      <div id="AppBodyContent" class="app-body__content">
+      <div id="AppBodyContent" class="content">
         <router-view v-slot="{ Component }">
           <transition name="fade" mode="out-in">
             <component :is="Component" />
@@ -46,12 +43,12 @@ export default defineComponent({
       isToastVisible,
       isToastClosed,
       closeToast,
-      openVersion,
-    } = useVersionToast(body, '2021-07-07T00:58:57.144Z', 'a3-insulation');
+      openChangeLog,
+    } = useVersionToast(body, '2021-07-21T18:50:08.700Z', 'a3-insulation');
 
     useCustomScrollPos(body);
 
-    return { isToastVisible, isToastClosed, closeToast, openVersion };
+    return { isToastVisible, isToastClosed, closeToast, openChangeLog };
   }
 });
 
@@ -63,22 +60,22 @@ function useVersionToast(body: Ref<HTMLElement>, releaseDate: ISODateString, cha
   }
 
   const router          = useRouter();
-  const isNewRelease    = ref(useDate(releaseDate).toDaysOldFromNow() <= 13);
+  const isNewRelease    = useDate(releaseDate).toDaysOldFromNow() <= 13;
   const isToastClosed   = ref(localStorage.getItem('release-toast') == 'closed');
   const isToastHidden   = ref(false);
   const isToastVisible  = computed(() => {
-    return isNewRelease.value && !isToastClosed.value && !isToastHidden.value;
+    return isNewRelease && !isToastClosed.value && !isToastHidden.value;
   });
 
   function hideToastOnScroll() {
-    if (isToastClosed.value || !isNewRelease.value) return;
-    if (body.value.scrollTop >= 40) {
-      return isToastHidden.value = true;
-    }
-    return isToastHidden.value = false;
+    if (isToastClosed.value || !isNewRelease) return;
+    (body.value.scrollTop >= 40)
+      ? isToastHidden.value = true
+      : isToastHidden.value = false
+    ;
   }
 
-  function openVersion() {
+  function openChangeLog() {
     closeToast();
     router.push(`/changelog/${changelogURI}`);
   }
@@ -99,7 +96,7 @@ function useVersionToast(body: Ref<HTMLElement>, releaseDate: ISODateString, cha
 
   return {
     closeToast,
-    openVersion,
+    openChangeLog,
     isToastVisible,
     isToastClosed,
   };
@@ -120,7 +117,6 @@ function useCustomScrollPos(body: Ref<HTMLElement>) {
 
   async function onRouteChange() {
     await router.isReady();
-
     if (route.path.includes(blogURL))   { setScrollPos(blogScrollPos, blogURL);     return; }
     if (route.path.includes(libVidURL)) { setScrollPos(libVidScrollPos, libVidURL); return; }
     if (route.path.includes(r3dLitURL)) { setScrollPos(r3dLitScrollPos, r3dLitURL); return; }
