@@ -162,7 +162,7 @@
 
 
   /*** Menu ***/
-  --menu-bg-c              : hsla(197, 11%, 6.5%, 0.75);
+  --menu-bg-c              : hsla(197, 11%, 6.5%, 0.87);
   --menu-bxs-c             : hsla(0, 0%, 0%, 0.85);
   --menu-header-c          : hsl(197, 20%, 83%);
   --menu-header-bg-c       : var(--sub-panel-c);
