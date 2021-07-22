@@ -14,8 +14,8 @@
 
 
 <script lang="ts">
-import { useDateCache } from "@/state/cache-state";
 import { computed, defineComponent, onMounted, reactive, ref, toRefs, watch } from "vue";
+import { useDateCache } from "@/state/cache-state";
 
 type IMGProps = { src: string; asset: boolean }
 
@@ -86,15 +86,13 @@ function useImageObserver(props: IMGProps) {
   const updateImageSrc = () => state.img.src = state.activeSrc;
   function loadImage(entries: IntersectionObserverEntry[], obs: IntersectionObserver) {
     if (entries[0].isIntersecting) {
-      if (!isImageCached(state.activeSrc)) {
-        state.showPreloader = true;
-        // Provides a smoother transition with fast loading images
-        setTimeout(updateImageSrc, 150);
-        dataCache.updArrayData('lazyimg-data', state.activeSrc);
-      }
-      else updateImageSrc();
-
       obs.unobserve(containerRef.value!);
+      if (isImageCached(state.activeSrc)) return updateImageSrc()
+      ;
+      state.showPreloader = true;
+      // Provides a smoother transition with fast loading images
+      setTimeout(updateImageSrc, 150);
+      dataCache.updArrayData('lazyimg-data', state.activeSrc);
     }
   }
 

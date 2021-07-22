@@ -27,7 +27,7 @@ import { defineComponent, PropType } from "@vue/runtime-core";
 
 export default defineComponent({
   props: {
-    value:   { type: String as PropType<string>, required: true },
+    value:   { type: String  as PropType<string>,  required: true },
     checked: { type: Boolean as PropType<boolean>, default: false }
   },
   emits: ['update:modelValue', 'changed'],

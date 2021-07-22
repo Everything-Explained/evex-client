@@ -194,19 +194,20 @@ export default defineComponent({
     const titleBarVal = computed(() =>
       formState.isSubmitted ? 'REQUEST SUBMITTED' : 'Exclusive Content Form'
     );
+
     const formState = reactive({
       isAccepted     : false,
       isSubmitted    : false,
     });
 
+    const accept    = () => setState('isAccepted',  true);
+    const back      = () => setState('isAccepted',  false);
+    const submitted = () => setState('isSubmitted', true);
+
     function setState(name: keyof typeof formState, val: boolean) {
       formState[name] = val;
       document.body.scrollTo(0, 0);
     }
-
-    const accept    = () => setState('isAccepted',  true);
-    const back      = () => setState('isAccepted',  false);
-    const submitted = () => setState('isSubmitted', true);
 
     return {
       ...toRefs(formState),

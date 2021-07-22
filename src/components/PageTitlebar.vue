@@ -34,9 +34,9 @@ export default defineComponent({
   },
   setup(props) {
     const stateStr   = 'titlebar-menu-open';
-    const dataCache = useDateCache<boolean>();
+    const dataCache  = useDateCache<boolean>();
     const isMenuOpen = dataCache.getData(stateStr);
-    const duration = {
+    const duration   = {
       enter: props.easeIn ?? 400,
       leave: props.easeOut ?? 400
     };

@@ -4,22 +4,22 @@ import wretch from 'wretch';
 
 
 export interface APIResponse<T> {
-  status: number;
-  data: T
+  status : number;
+  data   : T
 }
 
 export interface APIErrorResp {
-  response: any; // This is a large response object
-  status: number;
-  text: string;
-  message: string;
+  response : any; // This is a large response object
+  status   : number;
+  text     : string;
+  message  : string;
 }
 
 interface APIOptions {
-  endpoint: string;
-  method: 'get'|'put'|'post';
-  body: RequestBody;
-  type?: APIReqType;
+  URI      : string;
+  method   : 'get'|'put'|'post';
+  body     : RequestBody;
+  type    ?: APIReqType;
 }
 
 type APIReqType    = 'dynamic'|'static';
@@ -33,12 +33,12 @@ const genUniqueID = () =>
 ;
 
 const state = reactive({
-  userid: localStorage.getItem('userid') || genUniqueID(),
-  isInitialized: false,
-  initializing: false,
-  version: localStorage.getItem('version') || '',
-  isLoading: false,
-  isDebouncing: false,
+  userid        : localStorage.getItem('userid') || genUniqueID(),
+  isInitialized : false,
+  initializing  : false,
+  version       : localStorage.getItem('version') || '',
+  isLoading     : false,
+  isDebouncing  : false,
 });
 
 const sanitizeURLForEnv = (url: string) => {
@@ -69,7 +69,7 @@ async function init() {
 
 function callAPI<T>(opts: APIOptions): Promise<APIResponse<T>> {
   opts.type = opts.type || 'dynamic';
-  const { endpoint, method, body, type } = opts;
+  const { URI, method, body, type } = opts;
   checkInitialization();
   return new Promise((rs, rj) => {
     if (debounceOnPending(rs, () => callAPI(opts))) return;
@@ -79,8 +79,8 @@ function callAPI<T>(opts: APIOptions): Promise<APIResponse<T>> {
       : body
     ;
     const api = method == 'get'
-      ? apiEndpoint.url(endpoint).query(query)[method]()
-      : apiEndpoint.url(endpoint)[method](body)
+      ? apiEndpoint.url(URI).query(query)[method]()
+      : apiEndpoint.url(URI)[method](body)
     ;
     api
       .res(async (res) => rs({
@@ -104,32 +104,27 @@ function checkInitialization() {
 
 
 function debounceOnPending(rs: (val: any) => void, cb: () => Promise<any>) {
-  if (state.isLoading || state.isDebouncing) {
-    debounce(100, () => rs(cb()));
-    return true;
-  }
+  const isPending = state.isLoading || state.isDebouncing;
+  if (isPending) { debounce(100, () => rs(cb())); return true; }
   return false;
 }
 
 
 function debounce(delay: number, func: () => void) {
   state.isDebouncing = true;
-  setTimeout(() => {
-    state.isDebouncing = false;
-    func();
-  }, delay);
+  setTimeout(() => { state.isDebouncing = false; func(); }, delay);
 }
 
 
 const API = {
   get<T>(endpoint: string, query: RequestBody|null, type: APIReqType = 'dynamic') {
-    return callAPI<T>({ endpoint, method: 'get', body: query || {}, type });
+    return callAPI<T>({ URI: endpoint, method: 'get', body: query || {}, type });
   },
   post<T>(endpoint: string, body: RequestBody) {
-    return callAPI<T>({ endpoint, method: 'post', body });
+    return callAPI<T>({ URI: endpoint, method: 'post', body });
   },
   put<T>(endpoint: string, body: RequestBody) {
-    return callAPI<T>({ endpoint, method: 'put', body });
+    return callAPI<T>({ URI: endpoint, method: 'put', body });
   }
 };
 

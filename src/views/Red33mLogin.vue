@@ -98,7 +98,7 @@ export default defineComponent({
     function submit(e: MouseEvent) {
       e.preventDefault();
       const passcode = codeRef.value.toUpperCase();
-      api.debounce(200, () => {
+      api.debounce(100, () => {
         api
           .put('/auth/red33m', { passcode })
           .then(() => {

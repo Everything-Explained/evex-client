@@ -44,7 +44,7 @@ export default defineComponent({
     const state = ref(props.initState);
 
     const toggle = (val: boolean) => {
-      if (props.prevent) return;
+      if (props.prevent)      return;
       if (val == state.value) return;
       state.value = val;
       emit('toggle', state.value);

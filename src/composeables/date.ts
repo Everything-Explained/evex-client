@@ -70,16 +70,17 @@ export function useDate(date: Date|ISODateStr|MsDateFormat) {
         if (diff > timeSpan[span]) {
           const relNum = Math.round(diff / timeSpan[span]);
           if (span == 'month' && relNum == 12) return rtf.format(-1, 'year');
-          if (span == 'week' && relNum == 4) return rtf.format(-1, 'month');
+          if (span == 'week' && relNum == 4)   return rtf.format(-1, 'month');
           return rtf.format(-relNum, span);
         }
       }
     },
 
     toDaysOldFromNow() {
-      const oldDateInMs = dateObj.getTime();
-      const nowInMs     = Date.now();
-      const secondsFromNow = (nowInMs / 1000) - (oldDateInMs / 1000);
+      const oldDateInMs    = dateObj.getTime();
+      const nowInMs        = Date.now();
+      const secondsFromNow = (nowInMs / 1000) - (oldDateInMs / 1000)
+      ;
       return secondsFromNow / timeSpan['day'];
     }
   };

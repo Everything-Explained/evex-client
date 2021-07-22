@@ -111,6 +111,9 @@
 </template>
 
 
+
+
+
 <script lang='ts'>
 import { computed, defineComponent, ref } from "vue";
 import PageTitlebarVue              from "@/components/PageTitlebar.vue";
@@ -182,9 +185,7 @@ export default defineComponent({
     function submitted() { isSubmitted.value = true; }
 
     return {
-      activateForm,
-      submitted,
-      back,
+      activateForm, submitted, back,
       pageTitle,
       isFormActive,
       questions,

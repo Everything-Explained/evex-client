@@ -53,17 +53,20 @@ function useHTMLNodeParser(html: string) {
 
 
   function getNodesUsingBQ() {
-    const htmlParts = html.split('</blockquote>');
+    const htmlParts   = html.split('</blockquote>');
     const partsLength = htmlParts.length;
     const nodes: string[][] = [];
 
     htmlParts.forEach((p, i) => {
+      const isLastIndex = i == partsLength - 1;
+      if (isLastIndex) return nodes.push(...getNodesUsingP(p));
+
       if (p.includes('<blockquote>')) {
         const [html, bq] = p.split('<blockquote>');
         nodes.push(...getNodesUsingP(html), ['bq', bq]);
       }
-      else if (i == partsLength - 1) nodes.push(...getNodesUsingP(p));
     });
+
     return nodes;
   }
 
