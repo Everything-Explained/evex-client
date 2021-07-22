@@ -1,19 +1,21 @@
-import { useAPI } from "@/services/api_internal";
+import { APIResponse, useAPI } from "@/services/api_internal";
 import { DataCacheArrayKeys, useDateCache } from "@/state/cache-state";
 
 
-export default function useVideos<T>(uri: DataCacheArrayKeys, onVideosLoaded: () => void) {
+export default function useVideos<T>(uri: DataCacheArrayKeys, onVideosReady: () => void) {
   const dataCache = useDateCache<T>();
   const api       = useAPI();
   const videos    = dataCache.getArrayData(uri);
 
-  if (!videos.value.length) {
-    api.get<T[]>(uri, null, 'static')
-       .then((res) => {
-         dataCache.setArrayData(uri, res.data);
-         onVideosLoaded();
-      })
-    ;
+  videos.value.length
+      // setTimeout prevents callback executing before return
+    ? setTimeout(onVideosReady, 0)
+    : api.get<T[]>(uri, null, 'static').then(cacheVideos)
+  ;
+
+  function cacheVideos(res: APIResponse<T[]>) {
+    dataCache.setArrayData(uri, res.data);
+    onVideosReady();
   }
 
   return {
