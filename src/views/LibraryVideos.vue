@@ -106,8 +106,8 @@ export default defineComponent({
     const {
       videos: categories,
       isLoadingVideos
-    } = useVideos<VideoCategory>(videoURI, () => {
-      setDynPages(categories.value.map(cat => ({ name: cat.name, data: cat.videos })));
+    } = useVideos<VideoCategory>(videoURI, (vidCats) => {
+      setDynPages(vidCats.map(cat => ({ name: cat.name, data: cat.videos })));
     });
 
     // Prevent loading of inherently cached videos
