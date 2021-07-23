@@ -2,7 +2,6 @@
 .support .pg-titlebar               { text-transform: capitalize; }
   .support .pg-titlebar.--submitted { color: hsl(161, 67%, 67%); }
 
-
 :root { --patreon-width: 200px; }
 .support__patreon {
   display         : flex;

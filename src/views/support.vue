@@ -8,7 +8,7 @@
     />
     <transition name="fade" mode="out-in">
       <div v-if="!isFormActive">
-        <div class="ee__page-content">
+        <div class="ux__page-container">
           <ux-text type="block">
             Our team is committed to bringing you top-grade content for <b>no cost at all</b>.
             Furthermore, you - the customer - are granted the freedom to help us steer
