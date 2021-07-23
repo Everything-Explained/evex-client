@@ -38,8 +38,7 @@ type RouteMap = typeof routeMap;
 function normalizeRoutes(map: RouteMap) {
   // Not a performant clone
   const newMap = JSON.parse(JSON.stringify(map)) as RouteMap;
-  let mapName: keyof RouteMap;
-  for (mapName in newMap) {
+  for (const mapName in newMap) {
     newMap[mapName].routes =
       newMap[mapName].routes.filter(route => route.visible)
     ;

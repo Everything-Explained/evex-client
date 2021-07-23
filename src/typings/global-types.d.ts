@@ -10,6 +10,16 @@ declare global {
   }
 }
 
+declare module 'vue-router' {
+  interface RouteMeta {
+    cat: string;
+    catVisible?: boolean;
+    title: string;
+    visible: boolean;
+  }
+}
+
+
 export interface Video {
   id      : string;
   title   : string;

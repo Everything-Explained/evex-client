@@ -27,7 +27,7 @@ const routes: Array<RouteRecordRaw> = [
   { path: '/library/videos/:uri?',      name: 'lib-videos',  component: Videos,       },
   { path: '/library/literature/:page?', name: 'lib-lit',     component: Literature,   },
   { path: '/changelog/:page?',          name: 'changelog',   component: changelogVue, },
-  { path: '/:pathMatch(.*)*',           name: '404',         component: i404,       meta: { display: false } }
+  { path: '/:pathMatch(.*)*',           name: '404',         component: i404,         }
 ];
 
 function isAuthedGuard(to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) {
