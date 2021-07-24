@@ -87,7 +87,7 @@ export default defineComponent({
     return {
       filter: (i: number, v: boolean) => {
         emit('filter', filterAuthor(i, v));
-        eventBus.emit('update-footer');
+        eventBus.updateFooter();
       },
 
       toggleAge: () => {

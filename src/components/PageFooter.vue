@@ -25,7 +25,7 @@ export default defineComponent({
     const { setFooterPos, debounceFooterPos, footRef } = useFooterPosition();
     const eventBus = useEventBus();
 
-    eventBus.on('update-footer', debounceFooterPos);
+    eventBus.onUpdateFooter(debounceFooterPos);
 
     onMounted(() => {
       setFooterPos();
