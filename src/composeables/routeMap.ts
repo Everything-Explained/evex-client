@@ -23,14 +23,13 @@ export function useRouteMap() {
       title   : route.meta.title,
       visible : route.meta.visible,
     });
-    const routeCat: RouteCategory = {
-      name    : route.meta.cat,
-      visible : route.meta.catVisible ?? true,
-      routes  : [r]
-    };
-    if (i == 0 || routeMap[routeMap.length - 1].name != route.meta.cat)
-      return routeMap.push(reactive(routeCat))
-    ;
+    if (i == 0 || routeMap[routeMap.length - 1].name != route.meta.cat) {
+      return routeMap.push(reactive({
+        name    : route.meta.cat,
+        visible : route.meta.catVisible ?? true,
+        routes  : [r]
+      }));
+    }
     routeMap[routeMap.length - 1].routes.push(r);
   });
   return routeMap;
