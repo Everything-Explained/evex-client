@@ -1,5 +1,6 @@
 import { createRouter,
          createWebHistory,
+         RouteRecordName,
          RouteRecordRaw } from 'vue-router';
 import { isAuthed, isAuthedGuard, isDevelopment }  from '@/globals';
 import Home               from '@/views/Home.vue';
@@ -16,7 +17,7 @@ import { reactive  }      from '@vue/reactivity';
 
 
 type Route = {
-  path: string;
+  name: RouteRecordName;
   title: string;
   visible: boolean;
 }
@@ -52,11 +53,6 @@ const routes: Array<RouteRecordRaw> = [
     component   : Literature,
     meta        : { cat: 'root', title: 'Literature', visible: true }
   },
-  { path        : '/red33m/login',
-    name        : 'red33m-login',
-    component   : Red33mLogin,
-    meta        : { cat: 'root', title: 'RED33M', visible: true }
-  },
   { path        : '/support',
     name        : 'support',
     component   : () => import('@/views/Support.vue'),
@@ -67,17 +63,22 @@ const routes: Array<RouteRecordRaw> = [
     component   : changelogVue,
     meta        : { cat: 'root', title: 'ChangeLog', visible: true }
   },
+  { path        : '/red33m/login',
+    name        : 'red33m-login',
+    component   : Red33mLogin,
+    meta        : { cat: 'RED33M', title: 'Login', visible: !isAuthed() }
+  },
   { path        : '/red33m/videos',
     name        : 'r3d-videos',
     component   : R3dVideos,
     beforeEnter : isAuthedGuard,
-    meta        : { cat: 'RED33M', catVisible: isAuthed(), title: 'Videos', visible: true }
+    meta        : { cat: 'RED33M', catVisible: isAuthed(), title: 'Videos', visible: isAuthed() }
   },
   { path        : '/red33m/literature/:page?',
     name        : 'r3d-lit',
     component   : r3d_litVue,
     beforeEnter : isAuthedGuard,
-    meta        : { cat: 'RED33M', title: 'Literature', visible: true }
+    meta        : { cat: 'RED33M', title: 'Literature', visible: isAuthed() }
   },
   { path        : '/red33m/form',
     name        : 'red33m-form',
@@ -87,7 +88,7 @@ const routes: Array<RouteRecordRaw> = [
   { path        : '/:pathMatch(.*)*',
     name        : '404',
     component   : i404,
-    meta        : { cat: 'Accessory', title: '404', visible: true }
+    meta        : { cat: 'Accessory', title: '404', visible: isDevelopment }
   }
 ];
 
@@ -95,11 +96,11 @@ export const tempRouteMap: RouteCategory[] = [];
 
 routes.forEach((route, i) => {
   if (!route.meta) return;
-  const r = {
-    path    : route.path,
+  const r: Route = reactive({
+    name    : route.name!, // All routes have names
     title   : route.meta.title,
     visible : route.meta.visible,
-  };
+  });
   const routeCat: RouteCategory = {
     name    : route.meta.cat,
     visible : route.meta.catVisible ?? true,
