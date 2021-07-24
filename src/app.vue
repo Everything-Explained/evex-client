@@ -68,7 +68,7 @@ function useVersionToast(body: Ref<HTMLElement>, releaseDate: ISODateString, cha
   });
 
   function hideToastOnScroll() {
-    if (isToastClosed.value || !isNewRelease) return;
+    if (isToastClosed.value) return;
     (body.value.scrollTop >= 40)
       ? isToastHidden.value = true
       : isToastHidden.value = false
