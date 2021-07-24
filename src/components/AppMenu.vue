@@ -44,6 +44,7 @@ interface ExternalElements {
   body   ?: HTMLElement;
   header ?: HTMLElement;
   menu   ?: Ref<HTMLDivElement>;
+  closeHelper ?: HTMLDivElement;
 }
 
 export default defineComponent({
@@ -89,7 +90,10 @@ export default defineComponent({
     onMounted(() => {
       els.body    = document.getElementById(props.contentId!)!;
       els.header  = document.getElementById(props.headerId!)!;
-
+      els.closeHelper = document.createElement('div');
+      els.closeHelper.classList.add('app-menu__close-menu-area');
+      els.closeHelper.addEventListener('click', closeMenu);
+      document.body.appendChild(els.closeHelper);
       if (menuElRef.value && els.body) { floatOnScroll(); }
     });
 
@@ -98,12 +102,15 @@ export default defineComponent({
       async (isOpening) => {
         opened.value = isOpening;
         els.body?.classList[isOpening ? 'add' : 'remove']('--menu-open');
+        els.closeHelper?.classList[isOpening ? 'add' : 'remove']('--menu-open');
     });
+
+    function closeMenu() { dataCache.setData('titlebar-menu-open', false); }
 
     return {
       menu: menuElRef,
       opened,
-      closeMenu: () => dataCache.setData('titlebar-menu-open', false),
+      closeMenu,
       routeMap,
     };
   }
