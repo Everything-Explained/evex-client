@@ -16,22 +16,9 @@ import changelogVue       from '@/views/Changelog.vue';
 import { reactive  }      from '@vue/reactivity';
 
 
-type Route = {
-  name: RouteRecordName;
-  title: string;
-  visible: boolean;
-}
-
-type RouteCategory = {
-  name: string;
-  visible: boolean;
-  routes: Route[]
-};
 
 
-
-
-const routes: Array<RouteRecordRaw> = [
+export const routes: Array<RouteRecordRaw> = [
   { path        : '/home',
     alias       : '/',
     name        : 'home',
@@ -64,24 +51,24 @@ const routes: Array<RouteRecordRaw> = [
     meta        : { cat: 'root', title: 'ChangeLog', visible: true }
   },
   { path        : '/red33m/login',
-    name        : 'red33m-login',
+    name        : 'red-login',
     component   : Red33mLogin,
     meta        : { cat: 'RED33M', title: 'Login', visible: !isAuthed() }
   },
   { path        : '/red33m/videos',
-    name        : 'r3d-videos',
+    name        : 'red-videos',
     component   : R3dVideos,
     beforeEnter : isAuthedGuard,
     meta        : { cat: 'RED33M', catVisible: isAuthed(), title: 'Videos', visible: isAuthed() }
   },
   { path        : '/red33m/literature/:page?',
-    name        : 'r3d-lit',
+    name        : 'red-lit',
     component   : r3d_litVue,
     beforeEnter : isAuthedGuard,
     meta        : { cat: 'RED33M', title: 'Literature', visible: isAuthed() }
   },
   { path        : '/red33m/form',
-    name        : 'red33m-form',
+    name        : 'red-form',
     component   : red33mForm,
     meta        : { cat: 'Accessory', catVisible: isDevelopment, title: 'R3D Form', visible: true }
   },
@@ -92,26 +79,6 @@ const routes: Array<RouteRecordRaw> = [
   }
 ];
 
-export const tempRouteMap: RouteCategory[] = [];
-
-routes.forEach((route, i) => {
-  if (!route.meta) return;
-  const r: Route = reactive({
-    name    : route.name!, // All routes have names
-    title   : route.meta.title,
-    visible : route.meta.visible,
-  });
-  const routeCat: RouteCategory = {
-    name    : route.meta.cat,
-    visible : route.meta.catVisible ?? true,
-    routes  : [r]
-  };
-  if (i == 0 || tempRouteMap[tempRouteMap.length - 1].name != route.meta.cat)
-    return tempRouteMap.push(reactive(routeCat))
-  ;
-  console.log(routeCat);
-  tempRouteMap[tempRouteMap.length - 1].routes.push(r);
-});
 
 const router = createRouter({
   history: createWebHistory(),

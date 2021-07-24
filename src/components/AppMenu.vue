@@ -10,22 +10,22 @@
     </header>
     <ul>
       <template v-for="(map, i) of routeMap" :key="i">
-        <li
-          v-if="map.name != 'root' && !map.hidden"
-          class="app-menu__category"
-        >
-          {{ map.name }}
-        </li>
-        <li
-          v-for="(route, j) of map.routes"
-          :key="j"
-          class="app-menu__item"
-          @click="closeMenu"
-        >
-          <router-link :to="route.path">
-            {{ route.title }}
-          </router-link>
-        </li>
+        <template v-if="map.visible">
+          <li v-if="map.name != 'root'" class="app-menu__category">
+            {{ map.name }}
+          </li>
+          <template v-for="(route, j) of map.routes" :key="j">
+            <li
+              v-if="route.visible"
+              class="app-menu__item"
+              @click="closeMenu"
+            >
+              <router-link :to="{ name: route.name }">
+                {{ route.title }}
+              </router-link>
+            </li>
+          </template>
+        </template>
       </template>
     </ul>
   </menu>
@@ -35,9 +35,10 @@
 
 <script lang='ts'>
 import { computed, defineComponent, onMounted, ref, watch, Ref } from "vue";
-import { useRouteMap } from "@/router/map";
 import eeIconVue from '@/components/UxIcon.vue';
 import { useDateCache } from "@/state/cache-state";
+import { useRouteMap } from "@/composeables/routeMap";
+import { useEventBus } from "@/state/event-bus";
 
 interface ExternalElements {
   body   ?: HTMLElement;
@@ -59,6 +60,14 @@ export default defineComponent({
     const dataCache = useDateCache<boolean>();
     const isMenuOpening = dataCache.getData('titlebar-menu-open');
     const routeMap = useRouteMap();
+    const eventBus = useEventBus();
+
+    eventBus.onUpdateMenu((routeName, visibility) => {
+      for (const routeCat of routeMap) {
+        const route = routeCat.routes.find(r => r.name == routeName);
+        if (route) return route.visible = visibility;
+      }
+    });
 
     if (!props.contentId) throw Error('Missing content ID');
 

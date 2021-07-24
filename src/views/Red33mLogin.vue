@@ -71,6 +71,7 @@ import FormErrorVue from "@/components/FormSubmitError.vue";
 import uxButtonVue from "@/components/UxButton.vue";
 import uxInputVue from "@/components/UxInput.vue";
 import uxTextVue from '@/components/UxText.vue';
+import { useEventBus } from "@/state/event-bus";
 
 export default defineComponent({
   components: {
@@ -82,13 +83,14 @@ export default defineComponent({
     'ux-text'     : uxTextVue,
   },
   setup() {
-    const codeLength   = 6;
-    const codeRef      = ref('');
-    const errorTextRef = ref('');
-    const errorUpdVal  = ref(0);
-    const api          = useAPI();
-    const router       = useRouter();
+    const codeLength      = 6;
+    const codeRef         = ref('');
+    const errorTextRef    = ref('');
+    const errorUpdVal     = ref(0);
+    const api             = useAPI();
+    const router          = useRouter();
     const inputValidation = useInputValidation(1);
+    const eventBus        = useEventBus();
 
     function setError(res: APIErrorResp) {
       errorTextRef.value = res.message;
@@ -103,6 +105,9 @@ export default defineComponent({
           .put('/auth/red33m', { passcode })
           .then(() => {
             localStorage.setItem('passcode', 'yes');
+            eventBus.updateMenu('red-videos', true);
+            eventBus.updateMenu('red-lit', true);
+            eventBus.updateMenu('red-login', false);
             router.push('/red33m/videos');
           })
           .catch(setError)
