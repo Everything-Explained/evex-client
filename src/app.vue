@@ -44,7 +44,7 @@ export default defineComponent({
       isToastClosed,
       closeToast,
       openChangeLog,
-    } = useVersionToast(body, '2021-07-21T18:50:08.700Z', 'a3-insulation');
+    } = useVersionToast(body, '2021-07-07T00:58:57.144Z', 'a3-insulation');
 
     useCustomScrollPos(body);
 
@@ -61,7 +61,7 @@ function useVersionToast(body: Ref<HTMLElement>, releaseDate: ISODateString, cha
 
   const router          = useRouter();
   const isNewRelease    = useDate(releaseDate).toDaysOldFromNow() <= 13;
-  const isToastClosed   = ref(localStorage.getItem('release-toast') == 'closed');
+  const isToastClosed   = ref(localStorage.getItem('release-toast') == 'closed' || !isNewRelease);
   const isToastHidden   = ref(false);
   const isToastVisible  = computed(() => {
     return isNewRelease && !isToastClosed.value && !isToastHidden.value;
