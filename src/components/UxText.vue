@@ -1,34 +1,32 @@
 
 <template>
-  <a v-if="type == 'link'" :href="href"><slot /></a>
-  <div v-else-if="type == 'header'" :class="['md', customClass]">
+  <app-md v-if="type == 'header'" :class="customClass">
     <h1><slot /></h1>
-  </div>
-  <div v-else-if="type == 'block'" :class="['md', customClass]">
+  </app-md>
+  <app-md v-else-if="type == 'block'" :class="customClass">
     <p><slot /></p>
-  </div>
+  </app-md>
   <span
     v-else
     :class="[
-      { 'md': !noMD },
+      { 'md-default md-bold md-em': !noMD },
       'ux-text',
       customClass,
       { '--block': isSpanBlock}
     ]"
-  >
-    <slot />
-  </span>
+  ><slot /></span>
 </template>
 
 
 <script lang='ts'>
 import { defineComponent } from "vue";
+import AppMarkdownVue from "./AppMarkdown.vue";
 
 const _textType = ['text', 'block', 'header', 'span-block', 'link'];
 
 export default defineComponent({
+  components: { 'app-md': AppMarkdownVue },
   props: {
-    href:  { type: String, default: ''     },
     type:  { type: String, default: 'text' },
     noMD:  { type: Boolean, default: false  },
     class: { type: String, default: ''     },
