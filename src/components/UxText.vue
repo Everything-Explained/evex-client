@@ -6,15 +6,17 @@
   <app-md v-else-if="type == 'block'" :class="customClass">
     <p><slot /></p>
   </app-md>
-  <span
+  <app-md
     v-else
+    :simple="!noMD"
     :class="[
-      { 'md-default md-bold md-em': !noMD },
       'ux-text',
       customClass,
       { '--block': isSpanBlock}
     ]"
-  ><slot /></span>
+  >
+    <slot />
+  </app-md>
 </template>
 
 
