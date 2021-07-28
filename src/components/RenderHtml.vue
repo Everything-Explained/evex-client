@@ -50,10 +50,7 @@ export default defineComponent({
         ? getNodesUsingBQ()
         : getNodesUsingP()
     ;
-    console.log(nodes);
-    return {
-      htmlNodes: nodes,
-    };
+    return { htmlNodes: nodes };
   }
 
 });
