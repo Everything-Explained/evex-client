@@ -91,7 +91,7 @@ function useImageObserver(props: IMGProps) {
       ;
       state.showPreloader = true;
       // Provides a smoother transition with fast loading images
-      setTimeout(updateImageSrc, 150);
+      setTimeout(updateImageSrc, 100);
       dataCache.updArrayData('lazyimg-data', state.activeSrc);
     }
   }
