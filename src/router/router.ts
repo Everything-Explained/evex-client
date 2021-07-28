@@ -1,6 +1,5 @@
 import { createRouter,
          createWebHistory,
-         RouteRecordName,
          RouteRecordRaw } from 'vue-router';
 import { isAuthed, isAuthedGuard, isDevelopment }  from '@/globals';
 import Home               from '@/views/Home.vue';
@@ -13,7 +12,6 @@ import Red33mLogin        from '@/views/Red33mLogin.vue';
 import red33mForm         from '@/views/Red33mAccessForm.vue';
 import r3d_litVue         from '@/views/Red33mLiterature.vue';
 import changelogVue       from '@/views/Changelog.vue';
-import { reactive  }      from '@vue/reactivity';
 
 
 
@@ -53,7 +51,7 @@ export const routes: Array<RouteRecordRaw> = [
   { path        : '/red33m/login',
     name        : 'red-login',
     component   : Red33mLogin,
-    meta        : { cat: 'RED33M', title: 'Login', visible: !isAuthed() }
+    meta        : { cat: 'RED33M', title: 'Login', visible: !isAuthed() || isDevelopment }
   },
   { path        : '/red33m/videos',
     name        : 'red-videos',
