@@ -1,21 +1,35 @@
 <template>
-  <div>
-    <template v-for="(n, i) of htmlNodes" :key="i">
-      <p v-if="'p' == n[0]" v-html="n[1]" />
+  <app-md>
+    <template v-for="(n, i) of htmlNodes">
+      <p
+        v-if="'p' == n[0]"
+        :key="'p' + i"
+        v-html="n[1]"
+      />
       <ol
         v-else-if="'ol' == n[0]"
+        :key="'ol' + i"
         :start="n[2] || 1"
         v-html="n[1]"
       />
       <ux-img
         v-else-if="'img' == n[0]"
+        :key="'img' + i"
         :src="n[1]"
         :asset="true"
       />
-      <blockquote v-else-if="'bq' == n[0]" v-html="n[1]" />
-      <span v-else v-html="n[1]" />
+      <blockquote
+        v-else-if="'bq' == n[0]"
+        :key="'bq' + i"
+        v-html="n[1]"
+      />
+      <span
+        v-else
+        :key="'span' + i"
+        v-html="n[1]"
+      />
     </template>
-  </div>
+  </app-md>
 </template>
 
 
@@ -23,20 +37,22 @@
 import { defineComponent } from "@vue/runtime-core";
 import { PropType } from "vue";
 import uxImgVue from "./UxImg.vue";
+import AppMarkdownVue from "./AppMarkdown.vue";
 
 
 export default defineComponent({
-  components: { 'ux-img': uxImgVue, },
+  components: { 'ux-img': uxImgVue, 'app-md': AppMarkdownVue },
   props     : { html: { type: String as PropType<string>, required: true }, },
   setup({html}) {
     const { getNodesUsingBQ, getNodesUsingP } = useHTMLNodeParser(html);
-
+    const nodes =
+      html.includes('<blockquote>')
+        ? getNodesUsingBQ()
+        : getNodesUsingP()
+    ;
+    console.log(nodes);
     return {
-      htmlNodes:
-        html.includes('<blockquote>')
-          ? getNodesUsingBQ()
-          : getNodesUsingP()
-      ,
+      htmlNodes: nodes,
     };
   }
 
@@ -48,7 +64,7 @@ export default defineComponent({
 
 function useHTMLNodeParser(html: string) {
   const youTubeHTML = 'embed-responsive-item youtube-player';
-  const imageHTML   = '<ee-img';
+  const imageHTML   = '<img';
   const olHTML      = '<ol';
 
 

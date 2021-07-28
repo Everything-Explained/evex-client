@@ -54,7 +54,6 @@
       </div>
       <div v-else-if="activePage">
         <render-html v-if="useCustomRenderer"
-                     :class="['md', contentClass]"
                      :html="activePage.content"
         />
         <article v-else
