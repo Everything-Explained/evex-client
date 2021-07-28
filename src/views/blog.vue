@@ -1,6 +1,6 @@
 <template>
   <app-literature
-    title="Blog Entires"
+    title="Blog Entries"
     size="expanded"
     :show-date-time="true"
     :reverse-order="true"
