@@ -20,6 +20,8 @@
 
 
 <script lang='ts'>
+import './styles/page-titlebar.css';
+import './styles/page-titlebar.mobile.css';
 import { defineComponent } from "vue";
 import eeIconVue from '@/components/UxIcon.vue';
 import { useDateCache } from "@/state/cache-state";

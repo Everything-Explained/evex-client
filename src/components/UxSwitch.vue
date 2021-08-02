@@ -8,6 +8,7 @@
 </template>
 
 <script lang="ts">
+import './styles/ux-switch.css';
 import { defineComponent, ref } from "vue";
 
 export default defineComponent({

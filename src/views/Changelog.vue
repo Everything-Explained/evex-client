@@ -12,6 +12,8 @@
 </template>
 
 <script lang='ts'>
+import './styles/changelog.css';
+import './styles/changelog.mobile.css';
 import AppLiteratureVue from "@/components/AppLiterature.vue";
 import { defineComponent } from "vue";
 

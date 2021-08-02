@@ -61,6 +61,8 @@
 </template>
 
 <script lang='ts'>
+import './styles/red33m-login.css';
+import './styles/red33m-login.mobile.css';
 import { defineComponent, ref } from "vue";
 import { useRouter } from "vue-router";
 import { APIErrorResp, useAPI } from "@/services/api_internal";

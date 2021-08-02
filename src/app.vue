@@ -4,7 +4,7 @@
     <div :class="['app__toast-buffer', { '--show': !isToastClosed }]" />
     <div :class="['app__toast', { '--show': isToastVisible }]" @click="openChangeLog">
       Click here to see the New Release Changes!
-      <ux-icon :type="'cross'" @click.stop="closeToast" />
+      <ux-icon :type="'cross'" @click.stop="closeToast()" />
     </div>
     <header id="AppHeader" class="app__header">
       <router-link :to="{ name: 'home' }" class="title">
@@ -28,6 +28,8 @@
 
 
 <script lang='ts'>
+import './app.css';
+import './app.mobile.css';
 import { computed, defineComponent, onMounted, onUnmounted, Ref, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useDate } from "./composeables/date";

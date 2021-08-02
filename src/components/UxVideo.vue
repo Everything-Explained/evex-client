@@ -49,6 +49,7 @@
 
 
 <script lang='ts'>
+import './styles/ux-video.css';
 import { computed, defineComponent, ref, toRefs } from "vue";
 import { useDate } from "@/composeables/date";
 import { isEthan } from "@/composeables/globals";

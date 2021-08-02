@@ -68,6 +68,8 @@
 
 
 <script lang="ts">
+import './styles/app-literature.css';
+import './styles/app-literature.mobile.css';
 import { computed, defineComponent, onUnmounted, PropType, ref } from "vue";
 import { useDate } from '@/composeables/date';
 import { isEthan } from "@/composeables/globals";

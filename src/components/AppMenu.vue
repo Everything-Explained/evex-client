@@ -34,11 +34,14 @@
 
 
 <script lang='ts'>
+import './styles/app-menu.css';
+import './styles/app-menu.mobile.css';
 import { computed, defineComponent, onMounted, ref, watch, Ref } from "vue";
 import eeIconVue from '@/components/UxIcon.vue';
 import { useDateCache } from "@/state/cache-state";
 import { useRouteMap } from "@/composeables/routeMap";
 import { useEventBus } from "@/state/event-bus";
+
 
 interface ExternalElements {
   body   ?: HTMLElement;
@@ -116,3 +119,6 @@ export default defineComponent({
   }
 });
 </script>
+
+
+

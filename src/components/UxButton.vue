@@ -11,6 +11,8 @@
 
 
 <script lang='ts'>
+import './styles/ux-button.css';
+import './styles/ux-button.mobile.css';
 import { computed, defineComponent } from "vue";
 
 

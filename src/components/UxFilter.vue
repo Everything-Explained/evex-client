@@ -39,6 +39,8 @@
 
 
 <script lang="ts">
+import './styles/ux-filter.css';
+import './styles/ux-filter.mobile.css';
 import { defineComponent, PropType, ref } from "vue";
 import { DataCacheFilterObj, useDateCache } from "@/state/cache-state";
 import { useEventBus } from "@/state/event-bus";

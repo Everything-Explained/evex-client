@@ -47,9 +47,8 @@
   margin         : 0 auto;
   margin-top     : 1.3rem;
   padding        : 7px 0 5px 3px;
-  border-bottom  : 1px solid var(--input-bdr-c);
+  border-bottom  : 1px solid var(--input-bdr-c) !important;
   text-transform : inherit;
-  font-family    : "Verdana";
   transition     : border .25s, color 0.3s; }
   .ux-input__text:focus,
   .ux-input__area:focus

@@ -5,6 +5,7 @@
 
 
 <script lang='ts'>
+import './styles/ux-icon.css';
 import { computed, defineComponent, PropType, toRef } from "vue";
 
 type StringMap = { [key: string]: string };

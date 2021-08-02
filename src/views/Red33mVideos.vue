@@ -35,6 +35,8 @@
 
 
 <script lang='ts'>
+import './styles/red33m-videos.css';
+import './styles/red33m-videos.mobile.css';
 import { defineComponent, onUnmounted, Ref, ref } from "vue";
 import useVideos    from "@/composeables/videos";
 import { Video }    from "@/typings/global-types";

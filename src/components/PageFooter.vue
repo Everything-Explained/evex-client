@@ -17,6 +17,7 @@
 
 
 <script lang="ts">
+import './styles/page-footer.css';
 import { defineComponent, onMounted, onUnmounted, ref } from "vue";
 import { useEventBus } from "@/state/event-bus";
 

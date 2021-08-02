@@ -84,6 +84,8 @@
 
 
 <script lang='ts'>
+import './styles/form-qna.css';
+import './styles/form-qna.mobile.css';
 import { defineComponent, PropType, reactive, toRefs } from "@vue/runtime-core";
 import useInputValidation from "@/composeables/inputValidation";
 import { APIErrorResp, useAPI }         from "@/services/api_internal";
