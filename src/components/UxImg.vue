@@ -1,8 +1,9 @@
 <template>
   <div ref="containerRef" class="ux-img">
-    <div
+    <ux-preloader
       v-if="showPreloader"
-      :class="['preloader ux-img__preloader', { '--disabled': loaded }]"
+      :page="false"
+      :class="['ux-img__preloader', { '--disabled': loaded }]"
     />
     <img
       ref="imgRef"
@@ -17,11 +18,15 @@
 import './styles/ux-img.css';
 import { computed, defineComponent, onMounted, reactive, ref, toRefs, watch } from "vue";
 import { useDateCache } from "@/state/cache-state";
+import UxPreloaderVue from './UxPreloader.vue';
 
 
 type IMGProps = { src: string; asset: boolean }
 
 export default defineComponent({
+  components: {
+    'ux-preloader': UxPreloaderVue,
+  },
   props: {
     src:   { type: String,  default: ''    },
     asset: { type: Boolean, default: false },

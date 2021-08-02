@@ -6,7 +6,7 @@
       :text="title"
     />
     <transition name="fade" mode="out-in">
-      <div v-if="isLoadingVideos" class="preloader page" />
+      <ux-preloader v-if="isLoadingVideos" />
       <div v-else-if="categories.length && !activePage">
         <div class="lib-vid__category-list">
           <div v-for="(cat, i) of categories"
@@ -90,11 +90,13 @@ import PageTitleBarVue     from "@/components/PageTitlebar.vue";
 import PageFooterVue       from "@/components/PageFooter.vue";
 import uxFilterVue         from "@/components/UxFilter.vue";
 import uxVideoVue          from "@/components/UxVideo.vue";
+import UxPreloaderVue from '@/components/UxPreloader.vue';
 
 type VideoCategory = { name: string; description: string; videos: Video[] };
 
 export default defineComponent({
   components: {
+    'ux-preloader': UxPreloaderVue,
     'pg-titlebar' : PageTitleBarVue,
     'pg-footer'   : PageFooterVue,
     'ux-video'    : uxVideoVue,

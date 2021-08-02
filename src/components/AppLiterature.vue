@@ -6,7 +6,7 @@
       :text="titleRef"
     />
     <transition name="fade" mode="out-in">
-      <div v-if="isRunning" class="preloader page" />
+      <ux-preloader v-if="isRunning" />
       <div v-else-if="!activePage" class="lit-cards__container">
         <ux-filter
           v-if="showFilter"
@@ -81,6 +81,7 @@ import RenderHtmlVue from "./RenderHtml.vue";
 import uxIconVue     from "@/components/UxIcon.vue";
 import uxBulletVue   from "./UxBullet.vue";
 import uxFilterVue   from "./UxFilter.vue";
+import UxPreloaderVue from './UxPreloader.vue';
 
 
 
@@ -93,6 +94,7 @@ const _sizes = ['compact', 'expanded'];
 
 export default defineComponent({
   components: {
+    'ux-preloader': UxPreloaderVue,
     'pg-titlebar': PageTitlebarVue,
     'ux-icon': uxIconVue,
     'ux-bullet': uxBulletVue,

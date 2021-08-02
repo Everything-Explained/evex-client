@@ -4,7 +4,7 @@
       RED33M Videos
     </pg-titlebar>
     <transition name="fade" mode="out-in">
-      <div v-if="isLoadingVideos" class="preloader page" />
+      <ux-preloader v-if="isLoadingVideos" />
       <div v-else>
         <ux-filter
           :age-only="true"
@@ -46,11 +46,13 @@ import PageTitlebarVue from "@/components/PageTitlebar.vue";
 import PageFooterVue   from "@/components/PageFooter.vue";
 import uxVideoVue      from "@/components/UxVideo.vue";
 import uxFilterVue     from "@/components/UxFilter.vue";
+import UxPreloaderVue from '@/components/UxPreloader.vue';
 
 
 
 export default defineComponent({
   components: {
+    'ux-preloader': UxPreloaderVue,
     'pg-titlebar' : PageTitlebarVue,
     'pg-footer'   : PageFooterVue,
     'ux-filter'   : uxFilterVue,
