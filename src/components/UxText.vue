@@ -1,6 +1,10 @@
 
 <template>
-  <app-md v-if="type == 'header'" :class="customClass">
+  <app-md
+    v-if="type == 'header'"
+    :header="true"
+    :class="customClass"
+  >
     <h1><slot /></h1>
   </app-md>
   <app-md v-else-if="type == 'block'" :class="customClass">
@@ -8,11 +12,10 @@
   </app-md>
   <app-md
     v-else
-    :simple="!noMD"
     :class="[
       'ux-text',
       customClass,
-      { '--block': isSpanBlock}
+      { '--block': isSpanBlock }
     ]"
   >
     <slot />
@@ -29,9 +32,8 @@ const _textType = ['text', 'block', 'header', 'span-block', 'link'];
 export default defineComponent({
   components: { 'app-md': AppMarkdownVue },
   props: {
-    type:  { type: String, default: 'text' },
-    noMD:  { type: Boolean, default: false  },
-    class: { type: String, default: ''     },
+    type:         { type: String,  default: 'text' },
+    class:        { type: String,  default: ''     },
   },
   setup(props) {
     const { type } = props;

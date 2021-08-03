@@ -56,9 +56,10 @@
         <render-html v-if="useCustomRenderer"
                      :html="activePage.content"
         />
-        <article v-else
-                 :class="['md', contentClass]"
-                 v-html="activePage.content"
+        <app-md v-else
+                :simple="false"
+                :class="contentClass"
+                v-html="activePage.content"
         />
         <pg-footer />
       </div>
@@ -80,6 +81,7 @@ import uxIconVue     from "@/components/UxIcon.vue";
 import uxBulletVue   from "./UxBullet.vue";
 import uxFilterVue   from "./UxFilter.vue";
 import UxPreloaderVue from './UxPreloader.vue';
+import AppMarkdownVue from "./AppMarkdown.vue";
 
 
 
@@ -99,6 +101,7 @@ export default defineComponent({
     'pg-footer': PageFooterVue,
     'ux-filter': uxFilterVue,
     'render-html'  : RenderHtmlVue,
+    'app-md': AppMarkdownVue,
   },
   props: {
     size              : { type: String,  default: 'compact'       },

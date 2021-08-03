@@ -1,5 +1,5 @@
 <template>
-  <app-md>
+  <app-md :simple="false">
     <template v-for="(n, i) of htmlNodes">
       <p
         v-if="'p' == n[0]"

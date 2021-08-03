@@ -27,7 +27,7 @@
             communal benefits appeals to your vision, then consider becoming one of our beloved
             benefactors!
           </ux-text>
-          <ux-text class="support__patreon" :no-m-d="true">
+          <ux-text class="support__patreon">
             <span class="md-bold">Support our <b>ORG</b> on</span>
             <a href="https://www.patreon.com/user?u=10855808&fan_landing=true" target="_blank">
               <img
