@@ -30,7 +30,6 @@
 </template>
 
 <script lang="ts">
-import './styles/ux-toggle.css';
 import { defineComponent, ref } from "vue";
 
 export default defineComponent({

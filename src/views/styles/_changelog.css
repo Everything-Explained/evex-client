@@ -11,7 +11,7 @@
   margin        : 0 auto;
   margin-bottom : 3rem;
   width         : 90%;
-  text-align    : left; }
+  text-align    : left !important; }
   .vw-chglog blockquote li:first-child strong:first-child {
     text-shadow: 1px 1px 0 black,
                  2px 2px 0 black,

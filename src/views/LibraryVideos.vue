@@ -78,8 +78,6 @@
 
 
 <script lang="ts">
-import './styles/library-videos.css';
-import './styles/library-videos.mobile.css';
 import { computed, defineComponent, ref, watch } from "vue";
 import useVideos           from "@/composeables/videos";
 import { useDynamicPager } from "@/composeables/dynamicPager";

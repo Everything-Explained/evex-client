@@ -116,8 +116,6 @@
 
 
 <script lang='ts'>
-import './styles/support.css';
-import './styles/support.mobile.css';
 import { computed, defineComponent, ref } from "vue";
 import PageTitlebarVue              from "@/components/PageTitlebar.vue";
 import PageFooterVue                from "@/components/PageFooter.vue";

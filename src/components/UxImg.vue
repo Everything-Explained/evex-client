@@ -15,7 +15,6 @@
 
 
 <script lang="ts">
-import './styles/ux-img.css';
 import { computed, defineComponent, onMounted, reactive, ref, toRefs, watch } from "vue";
 import { useDateCache } from "@/state/cache-state";
 import UxPreloaderVue from './UxPreloader.vue';

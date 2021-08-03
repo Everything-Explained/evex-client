@@ -34,8 +34,6 @@
 
 
 <script lang='ts'>
-import './styles/app-menu.css';
-import './styles/app-menu.mobile.css';
 import { computed, defineComponent, onMounted, ref, watch, Ref } from "vue";
 import eeIconVue from '@/components/UxIcon.vue';
 import { useDateCache } from "@/state/cache-state";

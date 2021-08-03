@@ -21,7 +21,6 @@
 
 
 <script lang="ts">
-import './styles/ux-checkbox.css';
 import useUniqueIDGen from "@/composeables/uniqueID";
 import { defineComponent, PropType } from "@vue/runtime-core";
 

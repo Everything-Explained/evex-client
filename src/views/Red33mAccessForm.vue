@@ -107,8 +107,6 @@
 
 
 <script lang='ts'>
-import './styles/red33m-access-form.css';
-import './styles/red33m-access-form.mobile.css';
 import { computed, defineComponent, reactive, toRefs } from "vue";
 import PageTitlebarVue              from "@/components/PageTitlebar.vue";
 import PageFooterVue                from '@/components/PageFooter.vue';

@@ -7,7 +7,6 @@
 
 
 <script lang='ts'>
-import './styles/form-submit-error.css';
 import { defineComponent, ref, watch } from "@vue/runtime-core";
 
 export default defineComponent({

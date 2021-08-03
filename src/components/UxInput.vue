@@ -65,8 +65,6 @@
 
 
 <script lang='ts'>
-import './styles/ux-input.css';
-import './styles/ux-input.mobile.css';
 import useUniqueIDGen from "@/composeables/uniqueID";
 import { computed, defineComponent, onMounted, PropType, ref, watch } from "vue";
 

@@ -9,7 +9,6 @@
 
 
 <script lang="ts">
-import './styles/red33m-literature.css';
 import { defineComponent } from "vue"
 ;
 import AppLiteratureVue from "@/components/AppLiterature.vue";

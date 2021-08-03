@@ -21,7 +21,6 @@
 
 
 <script lang='ts'>
-import './styles/ux-text.css';
 import { defineComponent } from "vue";
 import AppMarkdownVue from "./AppMarkdown.vue";
 

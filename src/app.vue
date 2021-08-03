@@ -28,8 +28,6 @@
 
 
 <script lang='ts'>
-import './app.css';
-import './app.mobile.css';
 import { computed, defineComponent, onMounted, onUnmounted, Ref, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useDate } from "./composeables/date";
