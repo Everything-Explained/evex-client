@@ -1,8 +1,11 @@
 /* eslint-disable no-dupe-keys */
 /* eslint-disable @typescript-eslint/no-var-requires */
 module.exports = (ctx) => ({
+  syntax: 'postcss-scss',
   plugins: {
     'postcss-easy-import'        : null,
+    'postcss-nested'             : null,
+    'postcss-extend-rule'        : null,
     'postcss-css-variables'      : null,
     'autoprefixer'               : null,
     'postcss-custom-media'       : null,
