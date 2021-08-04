@@ -1,18 +1,23 @@
 <template>
-  <app-literature
-    title="Library Literature"
-    uri="library/literature"
-  />
+  <app-literature :options="options" />
 </template>
 
 
 <script lang="ts">
 import { defineComponent } from "vue"
 ;
-import AppLiteratureVue from "@/components/AppLiterature.vue";
+import AppLiteratureVue, { AppLitOptions } from "@/components/AppLiterature/AppLiterature.vue";
 
 
 export default defineComponent({
-  components: { 'app-literature': AppLiteratureVue, }
+  components: { 'app-literature': AppLiteratureVue, },
+  setup() {
+    const options: AppLitOptions = {
+      uri: 'library/literature',
+      title: 'Library Literature'
+    };
+
+    return { options };
+  }
 });
 </script>

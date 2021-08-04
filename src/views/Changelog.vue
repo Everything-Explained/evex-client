@@ -1,22 +1,26 @@
 <template>
-  <app-literature
-    uri="changelog"
-    size="expanded"
-    :show-date-time="true"
-    :show-author="false"
-    :show-filter="false"
-    :use-custom-renderer="false"
-    content-class="vw-chglog"
-    title="Changelog"
-  />
+  <app-literature :options="options" />
 </template>
 
 <script lang='ts'>
-import AppLiteratureVue from "@/components/AppLiterature.vue";
+import AppLiteratureVue, { AppLitOptions } from "@/components/AppLiterature/AppLiterature.vue";
 import { defineComponent } from "vue";
 
 export default defineComponent({
   components: { 'app-literature': AppLiteratureVue, },
+  setup() {
+    const options: AppLitOptions = {
+      uri: 'changelog',
+      title: 'Changelog',
+      expanded: true,
+      showAuthor: false,
+      showFilter: false,
+      useCustomRenderer: false,
+      contentClass: 'vw-chglog',
+    };
+
+    return { options };
+  }
 });
 </script>
 

@@ -1,6 +1,7 @@
 import { computed, reactive } from "vue";
 
 const stateOfArrays = reactive({
+  'temp'                      : [],
   'lazyimg-data'              : [],
   'blog'                      : [],
   'changelog'                 : [],
