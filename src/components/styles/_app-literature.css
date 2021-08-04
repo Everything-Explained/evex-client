@@ -10,10 +10,12 @@
   margin-top      : 15px;
   flex-direction  : row;
   flex-wrap       : wrap;
-  justify-content : center; }
-  .lit__cards.--expanded {
+  justify-content : center;
+  &.--expanded {
     margin-top : 2rem;
-    max-width  : 1024px; }
+    max-width  : 1024px;
+  }
+}
 
 
 .lit__card {
@@ -25,13 +27,37 @@
   border        : 3px solid black;
   border-radius : 10px 10px 0 0;
   font-size     : 1.2rem;
-  transition    : box-shadow var(--lit-transition-speed); }
-  .lit__card:hover                {
-    box-shadow : 0 0 5px 2px hsl(30, 15%, 19%); }
-  .lit__card.--expanded           {
+  transition    : box-shadow var(--lit-transition-speed);
+
+  &:hover {
+    box-shadow : 0 0 5px 2px hsl(30, 15%, 19%);
+    & header {
+      border-color     : hsl(30, 15%, 27%);
+      background-color : hsl(30, 15%, 16%);
+      color            : hsl(47, 100%, 65%); }
+    & article {
+      background-color : hsl(30, 15%, 11%);
+      color            : hsl(30, 15%, 85%); }
+    & footer {
+      background-color : hsl(30, 15%, 8%); }
+    & .ux-icon, .lit-card__timestamp {
+      color: hsl(30, 15%, 45%); }
+  }
+  &.--expanded {
     margin-bottom : 30px;
-    width         : 95%; }
-  .lit__card              header  {
+    width         : 95%;
+    & header {
+      text-align : left;
+      font-size  : 1.5rem; }
+    & article { line-height : 2rem; }
+    & footer {
+      padding-left : 5px;
+      text-align   : right;
+      & .lit-card__author { float: left; }
+    }
+  }
+
+  & header {
     z-index          : 2;
     padding          : 7px 7px 5px 10px;
     box-shadow       : 0 7px 15px -3px black;
@@ -51,15 +77,8 @@
                        color var(--lit-transition-speed),
                        background var(--lit-transition-speed),
                        border var(--lit-transition-speed)
-                     ; }
-  .lit__card:hover        header  {
-    border-color     : hsl(30, 15%, 27%);
-    background-color : hsl(30, 15%, 16%);
-    color            : hsl(47, 100%, 65%); }
-  .lit__card.--expanded   header  {
-    text-align : left;
-    font-size  : 1.5rem; }
-  .lit__card              article {
+                     ;}
+  & article {
     z-index          : 1;
     height           : auto;
     overflow         : show;
@@ -69,50 +88,38 @@
     background-color : hsl(197, 11%, 11%);
     color            : var(--body-c);
     transition       : background var(--lit-transition-speed),
-                       color var(--lit-transition-speed); }
-  .lit__card:hover        article {
-    background-color : hsl(30, 15%, 11%);
-    color            : hsl(30, 15%, 85%); }
-  .lit__card.--expanded   article {
-    line-height : 2rem; }
-  .lit__card              footer  {
+                       color var(--lit-transition-speed);}
+  & footer {
     padding       : 5px 0.7rem 2px 0.7rem;
     border-radius : 0 0 7px 7px;
     text-align    : center;
     font-weight   : 400;
     color         : hsl(197, 11%, 35%);
     transition    : background var(--lit-transition-speed),
-                    border var(--lit-transition-speed); }
-  .lit__card:hover        footer  {
-    background-color : hsl(30, 15%, 8%); }
-  .lit__card.--expanded   footer  {
-    padding-left : 5px;
-    text-align   : right; }
-    .lit__card.--expanded footer .lit-card__author { float: left; }
-  .lit__card       .icon {
+                    border var(--lit-transition-speed);}
+  & .ux-icon {
     top          : 2px;
     left         : 3px;
     margin-right : 7px;
     color        : hsl(197, 11%, 40%);
     transition   : color var(--lit-transition-speed); }
-  .lit__card:hover .icon,
-  .lit__card:hover .lit-card__timestamp {
-    color: hsl(30, 15%, 45%); }
+}
 
 
 .lit-card__author-text {
   text-shadow : 1px 1px 0 black,
                 2px 2px 0 black;
-  color       : hsl(197, 20%, 87%); }
-  .lit-card__author-text.--is-ethan {
+  color       : hsl(197, 20%, 87%);
+  &.--is-ethan {
     color : hsl(0, 100%, 72%); }
+}
 
 
 .lit-card__timestamp {
   text-shadow : 0    0   1px black,
                 1px  1px 1px black,
                 2px  2px 2px black,
-               -1px -1px 1px black
-              ;
+               -1px -1px 1px black;
   font-weight : 400;
-  transition  : color var(--lit-transition-speed); }
+  transition  : color var(--lit-transition-speed);
+}
