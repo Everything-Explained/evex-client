@@ -10,29 +10,25 @@
 
 
 
-<script lang='ts'>
-import { computed, defineComponent } from "vue";
+<script lang='ts' setup>
+import { computed, defineProps } from "vue";
 
 
 const _buttonThemes = ['neutral', 'attention', 'dangerous'];
 
-
-export default defineComponent({
-  props: {
-    theme:    { type: String,  default: 'neutral' },
-    loading:  { type: Boolean, default: false,    },
-    disabled: { type: Boolean, default: false,    },
-  },
-  setup(props) {
-    if (!_buttonThemes.includes(props.theme))
-      throw Error(`ee-button:: invalid button type ${props.theme}`)
-    ;
-    const isDisabled = computed(() => {
-      // Prevent clicks when loading
-      return props.loading || props.disabled;
-    });
-
-    return { isDisabled };
-   }
+const props = defineProps({
+  theme:    { type: String,  default: 'neutral' },
+  loading:  { type: Boolean, default: false,    },
+  disabled: { type: Boolean, default: false,    },
 });
+
+if (!_buttonThemes.includes(props.theme))
+  throw Error(`ee-button:: invalid button type ${props.theme}`)
+;
+
+const isDisabled = computed(() => {
+  // Prevent clicks when loading
+  return props.loading || props.disabled;
+});
+
 </script>
