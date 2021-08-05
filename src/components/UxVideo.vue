@@ -1,7 +1,7 @@
 <template>
   <div class="ux-video">
     <div class="ux-video__thumb-container">
-      <ux-img :src="thumbnail" class="ux-video__thumb" />
+      <ux-img :src="thumbnailRef" class="ux-video__thumb" />
     </div>
     <div class="ux-video__widget-container">
       <div :class="['ux-video__widget timestamp', { '--open': descState }]">
@@ -16,7 +16,7 @@
         @click="openVideo"
       />
       <ux-icon
-        v-if="description"
+        v-if="desc"
         :class="[
           'ux-video__widget desc',
           { '--open': descState }
@@ -32,7 +32,7 @@
         />
         <div class="text">
           <h1>Description</h1>
-          <span class="--default-scrollbar" v-html="description" />
+          <span class="--default-scrollbar" v-html="desc" />
         </div>
       </div>
     </div>
@@ -48,46 +48,37 @@
 </template>
 
 
-<script lang='ts'>
-import { computed, defineComponent, ref, toRefs } from "vue";
+<script lang='ts' setup>
+import { computed, ref, toRefs, defineProps } from "vue";
 import { useDate } from "@/composeables/date";
 import { isEthan } from "@/composeables/globals";
 // components
-import uxIconVue from '@/components/UxIcon.vue';
-import uxImgVue from "./UxImg.vue";
+import UxIcon from '@/components/UxIcon.vue';
+import UxImg from "./UxImg.vue";
 
-export default defineComponent({
-  components: { 'ux-img': uxImgVue, 'ux-icon': uxIconVue, },
-  props: {
-    desc    : { type: String, default: '' },
-    videoId : { type: String, default: '' },
-    date    : { type: String, default: '' },
-    author  : { type: String, default: '' },
-  },
-  setup(props) {
-    const { videoId, desc } = toRefs(props);
-    const descStateRef = ref(false);
-    const thumbnailRef = computed(() =>
-      `//img.youtube.com/vi/${videoId.value}/0.jpg`
-    );
-
-    function openVideo() {
-      window.open(
-        `//www.youtube-nocookie.com/embed/${videoId.value}?rel=0`,
-        '_blank'
-      );
-    }
-
-    function setDescState(state: 'closed'|'open') {
-      descStateRef.value = state == 'open';
-    }
-
-    return {
-      thumbnail: thumbnailRef,
-      description: desc,
-      descState: descStateRef,
-      openVideo, setDescState, useDate, isEthan
-    };
-  }
+const props             = defineProps({
+  desc    : { type: String, default: '' },
+  videoId : { type: String, default: '' },
+  date    : { type: String, default: '' },
+  author  : { type: String, default: '' },
 });
+const { videoId, desc } = toRefs(props);
+const descState         = ref(false);
+const thumbnailRef      = computed(() =>
+  `//img.youtube.com/vi/${videoId.value}/0.jpg`
+);
+
+function openVideo() {
+  window.open(
+    `//www.youtube-nocookie.com/embed/${videoId.value}?rel=0`,
+    '_blank'
+  );
+}
+
+function setDescState(state: 'closed'|'open') {
+  descState.value = state == 'open';
+}
+
 </script>
+
+
