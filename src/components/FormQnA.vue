@@ -89,9 +89,9 @@ import useInputValidation from "@/composeables/inputValidation";
 import { APIErrorResp, useAPI }         from "@/services/api_internal";
 import { DataCacheArrayKeys, useDateCache } from "@/state/cache-state";
 import UxButton        from "./UxButton.vue";
-import FormError     from "./FormSubmitError.vue";
 import UxInput         from "./UxInput.vue";
 import UxText          from "./UxText.vue";
+import FormError from "./FormError.vue";
 
 
 export type FormQuestion = { text: string; subtext?: string; answer?: string; }
