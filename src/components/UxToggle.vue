@@ -6,10 +6,10 @@
       type="radio"
       name="toggle"
       :checked="!state"
-      :disabled="props.prevent"
+      :disabled="prevent"
     >
     <label
-      :class="['ux-toggle__label', { '--wait': props.prevent }]"
+      :class="['ux-toggle__label', { '--wait': prevent }]"
       for="toggleLeft"
       @click="toggle(false)"
     >{{ leftText }}</label>
@@ -19,38 +19,35 @@
       type="radio"
       name="toggle"
       :checked="state"
-      :disabled="props.prevent"
+      :disabled="prevent"
     >
     <label
-      :class="['ux-toggle__label', { '--wait': props.prevent }]"
+      :class="['ux-toggle__label', { '--wait': prevent }]"
       for="toggleRight"
       @click="toggle(true)"
     >{{ rightText }}</label>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from "vue";
+<script lang="ts" setup>
+import { ref, defineProps, defineEmits } from "vue";
 
-export default defineComponent({
-  props: {
-    initState : { type: Boolean,  default: false         },
-    leftText  : { type: String,   default: 'Left'        },
-    rightText : { type: String,   default: 'Right'       },
-    prevent   : { type: Boolean,  default: false         },
-  },
-  emits: ['toggle'],
-  setup(props, {emit}) {
-    const state = ref(props.initState);
-
-    const toggle = (val: boolean) => {
-      if (props.prevent)      return;
-      if (val == state.value) return;
-      state.value = val;
-      emit('toggle', state.value);
-    };
-
-    return { state, toggle, props };
-  }
+const {prevent, initState} = defineProps({
+  initState : { type: Boolean,  default: false   },
+  leftText  : { type: String,   default: 'Left'  },
+  rightText : { type: String,   default: 'Right' },
+  prevent   : { type: Boolean,  default: false   },
 });
+const emit  = defineEmits(['toggle']);
+const state = ref(initState);
+
+function toggle(val: boolean) {
+  if (prevent)            return;
+  if (val == state.value) return;
+  state.value = val;
+  emit('toggle', state.value);
+}
+
 </script>
+
+
