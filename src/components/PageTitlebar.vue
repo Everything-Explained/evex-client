@@ -1,13 +1,13 @@
 <template>
   <div class="pg-titlebar">
-    <ee-icon
+    <ux-icon
       :class="['pg-titlebar__menu-icon', { '--menu-open': isMenuOpen }]"
       :type="'menu'"
       @mousedown="openMenu"
     />
     <transition
       name="fade"
-      :duration="{ enter, leave }"
+      :duration="duration"
       mode="out-in"
     >
       <div :key="text" class="pg-titlebar__text">
@@ -19,31 +19,25 @@
 
 
 
-<script lang='ts'>
-import { defineComponent } from "vue";
-import eeIconVue from '@/components/UxIcon.vue';
+<script lang='ts' setup>
+import { defineProps } from "vue";
 import { useDateCache } from "@/state/cache-state";
+import UxIcon from '@/components/UxIcon.vue';
 
-
-export default defineComponent({
-  components : { 'ee-icon': eeIconVue, },
-  props      : {
-    easeIn:  { type: Number, default: 400 },
-    easeOut: { type: Number, default: 400 },
-    text:    { type: String, default: '' }
-  },
-  setup(props) {
-    const stateStr   = 'titlebar-menu-open';
-    const dataCache  = useDateCache<boolean>();
-    const isMenuOpen = dataCache.getData(stateStr);
-    const duration   = {
-      enter: props.easeIn ?? 400,
-      leave: props.easeOut ?? 400
-    };
-
-    const openMenu = () => dataCache.setData(stateStr, true);
-
-    return { openMenu, isMenuOpen, ...duration };
-  }
+const props = defineProps({
+  easeIn:  { type: Number, default: 400 },
+  easeOut: { type: Number, default: 400 },
+  text:    { type: String, default: '' }
 });
+
+const stateStr   = 'titlebar-menu-open';
+const dataCache  = useDateCache<boolean>();
+const isMenuOpen = dataCache.getData(stateStr);
+const duration   = {
+  enter: props.easeIn ?? 400,
+  leave: props.easeOut ?? 400
+};
+
+const openMenu = () => dataCache.setData(stateStr, true);
+
 </script>
