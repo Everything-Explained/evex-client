@@ -5,20 +5,13 @@
 </template>
 
 
-<script lang="ts">
-import { defineComponent } from "vue"
-;
-import AppLiteratureVue, { AppLitOptions } from "@/components/AppLiterature/AppLiterature.vue";
+<script lang="ts" setup>
+import AppLiterature, { AppLitOptions } from "@/components/AppLiterature/AppLiterature.vue";
+const options: AppLitOptions = {
+  uri   : 'red33m/literature',
+  title : 'RED33M Literature',
+};
 
-
-export default defineComponent({
-  components: { 'app-literature': AppLiteratureVue, },
-  setup() {
-    const options: AppLitOptions = {
-      uri: 'red33m/literature',
-      title: 'RED33M Literature',
-    };
-    return { options };
-  }
-});
 </script>
+
+
