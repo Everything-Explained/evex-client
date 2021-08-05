@@ -1,6 +1,6 @@
 <template>
-  <app-md :simple="false">
-    <template v-for="(n, i) of htmlNodes">
+  <app-markdown :simple="false">
+    <template v-for="(n, i) of nodes">
       <p
         v-if="'p' == n[0]"
         :key="'p' + i"
@@ -29,110 +29,28 @@
         v-html="n[1]"
       />
     </template>
-  </app-md>
+  </app-markdown>
 </template>
 
 
-<script lang="ts">
-import { defineComponent } from "@vue/runtime-core";
+<script lang="ts" setup>
+import { defineProps } from "@vue/runtime-core";
 import { PropType } from "vue";
-import uxImgVue from "./UxImg.vue";
-import AppMarkdownVue from "./AppMarkdown.vue";
+import UxImg from "./UxImg.vue";
+import AppMarkdown from "./AppMarkdown.vue";
+import { useHTMLNodeParser } from "@/composeables/htmlNodeParser";
 
-
-export default defineComponent({
-  components: { 'ux-img': uxImgVue, 'app-md': AppMarkdownVue },
-  props     : { html: { type: String as PropType<string>, required: true }, },
-  setup({html}) {
-    const { getNodesUsingBQ, getNodesUsingP } = useHTMLNodeParser(html);
-    const nodes =
-      html.includes('<blockquote>')
-        ? getNodesUsingBQ()
-        : getNodesUsingP()
-    ;
-    return { htmlNodes: nodes };
-  }
-
+const {html} = defineProps({
+  html: { type: String as PropType<string>, required: true },
 });
-
-
-
-
-
-function useHTMLNodeParser(html: string) {
-  const youTubeHTML = 'embed-responsive-item youtube-player';
-  const imageHTML   = '<img';
-  const olHTML      = '<ol';
-
-
-  function getNodesUsingBQ() {
-    const htmlParts   = html.split('</blockquote>');
-    const partsLength = htmlParts.length;
-    const nodes: string[][] = [];
-
-    htmlParts.forEach((p, i) => {
-      const isLastIndex = i == partsLength - 1;
-      if (isLastIndex) return nodes.push(...getNodesUsingP(p));
-
-      if (p.includes('<blockquote>')) {
-        const [html, bq] = p.split('<blockquote>');
-        nodes.push(...getNodesUsingP(html), ['bq', bq]);
-      }
-    });
-
-    return nodes;
-  }
-
-
-  function getNodesUsingP(newHTML?: string) {
-    const htmlParts   = (newHTML ?? html).split('<p>');
-    const nodes       = [] as string[][];
-
-    for (const p of htmlParts) {
-      if (!p.trim()) continue;
-      if (p.includes(youTubeHTML)) { nodes.push(getNodeData(p, 'span')); continue; }
-      if (p.includes(olHTML))      { nodes.push(...filterListNode(p));   continue; }
-      if (p.includes(imageHTML))   { nodes.push(...filterImageNodes(p)); continue; }
-      nodes.push(getNodeData(p));
-    }
-
-    return nodes;
-  }
-
-
-  function filterListNode(partialHTML: string) {
-    const [pHTML, listHTML] = partialHTML.split(olHTML);
-    // Some ordered lists need to "start" at a different number
-    const attrib = listHTML.split('>', 1)[0].trim();
-    const cleanList = attrib
-      ? listHTML.trimStart().substring(attrib.length + 1).trim()
-      : listHTML.trimStart().substring(1).trim()
-    ;
-    const listNodeData = getNodeData(cleanList, 'ol');
-    if (attrib) listNodeData.push(attrib.split('"')[1]);
-    return [getNodeData(pHTML), listNodeData];
-  }
-
-
-  function filterImageNodes(partialHTML: string) {
-    const [nodeHTML, ...imagesHTML] = partialHTML.split(imageHTML);
-    const imgNodeData = imagesHTML.map(getImgNodeData);
-    return nodeHTML.trim() ? [getNodeData(nodeHTML), ...imgNodeData] : imgNodeData;
-  }
-
-
-  const getNodeData     = (html: string, el = 'p') => [el, html.trim().substring(0, html.length - 5)];
-  const getImgNodeData  = (html: string)           => ['img', html.trim().split('https:')[1].split('"')[0]];
-
-
-  return {
-    getNodesUsingBQ,
-    getNodesUsingP,
-  };
-}
-
-
-
-
+const { getNodesUsingBQ, getNodesUsingP } = useHTMLNodeParser(html);
+const nodes =
+  html.includes('<blockquote>')
+    ? getNodesUsingBQ()
+    : getNodesUsingP()
+;
 
 </script>
+
+
+
