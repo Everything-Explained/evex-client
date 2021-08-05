@@ -7,25 +7,18 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from "vue";
+<script lang="ts" setup>
+import { ref, defineProps } from "vue";
 
-export default defineComponent({
-  props: {
-    callback: { type: Function, default: null },
-  },
-  setup(props) {
-    if (!props.callback)
-      throw Error('toggle::you need to provide a toggle method.')
-    ;
-    const state   = ref(false);
-
-    function toggle() {
-      state.value = !state.value;
-      props.callback(state.value);
-    }
-
-    return { toggle, state };
-  }
+const {callback} = defineProps({
+  callback: { type: Function, required: true },
 });
+const state  = ref(false);
+
+function toggle() {
+  state.value = !state.value;
+  callback(state.value);
+}
+
 </script>
+
