@@ -1,0 +1,64 @@
+import { useDateCache } from "@/state/cache-state";
+import { computed, reactive, ref } from "vue";
+
+
+type IMGProps = { src: string; asset: boolean }
+
+
+export function useImageObserver(props: IMGProps) {
+  const imgRef        = ref<HTMLImageElement>();
+  const containerRef  = ref<HTMLElement>();
+  const dataCache     = useDateCache<string>();
+
+  const state = reactive({
+    img           : computed(() => imgRef.value!),
+    loaded        : false,
+    showPreloader : false,
+    activeSrc     : computed(() => props.src!),
+    cache         : dataCache.getArrayData('lazyimg-data'),
+  });
+
+  function isImageCached(uri: string) {
+    const uriSlug = uri ? uri.split('//', 2)[1] : uri;
+    return state.cache.find(v => v.includes(uriSlug));
+  }
+
+  function detectAssetSize() {
+    if (props.asset) {
+      const [width, height] = state.activeSrc.split('/')[5].split('x').map(v => parseInt(v));
+
+      const winWidth = document.body.clientWidth;
+      const contentWidth = winWidth > 1024 ? 1024 : winWidth;
+      const ratio = width / height;
+
+      if (width >= contentWidth) state.img.height = (contentWidth * 0.97) / ratio;
+      else state.img.height = width / ratio;
+    }
+  }
+
+  const updateImageSrc = () => state.img.src = state.activeSrc;
+  function loadImage(entries: IntersectionObserverEntry[], obs: IntersectionObserver) {
+    if (entries[0].isIntersecting) {
+      obs.unobserve(containerRef.value!);
+      if (isImageCached(state.activeSrc)) return updateImageSrc()
+      ;
+      state.showPreloader = true;
+      // Provides a smoother transition with fast loading images
+      setTimeout(updateImageSrc, 100);
+      dataCache.updArrayData('lazyimg-data', state.activeSrc);
+    }
+  }
+
+  const observer = new IntersectionObserver(loadImage);
+  let loadEvents = true;
+  function observeImage() {
+    if (loadEvents) {
+      state.img.addEventListener('load', () => state.loaded = true);
+      state.img.addEventListener('animationend', () => state.showPreloader = false);
+      loadEvents = false;
+    }
+    observer.observe(containerRef.value!);
+  }
+
+  return { state, imgRef, containerRef, observeImage, detectAssetSize };
+}
