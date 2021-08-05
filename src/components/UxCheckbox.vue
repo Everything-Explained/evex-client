@@ -5,7 +5,7 @@
       class="ux-checkbox"
       type="checkbox"
       :checked="checked"
-      @change="$emit('changed', getVal($event)), $emit('update:modelValue', getVal($event))"
+      @change="emit('changed', getVal($event)), emit('update:modelValue', getVal($event))"
     >
     <label :for="chkbxID" class="ux-checkbox__label">
       <div>
@@ -20,28 +20,18 @@
 
 
 
-<script lang="ts">
+<script lang="ts" setup>
 import useUniqueIDGen from "@/composeables/uniqueID";
-import { defineComponent, PropType } from "@vue/runtime-core";
+import { PropType, defineProps, defineEmits } from "@vue/runtime-core";
 
-
-export default defineComponent({
-  props: {
-    value:   { type: String  as PropType<string>,  required: true },
-    checked: { type: Boolean as PropType<boolean>, default: false }
-  },
-  emits: ['update:modelValue', 'changed'],
-  setup() {
-    const genID  = useUniqueIDGen().genID;
-    const getVal = (e: Event) => (e.target as HTMLInputElement).checked;
-
-    return {
-      svgID  : genID(),
-      chkbxID: genID(),
-      getVal,
-    };
-  }
+defineProps({
+  value:   { type: String  as PropType<string>,  required: true },
+  checked: { type: Boolean as PropType<boolean>, default: false },
 });
+const emit    = defineEmits(['update:modelValue', 'changed']);
+const genID   = useUniqueIDGen().genID;
+const getVal  = (e: Event) => (e.target as HTMLInputElement).checked;
+const chkbxID = genID();
 
 </script>
 
