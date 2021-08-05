@@ -74,7 +74,9 @@ onMounted(() => {
   els.closeHelper = document.createElement('div');
   els.closeHelper.classList.add('app-menu__close-menu-area');
   els.closeHelper.addEventListener('click', closeMenu);
-  document.body.appendChild(els.closeHelper);
+  // FIX: We should NOT ASSUME that <main> exists
+  const mainEl = document.getElementsByTagName('main')![0];
+  mainEl.appendChild(els.closeHelper);
   if (menuElRef.value && els.body) { floatOnScroll(); }
 });
 
