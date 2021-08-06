@@ -29,7 +29,7 @@ type RequestBody   = { [key: string]: string|number|boolean|Array<any> }
 const genUniqueID = () =>
   crypto
     .getRandomValues(new Uint8Array(20))
-    .reduce((pv, cv) => pv += `${cv.toString(36)}`, '')
+    .reduce((pv, cv) => pv += cv.toString(36), '')
 ;
 
 const state = reactive({
