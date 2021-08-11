@@ -1,13 +1,13 @@
 <template>
   <div class="red-form">
-    <pg-titlebar
+    <page-titlebar
       :ease-in="350"
       :ease-out="350"
       :text="titleBarVal"
-      :class="['red-form__titlebar', { '--submitted': isSubmitted }]"
+      :class="['red-form__titlebar', { '--submitted': formState.isSubmitted }]"
     />
     <transition name="fade" mode="out-in">
-      <div v-if="!isAccepted">
+      <div v-if="!formState.isAccepted">
         <div class="ux__page-container">
           <ux-text type="block">
             This form functions as an application for access to EC (exclusive content).
@@ -61,10 +61,10 @@
             ACCEPT AND BEGIN
           </ux-button>
         </div>
-        <pg-footer />
+        <page-footer />
       </div>
 
-      <div v-else-if="!isSubmitted" class="r3d-form__form">
+      <div v-else-if="!formState.isSubmitted" class="r3d-form__form">
         <ux-text type="block">
           <strong>Please respond to the following questions in an honest manner.</strong> This form will
           determine if you’re more or less likely to <strong>gain value</strong> from the exclusive content.
@@ -84,7 +84,7 @@
           @back="back"
           @submitted="submitted"
         />
-        <pg-footer />
+        <page-footer />
       </div>
 
       <div v-else>
@@ -99,23 +99,23 @@
           Expect a response <strong>within 7 days</strong>, whether that response is to <strong>grant</strong> or
           <em>reject</em> access to this content.
         </ux-text>
-        <pg-footer />
+        <page-footer />
       </div>
     </transition>
   </div>
 </template>
 
 
-<script lang='ts'>
-import { computed, defineComponent, reactive, toRefs } from "vue";
-import PageTitlebarVue              from "@/components/PageTitlebar.vue";
-import PageFooterVue                from '@/components/PageFooter.vue';
-import FormQnAVue, { FormQuestion } from "@/components/FormQnA.vue";
-import uxButtonVue                  from "@/components/UxButton.vue";
-import uxTextVue                    from "@/components/UxText.vue";
+<script lang='ts' setup>
+import { computed, reactive } from "vue";
+import PageTitlebar              from "@/components/PageTitlebar.vue";
+import PageFooter                from '@/components/PageFooter.vue';
+import FormQna, { FormQuestion } from "@/components/FormQnA.vue";
+import UxButton                  from "@/components/UxButton.vue";
+import UxText                    from "@/components/UxText.vue";
 
 
-const _risks = [
+const risks     = [
 ' It can be especially toxic for those pursuing Enlightenment.'
 ,
 
@@ -154,9 +154,7 @@ in it so as to not bring anyone harm.
 `,
 
 ];
-
-
-const _questions = [
+const questions = [
   { text: 'What is your definition of Enlightenment (what does it mean to be Enlightened)?' },
 
   { text: 'Do you find the pursuit of Enlightenment to be spiritually beneficial? If so, what \
@@ -171,9 +169,7 @@ const _questions = [
   { text: 'Do you think that egoic desires can be good or are they problematic by nature? Does \
            the ego provide any beneficial functions or is it inherently-destructive?' }
 ] as FormQuestion[];
-
-
-const _aptitudes = [
+const aptitudes = [
   ' Your understanding of Enlightenment (not necessarily about how Enlightened you are).',
   ' Your flexibility in entertaining different concepts and your reasons for entertaining them.',
   ' Your mental fortitude',
@@ -181,43 +177,17 @@ const _aptitudes = [
   ' Your spiritual inclinations and your application of them in life.'
 ];
 
+const titleBarVal = computed(() => formState.isSubmitted ? 'REQUEST SUBMITTED' : 'Exclusive Content Form');
 
-export default defineComponent({
-  components: {
-    'pg-titlebar' : PageTitlebarVue,
-    'ux-text'     : uxTextVue,
-    'ux-button'   : uxButtonVue,
-    'pg-footer'   : PageFooterVue,
-    'form-qna'    : FormQnAVue,
-  },
-  setup() {
-    const titleBarVal = computed(() =>
-      formState.isSubmitted ? 'REQUEST SUBMITTED' : 'Exclusive Content Form'
-    );
+const formState = reactive({ isAccepted: false, isSubmitted: false });
 
-    const formState = reactive({
-      isAccepted     : false,
-      isSubmitted    : false,
-    });
+const accept    = () => setState('isAccepted',  true);
+const back      = () => setState('isAccepted',  false);
+const submitted = () => setState('isSubmitted', true);
 
-    const accept    = () => setState('isAccepted',  true);
-    const back      = () => setState('isAccepted',  false);
-    const submitted = () => setState('isSubmitted', true);
-
-    function setState(name: keyof typeof formState, val: boolean) {
-      formState[name] = val;
-      document.body.scrollTo(0, 0);
-    }
-
-    return {
-      ...toRefs(formState),
-      accept, submitted, back,
-      questions: _questions,
-      titleBarVal,
-      risks: _risks, aptitudes: _aptitudes,
-    };
-  }
-});
+function setState(name: keyof typeof formState, val: boolean) {
+  formState[name] = val, document.body.scrollTo(0, 0);
+}
 
 </script>
 
