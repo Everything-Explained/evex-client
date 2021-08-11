@@ -12,7 +12,7 @@
       </router-link>
     </header>
     <section class="app__body">
-      <app-menu :header-id="'AppHeader'" :content-id="'AppBodyContent'" />
+      <the-menu :header-id="'AppHeader'" :content-id="'AppBodyContent'" />
       <div id="AppBodyContent" class="content">
         <router-view v-slot="{ Component }">
           <transition name="fade" mode="out-in">
@@ -27,31 +27,24 @@
 
 
 
-<script lang='ts'>
-import { computed, defineComponent, onMounted, onUnmounted, Ref, ref, watch } from "vue";
+<script lang='ts' setup>
+import { computed, onMounted, onUnmounted, Ref, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useDate } from "./composeables/date";
 import { ISODateString } from "./typings/global-types";
 // components
-import TheMenuVue from "@/components/AppMenu.vue";
-import uxIconVue from "./components/UxIcon.vue";
+import TheMenu from "@/components/AppMenu.vue";
+import UxIcon from "./components/UxIcon.vue";
 
-export default defineComponent({
-  components: { 'app-menu': TheMenuVue, 'ux-icon': uxIconVue, },
-  setup() {
-    const body = computed(() => document.body);
-    const {
-      isToastVisible,
-      isToastClosed,
-      closeToast,
-      openChangeLog,
-    } = useVersionToast(body, '2021-07-07T00:58:57.144Z', 'a3-insulation');
+const body = computed(() => document.body);
+const {
+  isToastVisible,
+  isToastClosed,
+  closeToast,
+  openChangeLog,
+} = useVersionToast(body, '2021-07-07T00:58:57.144Z', 'a3-insulation');
 
-    useCustomScrollPos(body);
-
-    return { isToastVisible, isToastClosed, closeToast, openChangeLog };
-  }
-});
+useCustomScrollPos(body);
 
 
 function useVersionToast(body: Ref<HTMLElement>, releaseDate: ISODateString, changelogURI: string) {
