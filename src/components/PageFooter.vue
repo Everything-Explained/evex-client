@@ -16,29 +16,23 @@
 </template>
 
 
-<script lang="ts">
-import { defineComponent, onMounted, onUnmounted, ref } from "vue";
+<script lang="ts" setup>
+import { onMounted, onUnmounted, ref } from "vue";
 import { useEventBus } from "@/state/event-bus";
 
-export default defineComponent({
-  setup() {
-    const { setFooterPos, debounceFooterPos, footRef } = useFooterPosition();
-    const eventBus = useEventBus();
+const { setFooterPos, debounceFooterPos, footRef } = useFooterPosition();
+const eventBus = useEventBus();
 
-    eventBus.onUpdateFooter(debounceFooterPos);
+eventBus.onUpdateFooter(debounceFooterPos);
 
-    onMounted(() => {
-      setFooterPos();
-      window.addEventListener('resize', debounceFooterPos);
-    });
+onMounted(() => {
+  setFooterPos();
+  window.addEventListener('resize', debounceFooterPos);
+});
 
-    onUnmounted(() => {
-      window.removeEventListener('resize', debounceFooterPos);
-      eventBus.off(debounceFooterPos);
-    });
-
-    return { footRef };
-  }
+onUnmounted(() => {
+  window.removeEventListener('resize', debounceFooterPos);
+  eventBus.off(debounceFooterPos);
 });
 
 
