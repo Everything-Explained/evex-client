@@ -100,21 +100,17 @@ export default defineComponent({
       () => pager.pageTitle.value || options.title
     );
 
-    const filteredPages =
-      options.showFilter
-        ? ref<Article[]>([])
-        : ref(pager.pages.value)
-    ;
-
-    function onFilter(pages: Article[]) {
-      filteredPages.value = pages;
-    }
+    const filteredPages = ref<Article[]>([]);
 
     // When filter is disabled, we need to manually set pages
     if (!cfg.showFilter) {
       watch(() => pager.isRunning.value,
         (isRunning) => !isRunning && onFilter(pager.pages.value)
       );
+    }
+
+    function onFilter(pages: Article[]) {
+      filteredPages.value = pages;
     }
 
     onUnmounted(() => {
