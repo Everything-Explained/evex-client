@@ -1,6 +1,6 @@
 <template>
   <div class="support">
-    <pg-titlebar
+    <page-titlebar
       :class="{ '--submitted': isSubmitted}"
       :text="pageTitle"
       :ease-in="350"
@@ -82,7 +82,7 @@
             {{ typeText[2] }}
           </ux-button>
         </div>
-        <pg-footer />
+        <page-footer />
       </div>
       <div v-else-if="!isSubmitted">
         <div class="support__content">
@@ -97,14 +97,14 @@
             @submitted="submitted"
           />
         </div>
-        <pg-footer />
+        <page-footer />
       </div>
       <div v-else>
         <ux-text class="support__submitted-text" type="block">
           Thank you for your interest in our content! Our team will try to get
           back to you <strong>within 7 days</strong> for our response.
         </ux-text>
-        <pg-footer />
+        <page-footer />
       </div>
     </transition>
   </div>
@@ -115,13 +115,13 @@
 
 
 
-<script lang='ts'>
-import { computed, defineComponent, ref } from "vue";
-import PageTitlebarVue              from "@/components/PageTitlebar.vue";
-import PageFooterVue                from "@/components/PageFooter.vue";
-import FormQnAVue, { FormQuestion } from "@/components/FormQnA.vue";
-import uxButtonVue                  from "@/components/UxButton.vue";
-import uxTextVue                    from "@/components/UxText.vue";
+<script lang='ts' setup>
+import { computed, ref } from "vue";
+import PageTitlebar              from "@/components/PageTitlebar.vue";
+import PageFooter                from "@/components/PageFooter.vue";
+import FormQna, { FormQuestion } from "@/components/FormQnA.vue";
+import UxButton                  from "@/components/UxButton.vue";
+import UxText                    from "@/components/UxText.vue";
 
 
 
@@ -145,59 +145,35 @@ const _qType2: FormQuestion[] = [
 
 const _formTypes = [_qType0, _qType1, _qType2];
 
-const _typeText = [
+const typeText = [
   'share content with us',
   'collaborate with us',
   'correct us',
 ];
 
+const isFormActive = ref(false);
+const isSubmitted  = ref(false);
+const formID       = ref('');
+const pageTitle    = computed(() =>
+  isFormActive.value
+    ? isSubmitted.value
+      ? 'Request Submitted'
+      : typeText[formType.value]
+    : 'Support'
+);
+const questions    = ref<FormQuestion[]>([]);
+const formType     = ref(0);
 
-export default defineComponent({
-  components: {
-    'pg-titlebar' : PageTitlebarVue,
-    'pg-footer'   : PageFooterVue,
-    'form-qna'    : FormQnAVue,
-    'ux-text'     : uxTextVue,
-    'ux-button'   : uxButtonVue,
-  },
-  setup() {
-    const isFormActive = ref(false);
-    const isSubmitted  = ref(false);
-    const formID       = ref('');
-    const pageTitle    = computed(() =>
-      isFormActive.value
-        ? isSubmitted.value
-          ? 'Request Submitted'
-          : _typeText[formType.value]
-        : 'Support'
-    );
-    const questions    = ref<FormQuestion[]>([]);
-    const formType     = ref(0);
+function activateForm(type: number) {
+  questions.value    = _formTypes[type];
+  formType.value     = type;
+  formID.value       = `support${type}`;
+  isFormActive.value = true;
+  document.body.scrollTo(0, 0);
+}
 
-    function activateForm(type: number) {
-      questions.value    = _formTypes[type];
-      formType.value     = type;
-      formID.value       = `support${type}`;
-      isFormActive.value = true;
-      document.body.scrollTo(0, 0);
-    }
-
-    function back()      { isFormActive.value = false; }
-    function submitted() { isSubmitted.value = true; }
-
-    return {
-      activateForm, submitted, back,
-      pageTitle,
-      isFormActive,
-      questions,
-      isSubmitted,
-      formType,
-      typeText: _typeText,
-      formID,
-    };
-  }
-});
-
+function back()      { isFormActive.value = false; }
+function submitted() { isSubmitted.value = true; }
 
 
 </script>
