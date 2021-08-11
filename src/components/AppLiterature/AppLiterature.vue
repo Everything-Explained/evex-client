@@ -91,9 +91,10 @@ const filteredPages = ref<Article[]>([]);
 
 // When filter is disabled, we need to manually set pages
 if (!cfg.showFilter) {
-  watch(() => isRunning.value,
-    (isRunning) => !isRunning && onFilter(pages.value)
-  );
+  !pages.value.length
+    ? watch(() => isRunning.value, (isRunning) => !isRunning && onFilter(pages.value))
+    : onFilter(pages.value)
+  ;
 }
 
 function onFilter(pages: Article[]) {
