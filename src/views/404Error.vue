@@ -1,6 +1,6 @@
 <template>
   <div class="i404__error-container">
-    <title-bar>Page Not Found</title-bar>
+    <page-titlebar>Page Not Found</page-titlebar>
     <h1 class="i404__h1">
       <span class="i404__fail-text">Oops</span>, is there
       <span class="i404__info-text">supposed</span> to be a page here?
@@ -9,12 +9,7 @@
 </template>
 
 
-<script lang='ts'>
-import { defineComponent } from "vue";
-import titlebar from '@/components/PageTitlebar.vue';
-
-export default defineComponent({
-  components: { 'title-bar': titlebar },
-});
+<script lang='ts' setup>
+import PageTitlebar from '@/components/PageTitlebar.vue';
 </script>
 
