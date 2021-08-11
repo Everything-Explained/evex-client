@@ -1,6 +1,6 @@
 <template>
   <div class="lit">
-    <pg-titlebar
+    <page-titlebar
       :ease-in="350"
       :ease-out="350"
       :text="titleRef"
@@ -20,37 +20,34 @@
           :show-author="cfg.showAuthor"
           :expanded="cfg.expanded"
         />
-        <pg-footer />
+        <page-footer />
       </div>
       <div v-else-if="activePage">
-        <render-html v-if="cfg.useCustomRenderer"
-                     :html="activePage.content"
+        <render-html v-if="cfg.useCustomRenderer" :html="activePage.content" />
+        <app-markdown
+          v-else
+          :simple="false"
+          :class="cfg.contentClass"
+          v-html="activePage.content"
         />
-        <app-md v-else
-                :simple="false"
-                :class="cfg.contentClass"
-                v-html="activePage.content"
-        />
-        <pg-footer />
+        <page-footer />
       </div>
     </transition>
   </div>
 </template>
 
 
-<script lang="ts">
-import { computed, defineComponent, onUnmounted, PropType, ref, watch } from "vue";
-import { useDate } from '@/composeables/date';
-import { isEthan } from "@/composeables/globals";
+<script lang="ts" setup>
+import { computed, onUnmounted, PropType, ref, watch, defineProps } from "vue";
 import { StaticPage, useStaticPager } from "@/composeables/staticPager";
 import { DataCacheArrayKeys, DataCacheFilterObj, useDateCache } from "@/state/cache-state";
-import PageTitlebarVue  from "@/components/PageTitlebar.vue";
-import PageFooterVue from "../PageFooter.vue";
-import RenderHtmlVue from "../RenderHtml.vue";
-import uxFilterVue   from "../UxFilter.vue";
-import UxPreloaderVue from '../UxPreloader.vue';
-import AppMarkdownVue from "../AppMarkdown.vue";
-import AppLitCardsVue from "./AppLitCards.vue";
+import PageTitlebar  from "@/components/PageTitlebar.vue";
+import PageFooter from "../PageFooter.vue";
+import RenderHtml from "../RenderHtml.vue";
+import UxFilter   from "../UxFilter.vue";
+import UxPreloader from '../UxPreloader.vue';
+import AppMarkdown from "../AppMarkdown.vue";
+import AppLitCards from "./AppLitCards.vue";
 
 
 export interface Article extends StaticPage {
@@ -68,65 +65,44 @@ export interface AppLitOptions {
   contentClass      ?: string;
 }
 
-
-export default defineComponent({
-  components: {
-    'ux-preloader' : UxPreloaderVue,
-    'pg-titlebar'  : PageTitlebarVue,
-    'pg-footer'    : PageFooterVue,
-    'ux-filter'    : uxFilterVue,
-    'render-html'  : RenderHtmlVue,
-    'app-md'       : AppMarkdownVue,
-    'app-lit-cards' : AppLitCardsVue,
-  },
-  props: {
-    options: { type: Object as PropType<AppLitOptions>, required: true },
-  },
-  setup({options}) {
-    const defaultOptions: AppLitOptions = {
-      uri               : 'temp',
-      title             : '',
-      showFilter        : true,
-      expanded          : false,
-      reverseOrder      : false,
-      showAuthor        : true,
-      useCustomRenderer : true,
-      contentClass      : ''
-    };
-    const cfg      = Object.assign(defaultOptions, options);
-    const cache    = useDateCache<DataCacheFilterObj>();
-    const pager    = useStaticPager<Article>(options.uri);
-    const titleRef = computed(
-      () => pager.pageTitle.value || options.title
-    );
-
-    const filteredPages = ref<Article[]>([]);
-
-    // When filter is disabled, we need to manually set pages
-    if (!cfg.showFilter) {
-      watch(() => pager.isRunning.value,
-        (isRunning) => !isRunning && onFilter(pager.pages.value)
-      );
-    }
-
-    function onFilter(pages: Article[]) {
-      filteredPages.value = pages;
-    }
-
-    onUnmounted(() => {
-      // Reset filter on page navigation
-      cache.updObjData('filter', 'isPersisting', false);
-    });
-
-    return {
-      titleRef,
-      ...pager,
-      useDate,
-      onFilter,
-      filteredPages,
-      isEthan,
-      cfg,
-    };
-  }
+const {options} = defineProps({
+  options: { type: Object as PropType<AppLitOptions>, required: true }
 });
+
+const defaultOptions: AppLitOptions = {
+  uri               : 'temp',
+  title             : '',
+  showFilter        : true,
+  expanded          : false,
+  reverseOrder      : false,
+  showAuthor        : true,
+  useCustomRenderer : true,
+  contentClass      : ''
+};
+const cfg      = Object.assign(defaultOptions, options);
+const cache    = useDateCache<DataCacheFilterObj>();
+const { pages, pageTitle, activePage,goTo, isRunning }
+               = useStaticPager<Article>(options.uri);
+const titleRef = computed(
+  () => pageTitle.value || options.title
+);
+
+const filteredPages = ref<Article[]>([]);
+
+// When filter is disabled, we need to manually set pages
+if (!cfg.showFilter) {
+  watch(() => isRunning.value,
+    (isRunning) => !isRunning && onFilter(pages.value)
+  );
+}
+
+function onFilter(pages: Article[]) {
+  filteredPages.value = pages;
+}
+
+onUnmounted(() => {
+  // Reset filter on page navigation
+  cache.updObjData('filter', 'isPersisting', false);
+});
+
 </script>
