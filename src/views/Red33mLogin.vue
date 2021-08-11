@@ -1,8 +1,8 @@
 <template>
   <div class="red-login">
-    <pg-titlebar class="red-login__titlebar">
+    <page-titlebar class="red-login__titlebar">
       RED33M Login
-    </pg-titlebar>
+    </page-titlebar>
     <ux-text type="block" class="red-login__disclaimer">
       This page contains sensitive content which <em>requires authentication</em>.
       If you have a passcode, use the form below to grant yourself access.
@@ -20,8 +20,8 @@
       <ux-input
         v-model="code"
         class="passcode"
-        :minchars="6"
-        :maxchars="6"
+        :minchars="codeLength"
+        :maxchars="codeLength"
         :validate="validate"
       >
         Passcode
@@ -31,7 +31,7 @@
         class="button"
         type="submit"
         theme="attention"
-        :loading="isLoading"
+        :loading="isPending"
         :disabled="!isValidated"
         @click="submit"
       >
@@ -56,7 +56,7 @@
       <strong>computer, phone, tablet, etc...</strong>
       You <em>must enter the passcode again</em> on those devices.<br><br>
     </ux-text>
-    <pg-footer />
+    <page-footer />
   </div>
 </template>
 
@@ -64,70 +64,53 @@
 
 
 
-<script lang='ts'>
-import { defineComponent, ref } from "vue";
+<script lang='ts' setup>
+import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { APIErrorResp, useAPI } from "@/services/api_internal";
 import useInputValidation from "@/composeables/inputValidation";
-import PageTitlebarVue from "@/components/PageTitlebar.vue";
-import PageFooterVue from "@/components/PageFooter.vue";
-import FormErrorVue from "@/components/FormError.vue";
-import uxButtonVue from "@/components/UxButton.vue";
-import uxInputVue from "@/components/UxInput.vue";
-import uxTextVue from '@/components/UxText.vue';
+import PageTitlebar from "@/components/PageTitlebar.vue";
+import PageFooter from "@/components/PageFooter.vue";
+import FormError from "@/components/FormError.vue";
+import UxButton from "@/components/UxButton.vue";
+import UxInput from "@/components/UxInput.vue";
+import UxText from '@/components/UxText.vue';
 import { useEventBus } from "@/state/event-bus";
 
-export default defineComponent({
-  components: {
-    'pg-titlebar' : PageTitlebarVue,
-    'pg-footer'   : PageFooterVue,
-    'form-error'  : FormErrorVue,
-    'ux-input'    : uxInputVue,
-    'ux-button'   : uxButtonVue,
-    'ux-text'     : uxTextVue,
-  },
-  setup() {
-    const codeLength      = 6;
-    const codeRef         = ref('');
-    const errorTextRef    = ref('');
-    const errorUpdVal     = ref(0);
-    const api             = useAPI();
-    const router          = useRouter();
-    const inputValidation = useInputValidation(1);
-    const eventBus        = useEventBus();
+const api             = useAPI();
+const {isPending}     = api;
+const router          = useRouter();
+const {isValidated, validate}
+                      = useInputValidation(1);
+const eventBus        = useEventBus();
+const codeLength      = 6;
+const code            = ref('');
+const errorText       = ref('');
+const errorUpdVal     = ref(0);
 
-    function setError(res: APIErrorResp) {
-      errorTextRef.value = res.message;
-      errorUpdVal.value = Date.now();
-    }
+function setError(res: APIErrorResp) {
+  errorText.value = res.message;
+  errorUpdVal.value = Date.now();
+}
 
-    function submit(e: MouseEvent) {
-      e.preventDefault();
-      const passcode = codeRef.value.toUpperCase();
-      api.debounce(100, () => {
-        api
-          .put('/auth/red33m', { passcode })
-          .then(() => {
-            localStorage.setItem('passcode', 'yes');
-            eventBus.updateMenu('red-videos', true);
-            eventBus.updateMenu('red-lit', true);
-            eventBus.updateMenu('red-login', false);
-            router.push('/red33m/videos');
-          })
-          .catch(setError)
-        ;
-      });
-    }
+function submit(e: MouseEvent) {
+  e.preventDefault();
+  const passcode = code.value.toUpperCase();
+  api.debounce(100, () => {
+    api
+      .put('/auth/red33m', { passcode })
+      .then(() => {
+        localStorage.setItem('passcode', 'yes');
+        eventBus.updateMenu('red-videos', true);
+        eventBus.updateMenu('red-lit', true);
+        eventBus.updateMenu('red-login', false);
+        router.push('/red33m/videos');
+      })
+      .catch(setError)
+    ;
+  });
+}
 
-    return {
-      isLoading: api.isPending,
-      code: codeRef,
-      codeLength,
-      submit,
-      ...inputValidation,
-      errorText: errorTextRef,
-      errorUpdVal,
-    };
-  }
-});
 </script>
+
+
