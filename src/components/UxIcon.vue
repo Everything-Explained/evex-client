@@ -4,13 +4,19 @@
 
 
 
-<script lang='ts' setup>
 
+
+<script lang='ts' setup>
 import { computed, defineProps, PropType, toRef } from 'vue';
+
 
 type StringMap = { [key: string]: string };
 
 
+const props  = defineProps({
+  type: { type: String as PropType<keyof typeof iconMap>, required: true }
+});
+const type   = toRef(props, 'type');
 const iconMap: StringMap = {
   'clock'      : 'Y',
   'calendar'   : 'M',
@@ -38,19 +44,12 @@ const iconMap: StringMap = {
   'user'       : '&#xe056',
 };
 
-const props = defineProps({
-  type: { type: String as PropType<keyof typeof iconMap>, default: '' }
-});
-
-const type = toRef(props, 'type');
-
-if (!type.value)
-  throw Error('<icon>::missing "type" prop')
-;
 if (!iconMap[type.value])
-  throw Error(`<icon>::invalid icon type: ${type.value}`)
+  throw Error(`<ux-icon>::invalid icon type: ${type.value}`)
 ;
 
 const icon = computed(() => iconMap[type.value]);
 
 </script>
+
+

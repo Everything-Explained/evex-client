@@ -106,6 +106,9 @@
 </template>
 
 
+
+
+
 <script lang='ts' setup>
 import { computed, reactive } from "vue";
 import PageTitlebar              from "@/components/PageTitlebar.vue";
@@ -178,7 +181,6 @@ const aptitudes = [
 ];
 
 const titleBarVal = computed(() => formState.isSubmitted ? 'REQUEST SUBMITTED' : 'Exclusive Content Form');
-
 const formState = reactive({ isAccepted: false, isSubmitted: false });
 
 const accept    = () => setState('isAccepted',  true);

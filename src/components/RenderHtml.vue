@@ -33,22 +33,23 @@
 </template>
 
 
+
+
+
 <script lang="ts" setup>
-import { defineProps } from "@vue/runtime-core";
-import { PropType } from "vue";
-import UxImg from "./UxImg.vue";
-import AppMarkdown from "./AppMarkdown.vue";
+import { defineProps }       from "@vue/runtime-core";
+import { PropType }          from "vue";
+import UxImg                 from "./UxImg.vue";
+import AppMarkdown           from "./AppMarkdown.vue";
 import { useHTMLNodeParser } from "@/composeables/htmlNodeParser";
 
-const {html} = defineProps({
+
+const { html } = defineProps({
   html: { type: String as PropType<string>, required: true },
 });
-const { getNodesUsingBQ, getNodesUsingP } = useHTMLNodeParser(html);
-const nodes =
-  html.includes('<blockquote>')
-    ? getNodesUsingBQ()
-    : getNodesUsingP()
-;
+const { getNodesUsingBQ, getNodesUsingP }
+              = useHTMLNodeParser(html);
+const nodes   = html.includes('<blockquote>') ? getNodesUsingBQ() : getNodesUsingP();
 
 </script>
 

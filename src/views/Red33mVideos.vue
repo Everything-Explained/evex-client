@@ -47,7 +47,8 @@ import UxFilter     from "@/components/UxFilter.vue";
 import UxPreloader  from '@/components/UxPreloader.vue';
 import { ref } from "vue";
 
-const videos          = ref<Video[]>([]);
+
+const videos         = ref<Video[]>([]);
 const maxStartVideos = isMobile() ? 10 : 30;
 const pagination     = useVideoPagination(videos);
 const observedEl     = pagination.observedEl;
@@ -59,7 +60,6 @@ const { isLoadingVideos } = useVideos<Video>(
     displayPage();
   }
 );
-
 
 function onFilter(filteredVideos: Video[]) {
   videos.value = filteredVideos;

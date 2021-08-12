@@ -27,6 +27,7 @@
 
 
 
+
 <script lang='ts' setup>
 import { computed, onMounted, onUnmounted, Ref, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
@@ -35,6 +36,7 @@ import { ISODateString } from "./typings/global-types";
 // components
 import TheMenu from "@/components/AppMenu.vue";
 import UxIcon from "./components/UxIcon.vue";
+
 
 const body = computed(() => document.body);
 const {
@@ -45,7 +47,6 @@ const {
 } = useVersionToast(body, '2021-07-07T00:58:57.144Z', 'a3-insulation');
 
 useCustomScrollPos(body);
-
 
 function useVersionToast(body: Ref<HTMLElement>, releaseDate: ISODateString, changelogURI: string) {
   if (localStorage.getItem('release-date') != releaseDate) {
@@ -96,7 +97,6 @@ function useVersionToast(body: Ref<HTMLElement>, releaseDate: ISODateString, cha
   };
 }
 
-
 function useCustomScrollPos(body: Ref<HTMLElement>) {
   const router          = useRouter();
   const route           = useRoute();
@@ -131,7 +131,6 @@ function useCustomScrollPos(body: Ref<HTMLElement>) {
     setTimeout(() => body.value.scrollTop = top, 430);
   }
 }
-
 
 </script>
 

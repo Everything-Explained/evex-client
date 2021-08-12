@@ -13,12 +13,14 @@
 
 
 
+
 <script lang='ts' setup>
 import { defineProps } from 'vue';
 
+
 const props = defineProps({
-  simple   : { type: Boolean, default: true  },
-  header   : { type: Boolean, default: false },
+  simple : { type: Boolean, default: true  },
+  header : { type: Boolean, default: false },
 });
 
 const isSimple = props.simple && !props.header;

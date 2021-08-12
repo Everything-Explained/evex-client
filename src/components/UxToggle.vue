@@ -29,10 +29,16 @@
   </div>
 </template>
 
+
+
+
+
 <script lang="ts" setup>
 import { ref, defineProps, defineEmits } from "vue";
 
-const {prevent, initState} = defineProps({
+
+const {prevent, initState}
+            = defineProps({
   initState : { type: Boolean,  default: false   },
   leftText  : { type: String,   default: 'Left'  },
   rightText : { type: String,   default: 'Right' },

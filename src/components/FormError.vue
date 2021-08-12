@@ -6,18 +6,21 @@
 
 
 
+
+
 <script lang='ts' setup>
 import { ref, watch, defineProps } from "@vue/runtime-core";
 
-const props        = defineProps({
+
+const props = defineProps({
   update : { type: Number,  default: 0              },
   text   : { type: String,  default: 'Default Text' },
   class  : { type: String,  default: ''             },
 });
 const showError   = ref(false);
 const customClass = props.class;
+let   timeout     = 0;
 
-let timeout = 0;
 function toggleError() {
   clearTimeout(timeout);
   showError.value = true;

@@ -14,6 +14,9 @@
 </template>
 
 
+
+
+
 <script lang="ts" setup>
 import { onMounted, watch, defineProps } from "vue";
 import UxPreloader from './UxPreloader.vue';
@@ -21,19 +24,13 @@ import { useImageObserver } from '@/composeables/imageObserver';
 
 
 const props = defineProps({
-  src:   { type: String,  default: ''    },
+  src:   { type: String,  required: true },
   asset: { type: Boolean, default: false },
 });
 
-if (!props.src) throw Error('LazyImg::missing SRC attribute');
-
-const {
-  detectAssetSize,
-  observeImage,
-  imgRef,
-  state,
-  containerRef
-} = useImageObserver(props);
+const { detectAssetSize, observeImage, imgRef, state, containerRef }
+  = useImageObserver(props)
+;
 
 onMounted(() => {
   detectAssetSize();

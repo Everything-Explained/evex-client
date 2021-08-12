@@ -20,14 +20,18 @@
 
 
 
+
+
 <script lang="ts" setup>
 import useUniqueIDGen from "@/composeables/uniqueID";
 import { PropType, defineProps, defineEmits } from "@vue/runtime-core";
+
 
 defineProps({
   value:   { type: String  as PropType<string>,  required: true },
   checked: { type: Boolean as PropType<boolean>, default: false },
 });
+
 const emit    = defineEmits(['update:modelValue', 'changed']);
 const genID   = useUniqueIDGen().genID;
 const getVal  = (e: Event) => (e.target as HTMLInputElement).checked;

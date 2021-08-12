@@ -38,6 +38,7 @@
 
 
 
+
 <script lang="ts" setup>
 import { PropType, defineProps, defineEmits } from "vue";
 import { useEventBus } from "@/state/event-bus";
@@ -47,7 +48,9 @@ import UxCheckbox  from "./UxCheckbox.vue";
 import UxIcon      from "./UxIcon.vue";
 import UxToggle    from "./UxToggle.vue";
 
-const {items, persist, reverseOrder} = defineProps({
+
+const { items, persist, reverseOrder }
+                = defineProps({
   ageOnly:      { type: Boolean as PropType<boolean>,    default: false,             },
   reverseOrder: { type: Boolean as PropType<boolean>,    default: false,             },
   items:        { type: Array as PropType<FilterData[]>, default: [] as FilterData[] },
@@ -57,21 +60,15 @@ const emit      = defineEmits(['filter']);
 const eventBus  = useEventBus();
 
 const {
-  toggleFilter,
-  filterAuthor,
-  reversePages,
-  authors,
-  isFilterOpen,
-  areItemsReversed,
-  filteredPages,
-  authorIndexMap,
+  toggleFilter,  filterAuthor,  reversePages,
+  authors,       isFilterOpen,  areItemsReversed,
+  filteredPages, authorIndexMap,
 } = usePageFilter(items, persist, reverseOrder);
 
 emit('filter', filteredPages);
 
 function filter(i: number, v: boolean) {
-  emit('filter', filterAuthor(i, v));
-  eventBus.updateFooter();
+  emit('filter', filterAuthor(i, v)), eventBus.updateFooter();
 }
 
 function toggleAge() { emit('filter', reversePages()); }

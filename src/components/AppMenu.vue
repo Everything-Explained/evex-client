@@ -33,12 +33,14 @@
 
 
 
+
+
 <script lang='ts' setup>
 import { computed, onMounted, ref, watch, Ref, defineProps } from "vue";
 import { useDateCache } from "@/state/cache-state";
-import { useRouteMap } from "@/composeables/routeMap";
-import { useEventBus } from "@/state/event-bus";
-import UxIcon from '@/components/UxIcon.vue';
+import { useRouteMap }  from "@/composeables/routeMap";
+import { useEventBus }  from "@/state/event-bus";
+import UxIcon           from '@/components/UxIcon.vue';
 
 
 interface ExternalElements {
@@ -47,6 +49,7 @@ interface ExternalElements {
   menu        ?: Ref<HTMLDivElement>;
   closeHelper ?: HTMLDivElement;
 }
+
 
 const props         = defineProps({
   contentId : { type: String, required: true },
@@ -58,7 +61,7 @@ const dataCache     = useDateCache<boolean>();
 const isMenuOpening = dataCache.getData('titlebar-menu-open');
 const routeMap      = useRouteMap();
 const els           = { menu: computed(() => menuElRef.value!) } as ExternalElements;
-
+const menu          = menuElRef; // From DOM
 
 useEventBus().onUpdateMenu((routeName, visibility) => {
   for (const routeCat of routeMap) {
@@ -88,7 +91,6 @@ watch(() => isMenuOpening.value,
     els.closeHelper?.classList[isOpening ? 'add' : 'remove']('--menu-open');
 });
 
-
 function floatOnScroll() {
   document.body.addEventListener('scroll', () => {
     const scrollTop = document.body.scrollTop;
@@ -96,16 +98,14 @@ function floatOnScroll() {
     const pos       = menu.value.style.position
     ;
     if (scrollTop >= els.header!.offsetHeight + 1) {
-      if (pos != 'fixed')    menu.value.style.position = 'fixed';
+      if (pos != 'fixed') menu.value.style.position = 'fixed';
     }
     else if (pos != 'absolute') menu.value.style.position = 'absolute';
   });
 }
 
-
 function closeMenu() { dataCache.setData('titlebar-menu-open', false); }
 
-const menu = menuElRef;
 
 </script>
 

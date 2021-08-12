@@ -72,7 +72,6 @@ import { computed, onMounted, PropType, ref, watch, defineProps, defineEmits } f
 type ValidateFn = (val: boolean, id: string) => void;
 
 
-
 const _inputTypes = ['text', 'area', 'email', 'password'];
 
 const props = defineProps({
@@ -87,11 +86,10 @@ const props = defineProps({
   modelValue  : { type: String  , default: ''               },
   validate    : { type: Function as PropType<ValidateFn>, default: () => false   },
 });
+const emit  = defineEmits(['update:modelValue']);
 
-const emit = defineEmits(['update:modelValue']);
-
-
-const { maxchars, minchars, type, regex, errmsg } = props;
+const { maxchars, minchars, type, regex, errmsg }
+                        = props;
 const id                = useUniqueIDGen().genID();
 const charLength        = ref(0);
 const areaText          = ref<HTMLTextAreaElement>();

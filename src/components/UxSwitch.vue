@@ -7,13 +7,18 @@
   </div>
 </template>
 
+
+
+
+
 <script lang="ts" setup>
 import { ref, defineProps } from "vue";
+
 
 const {callback} = defineProps({
   callback: { type: Function, required: true },
 });
-const state  = ref(false);
+const state      = ref(false);
 
 function toggle() {
   state.value = !state.value;

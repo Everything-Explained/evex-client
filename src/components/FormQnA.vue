@@ -83,15 +83,18 @@
 </template>
 
 
+
+
+
 <script lang='ts' setup>
 import { PropType, reactive, defineProps, defineEmits } from "@vue/runtime-core";
 import useInputValidation from "@/composeables/inputValidation";
 import { APIErrorResp, useAPI }         from "@/services/api_internal";
 import { DataCacheArrayKeys, useDateCache } from "@/state/cache-state";
-import UxButton        from "./UxButton.vue";
-import UxInput         from "./UxInput.vue";
-import UxText          from "./UxText.vue";
+import UxButton  from "./UxButton.vue";
 import FormError from "./FormError.vue";
+import UxInput   from "./UxInput.vue";
+import UxText    from "./UxText.vue";
 
 
 export type FormQuestion = { text: string; subtext?: string; answer?: string; }
@@ -102,7 +105,8 @@ interface ReactiveQuestion {
   subtext? : string;
 }
 
-const props           = defineProps({
+
+const props        = defineProps({
   id        : { type: String  as PropType<DataCacheArrayKeys>, required: true       },
   type      : { type: Number  as PropType<number>,             required: true       },
   questions : { type: Array   as PropType<FormQuestion[]>,     default: () => []    },
@@ -111,27 +115,21 @@ const props           = defineProps({
   minchars  : { type: Number  as PropType<number>,             default: 100         },
   maxchars  : { type: Number  as PropType<number>,             default: 500         },
 });
-const emit            = defineEmits(['back', 'submitted']);
-const api             = useAPI();
-const cache           = useDateCache<ReactiveQuestion>();
-const nameRegex       = /^[a-z\s.]+$/i;
-const oldQuestions    = cache.getArrayData(props.id).value;
-const questions       = oldQuestions.length ? oldQuestions : getReactiveQuestions();
-const formData        = reactive({ name: '', email: '', });
-const formState       = reactive({ errorUpdate: 0, errorText: '' });
+const emit         = defineEmits(['back', 'submitted']);
+const api          = useAPI();
+const cache        = useDateCache<ReactiveQuestion>();
+const nameRegex    = /^[a-z\s.]+$/i;
+const oldQuestions = cache.getArrayData(props.id).value;
+const questions    = oldQuestions.length ? oldQuestions : getReactiveQuestions();
+const formData     = reactive({ name: '', email: '', });
+const formState    = reactive({ errorUpdate: 0, errorText: '' });
 
 if (!props.questions.length) throw Error('<form-qna>::Missing Questions');
 if (!oldQuestions.length) cache.setArrayData(props.id, questions);
 
-
-const {
-  remaining,
-  validate,
-  isValidated
-} = useInputValidation(2 + props.questions.length);
-
+const { remaining, validate, isValidated }
+                   = useInputValidation(2 + props.questions.length);
 const isSubmitting = api.isPending;
-
 
 function submit() {
   const qData = {
@@ -150,11 +148,9 @@ function submit() {
   ;
 }
 
-
 function getReactiveQuestions() {
   return props.questions.map(q => reactive({ ...q, answer: q.answer || ''}));
 }
-
 
 function setFormError(err: APIErrorResp) {
   formState.errorUpdate = Date.now();

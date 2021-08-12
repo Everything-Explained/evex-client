@@ -114,7 +114,6 @@
 
 
 
-
 <script lang='ts' setup>
 import { computed, ref } from "vue";
 import PageTitlebar              from "@/components/PageTitlebar.vue";
@@ -122,7 +121,6 @@ import PageFooter                from "@/components/PageFooter.vue";
 import FormQna, { FormQuestion } from "@/components/FormQnA.vue";
 import UxButton                  from "@/components/UxButton.vue";
 import UxText                    from "@/components/UxText.vue";
-
 
 
 const _qType0: FormQuestion[] = [
@@ -175,5 +173,6 @@ function activateForm(type: number) {
 function back()      { isFormActive.value = false; }
 function submitted() { isSubmitted.value = true; }
 
-
 </script>
+
+

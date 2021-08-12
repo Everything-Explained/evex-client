@@ -77,6 +77,9 @@
 </template>
 
 
+
+
+
 <script lang="ts" setup>
 import { computed, ref, watch } from "vue";
 import useVideos           from "@/composeables/videos";
@@ -84,11 +87,11 @@ import { useDynamicPager } from "@/composeables/dynamicPager";
 import { useDate }         from "@/composeables/date";
 import { isEthan }         from "@/composeables/globals";
 import { Video }           from "@/typings/global-types";
-import PageTitlebar     from "@/components/PageTitlebar.vue";
-import PageFooter       from "@/components/PageFooter.vue";
-import UxFilter         from "@/components/UxFilter.vue";
-import UxVideo          from "@/components/UxVideo.vue";
-import UxPreloader      from '@/components/UxPreloader.vue';
+import PageTitlebar        from "@/components/PageTitlebar.vue";
+import PageFooter          from "@/components/PageFooter.vue";
+import UxFilter            from "@/components/UxFilter.vue";
+import UxVideo             from "@/components/UxVideo.vue";
+import UxPreloader         from '@/components/UxPreloader.vue';
 
 
 type VideoCategory = { name: string; description: string; videos: Video[] };
@@ -114,7 +117,6 @@ const onFilter       = (videos: Video[]) => visibleVideos.value = videos;
 const getAuthors     = (videos: Video[]) => videos.reduce(toAuthors, [] as string[]);
 const getLatestVideo = (videos: Video[]) => videos[videos.length - 1];
 const toYouTubeLink  = (id: string)      => `//www.youtube-nocookie.com/embed/${id}?rel=0`;
-
 
 function toAuthors(authors: string[], video: Video) {
   if (authors.includes(video.author)) return authors;

@@ -23,22 +23,24 @@
 </template>
 
 
+
+
+
 <script lang='ts' setup>
 import { defineProps } from "vue";
 import AppMarkdown from "./AppMarkdown.vue";
 
-const _textType = ['text', 'block', 'header', 'span-block', 'link'];
 
-const props = defineProps({
+const props       = defineProps({
   type:  { type: String,  default: 'text' },
   class: { type: String,  default: ''     },
 });
-
-if (!_textType.includes(props.type))
-  throw Error(`ee-text:: Invalid type ${props.type} `)
-;
-
+const textType    = ['text', 'block', 'header', 'span-block', 'link'];
 const isSpanBlock = props.type == 'span-block';
 const customClass = props.class;
+
+if (!textType.includes(props.type))
+  throw Error(`ee-text:: Invalid type ${props.type} `)
+;
 
 </script>

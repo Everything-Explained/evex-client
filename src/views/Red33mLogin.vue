@@ -77,6 +77,7 @@ import UxInput from "@/components/UxInput.vue";
 import UxText from '@/components/UxText.vue';
 import { useEventBus } from "@/state/event-bus";
 
+
 const api             = useAPI();
 const {isPending}     = api;
 const router          = useRouter();
@@ -89,8 +90,7 @@ const errorText       = ref('');
 const errorUpdVal     = ref(0);
 
 function setError(res: APIErrorResp) {
-  errorText.value = res.message;
-  errorUpdVal.value = Date.now();
+  errorText.value = res.message, errorUpdVal.value = Date.now();
 }
 
 function submit(e: MouseEvent) {

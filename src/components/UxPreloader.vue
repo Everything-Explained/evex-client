@@ -8,7 +8,7 @@
 <script lang='ts' setup>
 import { defineProps } from 'vue';
 
-const props = defineProps({
+defineProps({
   // If preloader spans whole page
   page: { type: Boolean, default: true }
 });

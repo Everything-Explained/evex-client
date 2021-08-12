@@ -37,17 +37,20 @@
 </template>
 
 
+
+
+
 <script lang="ts" setup>
 import { computed, onUnmounted, PropType, ref, watch, defineProps } from "vue";
 import { StaticPage, useStaticPager } from "@/composeables/staticPager";
 import { DataCacheArrayKeys, DataCacheFilterObj, useDateCache } from "@/state/cache-state";
-import PageTitlebar  from "@/components/PageTitlebar.vue";
-import PageFooter from "../PageFooter.vue";
-import RenderHtml from "../RenderHtml.vue";
-import UxFilter   from "../UxFilter.vue";
-import UxPreloader from '../UxPreloader.vue';
-import AppMarkdown from "../AppMarkdown.vue";
-import AppLitCards from "./AppLitCards.vue";
+import PageTitlebar from "@/components/PageTitlebar.vue";
+import PageFooter   from "../PageFooter.vue";
+import RenderHtml   from "../RenderHtml.vue";
+import UxFilter     from "../UxFilter.vue";
+import UxPreloader  from '../UxPreloader.vue';
+import AppMarkdown  from "../AppMarkdown.vue";
+import AppLitCards  from "./AppLitCards.vue";
 
 
 export interface Article extends StaticPage {
@@ -65,6 +68,7 @@ export interface AppLitOptions {
   contentClass      ?: string;
 }
 
+
 const {options} = defineProps({
   options: { type: Object as PropType<AppLitOptions>, required: true }
 });
@@ -79,14 +83,11 @@ const defaultOptions: AppLitOptions = {
   useCustomRenderer : true,
   contentClass      : ''
 };
-const cfg      = Object.assign(defaultOptions, options);
-const cache    = useDateCache<DataCacheFilterObj>();
-const { pages, pageTitle, activePage,goTo, isRunning }
-               = useStaticPager<Article>(options.uri);
-const titleRef = computed(
-  () => pageTitle.value || options.title
-);
-
+const cfg           = Object.assign(defaultOptions, options);
+const cache         = useDateCache<DataCacheFilterObj>();
+const { pages, pageTitle, activePage, goTo, isRunning }
+                    = useStaticPager<Article>(options.uri);
+const titleRef      = computed(() => pageTitle.value || options.title);
 const filteredPages = ref<Article[]>([]);
 
 // When filter is disabled, we need to manually set pages

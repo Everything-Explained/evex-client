@@ -16,11 +16,16 @@
 </template>
 
 
+
+
+
 <script lang="ts" setup>
 import { onMounted, onUnmounted, ref } from "vue";
 import { useEventBus } from "@/state/event-bus";
 
-const { setFooterPos, debounceFooterPos, footRef } = useFooterPosition();
+
+const { setFooterPos, debounceFooterPos, footRef }
+               = useFooterPosition();
 const eventBus = useEventBus();
 
 eventBus.onUpdateFooter(debounceFooterPos);
@@ -34,7 +39,6 @@ onUnmounted(() => {
   window.removeEventListener('resize', debounceFooterPos);
   eventBus.off(debounceFooterPos);
 });
-
 
 function useFooterPosition() {
   const footRef = ref<HTMLElement>();
