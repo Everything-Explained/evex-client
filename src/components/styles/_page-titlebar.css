@@ -25,9 +25,12 @@
   text-shadow: 2px 2px 1px black;
   color      : var(--app-titlebar-icon-c);
   cursor     : pointer;
-  transition : opacity .3s, color .3s; }
-  .pg-titlebar__menu-icon:hover { color: var(--app-titlebar-icon-hov-c); }
-  .pg-titlebar__menu-icon.--menu-open {
-    opacity: 0;
-    pointer-events: none;
-    user-select: none; }
+  transition : opacity .3s, color .3s;
+
+  &:hover { color: var(--app-titlebar-icon-hov-c); }
+
+  &.--menu-open {
+    opacity        : 0;
+    pointer-events : none;
+    user-select    : none; }
+}
