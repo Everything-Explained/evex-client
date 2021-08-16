@@ -10,8 +10,10 @@
   letter-spacing : 2px;
   word-spacing   : 3px;
   color          : hsl(0, 100%, 80%);
-  transition     : opacity 2s ease-in, visibility 2s ease-in; }
-  .form__error.--show {
+  transition     : opacity 2s ease-in, visibility 2s ease-in;
+
+  &.--show {
     opacity    : 1;
     visibility : visible;
     transition : opacity 0.15s ease-out, visibility 0.15s ease-out; }
+}
