@@ -8,8 +8,9 @@
   box-shadow      : 0 -10px 7px -1px var(--footer-bxs-c);
   text-align      : center;
   font-weight     : 400;
-  background      : var(--sub-panel-c); }
-  .pg-footer::before {
+  background      : var(--sub-panel-c);
+
+  &::before {
     top           : 0;
     left          : 0;
     right         : 0;
@@ -17,7 +18,8 @@
     content       : '';
     border-bottom : 1px solid black;
     background    : var(--panel-c); }
-  .pg-footer::after {
+
+  &::after {
     position      : absolute;
     left          : 0;
     right         : 0;
@@ -27,6 +29,7 @@
     border-bottom : 1px solid black;
     background    : var(--app-ribbon-c);
     content       : ''; }
+}
 
 
 .pg-footer__version {
@@ -36,43 +39,46 @@
   text-shadow : 1px  1px 0 black,
                -1px -1px 0 black,
                 2px  2px 0 black,
-                3px  3px 0 black; }
-  .pg-footer__version sup {
+                3px  3px 0 black;
+
+  sup {
     vertical-align : super;
     font-size      : 1.15rem;
     text-shadow    : none;
     color          : hsl(47, 100%, 70%); }
-  .pg-footer__version sub {
+
+  sub {
     vertical-align : sub;
     font-size      : 1rem;
     font-family    : 'Consolas', 'Courier New', Courier, monospace;
     color          : var(--body-c); }
-    .pg-footer__version sub a:link,
-    .pg-footer__version sub a:visited,
-    .pg-footer__version sub a:active {
-      text-decoration : underline;
-      color           : var(--body-c);
-      transition      : color 0.3s; }
-    .pg-footer__version sub a:hover
-      { color: var(--footer-copyright-link-hov-c); }
+
+  a:link, a:visited, a:active {
+    text-decoration : underline;
+    color           : var(--body-c);
+    transition      : color 0.3s; }
+  a:hover { color: var(--footer-copyright-link-hov-c); }
+}
+
 
 .pg-footer__copyright {
   padding     : 0px 0 20px 0;
   font-size   : 0.87rem;
   text-shadow : 1px 1px 0 black,
                 2px 2px 0 black;
-  color       : var(--footer-copyright-c); }
-  .pg-footer__copyright a:link,
-  .pg-footer__copyright a:visited {
+  color       : var(--footer-copyright-c);
+
+  a:link, a:visited, a:active {
     display         : inline-block;
     margin          : 5px 0;
     text-shadow     : none;
     text-decoration : underline;
     color           : var(--footer-copyright-link-c);
     transition      : color .3s, border .3s; }
-  .pg-footer__copyright a:hover {
+  a:hover {
     border-color : var(--footer-copyright-link-hov-c);
     color        : var(--footer-copyright-link-hov-c); }
+}
 
 
 
