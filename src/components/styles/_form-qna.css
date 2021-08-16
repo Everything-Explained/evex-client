@@ -1,22 +1,28 @@
 
 .qnaf__form {
   margin : 0 auto;
-  width  : 75%; }
-  .qnaf__form:first-child { margin-top: 2rem; }
+  width  : 75%;
+
+  &:first-child { margin-top: 2rem; }
+}
 
 
 .qnaf__input,
 .qnaf__area-input { width: 50%; }
 
 
-.qnaf__q-block { margin-top: 2rem; }
-  .qnaf__q-block:nth-child(odd) { margin-top: 1rem; }
+.qnaf__q-block {
+  margin-top: 2rem;
+
+  &:nth-child(odd) { margin-top: 1rem; }
+ }
 
 
 .qnaf__q {
   font-size      : 1.20rem;
-  letter-spacing : 1px; }
-  .qnaf__q::before {
+  letter-spacing : 1px;
+
+  &::before {
     position    : absolute;
     top         : -0.03rem;
     margin-left : -1.5rem;
@@ -24,6 +30,7 @@
     font-weight : 400;
     font-size   : 1.3rem;
     color       : hsl(0, 100%, 68%); }
+}
 
 
 .qnaf__subtext {
@@ -49,11 +56,13 @@
 
 .qnaf__validation-text {
   margin-left : 0.5rem !important;
-  color       : hsl(196, 11%, 40%); }
-  .qnaf__validation-text strong {
+  color       : hsl(196, 11%, 40%);
+
+  strong {
     font-size   : 1.3rem;
     font-weight : 400;
     color       : hsl(47, 80%, 60%); }
+}
 
 
 .qnaf__error-text {
