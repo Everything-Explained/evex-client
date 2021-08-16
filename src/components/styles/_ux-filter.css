@@ -14,11 +14,12 @@
   padding-bottom : 1rem;
   border-radius  : 5px;
   border         : 2px solid var(--toggle-fieldset-bdr-c);
-  transition     : max-height 0.25s ease-out; }
-  .ux-filter__fieldset.--visible {
+  transition     : max-height 0.25s ease-out;
+
+  &.--visible {
     max-height : 30rem;
     transition : max-height 0.45s ease-in; }
-  .ux-filter__fieldset legend {
+  legend {
     padding          : 0 5px 0 7px;
     background-color : var(--toggle-legend-bg-c);
     font-size        : 1.3rem;
@@ -26,6 +27,7 @@
     word-spacing     : 2px;
     letter-spacing   : 1px;
     color            : var(--toggle-legend-c); }
+}
 
 
 .ux-filter__expand-filter {
@@ -38,10 +40,12 @@
   font-variant     : small-caps;
   font-weight      : 400;
   color            : var(--toggle-legend-c);
-  cursor           : pointer; }
-  .ux-filter__expand-filter .ux-icon {
+  cursor           : pointer;
+
+  .ux-icon {
     top  : 0.3rem;
     left : 3px; }
+}
 
 
 .ux-filter__authors { margin-top: 20px; }
