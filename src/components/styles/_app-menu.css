@@ -6,11 +6,16 @@
   box-shadow : 5px 10px 10px 0 var(--menu-bxs-c);
   background : var(--menu-bg-c);
   transform  : translateX(-110%);
-  transition : transform .4s; }
-  .app-menu.--opened { transform: translateX(0%); }
-  .app-menu.--opened .app-menu__exit-icon {
-    opacity   : 1;
-    transform : translateX(2.5rem) scale(1, 1); }
+  transition : transform .4s;
+
+  &.--opened {
+    transform: translateX(0%);
+    & .app-menu__exit-icon {
+      opacity   : 1;
+      transform : translateX(2.5rem) scale(1, 1); }
+  }
+}
+
 
 .app-menu__close-menu-area {
   display  : none;
@@ -18,8 +23,11 @@
   top      : 0;
   width    : 100%;
   height   : 100%;
-  z-index  : 8; }
-  .app-menu__close-menu-area.--menu-open { display: block; }
+  z-index  : 8;
+
+  &.--menu-open { display: block; }
+}
+
 
 .app-menu__header,
 .app-menu__category {
@@ -53,24 +61,30 @@
   color       : var(--menu-exit-icon-c);
   cursor      : pointer;
   user-select : none;
-  transition  : transform .5s, opacity .45s, color .3s; }
-  .app-menu__exit-icon:hover {
-    color: var(--menu-exit-icon-hov-c); }
+  transition  : transform .5s, opacity .45s, color .3s;
+
+  &:hover { color: var(--menu-exit-icon-hov-c); }
+}
 
 
-.app-menu__item a {
-  display     : block;
-  box-sizing  : border-box;
-  padding     : 2px 0 2px 0.4rem;
-  border-left : 3px solid var(--menu-item-bdr-c);
-  text-align  : left;
-  font-size   : 1.3rem;
-  color       : var(--menu-item-c);
-  user-select : none;
-  transition  : color .3s, border .3s; }
-  .app-menu__item a:hover {
-    border-color : var(--menu-item-bdr-hov-c);
-    color        : var(--menu-item-hov-c); }
-  .app-menu__item a.router-link-active {
-    border-color : var(--menu-active-item-bdr-c);
-    color        : var(--menu-active-item-c); }
+.app-menu__item {
+  & a {
+    display     : block;
+    box-sizing  : border-box;
+    padding     : 2px 0 2px 0.4rem;
+    border-left : 3px solid var(--menu-item-bdr-c);
+    text-align  : left;
+    font-size   : 1.3rem;
+    color       : var(--menu-item-c);
+    user-select : none;
+    transition  : color .3s, border .3s;
+
+    &:hover {
+      border-color : var(--menu-item-bdr-hov-c);
+      color        : var(--menu-item-hov-c); }
+
+    &.router-link-active {
+      border-color : var(--menu-active-item-bdr-c);
+      color        : var(--menu-active-item-c); }
+  }
+}
