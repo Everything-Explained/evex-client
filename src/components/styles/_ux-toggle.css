@@ -14,8 +14,9 @@
     top      : 0;
     left     : -100%;
     width    : 0;
-    height   : 0; }
-    .ux-toggle__input + .ux-toggle__label {
+    height   : 0;
+
+    & + .ux-toggle__label {
       display          : inline-block;
       position         : relative;
       margin           : 0;
@@ -33,24 +34,25 @@
                          color            .25s ease-out,
                          background-color .15s ease-out,
                          box-shadow       .15s ease-out }
-    .ux-toggle__input:hover + .ux-toggle__label
-      { color: hsl(47, 74%, 70%); }
-    .ux-toggle__input:checked + .ux-toggle__label {
+    &:hover + .ux-toggle__label { color: hsl(47, 74%, 70%); }
+    &:checked + .ux-toggle__label {
       z-index          : 1;
       box-shadow       : 0 0 7px 0 var(--toggle-active-bxs-c);
       border-color     : var(--toggle-active-bdr-c);
       background-color : var(--toggle-active-bg-c);
       color            : var(--toggle-active-c);
       cursor           : default; }
+}
 
+.ux-toggle__label {
+  &.--wait        { cursor: not-allowed; }
+  &:first-of-type {
+    border-radius : 6px 0 0 6px;
+    border-right  : none; }
+  &:last-of-type {
+    border-radius : 0 6px 6px 0;
+    border-left   : none; }
+}
 
-.ux-toggle__label:first-of-type {
-  border-radius : 6px 0 0 6px;
-  border-right  : none; }
-.ux-toggle__label:last-of-type {
-  border-radius : 0 6px 6px 0;
-  border-left   : none; }
-.ux-toggle__label.--wait
-  { cursor: not-allowed; }
 
 
