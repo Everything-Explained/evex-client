@@ -27,10 +27,8 @@
   border-bottom : none;
   border-radius : 10px 10px 0 0;
   overflow      : hidden;
-  transition    : box-shadow var(--lib-vid-trans-speed); }
-  .lib-vid__category:hover { box-shadow : 0 0 5px 2px hsl(30, 15%, 19%); }
-
-  .lib-vid__category       h1 {
+  transition    : box-shadow var(--lib-vid-trans-speed);
+  h1 {
     z-index          : 1;
     padding          : 7px 7px 3px 10px;
     box-shadow       : 0 7px 15px -3px black;
@@ -45,43 +43,39 @@
     color            :hsl(47, 75%, 63%);
     cursor           : pointer;
     transition       : all var(--lib-vid-trans-speed); }
-  .lib-vid__category:hover h1 {
-    border-color     : hsl(30, 15%, 27%);
-    background-color : hsl(30, 15%, 16%);
-    color            : hsl(47, 100%, 65%); }
-
-  .lib-vid__category       h2 {
+  h2 {
     z-index          : 1;
     padding          : 0.2rem 0 0.2rem 1rem;
     box-shadow       : 0 -3px 20px -4px hsla(0, 0%, 0%, 0.8),
-                       0  3px 20px -4px hsla(0, 0%, 0%, 0.8);
+                        0  3px 20px -4px hsla(0, 0%, 0%, 0.8);
     border-left      : 1px solid black;
     border-right     : 1px solid black;
     border-top       : 1px solid hsl(197, 13%, 25%);
     border-bottom    : 1px solid hsl(197, 13%, 25%);
     background-color : hsl(197, 13%, 13%);
     text-shadow      : 1px 1px 0 black,
-                       2px 2px 0 black;
+                        2px 2px 0 black;
     font-size        : 1.27rem;
     font-weight      : 400;
     transition       : all var(--lib-vid-trans-speed); }
-  .lib-vid__category:hover h2 {
-    border-top       : 1px solid hsl(30, 15%, 25%);
-    border-bottom    : 1px solid hsl(30, 15%, 25%);
-    background-color : hsl(30, 15%, 14%);
-    color            : hsl(30, 11%, 83%); }
-
-  .lib-vid__category     .desc {
+  .desc {
     padding          : 5px 0 5px 3px;
     border-left      : 1px solid black;
     border-right     : 1px solid black;
     background-color : hsl(197, 11%, 11%);
     font-size        : 1.2rem;
-    transition       : all var(--lib-vid-trans-speed); }
-    .lib-vid__category     .desc:last-child {
-      border-bottom : 2px solid black; }
-    .lib-vid__category     .desc.--authors { font-weight: 400; }
-    .lib-vid__category     .desc.--authors li::before {
+    transition       : all var(--lib-vid-trans-speed);
+    ul {
+      display         : flex;
+      flex-direction  : row;
+      flex-wrap       : wrap;
+      justify-content : left;
+      align-items     : baseline; }
+    li {
+      margin-right : 0.5rem;
+      color        : var(--body-c);
+      transition   : color var(--lib-vid-trans-speed);
+      &::before {
         display      : inline-block;
         position     : relative;
         top          : 1px;
@@ -89,58 +83,64 @@
         font-size    : 1.3rem;
         content      : '\2022';
         color        : hsl(47, 60%, 63%); }
-      .lib-vid__category   .desc.--authors li.--is-ethan::before {
+      &.--is-ethan::before {
         color: hsl(0, 100%, 70%); }
-    .lib-vid__category     .desc ul {
-      display         : flex;
-      flex-direction  : row;
-      flex-wrap       : wrap;
-      justify-content : left;
-      align-items     : baseline; }
-    .lib-vid__category     .desc li {
-      margin-right : 0.5rem;
-      color        : var(--body-c);
-      transition: color var(--lib-vid-trans-speed); }
-    .lib-vid__category     .desc a:link,
-    .lib-vid__category     .desc a:visited,
-    .lib-vid__category     .desc a:active {
+    }
+    a:link, a:active, a:visited {
       font-size       : 1.1rem;
       color           : hsl(197, 20%, 80%);
       text-decoration : underline hsl(197, 13%, 50%);
       transition      : all var(--lib-vid-trans-speed); }
-    .lib-vid__category     .desc a:hover {
-      text-decoration: underline hsl(0, 63%, 63%); }
-  .lib-vid__category:hover .desc {
-    background-color : hsl(30, 15%, 11%);
-    color            : hsl(30, 11%, 83%); }
-  .lib-vid__category:hover .desc.--authors li {
-    color: hsl(30, 20%, 83%); }
-  .lib-vid__category:hover .desc a:link,
-  .lib-vid__category:hover .desc a:visited,
-  .lib-vid__category:hover .desc a:active {
-    color           : hsl(30, 20%, 85%);
-    text-decoration : underline hsl(30, 15%, 55%); }
-  .lib-vid__category:hover .desc a:hover {
-    text-decoration: underline hsl(47, 63%, 63%); }
-
-  .lib-vid__category       .timestamp {
-      float        : right;
-      margin-right : 7px;
-      text-shadow  : 0 0 1px black,
-                     1px 1px 1px black,
-                     2px 2px 2px black,
-                    -1px -1px 1px black;
-      font-weight  : 400;
-      color        : hsl(197, 11%, 40%);
-      transition   : color var(--lib-vid-trans-speed); }
-  .lib-vid__category:hover .timestamp {
-    color: hsl(30, 15%, 48%); }
-
-  .lib-vid__category   .latest-author {
+    a:hover {
+      text-decoration : underline hsl(0, 63%, 63%); }
+    &.--authors {
+      font-weight : 400; }
+    &:last-child {
+      border-bottom : 2px solid black; }
+  }
+  .latest-author {
     padding-left : 10px;
     font-weight  : 400;
-    color        : hsl(197, 15%, 87%); }
-    .lib-vid__category .latest-author.--is-ethan { color: hsl(0, 100%, 69%); }
+    color        : hsl(197, 15%, 87%);
+    &.--is-ethan {
+      color: hsl(0, 100%, 69%); }
+  }
+  .timestamp {
+    float        : right;
+    margin-right : 7px;
+    text-shadow  : 0 0 1px black,
+                   1px 1px 1px black,
+                   2px 2px 2px black,
+                  -1px -1px 1px black;
+    font-weight  : 400;
+    color        : hsl(197, 11%, 40%);
+    transition   : color var(--lib-vid-trans-speed); }
+  &:hover {
+    box-shadow : 0 0 5px 2px hsl(30, 15%, 19%);
+    h1 {
+      border-color     : hsl(30, 15%, 27%);
+      background-color : hsl(30, 15%, 16%);
+      color            : hsl(47, 100%, 65%); }
+    h2 {
+      border-top       : 1px solid hsl(30, 15%, 25%);
+      border-bottom    : 1px solid hsl(30, 15%, 25%);
+      background-color : hsl(30, 15%, 14%);
+      color            : hsl(30, 11%, 83%); }
+    .desc {
+      background-color : hsl(30, 15%, 11%);
+      color            : hsl(30, 11%, 83%);
+      a:link, a:active, a:visited {
+        color           : hsl(30, 20%, 85%);
+        text-decoration : underline hsl(30, 15%, 55%); }
+      a:hover {
+        text-decoration : underline hsl(47, 63%, 63%); }
+      &.--authors li {
+        color : hsl(30, 20%, 83%); }
+    }
+    .timestamp {
+      color: hsl(30, 15%, 48%); }
+  }
+}
 
 
 .lib-vid__video-list {
@@ -149,7 +149,8 @@
   margin-right    : -15px;
   flex-wrap       : wrap;
   flex-direction  : row;
-  justify-content : space-evenly; }
+  justify-content : space-evenly;
+}
 
 
 :root { --lib-vid-width: 380px; }
@@ -157,5 +158,8 @@
   margin-right  : 10px;
   margin-bottom : 1.3rem;
   max-width     : var(--lib-vid-width);
-  min-width     : var(--lib-vid-width); }
-  .lib-vid__video .title { font-size: 1.2rem; }
+  min-width     : var(--lib-vid-width);
+  .title {
+    font-size: 1.2rem; }
+}
+
