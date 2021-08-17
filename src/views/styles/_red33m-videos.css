@@ -1,14 +1,16 @@
 
-.red-vid__titlebar { color: hsl(47, 100%, 61%); }
+.red-vid__titlebar {
+  color: hsl(47, 100%, 61%);
+}
 
 
 .red-vid__list {
-  display: flex;
-  margin-top: 2rem;
-  margin-right: -15px;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: space-evenly;
+  display         : flex;
+  margin-top      : 2rem;
+  margin-right    : -15px;
+  flex-wrap       : wrap;
+  flex-direction  : row;
+  justify-content : space-evenly;
 }
 
 
@@ -19,7 +21,9 @@
   max-width     : var(--r3d-vid-width);
   min-width     : var(--r3d-vid-width);
   user-select   : none;
-  transition    : color .3s; }
-  .red-vid__video .title { font-size: 1.2rem; }
+  transition    : color .3s;
+  .title {
+    font-size: 1.2rem; }
+}
 
 
