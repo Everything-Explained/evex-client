@@ -6,10 +6,10 @@ module.exports = (ctx) => ({
     'postcss-easy-import'        : null,
     'postcss-nested'             : null,
     'postcss-extend-rule'        : null,
-    'postcss-css-variables'      : null,
     'autoprefixer'               : null,
     'postcss-custom-media'       : null,
     'postcss-sort-media-queries' : { sort: 'desktop-first'},
+    // 'postcss-css-variables'      : null,
 
     'cssnano' :
       ctx.env == 'production'
