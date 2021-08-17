@@ -1,7 +1,9 @@
-.ux-text
-  { margin: auto; }
-  .ux-text.--block {
+.ux-text {
+  margin: auto;
+
+  &.--block {
     display          : block;
     margin           : 2rem auto;
     box-shadow       : none;
     background-color : transparent; }
+}
