@@ -5,34 +5,40 @@
 }
 
 
-.red-form__list-item { margin-left: 2.5rem; }
+.red-form__list-item {
+  margin-left: 2.5rem;
+}
 
 
 .red-form__yt-container {
-  position: relative;
-  margin: 0 auto;
-  width: 90%;
-  height: 0;
-  padding-bottom: calc(100% / (16 / 9));
-  overflow: visible; }
-  .red-form__yt-container .yt-video {
+  position       : relative;
+  margin         : 0 auto;
+  width          : 90%;
+  height         : 0;
+  padding-bottom : calc(100% / (16 / 9));
+  overflow       : visible;
+  .yt-video {
     position : absolute;
     top      : 0;
     left     : 0;
     width    : 100%;
     height   : 100%; }
+}
 
 
-.red-form__begin-text em { color: hsl(47, 80%, 65%); }
+.red-form__begin-text em {
+  color: hsl(47, 80%, 65%);
+}
 
 
 .red-form__submitted-text {
   margin-top    : 3vh;
-  margin-bottom : 1vh; }
-  .red-form__submitted-text p {
+  margin-bottom : 1vh;
+  p {
     margin        : 0 auto;
     margin-bottom : 30px;
     width         : 70%; }
+}
 
 
 .red-form__button {
