@@ -12,13 +12,16 @@
   margin     : 0 auto;
   margin-top : 30px;
   width      : 500px;
-  text-align : center; }
-  .red-login__form .passcode {
+  text-align : center;
+  .passcode {
     width          : 150px;
     text-transform : uppercase; }
-  .red-login__form .button {
+  .button {
     display     : inline-block;
     margin-left : 1.5rem; }
-  .red-login__form .error { margin-top: 30px; }
+  .error {
+    margin-top: 30px; }
+}
+
 
 
