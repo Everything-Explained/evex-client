@@ -3,21 +3,41 @@
   margin       : 5rem auto -0.5rem auto;
   padding-left : 2rem;
   width        : 90%;
-  color        : hsl(47, 90%, 65%); }
-  .vw-chglog h1:first-child { margin-top: 2rem; }
+  color        : hsl(47, 90%, 65%);
+
+  &:first-child { margin-top: 2rem; }
+}
 
 
 .vw-chglog blockquote {
   margin        : 0 auto;
   margin-bottom : 3rem;
   width         : 90%;
-  text-align    : left !important; }
-  .vw-chglog blockquote li:first-child strong:first-child {
-    text-shadow: 1px 1px 0 black,
-                 2px 2px 0 black,
-                 3px 3px 0 black,
-                 4px 4px 0 black; }
-  .vw-chglog blockquote::after {
+  text-align    : left !important;
+
+  li {
+    position         : relative;
+    margin-top       : 7px;
+    padding          : 15px 8px 15px 15px;
+    border-top       : 3px solid var(--body-bg-c);
+    background-color : var(--sub-panel-c);
+    word-spacing     : 1px;
+    transition       : background var(--md-trans-speed);
+
+    &:first-child {
+      border-top-left-radius : 15px;
+
+      strong:first-child {
+        text-shadow: 1px 1px 0 black,
+                    2px 2px 0 black,
+                    3px 3px 0 black,
+                    4px 4px 0 black; }
+    }
+    &:last-child  { border-bottom-right-radius : 13px; }
+
+  }
+
+  &::after {
     position         : absolute;
     z-index          : -1;
     left             : 50%;
@@ -28,31 +48,21 @@
     content          : '';
     background-color : hsl(197, 11%, 17%);
     transition       : background var(--md-trans-speed); }
-  .vw-chglog blockquote:hover {
+
+  &:hover {
     background-color : transparent;
-    color            : var(--md-p-hov-c); }
-  .vw-chglog blockquote:hover strong { color: var(--md-p-hov-b-c); }
-  .vw-chglog blockquote:hover em     { color: var(--md-p-hov-i-c); }
-  .vw-chglog blockquote:hover a:link,
-  .vw-chglog blockquote:hover a:active,
-  .vw-chglog blockquote:hover a:visited {
-    color                 : var(--md-p-hov-link-c);
-    text-decoration-color : var(--md-p-hov-link-bdr-c); }
-  .vw-chglog blockquote:hover a:hover { color: var(--md-link-hov-c); }
-  .vw-chglog blockquote:hover li      { background-color: var(--sub-panel-hov-c); }
-  .vw-chglog blockquote:hover::after  { background-color: hsl(30, 15%, 17%); }
-  .vw-chglog blockquote:hover code {
-    background-color : hsl(30, 15%, 23%);
-    color            : var(--md-p-hov-b-c); }
+    color            : var(--md-p-hov-c);
 
-
-.vw-chglog li {
-  position         : relative;
-  margin-top       : 7px;
-  padding          : 15px 8px 15px 15px;
-  border-top       : 3px solid var(--body-bg-c);
-  background-color : var(--sub-panel-c);
-  word-spacing     : 1px;
-  transition       : background var(--md-trans-speed); }
-  .vw-chglog li:first-child { border-top-left-radius     : 15px; }
-  .vw-chglog li:last-child  { border-bottom-right-radius : 13px; }
+    a:link, a:active, a:visited {
+      color                 : var(--md-p-hov-link-c);
+      text-decoration-color : var(--md-p-hov-link-bdr-c); }
+    a:hover  { color: var(--md-link-hov-c); }
+    strong   { color: var(--md-p-hov-b-c); }
+    em       { color: var(--md-p-hov-i-c); }
+    li       { background-color: var(--sub-panel-hov-c); }
+    &::after { background-color: hsl(30, 15%, 17%); }
+    code     {
+      background-color : hsl(30, 15%, 23%);
+      color            : var(--md-p-hov-b-c); }
+  }
+}
