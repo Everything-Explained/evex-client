@@ -1,6 +1,10 @@
 
-.support .pg-titlebar               { text-transform: capitalize; }
-  .support .pg-titlebar.--submitted { color: hsl(161, 67%, 67%); }
+.support .pg-titlebar {
+  text-transform : capitalize;
+  &.--submitted {
+    color : hsl(161, 67%, 67%); }
+}
+
 
 :root { --patreon-width: 200px; }
 .support__patreon {
@@ -8,15 +12,17 @@
   justify-content : center;
   align-items     : center;
   margin          : 2rem auto !important;
-  font-size       : 1.4rem; }
-  .support__patreon img,
-  .support__patreon a {
+  font-size       : 1.4rem;
+  img, a {
     width         : var(--patreon-width);
     height        : calc(var(--patreon-width) * 0.20);
     border-bottom : 1px solid hsl(357, 100%, 63%); }
+}
 
 
-.support__button { margin: 1rem 0 1rem 1rem; }
+.support__button {
+  margin: 1rem 0 1rem 1rem;
+}
 
 
 .support__submitted-text {
