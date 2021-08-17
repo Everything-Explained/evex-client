@@ -31,11 +31,14 @@
     color     : var(--input-focus-label-c); }
 
 
-.ux-input__text { font-size: 1.25rem; }
-  .ux-input__text::placeholder {
+.ux-input__text {
+  font-size: 1.25rem;
+
+  &::placeholder {
     color          : transparent;
     font-family    : inherit;
     text-transform : none; }
+}
 
 
 .ux-input__area { font-size: 1.45rem; }
@@ -47,15 +50,17 @@
   margin         : 0 auto;
   margin-top     : 1.3rem;
   padding        : 7px 0 5px 3px;
-  border-bottom  : 1px solid var(--input-bdr-c) !important;
+  border-bottom  : 1px solid var(--input-bdr-c);
   text-transform : inherit;
-  transition     : border .25s, color 0.3s; }
-  .ux-input__text:focus,
-  .ux-input__area:focus
-    { color : var(--input-focus-c); }
-  .ux-input__text.--limit-reached,
-  .ux-input__area.--limit-reached
-    { border-color : var(--input-valid-c); }
+  transition     : border .25s, color 0.3s;
+
+  &:focus {
+    color: var(--input-focus-c);
+    & ~ .ux-input__bar { width: 100%; }
+  }
+
+  &.--limit-reached { border-bottom-color : hsl(160, 36%, 33%); }
+}
 
 
 .ux-input__bar {
@@ -65,11 +70,11 @@
   height           : 2px;
   background-color : var(--input-bar-c);
   pointer-events   : none;
-  transition       : width 0.29s ease-in-out, background 0.3s; }
-  .ux-input__text:focus ~ .ux-input__bar,
-  .ux-input__area:focus ~ .ux-input__bar { width : 100%; }
-  .ux-input__bar.--limit-reached
-    { background-color : var(--input-bar-valid-c); }
+  transition       : width 0.29s ease-in-out, background 0.3s;
+
+  &.--limit-reached {
+    background-color : var(--input-bar-valid-c); }
+}
 
 
 .ux-input__area {
@@ -80,10 +85,12 @@
   line-height   : 2rem;
   font-weight   : 300;
   font-family   : 'Nunito Sans';
-  resize        : none; }
-  .ux-input__area::placeholder {
+  resize        : none;
+
+  &::placeholder {
     font-weight : 400;
     color       : var(--input-placeholder-c); }
+}
 
 
 .ux-input__char-limit {
@@ -92,11 +99,11 @@
   bottom      : -1.5rem;
   font-weight : 400;
   color       : var(--input-metadata-c);
-  transition  : color 0.3s; }
-  .ux-input__char-limit.--limit-reached
-    { color: var(--input-valid-c); }
-  .ux-input__char-limit.--length-reached
-    { color : var(--input-metadata-em-c); }
+  transition  : color 0.3s;
+
+  &.--limit-reached  { color : var(--input-valid-c);       }
+  &.--length-reached { color : var(--input-metadata-em-c); }
+}
 
 
 .ux-input__char-limit-msg,
@@ -106,11 +113,10 @@
   bottom      : -1.65rem;
   font-size   : 1.1rem;
   font-weight : 400;
-  color       : var(--input-metadata-c); }
-  .ux-input__char-limit-msg em,
-  .ux-input__error-msg em {
-    font-weight : 400;
-    color       : var(--input-metadata-em-c); }
+  color       : var(--input-metadata-c);
+
+  em { color: var(--input-metadata-em-c); }
+}
 
 
 
