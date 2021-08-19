@@ -72,7 +72,6 @@
   font-size        : 1.07rem;
   pointer-events   : none;
   transition       : opacity .5s, outline .4s;
-
   .close-desc {
     position         : absolute;
     z-index          : 2;
@@ -83,17 +82,14 @@
     user-select      : none;
     cursor           : pointer;
     transition       : color 0.3s;
-
     &:hover {
       background-color : transparent;
       color            : var(--video-widget-close-hov-c); }
   }
-
   .text {
     display        : flex;
     flex-direction : column;
     max-height     : 100%;
-
     span   {
       overflow-x: hidden;
       overflow-y: auto; }
@@ -119,7 +115,6 @@
       color         : var(--video-desc-link-hov-c);
     }
   }
-
   &.--open {
     opacity        : 1;
     outline        : 1px dotted var(--video-desc-outline-c);
@@ -135,7 +130,6 @@
     overflow         : hidden;
     border-top       : 2px dashed var(--body-bg-c);
     background-color : hsl(197, 11%, 12%); }
-
   .author {
     float            : right;
     padding          : 0.2rem 0.5rem 0.2rem 0.5rem;
@@ -144,10 +138,9 @@
     font-size        : 1.1rem;
     font-weight      : 400;
     color            : hsl(197, 20%, 87%);
-
-    &.--is-ethan { color: hsl(0, 100%, 70%); }
+    &.--is-ethan {
+      color: hsl(0, 100%, 70%); }
   }
-
   .author__icon {
     top: 0.15rem;
     color: var(--body-c); }

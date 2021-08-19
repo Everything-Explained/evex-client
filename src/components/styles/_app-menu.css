@@ -7,7 +7,6 @@
   background : var(--menu-bg-c);
   transform  : translateX(-110%);
   transition : transform .4s;
-
   &.--opened {
     transform: translateX(0%);
     & .app-menu__exit-icon {
@@ -24,7 +23,6 @@
   width    : 100%;
   height   : 100%;
   z-index  : 8;
-
   &.--menu-open { display: block; }
 }
 
@@ -42,6 +40,8 @@
   font-size     : 1.7rem;
   color         : var(--menu-header-c);
 }
+
+
 .app-menu__category {
   margin-top     : 1rem;
   padding        : 0;
@@ -62,7 +62,6 @@
   cursor      : pointer;
   user-select : none;
   transition  : transform .5s, opacity .45s, color .3s;
-
   &:hover { color: var(--menu-exit-icon-hov-c); }
 }
 
@@ -78,11 +77,9 @@
     color       : var(--menu-item-c);
     user-select : none;
     transition  : color .3s, border .3s;
-
     &:hover {
       border-color : var(--menu-item-bdr-hov-c);
       color        : var(--menu-item-hov-c); }
-
     &.router-link-active {
       border-color : var(--menu-active-item-bdr-c);
       color        : var(--menu-active-item-c); }

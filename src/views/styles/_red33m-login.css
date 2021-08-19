@@ -1,5 +1,7 @@
 
-.red-login__titlebar { color: hsl(47, 100%, 61%); }
+.red-login__titlebar {
+  color: hsl(47, 100%, 61%);
+}
 
 
 .red-login__disclaimer {

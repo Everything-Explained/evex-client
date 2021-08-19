@@ -6,8 +6,8 @@
 .ux-checkbox {
   position   : absolute;
   visibility : hidden;
-
-  &:checked + label div svg { stroke-dashoffset: 0; }
+  &:checked + label div svg {
+    stroke-dashoffset: 0; }
 }
 
 
@@ -21,9 +21,8 @@
   user-select   : none;
   cursor        : pointer;
   transition    : all 0.15s;
-
-  &:hover { color: var(--md-p-hov-i-c); }
-
+  &:hover {
+    color: var(--md-p-hov-i-c); }
   div {
     &:first-child {
       display          : inline-block;

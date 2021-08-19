@@ -1,4 +1,6 @@
-.ux-img { width: 100%; }
+.ux-img {
+  width: 100%;
+}
 
 
 .ux-img__preloader {
@@ -13,7 +15,9 @@
 
 
 .ux-img__image,
-.ux-img__preloader.--disabled { opacity: 0; }
+.ux-img__preloader.--disabled {
+  opacity: 0;
+}
 
 
 .ux-img__image.--loaded {

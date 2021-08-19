@@ -26,9 +26,8 @@
   color      : var(--app-titlebar-icon-c);
   cursor     : pointer;
   transition : opacity .3s, color .3s;
-
-  &:hover { color: var(--app-titlebar-icon-hov-c); }
-
+  &:hover {
+    color: var(--app-titlebar-icon-hov-c); }
   &.--menu-open {
     opacity        : 0;
     pointer-events : none;

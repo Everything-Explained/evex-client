@@ -33,7 +33,6 @@
 
 .ux-input__text {
   font-size: 1.25rem;
-
   &::placeholder {
     color          : transparent;
     font-family    : inherit;
@@ -41,7 +40,9 @@
 }
 
 
-.ux-input__area { font-size: 1.45rem; }
+.ux-input__area {
+  font-size: 1.45rem;
+}
 
 
 .ux-input__text,
@@ -53,13 +54,12 @@
   border-bottom  : 1px solid var(--input-bdr-c);
   text-transform : inherit;
   transition     : border .25s, color 0.3s;
-
   &:focus {
     color: var(--input-focus-c);
     & ~ .ux-input__bar { width: 100%; }
   }
-
-  &.--limit-reached { border-bottom-color : hsl(160, 36%, 33%); }
+  &.--limit-reached {
+    border-bottom-color : hsl(160, 36%, 33%); }
 }
 
 
@@ -71,7 +71,6 @@
   background-color : var(--input-bar-c);
   pointer-events   : none;
   transition       : width 0.29s ease-in-out, background 0.3s;
-
   &.--limit-reached {
     background-color : var(--input-bar-valid-c); }
 }
@@ -86,7 +85,6 @@
   font-weight   : 300;
   font-family   : 'Nunito Sans';
   resize        : none;
-
   &::placeholder {
     font-weight : 400;
     color       : var(--input-placeholder-c); }
@@ -100,9 +98,10 @@
   font-weight : 400;
   color       : var(--input-metadata-c);
   transition  : color 0.3s;
-
-  &.--limit-reached  { color : var(--input-valid-c);       }
-  &.--length-reached { color : var(--input-metadata-em-c); }
+  &.--limit-reached  {
+    color : var(--input-valid-c); }
+  &.--length-reached {
+    color : var(--input-metadata-em-c); }
 }
 
 
@@ -114,8 +113,8 @@
   font-size   : 1.1rem;
   font-weight : 400;
   color       : var(--input-metadata-c);
-
-  em { color: var(--input-metadata-em-c); }
+  em {
+    color: var(--input-metadata-em-c); }
 }
 
 

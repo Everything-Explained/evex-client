@@ -1,3 +1,22 @@
+:root {
+  --md-trans-speed: 0.18s;
+}
+
+.md-header, .md {
+  h1, h2, h3, h4, h5 {
+    margin-top     : 3rem;
+    margin-left    : 3rem;
+    margin-bottom  : 0.3rem;
+    color          : var(--md-head-c);
+    font-variant   : small-caps;
+    font-weight    : 300;
+    letter-spacing : 1px; }
+  h1 {
+    font-size: 2rem; }
+  h2, h3 {
+    font-size: 1.7rem; }
+}
+
 .md-simple,
 .md {
   max-width   : 1024px;
@@ -6,235 +25,177 @@
   font-weight : 300;
   font-size   : var(--md-f-sz);
   color       : var(--md-c);
+  b, strong {
+    font-weight : 400;
+    color       : var(--md-b-c);
+    transition  : background var(--md-trans-speed), color var(--md-trans-speed); }
+  i, em {
+    color       : var(--md-i-c);
+    font-style  : normal;
+    font-weight : 400;
+    transition  : background var(--md-trans-speed), color var(--md-trans-speed); }
+  a:link, a:active, a:visited {
+    color           : var(--md-link-c);
+    text-decoration : none;
+    font-weight     : 400;
+    text-decoration : underline var(--md-link-bdr-c);
+    transition      : text-decoration var(--md-trans-speed),
+                      color var(--md-trans-speed); }
+  p, ol {
+    display                 : block;
+    margin-left             : 10px;
+    margin-right            : 5px;
+    padding                 : 7px 13px;
+    line-height             : 27px;
+    background              : var(--md-p-bg-c);
+    border-top-right-radius : 6.5px;
+    border-top-left-radius  : 3.5px;
+    transition              : background var(--md-trans-speed),
+                              color var(--md-trans-speed); }
+  p {
+    & + p {
+      margin-top: 15px; }
+    &:empty {
+      display: none; }
+    /* Maintain height with floated images */
+    &::after {
+      clear   : both;
+      content : '';
+      display : block; }
+  }
+  & > p {
+    margin-bottom : 7px;
+    box-shadow    : 0 10px 7px -5px var(--md-p-bxs-c);
+    &:hover {
+      background-color : var(--md-p-bg-hov-c);
+      color            : var(--md-p-hov-c);
+      b, strong {
+        color: var(--md-p-hov-b-c); }
+      i, em {
+        color: var(--md-p-hov-i-c); }
+      a:link, a:active, a:visited {
+        color                 : var(--md-p-hov-link-c);
+        text-decoration-color : var(--md-p-hov-link-bdr-c); }
+      a:hover {
+        color: var(--md-link-hov-c); }
+    }
+  }
 }
 
-:root {
-  --md-trans-speed: 0.18s;
+.md {
+  blockquote {
+    text-align: center;
+    & > p {
+      margin           : 2.7rem auto;
+      display          : inline-block;
+      padding          : 8px 2.3rem 8px 2.5rem;
+      color            : var(--md-bq-c);
+      max-width        : 85%;
+      font-size        : 1.4rem;
+      text-align       : left;
+      background-color : var(--md-bq-bg-c);
+      quotes           : '“' '”';
+      border           : 4px solid var(--md-bq-bdr-c);
+      outline          : 2px solid var(--md-bq-outline-c);
+      // Should be used as an authors name at the end of a blockquote
+      i, em {
+        display        : block;
+        margin-top     : 8px;
+        font-variant   : small-caps;
+        letter-spacing : 1px;
+        color          : var(--md-bq-c); }
+      &::before, &::after {
+        position       : absolute;
+        font-size      : 6rem;
+        vertical-align : baseline;
+        color          : var(--md-bq-quote-c); }
+      &::before {
+        margin-top  : 20px;    // blockquote (margin-top)
+        margin-left : -2.5rem; // blockquote (padding-left * -1)
+        content     : open-quote; }
+      &::after {
+        right   : 4px;
+        bottom  : -1.8rem;
+        content : close-quote; }
+    }
+  }
+  code {
+    display: inline-block;
+    padding       : 1px 10px 2px 10px;
+    color         : var(--md-code-c);
+    background    : var(--md-code-bg-c);
+    text-shadow   : 1px 1px 0 black,
+                    2px 2px 0 black,
+                    3px 3px 0 black;
+    font-size     : 1.125rem;
+    font-family   : Consolas, 'Courier New', Courier, monospace;
+    white-space   : nowrap;
+    word-spacing  : -3px;
+  }
+  & > p {
+    ul {
+      margin-left: 1rem;
+      & > li::before {
+        content     : '\2022';
+        width       : 1rem;
+        font-size   : 1.5rem;
+        margin-left : -1rem;
+        color       : var(--md-bullet-c);
+        transition  : color var(--md-trans-speed); }
+    }
+    & > img {
+      display    : block;
+      margin     : 10px auto;
+      max-width  : 100%;
+      min-height : 100%;
+      box-shadow : 0 0 10px 3px var(--md-img-bxs-c);
+      & + br {
+        display: none; }
+    }
+    &:hover {
+      code {
+        background : var(--md-code-bg-hov-c);
+        color      : var(--md-code-hov-c); }
+      li::before {
+        color: var(--md-bullet-hov-c); }
+    }
+  }
+  & > ol {
+    padding-left     : 2.5rem;
+    list-style       : decimal;
+    background-color : transparent;
+    color            : hsl(197, 11%, 67%);
+    box-shadow       : none;
+    li {
+      margin-bottom: 0.5rem; }
+  }
+  img {
+    display: block;
+    margin: 20px auto;
+    max-width: 97%;
+    box-shadow : 0 0 10px 3px black;
+  }
+  /* ### Embeded Video Styles ### */
+  & > span {
+    .embed-responsive {
+      margin         : 20px auto;
+      width          : 90%;
+      height         : 0;
+      padding-bottom : calc(100% / (16 / 9));
+      overflow       : visible;
+      iframe {
+        position : absolute;
+        top      : 0;
+        left     : 0;
+        width    : 100%;
+        height   : 100%; }
+    }
+  }
+
 }
 
-.md-header h1,
-.md-header h2,
-.md-header h3,
-.md-header h4,
-.md h1, .md h2,
-.md h3, .md h4,
-.md h5 {
-  margin-top     : 3rem;
-  margin-left    : 3rem;
-  margin-bottom  : 0.3rem;
-  color          : var(--md-head-c);
-  font-variant   : small-caps;
-  font-weight    : 300;
-  letter-spacing : 1px;
+.md {
+  b, strong, i, em, dt, dd, code, blockquote {
+    transition: color var(--md-trans-speed), background var(--md-trans-speed);
+  }
 }
-.md-header h1, .md h1         { font-size: 2rem; }
-.md-header h2, .md-header h3,
-.md h2, .md h3 { font-size: 1.7rem; }
-
-.md-simple p,
-.md p,
-.md ol {
-  display                 : block;
-  margin-left             : 10px;
-  margin-right            : 5px;
-  padding                 : 7px 13px;
-  line-height             : 27px;
-  background              : var(--md-p-bg-c);
-  border-top-right-radius : 6.5px;
-  border-top-left-radius  : 3.5px;
-  transition              : background var(--md-trans-speed),
-                            color var(--md-trans-speed);
-}
-/* Maintain height with floated images */
-.md p::after {
-  clear   : both;
-  content : '';
-  display : block;
-}
-.md-simple p + p,
-.md p + p {
-  margin-top: 15px;
-}
-.md-simple > p,
-.md > p {
-  margin-bottom : 7px;
-  box-shadow    : 0 10px 7px -5px var(--md-p-bxs-c);
-}
-.md > p:empty { display: none; }
-.md-simple > p:hover,
-.md > p:hover {
-  background-color : var(--md-p-bg-hov-c);
-  color            : var(--md-p-hov-c);
-}
-
-.md-simple b,
-.md-simple strong,
-.md b,
-.md strong {
-  font-weight : 400;
-  color       : var(--md-b-c);
-  transition  : background var(--md-trans-speed), color var(--md-trans-speed);
-}
-.md-simple > p:hover strong,
-.md-simple > p:hover b,
-.md > p:hover strong,
-.md > p:hover b { color: var(--md-p-hov-b-c); }
-
-.md-simple i,
-.md-simple em,
-.md i,
-.md em {
-  color      : var(--md-i-c);
-  font-style : normal;
-  font-weight: 400;
-  transition : background var(--md-trans-speed), color var(--md-trans-speed);
-}
-.md-simple > p:hover em,
-.md > p:hover em { color: var(--md-p-hov-i-c); }
-
-.md-simple a:link,
-.md-simple a:active,
-.md-simple a:visited,
-.md a:link,
-.md a:active,
-.md a:visited {
-  color           : var(--md-link-c);
-  text-decoration : none;
-  font-weight     : 400;
-  text-decoration : underline var(--md-link-bdr-c);
-  transition      : text-decoration var(--md-trans-speed),
-                    color var(--md-trans-speed);
-}
-.md-simple > p:hover a:link,
-.md-simple > p:hover a:active,
-.md-simple > p:hover a:visited,
-.md > p:hover a:link,
-.md > p:hover a:active,
-.md > p:hover a:visited {
-  color                 : var(--md-p-hov-link-c);
-  text-decoration-color : var(--md-p-hov-link-bdr-c);
-}
-.md-simple > p:hover a:hover,
-.md > p:hover a:hover { color: var(--md-link-hov-c); }
-
-.md blockquote { text-align: center; } /*  */
-.md blockquote > p {
-  margin           : 2.7rem auto;
-  display          : inline-block;
-  padding          : 8px 2.3rem 8px 2.5rem;
-  color            : var(--md-bq-c);
-  max-width        : 85%;
-  font-size        : 1.4rem;
-  text-align       : left;
-  background-color : var(--md-bq-bg-c);
-  quotes           : '“' '”';
-  border           : 4px solid var(--md-bq-bdr-c);
-  outline          : 2px solid var(--md-bq-outline-c);
-}
-/*
- * Should be used as an authors name at
- * the end of a blockquote
- */
-.md blockquote > p i,
-.md blockquote > p em {
-  display        : block;
-  margin-top     : 8px;
-  font-variant   : small-caps;
-  letter-spacing : 1px;
-  color          : var(--md-bq-c);
-}
-.md blockquote > p::before,
-.md blockquote > p::after {
-  position       : absolute;
-  font-size      : 6rem;
-  vertical-align : baseline;
-  color          : var(--md-bq-quote-c);
-}
-.md blockquote > p::before {
-  margin-top  : 28px;    /* blockquote (margin-top + padding-top)  */
-  margin-left : -2.5rem; /* blockquote (padding-left * -1) */
-  content     : open-quote;
-}
-.md blockquote > p::after {
-  right   : 4px;
-  bottom  : -20px;
-  content : close-quote;
-}
-
-
-.md code {
-  display: inline-block;
-  padding       : 1px 10px 2px 10px;
-  color         : var(--md-code-c);
-  background    : var(--md-code-bg-c);
-  text-shadow   : 1px 1px 0 black,
-                  2px 2px 0 black,
-                  3px 3px 0 black;
-  font-size     : 1.125rem;
-  font-family   : Consolas, 'Courier New', Courier, monospace;
-  white-space   : nowrap;
-  word-spacing  : -3px;
-}
-.md > p:hover code {
-  background : var(--md-code-bg-hov-c);
-  color      : var(--md-code-hov-c);
-}
-
-.md > p > ul { margin-left: 1rem; }
-.md > p > ul > li::before {
-  content     : '\2022';
-  width       : 1rem;
-  font-size   : 1.5rem;
-  margin-left : -1rem;
-  color       : var(--md-bullet-c);
-  transition  : color var(--md-trans-speed);
-}
-.md > p:hover li::before { color: var(--md-bullet-hov-c); }
-
-.md > ol {
-  padding-left: 2.5rem;
-  list-style: decimal;
-  background-color: transparent;
-  color: hsl(197, 11%, 67%);
-  box-shadow: none;
-}
-.md > ol li { margin-bottom: 0.5rem; }
-
-.md img {
-  display: block;
-  margin: 20px auto;
-  max-width: 97%;
-  box-shadow : 0 0 10px 3px black;
-}
-.md > p > img {
-  display    : block;
-  margin     : 10px auto;
-  max-width  : 100%;
-  min-height : 100%;
-  box-shadow : 0 0 10px 3px var(--md-img-bxs-c);
-}
-.md > p > img + br { display: none; }
-
-
-/* ### Embeded Video Styles ### */
-.md > span .embed-responsive {
-  margin : 20px auto;
-  width  : 90%;
-  height : 0;
-  padding-bottom: calc(100% / (16 / 9));
-  overflow: visible;
-}
-.md > span .embed-responsive iframe {
-  position: absolute;
-  left: 0; top: 0;
-  width  : 100%;
-  height : 100%;
-}
-
-
-
-.md b,  .md i,
-.md em, .md dt,
-.md dd, .md code,
-.md strong, .md blockquote
-{ transition: color var(--md-trans-speed), background var(--md-trans-speed); }

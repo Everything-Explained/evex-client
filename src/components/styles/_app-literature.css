@@ -13,8 +13,7 @@
   justify-content : center;
   &.--expanded {
     margin-top : 2rem;
-    max-width  : 1024px;
-  }
+    max-width  : 1024px; }
 }
 
 
@@ -28,7 +27,6 @@
   border-radius : 10px 10px 0 0;
   font-size     : 1.2rem;
   transition    : box-shadow var(--lit-transition-speed);
-
   &:hover {
     box-shadow : 0 0 5px 2px hsl(30, 15%, 19%);
     & header {
@@ -56,7 +54,6 @@
       & .lit-card__author { float: left; }
     }
   }
-
   & header {
     z-index          : 2;
     padding          : 7px 7px 5px 10px;

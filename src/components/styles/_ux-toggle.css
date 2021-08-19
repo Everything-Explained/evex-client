@@ -15,7 +15,6 @@
     left     : -100%;
     width    : 0;
     height   : 0;
-
     & + .ux-toggle__label {
       display          : inline-block;
       position         : relative;
@@ -34,7 +33,8 @@
                          color            .25s ease-out,
                          background-color .15s ease-out,
                          box-shadow       .15s ease-out }
-    &:hover + .ux-toggle__label { color: hsl(47, 74%, 70%); }
+    &:hover + .ux-toggle__label {
+      color: hsl(47, 74%, 70%); }
     &:checked + .ux-toggle__label {
       z-index          : 1;
       box-shadow       : 0 0 7px 0 var(--toggle-active-bxs-c);
@@ -45,7 +45,8 @@
 }
 
 .ux-toggle__label {
-  &.--wait        { cursor: not-allowed; }
+  &.--wait {
+    cursor: not-allowed; }
   &:first-of-type {
     border-radius : 6px 0 0 6px;
     border-right  : none; }

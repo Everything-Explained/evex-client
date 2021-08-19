@@ -2,7 +2,6 @@
 .qnaf__form {
   margin : 0 auto;
   width  : 75%;
-
   &:first-child { margin-top: 2rem; }
 }
 
@@ -13,7 +12,6 @@
 
 .qnaf__q-block {
   margin-top: 2rem;
-
   &:nth-child(odd) { margin-top: 1rem; }
  }
 
@@ -21,7 +19,6 @@
 .qnaf__q {
   font-size      : 1.20rem;
   letter-spacing : 1px;
-
   &::before {
     position    : absolute;
     top         : -0.03rem;
@@ -57,7 +54,6 @@
 .qnaf__validation-text {
   margin-left : 0.5rem !important;
   color       : hsl(196, 11%, 40%);
-
   strong {
     font-size   : 1.3rem;
     font-weight : 400;

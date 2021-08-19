@@ -2,7 +2,6 @@
   box-sizing     : border-box;
   text-align     : center;
   z-index        : 1;
-
   &::before, &::after {
     opacity       : 0;
     box-sizing    : border-box;
@@ -22,13 +21,11 @@
   &::after {
     z-index   : 1;
     animation : ripple 1.6s infinite 0.7s; }
-
   &.page {
     margin     : 0 auto;
     margin-top : 20%;
     width      : 200px;
     height     : 200px; }
-
 }
 
 
