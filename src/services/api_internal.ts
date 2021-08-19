@@ -46,7 +46,9 @@ const sanitizeURLForEnv = (url: string) => {
 };
 
 const apiEndpoint =
-  wretch().url(sanitizeURLForEnv('/api')).auth(`Bearer ${state.userid || 'none'}`)
+  wretch()
+    .url(sanitizeURLForEnv('/api'))
+    .auth(`Bearer ${state.userid || 'none'}`)
 ;
 
 
@@ -68,29 +70,37 @@ async function init() {
 
 
 function callAPI<T>(opts: APIOptions): Promise<APIResponse<T>> {
-  opts.type = opts.type || 'dynamic';
-  const { URI, method, body, type } = opts;
   checkInitialization();
   return new Promise((rs, rj) => {
     if (debounceOnPending(rs, () => callAPI(opts))) return;
     state.isLoading = true;
-    const query = type == 'static'
-      ? { ...body, version: state.version }
-      : body
-    ;
-    const api = method == 'get'
-      ? apiEndpoint.url(URI).query(query)[method]()
-      : apiEndpoint.url(URI)[method](body)
-    ;
+    const api = setupAPI(opts);
     api
+      // Catches Netork Errors
+      .fetchError(rj)
+      // Cloudlfare tells us server is down
+      .error(521, rj)
       .res(async (res) => rs({
         status: res.status,
-        data: method == 'get' ? await res.json() : await res.text()
+        data: opts.method == 'get' ? await res.json() : await res.text()
       }))
-      .catch(rj)
       .finally(() => state.isLoading = false)
     ;
   });
+}
+
+
+function setupAPI(opts: APIOptions) {
+  const { URI, method, body, type } = opts
+  ;
+  if ((type || 'dynamic') == 'static')
+    body.version = state.version
+  ;
+  const api = (method == 'get')
+    ? apiEndpoint.url(URI).query(body)[method]()
+    : apiEndpoint.url(URI)[method](body)
+  ;
+  return api;
 }
 
 
