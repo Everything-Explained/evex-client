@@ -1,0 +1,14 @@
+.page-error {
+  position    : relative;
+  padding-top : 8vmin;
+  text-align  : center;
+  line-height : 4rem;
+  font-size   : 2rem;
+  font-weight : 400;
+  text-shadow : 0  0   0   transparent,
+                0  0  10px hsl(0, 100%, 65%),
+                0  0  20px hsl(0, 100%, 65%),
+                0  0  40px hsl(0, 100%, 65%);
+  color       : hsl(0, 100%, 80%);
+}
+

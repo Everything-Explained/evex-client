@@ -7,6 +7,13 @@
     />
     <transition name="fade" mode="out-in">
       <ux-preloader v-if="isRunning" />
+      <page-error
+        v-else-if="apiError"
+        class="error"
+      >
+        {{ apiError.data }}<br>
+        Try again later...
+      </page-error>
       <div v-else-if="!activePage" class="lit-cards__container">
         <ux-filter
           v-if="cfg.showFilter"
@@ -51,6 +58,7 @@ import UxFilter     from "../UxFilter.vue";
 import UxPreloader  from '../UxPreloader.vue';
 import AppMarkdown  from "../AppMarkdown.vue";
 import AppLitCards  from "./AppLitCards.vue";
+import PageError    from '../PageError.vue';
 
 
 export interface Article extends StaticPage {
@@ -85,7 +93,7 @@ const defaultOptions: AppLitOptions = {
 };
 const cfg           = Object.assign(defaultOptions, options);
 const cache         = useDateCache<DataCacheFilterObj>();
-const { pages, pageTitle, activePage, goTo, isRunning }
+const { pages, pageTitle, activePage, goTo, isRunning, error: apiError }
                     = useStaticPager<Article>(options.uri);
 const titleRef      = computed(() => pageTitle.value || options.title);
 const filteredPages = ref<Article[]>([]);
