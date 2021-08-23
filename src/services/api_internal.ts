@@ -1,6 +1,6 @@
 import { reactive, computed } from "vue";
 import { isProduction } from "../globals";
-import wretch from 'wretch';
+import wretch, { WretcherError } from 'wretch';
 import { useVersionManager } from "./versionManager";
 
 
@@ -95,19 +95,22 @@ function callAPI<T>(opts: APIOptions): Promise<APIResponse<T>> {
     if (debounceOnPending(rs, () => callAPI(opts))) return;
     state.isLoading = true;
     const api = setupAPI(opts);
-    const serverIsDown = () => rj({ status: 521, data: 'Server is Down' } as APIResponse<string>);
+    const sendServerIsOffline = () =>
+      rj({ status: 521, data: 'Server is Down' } as APIResponse<string>)
+    ;
     api
-      // Catches Netork Errors
-      .fetchError(serverIsDown)
-      // Cloudlfare tells us server is down
-      .error(521, serverIsDown)
+      .fetchError(sendServerIsOffline)      // Catches Netork Errors
+      .error(521, sendServerIsOffline) // Cloudlfare tells us server is down
       .res(async (res) => rs({
         status: res.status,
         data: opts.method == 'get' ? await res.json() : await res.text()
       }))
-      .catch(err =>
-        rj({ status: 0, data: err.toString() } as APIResponse<string>)
-      )
+      .catch((err: APIErrorResp) => {
+        rj({
+          status : err.status,
+          data   : err.message } as APIResponse<string>
+        );
+      })
       .finally(() => state.isLoading = false)
     ;
   });
