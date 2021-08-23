@@ -76,16 +76,17 @@ async function init() {
       verMan.addVersion(state.version);
     }
   }
-
-  if (res.status == 521) {
-    console.log(verMan);
-    console.warn('Skipping User Authentication');
-    if (!verMan.version)
-      console.warn('No Versions available to fallback on')
-    ;
-    else console.warn(`Falling back on version: ${verMan.version}`);
-  }
   state.isInitialized = true;
+
+  // TODO - Use issue #61 to implement this code
+  // if (res.status == 521) {
+  //   console.log(verMan);
+  //   console.warn('Skipping User Authentication');
+  //   if (!verMan.version)
+  //     console.warn('No Versions available to fallback on')
+  //   ;
+  //   else console.warn(`Falling back on version: ${verMan.version}`);
+  // }
 }
 
 
@@ -96,7 +97,7 @@ function callAPI<T>(opts: APIOptions): Promise<APIResponse<T>> {
     state.isLoading = true;
     const api = setupAPI(opts);
     const sendServerIsOffline = () =>
-      rj({ status: 521, data: 'Server is Down' } as APIResponse<string>)
+      rj({ status: 521, data: 'Server is Offline' } as APIResponse<string>)
     ;
     api
       .fetchError(sendServerIsOffline)      // Catches Netork Errors
