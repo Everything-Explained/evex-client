@@ -1,4 +1,4 @@
-import { useAPI } from "@/services/api_internal";
+import { APIResponse, useAPI } from "@/services/api_internal";
 import { DataCacheArrayKeys, useDateCache } from "@/state/cache-state";
 import { ref, watch } from "vue";
 import { useRouter } from "vue-router";
@@ -20,15 +20,20 @@ export function useStaticPager<T extends StaticPage>(url: DataCacheArrayKeys) {
   const pageURI    = route.value.params.page as string|undefined;
   const pages      = dataCache.getArrayData(url);
   const pageTitle  = ref('');
+  const error      = ref<APIResponse<string>|null>(null);
 
   // Only retrieve pages when Cache is empty
   if (!pages.value.length) {
-    api.get<StaticPage[]>(`/data/${url}.json`, null, 'static')
-       .then(res => {
-         dataCache.setArrayData(url, res.data);
-          // If URL points to a specific page on load
-          if (pageURI) displayPage(pageURI);
-        })
+    api
+      .get<StaticPage[]>(`/data/${url}.json`, null, 'static')
+      .then(res => {
+        dataCache.setArrayData(url, res.data);
+        // If URL points to a specific page on load
+        if (pageURI) displayPage(pageURI);
+      })
+      .catch((err: APIResponse<string>) => {
+        error.value = err;
+      })
     ;
   }
 
@@ -65,6 +70,7 @@ export function useStaticPager<T extends StaticPage>(url: DataCacheArrayKeys) {
     pages,
     activePage,
     pageTitle,
+    error,
     isRunning: api.isPending,
   };
 }
