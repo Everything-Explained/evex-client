@@ -23,7 +23,7 @@
     animation : ripple 1.6s infinite 0.7s; }
   &.page {
     margin     : 0 auto;
-    margin-top : 20%;
+    margin-top : 20vmin;
     width      : 200px;
     height     : 200px; }
 }
