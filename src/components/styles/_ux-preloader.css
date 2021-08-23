@@ -4,17 +4,17 @@
   z-index        : 1;
   &::before, &::after {
     opacity       : 0;
-    box-sizing    : border-box;
-    content       : "\0020";
     position      : absolute;
+    box-sizing    : border-box;
     top           : 0;
     left          : 0;
     width         : 100%;
     height        : 100%;
+    box-shadow    : 0 0 56px var(--preloader-bxs-c),
+                    inset 0 0 56px var(--preloader-bxs-inset-c);
     border-radius : 113px;
     border        : 6px solid var(--preloader-bdr-c);
-    box-shadow    : 0 0 56px var(--preloader-bxs-c),
-                    inset 0 0 56px var(--preloader-bxs-inset-c); }
+    content       : "\0020"; }
   &::before {
     z-index   : 2;
     animation : ripple 1.6s infinite; }
