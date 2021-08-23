@@ -1,6 +1,9 @@
 
 .red-login__titlebar {
   color: hsl(47, 100%, 61%);
+  &.--logged-in {
+    color: hsl(161, 80%, 60%);
+  }
 }
 
 
