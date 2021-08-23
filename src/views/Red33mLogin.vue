@@ -67,7 +67,7 @@
 <script lang='ts' setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import { APIErrorResp, useAPI } from "@/services/api_internal";
+import { APIResponse, useAPI } from "@/services/api_internal";
 import useInputValidation from "@/composeables/inputValidation";
 import PageTitlebar from "@/components/PageTitlebar.vue";
 import PageFooter from "@/components/PageFooter.vue";
@@ -89,8 +89,8 @@ const code            = ref('');
 const errorText       = ref('');
 const errorUpdVal     = ref(0);
 
-function setError(res: APIErrorResp) {
-  errorText.value = res.message, errorUpdVal.value = Date.now();
+function setError(res: APIResponse<string>) {
+  errorText.value = res.data, errorUpdVal.value = Date.now();
 }
 
 function submit(e: MouseEvent) {
