@@ -11,7 +11,7 @@
       />
       <path
         d="M467.82,377.74C485.24,363.3,496,341.61,496,
-            312c0-59.82-53-85.76-96-88-8.89-89.54-71-144-144-144-26.16,0-48.79,6.93-67.6,18.14"
+           312c0-59.82-53-85.76-96-88-8.89-89.54-71-144-144-144-26.16,0-48.79,6.93-67.6,18.14"
         style="fill:none;stroke:hsl(197, 20%, 95%);stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"
       />
       <line
@@ -19,7 +19,7 @@
         y1="448"
         x2="64"
         y2="64"
-        style="fill:none;stroke:hsl(0, 100%, 67%);stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"
+        style="fill:none;stroke:hsl(0, 100%, 64%);stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"
       />
     </svg><br>
     <slot />
