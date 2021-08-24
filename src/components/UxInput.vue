@@ -110,7 +110,21 @@ if (maxchars > 255 && isTextField)
 ;
 if (!_inputTypes.includes(props.type)) throw Error('ux-input::invalid input type');
 
-function autoHeight(el: HTMLTextAreaElement) {
+watch(() => isValidated.value, onValidation);
+onMounted(detectCachedTextArea);
+
+function onValidation(state: boolean) {
+  props.validate(state, id);
+}
+
+function detectCachedTextArea() {
+  if (props.modelValue.length && props.type == 'area') {
+    charLength.value = props.modelValue.length;
+    adjustHeight(areaText.value!);
+  }
+}
+
+function adjustHeight(el: HTMLTextAreaElement) {
   el.style.height = '44px';
   el.style.height = `${el.scrollHeight}px`;
 }
@@ -118,22 +132,9 @@ function autoHeight(el: HTMLTextAreaElement) {
 function onInput(e: Event) {
   const el = e.target as HTMLTextAreaElement;
   const val = el.value;
-  if (type == 'area') autoHeight(el);
+  if (type == 'area') adjustHeight(el);
   charLength.value = val.length;
 }
-
-// onValidation
-watch(() => isValidated.value,
-  (val: boolean) => { props.validate(val, id); }
-);
-
-onMounted(() => {
-  // Update textarea if it starts with a value.
-  if (props.modelValue.length) {
-    charLength.value = props.modelValue.length;
-    autoHeight(areaText.value!);
-  }
-});
 
 const getVal = (e: Event) => (e.target as HTMLInputElement).value;
 
