@@ -118,7 +118,7 @@ function onValidation(state: boolean) {
 }
 
 function detectCachedTextArea() {
-  if (props.modelValue.length && props.type == 'area') {
+  if (props.type == 'area' && props.modelValue.length) {
     charLength.value = props.modelValue.length;
     adjustHeight(areaText.value!);
   }
