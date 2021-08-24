@@ -53,7 +53,7 @@ interface ExternalElements {
 
 const props         = defineProps({
   contentId : { type: String, required: true },
-  headerId  : { type: String, default: ''    },
+  headerId  : { type: String, required: true },
 });
 const menuElRef     = ref<HTMLDivElement|null>(null);
 const opened        = ref(false);
@@ -70,8 +70,10 @@ useEventBus().onUpdateMenu((routeName, visibility) => {
   }
 });
 
-// Setup events and animation style
-onMounted(() => {
+onMounted(setup);
+watch(() => isMenuOpening.value, toggleMenu);
+
+function setup() {
   els.body        = document.getElementById(props.contentId)!;
   els.header      = document.getElementById(props.headerId)!;
   els.closeHelper = document.createElement('div');
@@ -80,18 +82,16 @@ onMounted(() => {
   // FIX: We should NOT ASSUME that <main> exists
   const mainEl = document.getElementsByTagName('main')![0];
   mainEl.appendChild(els.closeHelper);
-  if (menuElRef.value && els.body) { floatOnScroll(); }
-});
+  affixOnScroll();
+}
 
-// Toggle menu
-watch(() => isMenuOpening.value,
-  async (isOpening) => {
-    opened.value = isOpening;
-    els.body?.classList[isOpening ? 'add' : 'remove']('--menu-open');
-    els.closeHelper?.classList[isOpening ? 'add' : 'remove']('--menu-open');
-});
+function toggleMenu(state: boolean) {
+  opened.value = state;
+  els.body?.classList[state ? 'add' : 'remove']('--menu-open');
+  els.closeHelper?.classList[state ? 'add' : 'remove']('--menu-open');
+}
 
-function floatOnScroll() {
+function affixOnScroll() {
   document.body.addEventListener('scroll', () => {
     const scrollTop = document.body.scrollTop;
     const menu      = els.menu!;
@@ -99,8 +99,9 @@ function floatOnScroll() {
     ;
     if (scrollTop >= els.header!.offsetHeight + 1) {
       if (pos != 'fixed') menu.value.style.position = 'fixed';
+      return;
     }
-    else if (pos != 'absolute') menu.value.style.position = 'absolute';
+    menu.value.style.position = 'absolute';
   });
 }
 
