@@ -118,7 +118,7 @@ function useCustomScrollPos(body: Ref<HTMLElement>) {
   }
 
   function setScrollPos(posRef: Ref<number>, url: string) {
-    // If navigating to sub-page
+    // Look for sub-page
     if (route.path.includes(`${url}/`)) {
       posRef.value = body.value.scrollTop;
       setScrollTop(0); return;
@@ -127,7 +127,7 @@ function useCustomScrollPos(body: Ref<HTMLElement>) {
   }
 
   function setScrollTop(top: number) {
-    // Scrolls page after navigation transition delay
+    // Wait for transition to complete before scrolling
     setTimeout(() => body.value.scrollTop = top, 430);
   }
 }
