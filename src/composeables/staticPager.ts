@@ -41,18 +41,17 @@ export function useStaticPager<T extends StaticPage>(url: DataCacheArrayKeys) {
   // route, then backing the history to that same custom route.
   if (pages.value.length && pageURI) displayPage(pageURI);
 
-  // onRouteChange
-  watch(() => route.value.params,
-    (params) => {
-      if (!route.value.path.includes(url)) return;
-      if (!params.page) {
-        activePage.value = null;
-        pageTitle.value = '';
-        return;
-      }
-      displayPage(params.page as string);
+  watch(() => route.value.params, onRouteChange);
+
+  function onRouteChange(params: any) {
+    if (!route.value.path.includes(url)) return;
+    if (!params.page) {
+      activePage.value = null;
+      pageTitle.value = '';
+      return;
     }
-  );
+    displayPage(params.page as string);
+  }
 
   function displayPage(uri: string) {
     const page = pages.value.find(page => page.uri == uri);
