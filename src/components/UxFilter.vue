@@ -43,7 +43,6 @@
 import { PropType, defineProps, defineEmits } from "vue";
 import { useEventBus } from "@/state/event-bus";
 import { FilterData, usePageFilter } from "@/composeables/pageFilter";
-// Components
 import UxCheckbox  from "./UxCheckbox.vue";
 import UxIcon      from "./UxIcon.vue";
 import UxToggle    from "./UxToggle.vue";

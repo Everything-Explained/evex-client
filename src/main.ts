@@ -5,8 +5,6 @@ import router from './router/router';
 import './styles/_main.css';
 import { useAPI } from './services/api_internal';
 
-
-// Initialize API
 const api = useAPI();
 api.init();
 

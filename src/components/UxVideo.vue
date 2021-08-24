@@ -55,7 +55,6 @@
 import { computed, ref, toRefs, defineProps } from "vue";
 import { useDate } from "@/composeables/date";
 import { isEthan } from "@/composeables/globals";
-// components
 import UxIcon from '@/components/UxIcon.vue';
 import UxImg  from "./UxImg.vue";
 

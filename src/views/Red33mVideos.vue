@@ -39,7 +39,6 @@ import useVideos    from "@/composeables/videos";
 import { useVideoPagination } from "@/composeables/videoPagination";
 import { Video }    from "@/typings/global-types";
 import { isMobile } from "@/globals";
-// Components
 import PageTitlebar from "@/components/PageTitlebar.vue";
 import PageFooter   from "@/components/PageFooter.vue";
 import UxVideo      from "@/components/UxVideo.vue";
