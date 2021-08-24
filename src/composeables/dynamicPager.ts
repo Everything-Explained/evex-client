@@ -20,44 +20,44 @@ export function useDynamicPager(url: string) {
   const pageMap     = {} as URIMap;
   const activePage  = ref<DynamicPage>();
 
-  function setActivePage() {
-    activePage.value = Object.values(pageMap).find(p => p.uri == currentURI.value);
+  watch(() => route.value.params, onRouteChange);
+
+  function onRouteChange(params: any) {
+    if (!route.value.path.includes(url)) return;
+    if (!params.uri) { activePage.value = undefined; return; }
+    if (currentURI.value) setActivePage();
   }
 
-  // onRouteChange
-  watch(() => route.value.params,
-    (params) => {
-      if (!route.value.path.includes(url)) return;
-      if (!params.uri) { activePage.value = undefined; return; }
-      if (currentURI.value) setActivePage();
+  function setDynPages(pages: { name: string; data: any[]; }[]) {
+    pages.forEach((page) => {
+      pageMap[page.name] = {
+        title: page.name,
+        uri: useURI(page.name),
+        data: page.data
+      };
+    });
+    // If route is already pointing to page
+    if (currentURI.value) setActivePage();
+  }
+
+  function setActivePage() {
+    activePage.value =
+      Object
+        .values(pageMap)
+        .find(p => p.uri == currentURI.value)
+    ;
+  }
+
+  function goTo(pageName: string) {
+    const currentPage = pageMap[pageName];
+    if (!currentPage) {
+      router.push('/404');
+      throw Error(`dynamicPager()::Missing or Invalid Page Name "${pageName}"`);
     }
-  );
+    router.push(`/${url}/${pageMap[pageName].uri}`);
+    activePage.value = currentPage;
+  }
 
-  return {
-    setDynPages: (pages: { name: string; data: any[]; }[]) => {
-      pages.forEach((page) => {
-        pageMap[page.name] = {
-          title: page.name,
-          uri: useURI(page.name),
-          data: page.data
-        };
-      });
-      // If route is already pointing to page
-      if (currentURI.value) setActivePage();
-    },
-
-    goTo: (pageName: string) => {
-      const currentPage = pageMap[pageName];
-      if (!currentPage) {
-        router.push('/404');
-        throw Error(`dynamicPager()::Missing or Invalid Page Name "${pageName}"`);
-      }
-      router.push(`/${url}/${pageMap[pageName].uri}`);
-      activePage.value = currentPage;
-    },
-
-    activePage,
-
-  };
+  return { setDynPages, goTo, activePage, };
 }
 
