@@ -1,12 +1,12 @@
 
 
 type ValidEvents = 'update-footer'|'update-menu';
-type MenuEvenRoutes = 'home'      | 'blog'       | 'support'   |
+type MenuEventRoutes = 'home'      | 'blog'       | 'support'   |
                       'lib-lit'   | 'lib-videos' | 'red-login' |
                       'red-lit'   | 'red-videos' | 'red-form'  |
                       'changelog' | '404'
 ;
-type MenuEventCallback = (route: MenuEvenRoutes, visibility: boolean) => void
+type MenuEventCallback = (route: MenuEventRoutes, visibility: boolean) => void
 type CallBack = (...args: any[]) => void;
 
 const _events = ['update-footer', 'update-menu'];
@@ -33,7 +33,7 @@ export function useEventBus() {
       _subscribers.forEach((sub, i) => sub[1] == cb && _subscribers.splice(i, 1));
     },
     onUpdateMenu:   (cb: MenuEventCallback)                      => on('update-menu', cb),
-    updateMenu:     (route: MenuEvenRoutes, visibility: boolean) => emit('update-menu', route, visibility),
+    updateMenu:     (route: MenuEventRoutes, visibility: boolean) => emit('update-menu', route, visibility),
     onUpdateFooter: (cb: CallBack)                               => on('update-footer', cb),
     updateFooter:   ()                                           => emit('update-footer'),
   };
