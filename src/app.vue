@@ -12,7 +12,7 @@
       </router-link>
     </header>
     <section class="app__body">
-      <the-menu :header-id="'AppHeader'" :content-id="'AppBodyContent'" />
+      <app-menu :header-id="'AppHeader'" :content-id="'AppBodyContent'" />
       <div id="AppBodyContent" class="content">
         <router-view v-slot="{ Component }">
           <transition name="fade" mode="out-in">
@@ -33,8 +33,7 @@ import { computed, onMounted, onUnmounted, Ref, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useDate } from "./composeables/date";
 import { ISODateString } from "./typings/global-types";
-// components
-import TheMenu from "@/components/AppMenu.vue";
+import AppMenu from "@/components/AppMenu.vue";
 import UxIcon from "./components/UxIcon.vue";
 
 
