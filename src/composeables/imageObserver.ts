@@ -26,9 +26,11 @@ export function useImageObserver(props: IMGProps) {
   function detectAssetSize() {
     if (props.asset) {
       const [width, height] = state.activeSrc.split('/')[5].split('x').map(v => parseInt(v));
+      // The current max-width style set on content container
+      const maxContentWidth = 1024;
 
       const winWidth = document.body.clientWidth;
-      const contentWidth = winWidth > 1024 ? 1024 : winWidth;
+      const contentWidth = winWidth > maxContentWidth ? maxContentWidth : winWidth;
       const ratio = width / height;
 
       if (width >= contentWidth) state.img.height = (contentWidth * 0.97) / ratio;
