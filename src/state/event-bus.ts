@@ -15,6 +15,14 @@ const _subscribers: [event: string, cb: CallBack][] = [];
 
 export function useEventBus() {
 
+  function updateMenu(route: MenuEventRoutes, visibility: boolean) {
+    emit('update-menu', route, visibility);
+  }
+
+  function updateFooter() {
+    emit('update-footer');
+  }
+
   function emit(ev: ValidEvents, ...args: any[]) {
     if (_events.includes(ev)) {
       _subscribers.forEach(sub => sub[0] == ev && sub[1](...args));
@@ -34,21 +42,5 @@ export function useEventBus() {
     );
   }
 
-  function onUpdateMenu(cb: MenuEventCallback) {
-    on('update-menu', cb);
-  }
-
-  function updateMenu(route: MenuEventRoutes, visibility: boolean) {
-    emit('update-menu', route, visibility);
-  }
-
-  function onUpdateFooter(cb: CallBack) {
-    on('update-footer', cb);
-  }
-
-  function updateFooter() {
-    emit('update-footer');
-  }
-
-  return { off, onUpdateMenu, updateMenu, onUpdateFooter, updateFooter, };
+  return { on, off, updateMenu, updateFooter, };
 }

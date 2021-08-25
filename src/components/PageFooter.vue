@@ -28,7 +28,7 @@ const { setFooterPos, debounceFooterPos, footRef }
                = useFooterPosition();
 const eventBus = useEventBus();
 
-eventBus.onUpdateFooter(debounceFooterPos);
+eventBus.on('update-footer', debounceFooterPos);
 
 onMounted(() => {
   setFooterPos();

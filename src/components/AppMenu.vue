@@ -63,7 +63,7 @@ const routeMap      = useRouteMap();
 const els           = { menu: computed(() => menuElRef.value!) } as ExternalElements;
 const menu          = menuElRef; // From DOM
 
-useEventBus().onUpdateMenu((routeName, visibility) => {
+useEventBus().on('update-menu', (routeName, visibility) => {
   for (const routeCat of routeMap) {
     const route = routeCat.routes.find(r => r.name == routeName);
     if (route) return route.visible = visibility;
