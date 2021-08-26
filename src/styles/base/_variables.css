@@ -61,13 +61,13 @@
   --md-p-bxs-c          : hsla(0, 0%, 0%, 0.4);
   --md-b-c              : hsl(197, 23%, 87%);
   --md-p-hov-b-c        : hsl(30, 30%, 92%);
-  --md-i-c              : hsl(0, 100%, 74%);
+  --md-i-c              : hsl(0, 100%, 75%);
   --md-p-hov-i-c        : hsl(47, 77%, 67%);
   --md-b-i-c            : hsl(197, 45%, 69%);
   --md-link-c           : var(--md-b-c);
   --md-link-hov-c       : var(--md-p-hov-i-c);
   --md-p-hov-link-c     : var(--md-p-hov-b-c);
-  --md-link-bdr-c       : var(--md-i-c);
+  --md-link-bdr-c       : hsl(0, 100%, 73%);
   --md-p-hov-link-bdr-c : var(--md-link-hov-c);
   --md-bq-c             : hsl(47, 68%, 61%);
   --md-bq-bg-c          : hsl(197, 20%, 5%);
