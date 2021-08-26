@@ -10,9 +10,6 @@ export default defineConfig({
     },
   },
   build: {
-    cleanCssOptions: {
-      level: 0,
-    },
     terserOptions: {
       toplevel: true,
       ecma: 2018,
