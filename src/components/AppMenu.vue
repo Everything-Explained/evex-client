@@ -78,7 +78,7 @@ function setup() {
   els.header      = document.getElementById(props.headerId)!;
   els.closeHelper = document.createElement('div');
   els.closeHelper.classList.add('app-menu__close-menu-area');
-  els.closeHelper.addEventListener('click', closeMenu);
+  els.closeHelper.addEventListener('mousedown', closeMenu);
   // FIX: We should NOT ASSUME that <main> exists
   const mainEl = document.getElementsByTagName('main')![0];
   mainEl.appendChild(els.closeHelper);
