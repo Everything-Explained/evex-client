@@ -50,7 +50,7 @@
 <script lang="ts" setup>
 import { computed, onUnmounted, PropType, ref, watch, defineProps } from "vue";
 import { StaticPage, useStaticPager } from "@/composeables/staticPager";
-import { DataCacheArrayKeys, DataCacheFilterObj, useDateCache } from "@/state/cache-state";
+import { DataCacheArrayKeys, DataCacheFilterObj, useDataCache } from "@/state/cache-state";
 import PageTitlebar from "@/components/PageTitlebar.vue";
 import PageFooter   from "../PageFooter.vue";
 import RenderHtml   from "../RenderHtml.vue";
@@ -92,7 +92,7 @@ const defaultOptions: AppLitOptions = {
   contentClass      : ''
 };
 const cfg           = Object.assign(defaultOptions, options);
-const cache         = useDateCache<DataCacheFilterObj>();
+const cache         = useDataCache<DataCacheFilterObj>();
 const { pages, pageTitle, activePage, goTo, isRunning, error: apiError }
                     = useStaticPager<Article>(options.uri);
 const titleRef      = computed(() => pageTitle.value || options.title);

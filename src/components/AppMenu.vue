@@ -37,7 +37,7 @@
 
 <script lang='ts' setup>
 import { computed, onMounted, ref, watch, Ref, defineProps } from "vue";
-import { useDateCache } from "@/state/cache-state";
+import { useDataCache } from "@/state/cache-state";
 import { useRouteMap }  from "@/composeables/routeMap";
 import { useEventBus }  from "@/state/event-bus";
 import UxIcon           from '@/components/UxIcon.vue';
@@ -57,7 +57,7 @@ const props         = defineProps({
 });
 const menuElRef     = ref<HTMLDivElement|null>(null);
 const opened        = ref(false);
-const dataCache     = useDateCache<boolean>();
+const dataCache     = useDataCache<boolean>();
 const isMenuOpening = dataCache.getData('titlebar-menu-open');
 const routeMap      = useRouteMap();
 const els           = { menu: computed(() => menuElRef.value!) } as ExternalElements;

@@ -1,4 +1,4 @@
-import { useDateCache } from "@/state/cache-state";
+import { useDataCache } from "@/state/cache-state";
 import { computed, reactive, ref } from "vue";
 
 
@@ -8,7 +8,7 @@ type IMGProps = { src: string; asset: boolean }
 export function useImageObserver(props: IMGProps) {
   const imgRef        = ref<HTMLImageElement>();
   const containerRef  = ref<HTMLElement>();
-  const dataCache     = useDateCache<string>();
+  const dataCache     = useDataCache<string>();
 
   const state = reactive({
     img           : computed(() => imgRef.value!),

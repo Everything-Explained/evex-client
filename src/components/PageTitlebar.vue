@@ -23,7 +23,7 @@
 
 <script lang='ts' setup>
 import { defineProps } from "vue";
-import { useDateCache } from "@/state/cache-state";
+import { useDataCache } from "@/state/cache-state";
 import UxIcon from '@/components/UxIcon.vue';
 
 
@@ -34,7 +34,7 @@ const props = defineProps({
 });
 
 const stateStr   = 'titlebar-menu-open';
-const dataCache  = useDateCache<boolean>();
+const dataCache  = useDataCache<boolean>();
 const isMenuOpen = dataCache.getData(stateStr);
 const duration   = {
   enter: props.easeIn ?? 400,

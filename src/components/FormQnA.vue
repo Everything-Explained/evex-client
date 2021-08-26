@@ -90,7 +90,7 @@
 import { PropType, reactive, defineProps, defineEmits } from "@vue/runtime-core";
 import useInputValidation from "@/composeables/inputValidation";
 import { APIErrorResp, useAPI }         from "@/services/api_internal";
-import { DataCacheArrayKeys, useDateCache } from "@/state/cache-state";
+import { DataCacheArrayKeys, useDataCache } from "@/state/cache-state";
 import UxButton  from "./UxButton.vue";
 import FormError from "./FormError.vue";
 import UxInput   from "./UxInput.vue";
@@ -117,7 +117,7 @@ const props        = defineProps({
 });
 const emit         = defineEmits(['back', 'submitted']);
 const api          = useAPI();
-const cache        = useDateCache<ReactiveQuestion>();
+const cache        = useDataCache<ReactiveQuestion>();
 const nameRegex    = /^[a-z\s.]+$/i;
 const oldQuestions = cache.getArrayData(props.id).value;
 const questions    = oldQuestions.length ? oldQuestions : getReactiveQuestions();

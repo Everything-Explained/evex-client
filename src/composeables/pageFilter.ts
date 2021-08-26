@@ -1,5 +1,5 @@
 
-import { DataCacheFilterObj, useDateCache } from "@/state/cache-state";
+import { DataCacheFilterObj, useDataCache } from "@/state/cache-state";
 import { ref } from "vue";
 
 
@@ -12,7 +12,7 @@ export interface FilterData {
 
 
 export function usePageFilter(pages: FilterData[], isPersisting: boolean, areReversed = false) {
-  const cache            = useDateCache<DataCacheFilterObj>();
+  const cache            = useDataCache<DataCacheFilterObj>();
   const filterStore      = cache.getObjData('filter').value;
   const clonedPages      = pages.slice();
   const authors          = getAuthors(clonedPages);

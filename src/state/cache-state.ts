@@ -41,7 +41,7 @@ export type DataCacheKeys      = keyof typeof stateOfPrimitives;
 
 // NOTE: We are assuming that all contained non-primitive types will
 //       NOT be mutated. E.g. [Object, Object] or { foo: ['bar'] }
-export function useDateCache<T>() {
+export function useDataCache<T>() {
 
   function setArrayData(key: DataCacheArrayKeys, val: any[]) {
     catchMissingState(key as string, stateOfArrays);
