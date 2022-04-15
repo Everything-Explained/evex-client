@@ -21,7 +21,6 @@ const browserIsSupported = (() => {
     && window['DOMParser']
     && window['crypto']
     && document.body.dataset
-    && (new DOMParser()).parseFromString
     && document.importNode
   ;
   if (!isValidBrowser) {
