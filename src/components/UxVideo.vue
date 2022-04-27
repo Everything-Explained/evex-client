@@ -52,7 +52,7 @@
 
 
 <script lang='ts' setup>
-import { computed, ref, toRefs, defineProps } from "vue";
+import { computed, ref, toRefs } from "vue";
 import { useDate } from "@/composeables/date";
 import { isEthan } from "@/composeables/globals";
 import UxIcon from '@/components/UxIcon.vue';

@@ -14,8 +14,7 @@
 
 
 
-<script lang='ts' setup>
-import { defineProps } from 'vue';
+<script lang="ts" setup>
 
 
 const props = defineProps({

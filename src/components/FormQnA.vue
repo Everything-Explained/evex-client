@@ -87,7 +87,7 @@
 
 
 <script lang='ts' setup>
-import { PropType, reactive, defineProps, defineEmits } from "@vue/runtime-core";
+import { PropType, reactive } from "@vue/runtime-core";
 import useInputValidation from "@/composeables/inputValidation";
 import { APIErrorResp, useAPI }         from "@/services/api_internal";
 import { DataCacheArrayKeys, useDataCache } from "@/state/cache-state";

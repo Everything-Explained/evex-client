@@ -9,7 +9,7 @@
 
 
 <script lang='ts' setup>
-import { ref, watch, defineProps } from "@vue/runtime-core";
+import { ref, watch } from "@vue/runtime-core";
 
 
 const props = defineProps({

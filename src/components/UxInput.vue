@@ -66,7 +66,7 @@
 
 <script lang='ts' setup>
 import useUniqueIDGen from "@/composeables/uniqueID";
-import { computed, onMounted, PropType, ref, watch, defineProps, defineEmits } from "vue";
+import { computed, onMounted, PropType, ref, watch } from "vue";
 
 
 type ValidateFn = (val: boolean, id: string) => void;

@@ -18,7 +18,7 @@
 
 
 <script lang="ts" setup>
-import { onMounted, watch, defineProps } from "vue";
+import { onMounted, watch } from "vue";
 import UxPreloader from './UxPreloader.vue';
 import { useImageObserver } from '@/composeables/imageObserver';
 

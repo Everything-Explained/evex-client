@@ -48,7 +48,7 @@
 
 
 <script lang="ts" setup>
-import { computed, onUnmounted, PropType, ref, watch, defineProps } from "vue";
+import { computed, onUnmounted, PropType, ref, watch } from "vue";
 import { StaticPage, useStaticPager } from "@/composeables/staticPager";
 import { DataCacheArrayKeys, DataCacheFilterObj, useDataCache } from "@/state/cache-state";
 import PageTitlebar from "@/components/PageTitlebar.vue";

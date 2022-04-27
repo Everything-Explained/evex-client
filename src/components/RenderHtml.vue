@@ -37,7 +37,6 @@
 
 
 <script lang="ts" setup>
-import { defineProps }       from "@vue/runtime-core";
 import { PropType }          from "vue";
 import UxImg                 from "./UxImg.vue";
 import AppMarkdown           from "./AppMarkdown.vue";

@@ -36,7 +36,7 @@
 
 
 <script lang='ts' setup>
-import { computed, onMounted, ref, watch, Ref, defineProps } from "vue";
+import { computed, onMounted, ref, watch, Ref } from "vue";
 import { useDataCache } from "@/state/cache-state";
 import { useRouteMap }  from "@/composeables/routeMap";
 import { useEventBus }  from "@/state/event-bus";

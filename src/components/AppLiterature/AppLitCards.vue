@@ -43,7 +43,7 @@
 
 
 <script lang='ts' setup>
-import { defineProps, PropType } from 'vue';
+import { PropType } from 'vue';
 import { useDate } from "@/composeables/date";
 import { isEthan } from "@/composeables/globals";
 import UxBullet from '../UxBullet.vue';

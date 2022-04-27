@@ -24,7 +24,7 @@
 
 <script lang="ts" setup>
 import useUniqueIDGen from "@/composeables/uniqueID";
-import { PropType, defineProps, defineEmits } from "@vue/runtime-core";
+import { PropType } from "@vue/runtime-core";
 
 
 defineProps({

@@ -40,7 +40,7 @@
 
 
 <script lang="ts" setup>
-import { PropType, defineProps, defineEmits } from "vue";
+import { PropType } from "vue";
 import { useEventBus } from "@/state/event-bus";
 import { FilterData, usePageFilter } from "@/composeables/pageFilter";
 import UxCheckbox  from "./UxCheckbox.vue";

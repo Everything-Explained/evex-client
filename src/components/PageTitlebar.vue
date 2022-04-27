@@ -22,7 +22,6 @@
 
 
 <script lang='ts' setup>
-import { defineProps } from "vue";
 import { useDataCache } from "@/state/cache-state";
 import UxIcon from '@/components/UxIcon.vue';
 

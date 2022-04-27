@@ -7,7 +7,7 @@
 
 
 <script lang='ts' setup>
-import { computed, defineProps, PropType, toRef } from 'vue';
+import { computed, PropType, toRef } from 'vue';
 
 
 type StringMap = { [key: string]: string };
