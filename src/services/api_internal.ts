@@ -1,7 +1,6 @@
 import { reactive, computed } from "vue";
 import { isProduction } from "../globals";
-import wretch, { WretcherError } from 'wretch';
-import { useVersionManager } from "./versionManager";
+import wretch from 'wretch';
 
 
 export interface APIResponse<T> {
@@ -66,27 +65,16 @@ async function init() {
         return err;
       })
   ;
-  const verMan = useVersionManager(state.version);
+
   if (typeof res.data != 'string') {
     // User id created
     if (res.status == 201) localStorage.setItem('passcode', 'no');
     if (!state.version || state.version != res.data.version) {
       localStorage.setItem('version', res.data.version);
       state.version = res.data.version;
-      verMan.addVersion(state.version);
     }
   }
   state.isInitialized = true;
-
-  // TODO - Use issue #61 to implement this code
-  // if (res.status == 521) {
-  //   console.log(verMan);
-  //   console.warn('Skipping User Authentication');
-  //   if (!verMan.version)
-  //     console.warn('No Versions available to fallback on')
-  //   ;
-  //   else console.warn(`Falling back on version: ${verMan.version}`);
-  // }
 }
 
 
@@ -100,8 +88,8 @@ function callAPI<T>(opts: APIOptions): Promise<APIResponse<T>> {
       rj({ status: 521, data: 'Server is Offline' } as APIResponse<string>)
     ;
     api
-      .fetchError(sendServerIsOffline)      // Catches Netork Errors
-      .error(521, sendServerIsOffline) // Cloudlfare tells us server is down
+      .fetchError(sendServerIsOffline) // Catches Network Errors
+      .error(521, sendServerIsOffline) // Cloudflare tells us server is down
       .res(async (res) => rs({
         status: res.status,
         data: opts.method == 'get' ? await res.json() : await res.text()
