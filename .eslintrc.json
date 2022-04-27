@@ -1,16 +1,18 @@
 {
     "env": {
         "es2020": true,
-        "node": true
+        "node": true,
+        "vue/setup-compiler-macros": true
     },
     "extends": [
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:vue/vue3-recommended"
     ],
+    "parser": "vue-eslint-parser",
     "parserOptions": {
         "parser": "@typescript-eslint/parser",
-        "ecmaVersion": 2018,
+        "ecmaVersion": "latest",
         "sourceType": "module"
     },
     "plugins": [
@@ -21,14 +23,8 @@
       "@typescript-eslint/explicit-module-boundary-types": 0,
       "@typescript-eslint/no-explicit-any": 0,
       "@typescript-eslint/no-non-null-assertion": 0,
-      "vue/max-attributes-per-line": ["error", {
-        "singleline": 2,
-        "multiline": {
-          "max": 1,
-          "allowFirstLine": true
-        }
-      }],
       "vue/no-v-html": 0,
-      "vue/no-setup-props-destructure": 0
+      "vue/no-setup-props-destructure": 0,
+      "vue/script-setup-uses-vars": "error"
     }
 }
