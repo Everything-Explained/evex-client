@@ -16,15 +16,25 @@ export interface APIErrorResp {
 }
 
 interface APIOptions {
-  URI      : string;
-  method   : 'get'|'put'|'post';
-  body     : RequestBody;
-  type    ?: APIReqType;
+  URI       : string;
+  method    : 'get'|'put'|'post';
+  body      : RequestBody;
+  type     ?: APIReqType;
+  version  ?: string | undefined;
+  dataType ?: 'json'|'text';
 }
 
 type APIReqType    = 'dynamic'|'static';
 type RequestBody   = { [key: string]: string|number|boolean|Array<any> }
-
+export type APIVersions = {
+  build  : string;
+  blog   : string;
+  libLit : string;
+  r3dLit : string;
+  chglog : string;
+  libVid : string;
+  r3dVid : string;
+}
 
 const genUniqueID = () =>
   crypto
@@ -32,17 +42,19 @@ const genUniqueID = () =>
     .reduce((pv, cv) => pv += cv.toString(36), '')
 ;
 
+const versions = localStorage.getItem('versions');
+
 const state = reactive({
   userid        : localStorage.getItem('userid') || genUniqueID(),
   isInitialized : false,
   initializing  : false,
-  version       : localStorage.getItem('version') || undefined,
+  versions      : versions ? JSON.parse(versions) as APIVersions : undefined,
   isLoading     : false,
   isDebouncing  : false,
 });
 
 const sanitizeURLForEnv = (url: string) => {
-  return isProduction ? url : `//localhost:3003${url}`;
+  return isProduction ? url : `//127.0.0.1:3003${url}`;
 };
 
 const apiEndpoint =
@@ -60,18 +72,18 @@ async function init() {
   ;
   const res =
     await API
-      .get<{version: string}>('/auth/setup', { userid: state.userid })
+      .get<APIVersions>('/auth/setup', { userid: state.userid })
       .catch((err: APIResponse<string>) => {
         return err;
       })
   ;
 
   if (typeof res.data != 'string') {
-    // User id created
+    // User created with default passcode
     if (res.status == 201) localStorage.setItem('passcode', 'no');
-    if (!state.version || state.version != res.data.version) {
-      localStorage.setItem('version', res.data.version);
-      state.version = res.data.version;
+    if (state.versions?.build != res.data.build) {
+      localStorage.setItem('versions', JSON.stringify(res.data));
+      state.versions = res.data;
     }
   }
   state.isInitialized = true;
@@ -92,7 +104,9 @@ function callAPI<T>(opts: APIOptions): Promise<APIResponse<T>> {
       .error(521, sendServerIsOffline) // Cloudflare tells us server is down
       .res(async (res) => rs({
         status: res.status,
-        data: opts.method == 'get' ? await res.json() : await res.text()
+        data: opts.method == 'get'
+                ? opts.dataType == 'text' ? await res.text() : await res.json()
+                : await res.text()
       }))
       .catch((err: APIErrorResp) => {
         rj({
@@ -107,10 +121,10 @@ function callAPI<T>(opts: APIOptions): Promise<APIResponse<T>> {
 
 
 function setupAPI(opts: APIOptions) {
-  const { URI, method, body, type } = opts
+  const { URI, method, body, type, version } = opts
   ;
   if ((type || 'dynamic') == 'static')
-    body.version = state.version || ''
+    body.version = version || state.versions?.build || ''
   ;
   const api = (method == 'get')
     ? apiEndpoint.url(URI).query(body)[method]()
@@ -143,8 +157,8 @@ function debounce(delay: number, func: () => void) {
 
 
 const API = {
-  get<T>(endpoint: string, query: RequestBody|null, type: APIReqType = 'dynamic') {
-    return callAPI<T>({ URI: endpoint, method: 'get', body: query || {}, type });
+  get<T>(endpoint: string, query: RequestBody|null, version = '', type: APIReqType = 'dynamic', dataType = 'json' as 'json'|'text'|undefined) {
+    return callAPI<T>({ URI: endpoint, method: 'get', body: query || {}, type, version, dataType });
   },
   post<T>(endpoint: string, body: RequestBody) {
     return callAPI<T>({ URI: endpoint, method: 'post', body });
@@ -161,6 +175,7 @@ export function useAPI() {
     init,
     debounce,
     ...API,
-    isPending: computed(() => state.isDebouncing || state.isLoading)
+    isPending: computed(() => state.isDebouncing || state.isLoading),
+    state
   };
 }

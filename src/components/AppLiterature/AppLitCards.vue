@@ -1,10 +1,11 @@
 <template>
   <div :class="['lit__cards', { '--expanded': expanded }]">
-    <div v-for="(card, i) of cards"
-         :key="i"
-         :class="['lit__card', { '--expanded': expanded }]"
+    <div
+      v-for="(card, i) of cards"
+      :key="i"
+      :class="['lit__card', { '--expanded': expanded }]"
     >
-      <header @click="goTo(card.uri)">
+      <header @click="goTo(toURI(card.title))">
         {{ card.title }}
       </header>
       <summary>{{ card.summary }}</summary>
@@ -48,13 +49,13 @@ import { useDate } from "@/composeables/date";
 import { isEthan } from "@/composeables/globals";
 import UxBullet from '../UxBullet.vue';
 import UxIcon from '../UxIcon.vue';
+import { useURI } from '@/composeables/URI';
 
 
 interface LitCard {
   title   : string;
   summary : string;
   author  : string;
-  uri     : string;
   date    : string;
 }
 
@@ -67,6 +68,7 @@ const {expanded} = defineProps({
 });
 
 const showFullDate = expanded;
+const toURI = useURI;
 
 </script>
 

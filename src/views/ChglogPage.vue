@@ -6,6 +6,7 @@
 
 <script lang='ts' setup>
 import AppLiterature, { AppLitOptions } from "@/components/AppLiterature/AppLiterature.vue";
+import { useAPI } from "@/services/api_internal";
 
 
 const options: AppLitOptions = {
@@ -16,6 +17,7 @@ const options: AppLitOptions = {
   showFilter        : false,
   useCustomRenderer : false,
   contentClass      : 'vw-chglog',
+  version           : useAPI().state.versions?.libLit
 };
 
 </script>

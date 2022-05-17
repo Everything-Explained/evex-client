@@ -9,8 +9,8 @@ const stateOfArrays = reactive({
   'red33m/qnaform'            : [],
   'library/literature'        : [],
   'red33m/literature'         : [],
-  '/data/red33m/videos.json'  : [],
-  '/data/library/videos.json' : [],
+  '/data/red33m/videos'       : [],
+  '/data/library/videos'      : [],
 });
 
 const stateOfObjects = reactive({

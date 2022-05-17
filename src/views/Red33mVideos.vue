@@ -53,7 +53,7 @@ const pagination     = useVideoPagination(videos);
 const observedEl     = pagination.observedEl;
 
 const { isLoadingVideos } = useVideos<Video>(
-  '/data/red33m/videos.json',
+  '/data/red33m/videos',
   (v) => {
     videos.value = v;
     displayPage();

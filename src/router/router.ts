@@ -2,16 +2,16 @@ import { createRouter,
          createWebHistory,
          RouteRecordRaw } from 'vue-router';
 import { isAuthed, isAuthedGuard, isDevelopment }  from '@/globals';
-import Home               from '@/views/Home.vue';
+import Home               from '@/views/HomePage.vue';
 import i404               from '@/views/404Error.vue';
 import R3dVideos          from '@/views/Red33mVideos.vue';
-import Blog               from '@/views/Blog.vue';
+import Blog               from '@/views/BlogPage.vue';
 import Videos             from '@/views/LibraryVideos.vue';
 import Literature         from '@/views/LibraryLiterature.vue';
 import Red33mLogin        from '@/views/Red33mLogin.vue';
 import red33mForm         from '@/views/Red33mAccessForm.vue';
 import r3d_litVue         from '@/views/Red33mLiterature.vue';
-import changelogVue       from '@/views/Changelog.vue';
+import changelogVue       from '@/views/ChglogPage.vue';
 
 
 

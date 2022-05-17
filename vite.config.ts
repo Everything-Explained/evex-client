@@ -12,7 +12,7 @@ export default defineConfig({
   build: {
     terserOptions: {
       toplevel: true,
-      ecma: 2018,
+      ecma: 2020,
       format: {
         ecma: 2018,
         indent_level: 2,

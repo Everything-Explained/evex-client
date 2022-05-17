@@ -1,17 +1,19 @@
-import { APIResponse, useAPI } from "@/services/api_internal";
+import { APIResponse, APIVersionStr, useAPI } from "@/services/api_internal";
 import { DataCacheArrayKeys, useDataCache } from "@/state/cache-state";
 import { ref, watch } from "vue";
 import { useRouter } from "vue-router";
+import { useURI } from "./URI";
 
 export interface StaticPage {
+  id: number;
   title: string;
   author: string;
   content: string;
-  uri: string;
+  hash: string;
   date: string;
 }
 
-export function useStaticPager<T extends StaticPage>(url: DataCacheArrayKeys) {
+export function useStaticPager<T extends StaticPage>(url: DataCacheArrayKeys, version = '') {
   const router     = useRouter();
   const dataCache  = useDataCache<T>();
   const api        = useAPI();
@@ -21,11 +23,12 @@ export function useStaticPager<T extends StaticPage>(url: DataCacheArrayKeys) {
   const pages      = dataCache.getArrayData(url);
   const pageTitle  = ref('');
   const error      = ref<APIResponse<string>|null>(null);
+  const isGettingPageContent = ref(false);
 
   // Only retrieve pages when Cache is empty
   if (!pages.value.length) {
     api
-      .get<StaticPage[]>(`/data/${url}.json`, null, 'static')
+      .get<StaticPage[]>(`/data/${url}`, null, version, 'static')
       .then(res => {
         dataCache.setArrayData(url, res.data);
         // If URL points to a specific page on load
@@ -54,10 +57,23 @@ export function useStaticPager<T extends StaticPage>(url: DataCacheArrayKeys) {
   }
 
   function displayPage(uri: string) {
-    const page = pages.value.find(page => page.uri == uri);
+    const page = pages.value.find(page => useURI(page.title) == uri);
     if (!page) { router.push('/404'); return; }
-    activePage.value = page;
+    isGettingPageContent.value = true;
     pageTitle.value = page.title;
+    getPageContent(page);
+  }
+
+  function getPageContent(page: T) {
+    api
+    .get<string>(`/data/${url}/${page.id}.mdhtml`, null, page.hash, 'static', 'text')
+    .then(res => {
+      setTimeout(() => {
+        page.content = res.data;
+        activePage.value = page;
+        isGettingPageContent.value = false;
+      }, 500);
+    });
   }
 
   function goTo(uri: string) {
@@ -71,5 +87,6 @@ export function useStaticPager<T extends StaticPage>(url: DataCacheArrayKeys) {
     pageTitle,
     error,
     isRunning: api.isPending,
+    isGettingPageContent,
   };
 }

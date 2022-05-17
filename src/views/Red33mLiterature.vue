@@ -10,11 +10,13 @@
 
 <script lang="ts" setup>
 import AppLiterature, { AppLitOptions } from "@/components/AppLiterature/AppLiterature.vue";
+import { useAPI } from "@/services/api_internal";
 
 
 const options: AppLitOptions = {
   uri   : 'red33m/literature',
   title : 'RED33M Literature',
+  version : useAPI().state.versions?.r3dLit
 };
 
 </script>

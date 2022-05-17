@@ -18,7 +18,7 @@
                 {{ cat.name }}
               </h1>
               <div class="desc">
-                {{ cat.description }}
+                {{ cat.desc }}
               </div>
               <h2>Contributing Authors</h2>
               <div class="desc --authors">
@@ -94,12 +94,12 @@ import UxVideo             from "@/components/UxVideo.vue";
 import UxPreloader         from '@/components/UxPreloader.vue';
 
 
-type VideoCategory = { name: string; description: string; videos: Video[] };
+type VideoCategory = { name: string; desc: string; videos: Video[] };
 
 
 const { setDynPages, goTo, activePage, }     = useDynamicPager('library/videos');
 const { videos: categories, isLoadingVideos} = useVideos<VideoCategory>(
-  '/data/library/videos.json',
+  '/data/library/videos',
   (vidCats) => {
     setDynPages(vidCats.map(cat => ({ name: cat.name, data: cat.videos })));
   }
