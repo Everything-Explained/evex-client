@@ -1,4 +1,4 @@
-import { APIResponse, APIVersionStr, useAPI } from "@/services/api_internal";
+import { APIResponse, useAPI } from "@/services/api_internal";
 import { DataCacheArrayKeys, useDataCache } from "@/state/cache-state";
 import { ref, watch } from "vue";
 import { useRouter } from "vue-router";
@@ -46,6 +46,7 @@ export function useStaticPager<T extends StaticPage>(url: DataCacheArrayKeys, ve
 
   watch(() => route.value.params, onRouteChange);
 
+
   function onRouteChange(params: any) {
     if (!route.value.path.includes(url)) return;
     if (!params.page) {
@@ -56,29 +57,44 @@ export function useStaticPager<T extends StaticPage>(url: DataCacheArrayKeys, ve
     displayPage(params.page as string);
   }
 
+
   function displayPage(uri: string) {
     const page = pages.value.find(page => useURI(page.title) == uri);
-    if (!page) { router.push('/404'); return; }
-    isGettingPageContent.value = true;
+
+    if (!page) {
+      router.push('/404');
+      return;
+    }
+
     pageTitle.value = page.title;
+
+    if (page.content) {
+      activePage.value = page;
+      return;
+    }
+
+    isGettingPageContent.value = true;
     getPageContent(page);
   }
 
+
   function getPageContent(page: T) {
     api
-    .get<string>(`/data/${url}/${page.id}.mdhtml`, null, page.hash, 'static', 'text')
-    .then(res => {
-      setTimeout(() => {
-        page.content = res.data;
-        activePage.value = page;
-        isGettingPageContent.value = false;
-      }, 500);
-    });
+      .get<string>(`/data/${url}/${page.id}.mdhtml`, null, page.hash, 'static', 'text')
+      .then(res => {
+        setTimeout(() => {
+          page.content = res.data;
+          activePage.value = page;
+          isGettingPageContent.value = false;
+        }, 500);
+      });
   }
+
 
   function goTo(uri: string) {
     router.push(`/${url}/${uri}`);
   }
+
 
   return {
     goTo,
