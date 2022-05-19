@@ -14,12 +14,12 @@ export default defineConfig({
       toplevel: true,
       ecma: 2020,
       format: {
-        ecma: 2018,
+        ecma: 2020,
         indent_level: 2,
       },
       compress: {
         drop_console: true,
-        ecma: 2018,
+        ecma: 2020,
       }
     }
   }
