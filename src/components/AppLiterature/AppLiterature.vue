@@ -6,7 +6,7 @@
       :text="titleRef"
     />
     <transition name="fade" mode="out-in">
-      <ux-preloader v-if="isRunning || isGettingPageContent" />
+      <ux-preloader v-if="isRunning" />
       <page-error v-else-if="apiError" class="error">
         {{ apiError.data }}<br>
         Try again later...
@@ -110,7 +110,7 @@ const defaultOptions: AppLitOptions = {
 };
 const cfg           = Object.assign(defaultOptions, options);
 const cache         = useDataCache<DataCacheFilterObj>();
-const { pages, pageTitle, activePage, goTo, isRunning, error: apiError, isGettingPageContent }
+const { pages, pageTitle, activePage, goTo, isRunning, error: apiError }
                     = useStaticPager<Article>(options.uri, cfg.version);
 const titleRef      = computed(() => pageTitle.value || options.title);
 const filteredPages = ref<Article[]>([]);
@@ -124,13 +124,6 @@ if (!cfg.showFilter) {
     : onFilter(pages.value)
   ;
 }
-
-
-// Prevent page from teleporting immediately to top after
-// page content has been loaded. Instead we smooth scroll it.
-watch(() => isGettingPageContent.value, (isGetting) => {
-  if (isGetting) document.body.scrollTop = 0;
-});
 
 
 // A trick to toggle between two identical content elements

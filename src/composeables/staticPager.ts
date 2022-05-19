@@ -1,5 +1,6 @@
 import { APIResponse, useAPI } from "@/services/api_internal";
 import { DataCacheArrayKeys, useDataCache } from "@/state/cache-state";
+import { computed } from "@vue/reactivity";
 import { ref, watch } from "vue";
 import { useRouter } from "vue-router";
 import { useURI } from "./URI";
@@ -102,7 +103,6 @@ export function useStaticPager<T extends StaticPage>(url: DataCacheArrayKeys, ve
     activePage,
     pageTitle,
     error,
-    isRunning: api.isPending,
-    isGettingPageContent,
+    isRunning: computed(() => api.isPending.value || isGettingPageContent.value),
   };
 }
