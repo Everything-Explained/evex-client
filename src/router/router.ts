@@ -11,7 +11,7 @@ import Literature         from '@/views/LibraryLiterature.vue';
 import Red33mLogin        from '@/views/Red33mLogin.vue';
 import red33mForm         from '@/views/Red33mAccessForm.vue';
 import r3d_litVue         from '@/views/Red33mLiterature.vue';
-import changelogVue       from '@/views/ChglogPage.vue';
+import changelogVue       from '@/views/ChangelogPage.vue';
 
 
 
