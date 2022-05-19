@@ -84,6 +84,11 @@ const router = createRouter({
 });
 
 
+// Hack for when dynamically injected HTML links navigate to
+// internal pages.
+window.$router = router;
+
+
 export default router;
 
 

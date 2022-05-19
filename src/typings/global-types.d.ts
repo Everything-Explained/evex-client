@@ -1,4 +1,4 @@
-import { RouteLocationNormalizedLoaded } from "vue-router";
+import { RouteLocationNormalizedLoaded, Router } from "vue-router";
 
 export type ISODateString = string;
 
@@ -7,6 +7,7 @@ export type Route = RouteLocationNormalizedLoaded;
 declare global {
   interface Window {
     app: any;
+    $router: Router;
   }
 }
 
