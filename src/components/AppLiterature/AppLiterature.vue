@@ -26,7 +26,26 @@
         />
         <page-footer />
       </div>
-      <div v-else-if="activePage">
+      <!--
+           THE FOLLOWING DUPLICATE CODE IS NECESSARY
+
+           A trick is being utilized here to trigger the animation
+           from the transition element, when a link navigates to a
+           page within the same URL root.
+
+           (i.e. blog entry link navigates to another blog entry)
+      -->
+      <div v-else-if="activeContent == 1 && activePage">
+        <render-html v-if="cfg.useCustomRenderer" :html="activePage.content" />
+        <app-markdown
+          v-else
+          :simple="false"
+          :class="cfg.contentClass"
+          v-html="activePage.content"
+        />
+        <page-footer />
+      </div>
+      <div v-else-if="activeContent == 2 && activePage">
         <render-html v-if="cfg.useCustomRenderer" :html="activePage.content" />
         <app-markdown
           v-else
@@ -95,6 +114,8 @@ const { pages, pageTitle, activePage, goTo, isRunning, error: apiError, isGettin
                     = useStaticPager<Article>(options.uri, cfg.version);
 const titleRef      = computed(() => pageTitle.value || options.title);
 const filteredPages = ref<Article[]>([]);
+const activeContent  = ref(0);
+
 
 // When filter is disabled, we need to manually set pages
 if (!cfg.showFilter) {
@@ -104,15 +125,26 @@ if (!cfg.showFilter) {
   ;
 }
 
+
 // Prevent page from teleporting immediately to top after
 // page content has been loaded. Instead we smooth scroll it.
 watch(() => isGettingPageContent.value, (isGetting) => {
   if (isGetting) document.body.scrollTop = 0;
 });
 
+
+// A trick to toggle between two identical content elements
+// such that the transition animation is triggered.
+let contentCount = -1;
+watch(() => activePage.value, () => {
+  activeContent.value = contentCount++ % 2 == 0 ? 1 : 2;
+});
+
+
 function onFilter(pages: Article[]) {
   filteredPages.value = pages;
 }
+
 
 onUnmounted(() => {
   // Reset filter on page navigation
