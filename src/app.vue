@@ -37,6 +37,11 @@ import AppMenu from "@/components/AppMenu.vue";
 import UxIcon from "./components/UxIcon.vue";
 
 
+
+type ManagedPages = Array<{ scrollPos: Ref<number>; url: string; }>;
+
+
+
 const body = computed(() => document.body);
 const {
   isToastVisible,
@@ -46,6 +51,7 @@ const {
 } = useVersionToast(body, '2021-08-26T21:28:00.237Z', 'a4-blueprint');
 
 useCustomScrollPos(body);
+
 
 function useVersionToast(body: Ref<HTMLElement>, releaseDate: ISODateString, changelogURI: string) {
   if (localStorage.getItem('release-date') != releaseDate) {
@@ -96,24 +102,33 @@ function useVersionToast(body: Ref<HTMLElement>, releaseDate: ISODateString, cha
   };
 }
 
+
 function useCustomScrollPos(body: Ref<HTMLElement>) {
   const router          = useRouter();
   const route           = useRoute();
-  const blogScrollPos   = ref(0);
-  const libVidScrollPos = ref(0);
-  const r3dLitScrollPos = ref(0);
-  const blogURL         = '/blog';
-  const libVidURL       = '/library/videos';
-  const r3dLitURL       = '/red33m/literature';
+  const managedPages: ManagedPages = [
+    { scrollPos: ref(0), url: '/blog'               },
+    { scrollPos: ref(0), url: '/library/videos'     },
+    { scrollPos: ref(0), url: '/library/literature' },
+    { scrollPos: ref(0), url: '/red33m/literature'  },
+    { scrollPos: ref(0), url: '/changelog'          },
+  ];
 
   watch(() => route.path, onRouteChange);
 
   async function onRouteChange() {
     await router.isReady();
-    if (route.path.includes(blogURL))   { setScrollPos(blogScrollPos, blogURL);     return; }
-    if (route.path.includes(libVidURL)) { setScrollPos(libVidScrollPos, libVidURL); return; }
-    if (route.path.includes(r3dLitURL)) { setScrollPos(r3dLitScrollPos, r3dLitURL); return; }
+    checkForPages();
     setScrollTop(0);
+  }
+
+  function checkForPages() {
+    for (const page of managedPages) {
+      if (route.path.includes(page.url)) {
+        setScrollPos(page.scrollPos, page.url);
+        break;
+      }
+    }
   }
 
   function setScrollPos(posRef: Ref<number>, url: string) {
