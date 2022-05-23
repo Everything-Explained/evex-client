@@ -1,6 +1,7 @@
 import { reactive, computed } from "vue";
 import { isProduction } from "../globals";
 import wretch from 'wretch';
+import { ISODateString } from "@/typings/global-types";
 
 
 export interface APIResponse<T> {
@@ -26,15 +27,8 @@ interface APIOptions {
 
 type APIReqType    = 'dynamic'|'static';
 type RequestBody   = { [key: string]: string|number|boolean|Array<any> }
-export type APIVersions = {
-  build  : string;
-  blog   : string;
-  libLit : string;
-  r3dLit : string;
-  chglog : string;
-  libVid : string;
-  r3dVid : string;
-}
+type APIVersionNames = 'build'|'blog'|'chglog'|'home'|'libLit'|'libVid'|'r3dLit'|'r3dVid';
+export type APIVersions = Record<APIVersionNames, { v: string; n: ISODateString; }>;
 
 const genUniqueID = () =>
   crypto
@@ -124,7 +118,7 @@ function setupAPI(opts: APIOptions) {
   const { URI, method, body, type, version } = opts
   ;
   if ((type || 'dynamic') == 'static')
-    body.version = version || state.versions?.build || ''
+    body.version = version || state.versions?.build.v || ''
   ;
   const api = (method == 'get')
     ? apiEndpoint.url(URI).query(body)[method]()
