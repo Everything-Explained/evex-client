@@ -18,7 +18,7 @@
             :key="i"
             :video-id="v.id"
             :date="v.date"
-            :desc="v.content"
+            :summary="v.summary"
             class="red-vid__video"
           >
             {{ v.title }}

@@ -63,7 +63,7 @@
             :key="j"
             class="lib-vid__video"
             :video-id="v.id"
-            :desc="v.content"
+            :desc="v.summary"
             :date="v.date"
             :author="v.author"
           >

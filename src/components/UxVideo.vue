@@ -16,7 +16,7 @@
         @click="openVideo"
       />
       <ux-icon
-        v-if="desc"
+        v-if="summary"
         :class="[
           'ux-video__widget desc',
           { '--open': descState }
@@ -32,7 +32,7 @@
         />
         <div class="text">
           <h1>Description</h1>
-          <span class="--default-scrollbar" v-html="desc" />
+          <span class="--default-scrollbar" v-html="summary" />
         </div>
       </div>
     </div>
@@ -60,12 +60,12 @@ import UxImg  from "./UxImg.vue";
 
 
 const props             = defineProps({
-  desc    : { type: String, default: '' },
+  summary : { type: String, default: '' },
   videoId : { type: String, default: '' },
   date    : { type: String, default: '' },
   author  : { type: String, default: '' },
 });
-const { videoId, desc } = toRefs(props);
+const { videoId, summary } = toRefs(props);
 const descState         = ref(false);
 const thumbnailRef      = computed(() =>
   `//img.youtube.com/vi/${videoId.value}/0.jpg`
