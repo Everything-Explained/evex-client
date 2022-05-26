@@ -17,7 +17,7 @@
               'lit-card__author-text',
               { '--is-ethan': isEthan(card.author) }
             ]"
-          >{{ card.author }}</span>
+          >{{ card.author.trim() }}</span>
         </span>
         <span class="lit-card__timestamp">
           <span v-if="showFullDate" class="lit-card__full-datetime">
