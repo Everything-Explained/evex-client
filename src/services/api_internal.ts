@@ -118,7 +118,7 @@ function setupAPI(opts: APIOptions) {
   const { URI, method, body, type, version } = opts
   ;
   if ((type || 'dynamic') == 'static')
-    body.version = version || state.versions?.build.v || ''
+    body.v = version || state.versions?.build.v || ''
   ;
   const api = (method == 'get')
     ? apiEndpoint.url(URI).query(body)[method]()
