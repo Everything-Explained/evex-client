@@ -14,7 +14,7 @@ const options: AppLitOptions = {
   title        : 'Blog Entries',
   expanded     : true,
   reverseOrder : true,
-  version      : useAPI().state.versions?.blog,
+  version      : useAPI().state.versions?.blog.v,
 };
 
 </script>

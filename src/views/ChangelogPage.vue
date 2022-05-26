@@ -17,7 +17,7 @@ const options: AppLitOptions = {
   showFilter        : false,
   useCustomRenderer : false,
   contentClass      : 'vw-chglog',
-  version           : useAPI().state.versions?.libLit
+  version           : useAPI().state.versions?.chglog.v
 };
 
 </script>
