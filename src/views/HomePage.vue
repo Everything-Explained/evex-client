@@ -28,7 +28,7 @@ const api = useAPI();
 const pageContent = ref('');
 
 api
-  .get<any>('/data/static/home.json', null, api.state.versions?.home.v)
+  .get<any>('/data/static/home.json', null, api.state.versions?.home.v, 'static')
   .then(res => {
     pageContent.value = res.data.content;
   });
