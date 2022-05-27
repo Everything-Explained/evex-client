@@ -1,6 +1,14 @@
 
+.ux-video {
+  position: relative;
+}
+
+.ux-video__thumb-container {
+  position: relative;
+}
 
 .ux-video__thumb-container::before {
+  position    : relative;
   display     : block;
   padding-top : 56.25%;
   content     : '';
@@ -16,6 +24,7 @@
   overflow : hidden;
 
   img {
+    position : relative;
     margin : -9.5% 0 -11% 0;
     width  : 100%; }
 }
@@ -87,6 +96,7 @@
       color            : var(--video-widget-close-hov-c); }
   }
   .text {
+    position: relative;
     display        : flex;
     flex-direction : column;
     max-height     : 100%;
@@ -123,7 +133,7 @@
 
 
 .ux-video__info {
-
+  position: relative;
   .title {
     height           : 3.35rem;
     padding          : 0 0.3rem;

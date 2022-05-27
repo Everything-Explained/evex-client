@@ -1,9 +1,10 @@
 .ux-img {
+  position: relative;
   width: 100%;
 }
 
 
-.ux-img__preloader {
+.preloader.ux-img__preloader {
   position   : absolute;
   top        : 50%;
   left       : 50%;

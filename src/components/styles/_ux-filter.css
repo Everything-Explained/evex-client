@@ -1,5 +1,6 @@
 
 .ux-filter {
+  position: relative;
   margin: 20px auto;
   width: 20rem;
 }
@@ -44,6 +45,7 @@
   color            : var(--toggle-legend-c);
   cursor           : pointer;
   .ux-icon {
+    position: relative;
     top  : 0.3rem;
     left : 3px; }
 }

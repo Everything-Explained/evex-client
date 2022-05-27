@@ -1,4 +1,5 @@
 .preloader {
+  position       : relative;
   box-sizing     : border-box;
   text-align     : center;
   z-index        : 1;

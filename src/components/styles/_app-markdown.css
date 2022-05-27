@@ -178,6 +178,7 @@
   /* ### Embeded Video Styles ### */
   & > span {
     .embed-responsive {
+      position       : relative;
       margin         : 20px auto;
       width          : 90%;
       height         : 0;
