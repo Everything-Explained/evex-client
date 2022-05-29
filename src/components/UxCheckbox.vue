@@ -8,12 +8,12 @@
       @change="emit('changed', getVal($event)), emit('update:modelValue', getVal($event))"
     >
     <label :for="chkbxID" class="ux-checkbox__label">
-      <div>
+      <div class="ux-checkbox__box">
         <svg class="ux-checkbox__checkmark" viewbox="0 0 12 10">
           <polyline points="1.5 6 4.5 9 10.5 1" />
         </svg>
       </div>
-      <div>{{ value }}</div>
+      <div class="ux-checkbox__author">{{ value }}</div>
     </label>
   </div>
 </template>

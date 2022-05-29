@@ -23,23 +23,27 @@
   transition    : all 0.15s;
   &:hover {
     color: var(--md-p-hov-i-c); }
-  div {
-    &:first-child {
-      display          : inline-block;
-      transform        : scale(var(--chkbx-scale));
-      margin-right     : 0.6rem;
-      vertical-align   : middle;
-      width            : 18px;
-      height           : 18px;
-      box-shadow       : 0 0 1px 2px black;
-      border-radius    : 4px;
-      border           : 1px solid hsl(197, 11%, 40%);
-      background-color : var(--body-bg-c);
-      transition       : all 0.2s ease; }
-    &:last-child {
-      display: inline-block;
-      vertical-align: middle; }
-  }
+}
+
+
+.ux-checkbox__box {
+    display          : inline-block;
+    transform        : scale(var(--chkbx-scale));
+    margin-right     : 0.6rem;
+    vertical-align   : middle;
+    width            : 18px;
+    height           : 18px;
+    box-shadow       : 0 0 1px 2px black;
+    border-radius    : 4px;
+    border           : 1px solid hsl(197, 11%, 40%);
+    background-color : var(--body-bg-c);
+    transition       : all 0.2s ease;
+}
+
+
+.ux-checkbox__author {
+  display        : inline-block;
+  vertical-align : middle;
 }
 
 
