@@ -1,4 +1,5 @@
 .ux-input__container {
+  position: relative;
   display       : inline-block;
   margin-bottom : 3rem;
   text-align    : left;

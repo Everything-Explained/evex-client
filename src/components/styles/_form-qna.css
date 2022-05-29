@@ -17,6 +17,7 @@
 
 
 .qnaf__q {
+  position: relative;
   font-size      : 1.20rem;
   letter-spacing : 1px;
   &::before {

@@ -12,6 +12,7 @@ textarea {
 }
 
 button {
+  position: relative;
   border: none;
   background: none;
   border-radius: 0;
