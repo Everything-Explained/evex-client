@@ -1,8 +1,8 @@
 
 export function useHTMLNodeParser(html: string) {
-  const youTubeHTML = 'embed-responsive-item youtube-player';
   const imageHTML   = '<img';
   const olHTML      = '<ol';
+  const youtubeHTML = '<youtube';
 
   function getNodesUsingBQ() {
     const htmlParts   = html.split('</blockquote>');
@@ -28,7 +28,7 @@ export function useHTMLNodeParser(html: string) {
 
     for (const p of htmlParts) {
       if (!p.trim()) continue;
-      if (p.includes(youTubeHTML)) { nodes.push(getNodeData(p, 'span')); continue; }
+      if (p.includes(youtubeHTML)) { nodes.push(filterVideoNodes(p)); continue; }
       if (p.includes(olHTML))      { nodes.push(...filterListNodes(p));  continue; }
       if (p.includes(imageHTML))   { nodes.push(...filterImageNodes(p)); continue; }
       nodes.push(getNodeData(p));
@@ -54,6 +54,11 @@ export function useHTMLNodeParser(html: string) {
     const [nodeHTML, ...imagesHTML] = partialHTML.split(imageHTML);
     const imgNodeData = imagesHTML.map(getImgNodeData);
     return nodeHTML.trim() ? [getNodeData(nodeHTML), ...imgNodeData] : imgNodeData;
+  }
+
+  function filterVideoNodes(partialHTML: string) {
+    const videoID = partialHTML.split('id="')[1].split('"')[0];
+    return ['youtube', videoID];
   }
 
   const getNodeData     = (html: string, el = 'p') => [el, html.trim().substring(0, html.length - 5)];

@@ -12,6 +12,12 @@
         :start="n[2] || 1"
         v-html="n[1]"
       />
+      <span v-else-if="'youtube' == n[0]" :key="'yt' + i">
+        <ux-embedded-video
+          :id="n[1]"
+          api="youtube"
+        />
+      </span>
       <ux-img
         v-else-if="'img' == n[0]"
         :key="'img' + i"
@@ -41,6 +47,7 @@ import { PropType }          from "vue";
 import UxImg                 from "./UxImg.vue";
 import AppMarkdown           from "./AppMarkdown.vue";
 import { useHTMLNodeParser } from "@/composeables/htmlNodeParser";
+import UxEmbeddedVideo from "./UxEmbeddedVideo.vue";
 
 
 const { html } = defineProps({

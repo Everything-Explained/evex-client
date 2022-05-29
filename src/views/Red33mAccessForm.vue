@@ -25,13 +25,7 @@
           </ux-text>
           <br>
           <div class="red-form__yt-container">
-            <iframe
-              class="yt-video"
-              src="//www.youtube-nocookie.com/embed/qskMClpUmvk?vq=hd1080&modestbranding=1&rel=0"
-              frameborder="0"
-              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            />
+            <ux-embedded-video id="qskMClpUmvk" api="youtube" />
           </div>
           <br>
           <ux-text class="red-form__begin-text" type="block">
@@ -116,6 +110,7 @@ import PageFooter                from '@/components/PageFooter.vue';
 import FormQna, { FormQuestion } from "@/components/FormQnA.vue";
 import UxButton                  from "@/components/UxButton.vue";
 import UxText                    from "@/components/UxText.vue";
+import UxEmbeddedVideo           from "@/components/UxEmbeddedVideo.vue";
 
 
 const risks     = [
