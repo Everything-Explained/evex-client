@@ -1,11 +1,3 @@
-<template>
-  <div class="red-lit">
-    <app-literature :options="options" />
-  </div>
-</template>
-
-
-
 
 
 <script lang="ts" setup>
@@ -20,5 +12,21 @@ const options: AppLitOptions = {
 };
 
 </script>
+
+
+
+
+
+<template>
+  <div class="red-lit">
+    <app-literature :options="options" />
+  </div>
+</template>
+
+
+
+
+
+
 
 

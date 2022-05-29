@@ -1,3 +1,13 @@
+
+
+<script lang='ts' setup>
+import PageTitlebar from '@/components/PageTitlebar.vue';
+</script>
+
+
+
+
+
 <template>
   <div class="i404__error-container">
     <page-titlebar>Page Not Found</page-titlebar>
@@ -12,7 +22,5 @@
 
 
 
-<script lang='ts' setup>
-import PageTitlebar from '@/components/PageTitlebar.vue';
-</script>
+
 

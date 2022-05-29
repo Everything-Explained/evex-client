@@ -1,9 +1,3 @@
-<template>
-  <div class="ux-icon" v-html="icon" />
-</template>
-
-
-
 
 
 <script lang='ts' setup>
@@ -51,5 +45,14 @@ if (!iconMap[type.value])
 const icon = computed(() => iconMap[type.value]);
 
 </script>
+
+
+
+
+
+<template>
+  <div class="ux-icon" v-html="icon" />
+</template>
+
 
 

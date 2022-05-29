@@ -1,67 +1,3 @@
-<template>
-  <div class="ux-input__container">
-    <!-- TEXT FIELD -->
-    <input
-      v-if="isTextField"
-      :id="id"
-      :class="['ux-input__text', { '--limit-reached': charLimitReached && hasValidInput }]"
-      :type="type"
-      :minlength="minchars"
-      :maxlength="maxchars"
-      :value="modelValue"
-      placeholder="placeholder"
-      @input="onInput($event), emit('update:modelValue', getVal($event))"
-    >
-    <!-- Floating LABEL -->
-    <label
-      v-if="isTextField"
-      class="ux-input__label"
-      :for="id"
-    ><slot /></label>
-
-    <textarea
-      v-if="type == 'area'"
-      :id="id"
-      ref="areaText"
-      :class="['ux-input__area', { '--limit-reached': charLimitReached }]"
-      :value="modelValue"
-      :placeholder="placeholder"
-      :maxlength="maxchars"
-      @keyup="validate(charLimitReached && hasValidInput, id)"
-      @input="onInput($event), emit('update:modelValue', getVal($event))"
-    />
-
-    <!-- Animated Bottom Border -->
-    <span :class="['ux-input__bar', { '--limit-reached': charLimitReached && hasValidInput }]" />
-
-    <!-- Character Length Tally **/** -->
-    <transition name="fade">
-      <span
-        v-if="isTextField ? showCharTally && tally : tally || showCharTally"
-        :class="[
-          'ux-input__char-limit',
-          { '--length-reached': charLengthReached,
-            '--limit-reached' : charLimitReached }
-        ]"
-      >
-        {{ charLength }}&nbsp;/&nbsp;{{ maxchars }}
-      </span>
-    </transition>
-    <transition name="fade">
-      <span
-        v-if="isTextField ? showCharLimit && tally : showCharLimit"
-        class="ux-input__char-limit-msg"
-      >
-        <em>{{ charsRequired }}</em> more chars required
-      </span>
-      <span
-        v-else-if="!hasValidInput && charLength > 0"
-        class="ux-input__error-msg"
-        v-html="errorMessage"
-      />
-    </transition>
-  </div>
-</template>
 
 
 <script lang='ts' setup>
@@ -140,3 +76,74 @@ const getVal = (e: Event) => (e.target as HTMLInputElement).value;
 
 
 </script>
+
+
+
+
+
+<template>
+  <div class="ux-input__container">
+    <!-- TEXT FIELD -->
+    <input
+      v-if="isTextField"
+      :id="id"
+      :class="['ux-input__text', { '--limit-reached': charLimitReached && hasValidInput }]"
+      :type="type"
+      :minlength="minchars"
+      :maxlength="maxchars"
+      :value="modelValue"
+      placeholder="placeholder"
+      @input="onInput($event), emit('update:modelValue', getVal($event))"
+    >
+    <!-- Floating LABEL -->
+    <label
+      v-if="isTextField"
+      class="ux-input__label"
+      :for="id"
+    ><slot /></label>
+
+    <textarea
+      v-if="type == 'area'"
+      :id="id"
+      ref="areaText"
+      :class="['ux-input__area', { '--limit-reached': charLimitReached }]"
+      :value="modelValue"
+      :placeholder="placeholder"
+      :maxlength="maxchars"
+      @keyup="validate(charLimitReached && hasValidInput, id)"
+      @input="onInput($event), emit('update:modelValue', getVal($event))"
+    />
+
+    <!-- Animated Bottom Border -->
+    <span :class="['ux-input__bar', { '--limit-reached': charLimitReached && hasValidInput }]" />
+
+    <!-- Character Length Tally **/** -->
+    <transition name="fade">
+      <span
+        v-if="isTextField ? showCharTally && tally : tally || showCharTally"
+        :class="[
+          'ux-input__char-limit',
+          { '--length-reached': charLengthReached,
+            '--limit-reached' : charLimitReached }
+        ]"
+      >
+        {{ charLength }}&nbsp;/&nbsp;{{ maxchars }}
+      </span>
+    </transition>
+    <transition name="fade">
+      <span
+        v-if="isTextField ? showCharLimit && tally : showCharLimit"
+        class="ux-input__char-limit-msg"
+      >
+        <em>{{ charsRequired }}</em> more chars required
+      </span>
+      <span
+        v-else-if="!hasValidInput && charLength > 0"
+        class="ux-input__error-msg"
+        v-html="errorMessage"
+      />
+    </transition>
+  </div>
+</template>
+
+

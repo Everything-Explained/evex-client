@@ -1,3 +1,59 @@
+
+
+<script lang='ts' setup>
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+import { APIResponse, useAPI } from "@/services/api_internal";
+import useInputValidation from "@/composeables/inputValidation";
+import PageTitlebar from "@/components/PageTitlebar.vue";
+import PageFooter from "@/components/PageFooter.vue";
+import FormError from "@/components/FormError.vue";
+import UxButton from "@/components/UxButton.vue";
+import UxInput from "@/components/UxInput.vue";
+import UxText from '@/components/UxText.vue';
+import { useEventBus } from "@/state/event-bus";
+
+
+const api             = useAPI();
+const {isPending}     = api;
+const router          = useRouter();
+const {isValidated, validate}
+                      = useInputValidation(1);
+const eventBus        = useEventBus();
+const codeLength      = 6;
+const code            = ref('');
+const errorText       = ref('');
+const errorUpdVal     = ref(0);
+const loginSuccess    = ref(false);
+
+function setError(res: APIResponse<string>) {
+  errorText.value = res.data, errorUpdVal.value = Date.now();
+}
+
+function submit(e: MouseEvent) {
+  e.preventDefault();
+  const passcode = code.value.toUpperCase();
+  api.debounce(100, () => {
+    api
+      .put('/auth/red33m', { passcode })
+      .then(() => {
+        loginSuccess.value = true;
+        localStorage.setItem('passcode', 'yes');
+        eventBus.updateMenu('red-videos', true);
+        eventBus.updateMenu('red-lit', true);
+        eventBus.updateMenu('red-login', false);
+      })
+      .catch(setError)
+    ;
+  });
+}
+
+</script>
+
+
+
+
+
 <template>
   <div class="red-login-container">
     <page-titlebar
@@ -86,54 +142,6 @@
 
 
 
-<script lang='ts' setup>
-import { ref } from "vue";
-import { useRouter } from "vue-router";
-import { APIResponse, useAPI } from "@/services/api_internal";
-import useInputValidation from "@/composeables/inputValidation";
-import PageTitlebar from "@/components/PageTitlebar.vue";
-import PageFooter from "@/components/PageFooter.vue";
-import FormError from "@/components/FormError.vue";
-import UxButton from "@/components/UxButton.vue";
-import UxInput from "@/components/UxInput.vue";
-import UxText from '@/components/UxText.vue';
-import { useEventBus } from "@/state/event-bus";
 
-
-const api             = useAPI();
-const {isPending}     = api;
-const router          = useRouter();
-const {isValidated, validate}
-                      = useInputValidation(1);
-const eventBus        = useEventBus();
-const codeLength      = 6;
-const code            = ref('');
-const errorText       = ref('');
-const errorUpdVal     = ref(0);
-const loginSuccess    = ref(false);
-
-function setError(res: APIResponse<string>) {
-  errorText.value = res.data, errorUpdVal.value = Date.now();
-}
-
-function submit(e: MouseEvent) {
-  e.preventDefault();
-  const passcode = code.value.toUpperCase();
-  api.debounce(100, () => {
-    api
-      .put('/auth/red33m', { passcode })
-      .then(() => {
-        loginSuccess.value = true;
-        localStorage.setItem('passcode', 'yes');
-        eventBus.updateMenu('red-videos', true);
-        eventBus.updateMenu('red-lit', true);
-        eventBus.updateMenu('red-login', false);
-      })
-      .catch(setError)
-    ;
-  });
-}
-
-</script>
 
 

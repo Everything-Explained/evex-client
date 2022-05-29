@@ -1,7 +1,3 @@
-<template><app-literature :options="options" /></template>
-
-
-
 
 
 <script lang='ts' setup>
@@ -21,4 +17,16 @@ const options: AppLitOptions = {
 };
 
 </script>
+
+
+
+
+
+<template><app-literature :options="options" /></template>
+
+
+
+
+
+
 

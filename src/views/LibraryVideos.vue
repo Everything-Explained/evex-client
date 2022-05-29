@@ -1,3 +1,55 @@
+
+
+<script lang="ts" setup>
+import { computed, ref, watch } from "vue";
+import useVideos           from "@/composeables/videos";
+import { useDynamicPager } from "@/composeables/dynamicPager";
+import { useDate }         from "@/composeables/date";
+import { isEthan }         from "@/composeables/globals";
+import { Video }           from "@/typings/global-types";
+import PageTitlebar        from "@/components/PageTitlebar.vue";
+import PageFooter          from "@/components/PageFooter.vue";
+import UxFilter            from "@/components/UxFilter.vue";
+import UxVideo             from "@/components/UxVideo.vue";
+import UxPreloader         from '@/components/UxPreloader.vue';
+
+
+type VideoCategory = { name: string; desc: string; videos: Video[] };
+
+
+const { setDynPages, goTo, activePage, }     = useDynamicPager('library/videos');
+const { videos: categories, isLoadingVideos} = useVideos<VideoCategory>(
+  '/data/library/videos',
+  (vidCats) => {
+    setDynPages(vidCats.map(cat => ({ name: cat.name, data: cat.videos })));
+  }
+);
+
+// Prevent loading of inherently cached videos
+watch(() => activePage.value, (page) => {
+  if (!page?.data) { visibleVideos.value = []; }
+});
+
+const visibleVideos = ref<Video[]>([]);
+const title         = computed(() => activePage.value?.title || 'Video Categories');
+
+const onFilter       = (videos: Video[]) => visibleVideos.value = videos;
+const getAuthors     = (videos: Video[]) => videos.reduce(toAuthors, [] as string[]);
+const getLatestVideo = (videos: Video[]) => videos[videos.length - 1];
+const toYouTubeLink  = (id: string)      => `//www.youtube-nocookie.com/embed/${id}?rel=0`;
+
+function toAuthors(authors: string[], video: Video) {
+  if (authors.includes(video.author)) return authors;
+  authors.push(video.author);
+  return authors;
+}
+
+</script>
+
+
+
+
+
 <template>
   <div class="lib-vid">
     <page-titlebar
@@ -80,50 +132,5 @@
 
 
 
-<script lang="ts" setup>
-import { computed, ref, watch } from "vue";
-import useVideos           from "@/composeables/videos";
-import { useDynamicPager } from "@/composeables/dynamicPager";
-import { useDate }         from "@/composeables/date";
-import { isEthan }         from "@/composeables/globals";
-import { Video }           from "@/typings/global-types";
-import PageTitlebar        from "@/components/PageTitlebar.vue";
-import PageFooter          from "@/components/PageFooter.vue";
-import UxFilter            from "@/components/UxFilter.vue";
-import UxVideo             from "@/components/UxVideo.vue";
-import UxPreloader         from '@/components/UxPreloader.vue';
-
-
-type VideoCategory = { name: string; desc: string; videos: Video[] };
-
-
-const { setDynPages, goTo, activePage, }     = useDynamicPager('library/videos');
-const { videos: categories, isLoadingVideos} = useVideos<VideoCategory>(
-  '/data/library/videos',
-  (vidCats) => {
-    setDynPages(vidCats.map(cat => ({ name: cat.name, data: cat.videos })));
-  }
-);
-
-// Prevent loading of inherently cached videos
-watch(() => activePage.value, (page) => {
-  if (!page?.data) { visibleVideos.value = []; }
-});
-
-const visibleVideos = ref<Video[]>([]);
-const title         = computed(() => activePage.value?.title || 'Video Categories');
-
-const onFilter       = (videos: Video[]) => visibleVideos.value = videos;
-const getAuthors     = (videos: Video[]) => videos.reduce(toAuthors, [] as string[]);
-const getLatestVideo = (videos: Video[]) => videos[videos.length - 1];
-const toYouTubeLink  = (id: string)      => `//www.youtube-nocookie.com/embed/${id}?rel=0`;
-
-function toAuthors(authors: string[], video: Video) {
-  if (authors.includes(video.author)) return authors;
-  authors.push(video.author);
-  return authors;
-}
-
-</script>
 
 

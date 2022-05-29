@@ -1,24 +1,3 @@
-<template>
-  <div class="pg-titlebar">
-    <ux-icon
-      :class="['pg-titlebar__menu-icon', { '--menu-open': isMenuOpen }]"
-      :type="'menu'"
-      @mousedown="openMenu"
-    />
-    <transition
-      name="fade"
-      :duration="duration"
-      mode="out-in"
-    >
-      <div :key="text" class="pg-titlebar__text">
-        {{ text }} <slot />
-      </div>
-    </transition>
-  </div>
-</template>
-
-
-
 
 
 <script lang='ts' setup>
@@ -43,3 +22,32 @@ const duration   = {
 const openMenu = () => dataCache.setData(stateStr, true);
 
 </script>
+
+
+
+
+
+<template>
+  <div class="pg-titlebar">
+    <ux-icon
+      :class="['pg-titlebar__menu-icon', { '--menu-open': isMenuOpen }]"
+      :type="'menu'"
+      @mousedown="openMenu"
+    />
+    <transition
+      name="fade"
+      :duration="duration"
+      mode="out-in"
+    >
+      <div :key="text" class="pg-titlebar__text">
+        {{ text }} <slot />
+      </div>
+    </transition>
+  </div>
+</template>
+
+
+
+
+
+

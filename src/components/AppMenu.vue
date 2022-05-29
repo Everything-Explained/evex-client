@@ -1,38 +1,3 @@
-<template>
-  <menu ref="menu" :class="['app-menu', { '--opened': opened }]">
-    <header class="app-menu__header">
-      <span class="app-menu__header_text">Menu</span>
-      <ux-icon
-        class="app-menu__exit-icon"
-        :type="'cross'"
-        @mousedown="closeMenu"
-      />
-    </header>
-    <ul>
-      <template v-for="(map, i) of routeMap" :key="i">
-        <template v-if="map.visible">
-          <li v-if="map.name != 'root'" class="app-menu__category">
-            {{ map.name }}
-          </li>
-          <template v-for="(route, j) of map.routes" :key="j">
-            <li
-              v-if="route.visible"
-              class="app-menu__item"
-              @click="closeMenu"
-            >
-              <router-link :to="{ name: route.name }">
-                {{ route.title }}
-              </router-link>
-            </li>
-          </template>
-        </template>
-      </template>
-    </ul>
-  </menu>
-</template>
-
-
-
 
 
 <script lang='ts' setup>
@@ -109,6 +74,47 @@ function closeMenu() { dataCache.setData('titlebar-menu-open', false); }
 
 
 </script>
+
+
+
+
+<template>
+  <menu ref="menu" :class="['app-menu', { '--opened': opened }]">
+    <header class="app-menu__header">
+      <span class="app-menu__header_text">Menu</span>
+      <ux-icon
+        class="app-menu__exit-icon"
+        :type="'cross'"
+        @mousedown="closeMenu"
+      />
+    </header>
+    <ul>
+      <template v-for="(map, i) of routeMap" :key="i">
+        <template v-if="map.visible">
+          <li v-if="map.name != 'root'" class="app-menu__category">
+            {{ map.name }}
+          </li>
+          <template v-for="(route, j) of map.routes" :key="j">
+            <li
+              v-if="route.visible"
+              class="app-menu__item"
+              @click="closeMenu"
+            >
+              <router-link :to="{ name: route.name }">
+                {{ route.title }}
+              </router-link>
+            </li>
+          </template>
+        </template>
+      </template>
+    </ul>
+  </menu>
+</template>
+
+
+
+
+
 
 
 

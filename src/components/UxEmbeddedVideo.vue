@@ -42,6 +42,7 @@ function injectVideo() {
 
 
 
+
 <template>
   <div ref="vidContainer" class="ux-evid-container">
     <div class="overlay" @click="injectVideo">

@@ -1,14 +1,3 @@
-<template>
-  <div class="onoff-switch input-switch" @click="callback()">
-    <input type="checkbox" :checked="state">
-    <span class="switch-text-off">OFF</span>
-    <span class="slider" />
-    <span class="switch-text-on">ON</span>
-  </div>
-</template>
-
-
-
 
 
 <script lang="ts" setup>
@@ -26,4 +15,23 @@ function toggle() {
 }
 
 </script>
+
+
+
+
+
+<template>
+  <div class="onoff-switch input-switch" @click="callback()">
+    <input type="checkbox" :checked="state">
+    <span class="switch-text-off">OFF</span>
+    <span class="slider" />
+    <span class="switch-text-on">ON</span>
+  </div>
+</template>
+
+
+
+
+
+
 

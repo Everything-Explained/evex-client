@@ -1,66 +1,3 @@
-<template>
-  <div class="lit">
-    <page-titlebar
-      :ease-in="350"
-      :ease-out="350"
-      :text="titleRef"
-    />
-    <transition name="fade" mode="out-in">
-      <ux-preloader v-if="isRunning" />
-      <page-error v-else-if="apiError" class="error">
-        {{ apiError.data }}<br>
-        Try again later...
-      </page-error>
-      <div v-else-if="!activePage" class="lit-cards__container">
-        <ux-filter
-          v-if="cfg.showFilter"
-          :items="pages"
-          :reverse-order="cfg.reverseOrder"
-          @filter="onFilter"
-        />
-        <app-lit-cards
-          :cards="filteredPages"
-          :go-to="goTo"
-          :show-author="cfg.showAuthor"
-          :expanded="cfg.expanded"
-        />
-        <page-footer />
-      </div>
-      <!--
-           THE FOLLOWING DUPLICATE CODE IS NECESSARY
-
-           A trick is being utilized here to trigger the animation
-           from the transition element, when a link navigates to a
-           page within the same URL root.
-
-           (i.e. blog entry link navigates to another blog entry)
-      -->
-      <div v-else-if="activeContent == 1 && activePage">
-        <render-html v-if="cfg.useCustomRenderer" :html="activePage.content" />
-        <app-markdown
-          v-else
-          :simple="false"
-          :class="cfg.contentClass"
-          v-html="activePage.content"
-        />
-        <page-footer />
-      </div>
-      <div v-else-if="activeContent == 2 && activePage">
-        <render-html v-if="cfg.useCustomRenderer" :html="activePage.content" />
-        <app-markdown
-          v-else
-          :simple="false"
-          :class="cfg.contentClass"
-          v-html="activePage.content"
-        />
-        <page-footer />
-      </div>
-    </transition>
-  </div>
-</template>
-
-
-
 
 
 <script lang="ts" setup>
@@ -145,3 +82,74 @@ onUnmounted(() => {
 });
 
 </script>
+
+
+
+
+
+<template>
+  <div class="lit">
+    <page-titlebar
+      :ease-in="350"
+      :ease-out="350"
+      :text="titleRef"
+    />
+    <transition name="fade" mode="out-in">
+      <ux-preloader v-if="isRunning" />
+      <page-error v-else-if="apiError" class="error">
+        {{ apiError.data }}<br>
+        Try again later...
+      </page-error>
+      <div v-else-if="!activePage" class="lit-cards__container">
+        <ux-filter
+          v-if="cfg.showFilter"
+          :items="pages"
+          :reverse-order="cfg.reverseOrder"
+          @filter="onFilter"
+        />
+        <app-lit-cards
+          :cards="filteredPages"
+          :go-to="goTo"
+          :show-author="cfg.showAuthor"
+          :expanded="cfg.expanded"
+        />
+        <page-footer />
+      </div>
+      <!--
+           THE FOLLOWING DUPLICATE CODE IS NECESSARY
+
+           A trick is being utilized here to trigger the animation
+           from the transition element, when a link navigates to a
+           page within the same URL root.
+
+           (i.e. blog entry link navigates to another blog entry)
+      -->
+      <div v-else-if="activeContent == 1 && activePage">
+        <render-html v-if="cfg.useCustomRenderer" :html="activePage.content" />
+        <app-markdown
+          v-else
+          :simple="false"
+          :class="cfg.contentClass"
+          v-html="activePage.content"
+        />
+        <page-footer />
+      </div>
+      <div v-else-if="activeContent == 2 && activePage">
+        <render-html v-if="cfg.useCustomRenderer" :html="activePage.content" />
+        <app-markdown
+          v-else
+          :simple="false"
+          :class="cfg.contentClass"
+          v-html="activePage.content"
+        />
+        <page-footer />
+      </div>
+    </transition>
+  </div>
+</template>
+
+
+
+
+
+

@@ -1,37 +1,3 @@
-<template>
-  <div class="red33m">
-    <page-titlebar class="red-vid__titlebar">
-      RED33M Videos
-    </page-titlebar>
-    <transition name="fade" mode="out-in">
-      <ux-preloader v-if="isLoadingVideos" />
-      <div v-else>
-        <ux-filter
-          :age-only="true"
-          :persist="false"
-          :items="videos"
-          @filter="onFilter"
-        />
-        <div ref="observedEl" class="red-vid__list">
-          <ux-video
-            v-for="(v, i) of pagination.videos.value"
-            :key="i"
-            :video-id="v.id"
-            :date="v.date"
-            :summary="v.summary"
-            class="red-vid__video"
-          >
-            {{ v.title }}
-          </ux-video>
-        </div>
-        <!-- Loading footer before videos 'fixes' it to bottom -->
-        <page-footer v-if="pagination.videos.value.length" />
-      </div>
-    </transition>
-  </div>
-</template>
-
-
 
 
 <script lang='ts' setup>
@@ -70,3 +36,44 @@ function displayPage() {
 }
 
 </script>
+
+
+
+
+
+<template>
+  <div class="red33m">
+    <page-titlebar class="red-vid__titlebar">
+      RED33M Videos
+    </page-titlebar>
+    <transition name="fade" mode="out-in">
+      <ux-preloader v-if="isLoadingVideos" />
+      <div v-else>
+        <ux-filter
+          :age-only="true"
+          :persist="false"
+          :items="videos"
+          @filter="onFilter"
+        />
+        <div ref="observedEl" class="red-vid__list">
+          <ux-video
+            v-for="(v, i) of pagination.videos.value"
+            :key="i"
+            :video-id="v.id"
+            :date="v.date"
+            :summary="v.summary"
+            class="red-vid__video"
+          >
+            {{ v.title }}
+          </ux-video>
+        </div>
+        <!-- Loading footer before videos 'fixes' it to bottom -->
+        <page-footer v-if="pagination.videos.value.length" />
+      </div>
+    </transition>
+  </div>
+</template>
+
+
+
+

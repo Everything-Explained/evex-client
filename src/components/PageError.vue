@@ -1,3 +1,11 @@
+
+
+<script lang='ts' setup></script>
+
+
+
+
+
 <template>
   <div class="page-error">
     <svg
@@ -25,6 +33,3 @@
     <slot />
   </div>
 </template>
-
-
-<script lang='ts' setup></script>

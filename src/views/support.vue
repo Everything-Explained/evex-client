@@ -1,3 +1,70 @@
+
+
+<script lang='ts' setup>
+import { computed, ref } from "vue";
+import PageTitlebar              from "@/components/PageTitlebar.vue";
+import PageFooter                from "@/components/PageFooter.vue";
+import FormQna, { FormQuestion } from "@/components/FormQnA.vue";
+import UxButton                  from "@/components/UxButton.vue";
+import UxText                    from "@/components/UxText.vue";
+
+
+const _qType0: FormQuestion[] = [
+  { text: 'What about our organization interests you?' },
+  {
+    text: 'In what specific ways do you envision yourself contributing to this community?',
+    subtext: 'Feel free to explain any of your talents or skills and how you’d utilize them to the fullest!',
+  },
+];
+
+const _qType1: FormQuestion[] = [
+  { text: 'Which member(s) would you like to collaborate with and why?' },
+  { text: 'What does your collaboration require of that/those member(s)?' },
+];
+
+const _qType2: FormQuestion[] = [
+  { text: 'What group, institution, organization, or field of expertise are you speaking on behalf of?' },
+  { text: 'What specific issue(s) would you like to address?' },
+];
+
+const _formTypes = [_qType0, _qType1, _qType2];
+
+const typeText = [
+  'share content with us',
+  'collaborate with us',
+  'correct us',
+];
+
+const isFormActive = ref(false);
+const isSubmitted  = ref(false);
+const formID       = ref('');
+const pageTitle    = computed(() =>
+  isFormActive.value
+    ? isSubmitted.value
+      ? 'Request Submitted'
+      : typeText[formType.value]
+    : 'Support'
+);
+const questions    = ref<FormQuestion[]>([]);
+const formType     = ref(0);
+
+function activateForm(type: number) {
+  questions.value    = _formTypes[type];
+  formType.value     = type;
+  formID.value       = `support${type}`;
+  isFormActive.value = true;
+  document.body.scrollTo(0, 0);
+}
+
+function back()      { isFormActive.value = false; }
+function submitted() { isSubmitted.value = true; }
+
+</script>
+
+
+
+
+
 <template>
   <div class="support">
     <page-titlebar
@@ -114,65 +181,6 @@
 
 
 
-<script lang='ts' setup>
-import { computed, ref } from "vue";
-import PageTitlebar              from "@/components/PageTitlebar.vue";
-import PageFooter                from "@/components/PageFooter.vue";
-import FormQna, { FormQuestion } from "@/components/FormQnA.vue";
-import UxButton                  from "@/components/UxButton.vue";
-import UxText                    from "@/components/UxText.vue";
 
-
-const _qType0: FormQuestion[] = [
-  { text: 'What about our organization interests you?' },
-  {
-    text: 'In what specific ways do you envision yourself contributing to this community?',
-    subtext: 'Feel free to explain any of your talents or skills and how you’d utilize them to the fullest!',
-  },
-];
-
-const _qType1: FormQuestion[] = [
-  { text: 'Which member(s) would you like to collaborate with and why?' },
-  { text: 'What does your collaboration require of that/those member(s)?' },
-];
-
-const _qType2: FormQuestion[] = [
-  { text: 'What group, institution, organization, or field of expertise are you speaking on behalf of?' },
-  { text: 'What specific issue(s) would you like to address?' },
-];
-
-const _formTypes = [_qType0, _qType1, _qType2];
-
-const typeText = [
-  'share content with us',
-  'collaborate with us',
-  'correct us',
-];
-
-const isFormActive = ref(false);
-const isSubmitted  = ref(false);
-const formID       = ref('');
-const pageTitle    = computed(() =>
-  isFormActive.value
-    ? isSubmitted.value
-      ? 'Request Submitted'
-      : typeText[formType.value]
-    : 'Support'
-);
-const questions    = ref<FormQuestion[]>([]);
-const formType     = ref(0);
-
-function activateForm(type: number) {
-  questions.value    = _formTypes[type];
-  formType.value     = type;
-  formID.value       = `support${type}`;
-  isFormActive.value = true;
-  document.body.scrollTo(0, 0);
-}
-
-function back()      { isFormActive.value = false; }
-function submitted() { isSubmitted.value = true; }
-
-</script>
 
 

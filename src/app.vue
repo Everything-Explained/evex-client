@@ -1,31 +1,3 @@
-<template>
-  <div id="App" class="app__container">
-    <div class="app__ribbon" />
-    <div :class="['app__toast-buffer', { '--show': !isToastClosed }]" />
-    <div :class="['app__toast', { '--show': isToastVisible }]" @click="openChangeLog">
-      Click here to see the New Release Changes!
-      <ux-icon :type="'cross'" @click.stop="closeToast()" />
-    </div>
-    <header id="AppHeader" class="app__header">
-      <router-link :to="{ name: 'home' }" class="title">
-        Everything Explained
-      </router-link>
-    </header>
-    <section class="app__body">
-      <app-menu :header-id="'AppHeader'" :content-id="'AppBodyContent'" />
-      <div id="AppBodyContent" class="content">
-        <router-view v-slot="{ Component }">
-          <transition name="fade" mode="out-in">
-            <component :is="Component" />
-          </transition>
-        </router-view>
-      </div>
-    </section>
-  </div>
-</template>
-
-
-
 
 
 <script lang='ts' setup>
@@ -147,6 +119,42 @@ function useCustomScrollPos(body: Ref<HTMLElement>) {
 }
 
 </script>
+
+
+
+
+
+<template>
+  <div id="App" class="app__container">
+    <div class="app__ribbon" />
+    <div :class="['app__toast-buffer', { '--show': !isToastClosed }]" />
+    <div :class="['app__toast', { '--show': isToastVisible }]" @click="openChangeLog">
+      Click here to see the New Release Changes!
+      <ux-icon :type="'cross'" @click.stop="closeToast()" />
+    </div>
+    <header id="AppHeader" class="app__header">
+      <router-link :to="{ name: 'home' }" class="title">
+        Everything Explained
+      </router-link>
+    </header>
+    <section class="app__body">
+      <app-menu :header-id="'AppHeader'" :content-id="'AppBodyContent'" />
+      <div id="AppBodyContent" class="content">
+        <router-view v-slot="{ Component }">
+          <transition name="fade" mode="out-in">
+            <component :is="Component" />
+          </transition>
+        </router-view>
+      </div>
+    </section>
+  </div>
+</template>
+
+
+
+
+
+
 
 
 

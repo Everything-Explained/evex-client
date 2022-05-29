@@ -1,11 +1,3 @@
-<template>
-  <span :class="['form__error',{ '--show': showError}, customClass]">
-    {{ text }}
-  </span>
-</template>
-
-
-
 
 
 <script lang='ts' setup>
@@ -30,5 +22,21 @@ function toggleError() {
 watch(() => props.update, toggleError);
 
 </script>
+
+
+
+
+
+<template>
+  <span :class="['form__error',{ '--show': showError}, customClass]">
+    {{ text }}
+  </span>
+</template>
+
+
+
+
+
+
 
 

@@ -1,15 +1,3 @@
-<template>
-  <button
-    :class="['ux-button', theme, { '--loading': loading }]"
-    :type="undefined"
-    :disabled="isDisabled"
-  >
-    <slot />
-  </button>
-</template>
-
-
-
 
 
 <script lang='ts' setup>
@@ -34,3 +22,22 @@ const isDisabled = computed(() => {
 });
 
 </script>
+
+
+
+
+
+<template>
+  <button
+    :class="['ux-button', theme, { '--loading': loading }]"
+    :type="undefined"
+    :disabled="isDisabled"
+  >
+    <slot />
+  </button>
+</template>
+
+
+
+
+

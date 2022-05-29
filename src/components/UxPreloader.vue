@@ -1,8 +1,3 @@
-<template>
-  <div :class="['preloader', { 'page': page }]" />
-</template>
-
-
 
 
 <script lang='ts' setup>
@@ -13,4 +8,17 @@ defineProps({
 });
 
 </script>
+
+
+
+
+
+<template>
+  <div :class="['preloader', { 'page': page }]" />
+</template>
+
+
+
+
+
 
