@@ -3,7 +3,7 @@
     <page-titlebar>About Us</page-titlebar>
     <transition name="fade" mode="out-in">
       <div v-if="pageContent" class="content">
-        <app-markdown v-html="pageContent" />
+        <render-html :html="pageContent" />
         <page-footer />
       </div>
       <ux-preloader v-else />
@@ -19,7 +19,7 @@
 <script lang='ts' setup>
 import PageTitlebar from '@/components/PageTitlebar.vue';
 import PageFooter   from '@/components/PageFooter.vue';
-import AppMarkdown  from '@/components/AppMarkdown.vue';
+import RenderHtml   from '@/components/RenderHtml.vue';
 import { useAPI } from '@/services/api_internal';
 import { ref } from 'vue';
 import UxPreloader from '@/components/UxPreloader.vue';
