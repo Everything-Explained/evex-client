@@ -154,7 +154,7 @@ function submitted() { isSubmitted.value = true; }
       <div v-else-if="!isSubmitted">
         <div class="support__content">
           <form-qna
-            id="support/qnaform"
+            :id="'support' + formID"
             :questions="questions"
             :type="formType"
             :name-label="'Name or Preferred Title'"

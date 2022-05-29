@@ -1,16 +1,15 @@
 import { computed, reactive } from "vue";
 
 const stateOfArrays = reactive({
-  'temp'                      : [],
-  'lazyimg-data'              : [],
-  'blog'                      : [],
-  'changelog'                 : [],
-  'support/qnaform'           : [],
-  'red33m/qnaform'            : [],
-  'library/literature'        : [],
-  'red33m/literature'         : [],
-  '/data/red33m/videos'       : [],
-  '/data/library/videos'      : [],
+  'temp'                 : [],
+  'lazyimg-data'         : [],
+  'blog'                 : [],
+  'changelog'            : [],
+  'qnaform'              : [],
+  'library/literature'   : [],
+  'red33m/literature'    : [],
+  '/data/red33m/videos'  : [],
+  '/data/library/videos' : [],
 });
 
 const stateOfObjects = reactive({

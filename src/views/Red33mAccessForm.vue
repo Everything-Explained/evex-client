@@ -159,7 +159,7 @@ function setState(name: keyof typeof formState, val: boolean) {
           mean that this content is going to be beneficial to you.
         </ux-text>
         <form-qna
-          id="red33m/qnaform"
+          id="red33m"
           :type="3"
           name-label="Name or Preferred Title"
           :questions="questions"
