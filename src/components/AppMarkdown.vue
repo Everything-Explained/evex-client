@@ -1,16 +1,9 @@
 
 <script lang="ts" setup>
-
-
-const props = defineProps({
+defineProps({
   simple : { type: Boolean, default: true  },
   header : { type: Boolean, default: false },
 });
-
-const isSimple = props.simple && !props.header;
-const isMD     = !props.simple && !props.header;
-
-
 </script>
 
 
@@ -20,8 +13,8 @@ const isMD     = !props.simple && !props.header;
   <div
     :class="[
       { 'md-header': header },
-      { 'md': isMD },
-      { 'md-simple': isSimple },
+      { 'md': !simple && !header },
+      { 'md-simple': simple && !header },
     ]"
   >
     <slot />
