@@ -15,8 +15,8 @@ const stateStr   = 'titlebar-menu-open';
 const dataCache  = useDataCache<boolean>();
 const isMenuOpen = dataCache.getData(stateStr);
 const duration   = {
-  enter: props.easeIn ?? 400,
-  leave: props.easeOut ?? 400
+  enter: props.easeIn,
+  leave: props.easeOut
 };
 
 const openMenu = () => dataCache.setData(stateStr, true);
