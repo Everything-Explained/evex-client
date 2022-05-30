@@ -17,7 +17,6 @@ const { items, persist, reverseOrder }
   persist:      { type: Boolean as PropType<boolean>,    default: true               },
 });
 const emit      = defineEmits(['filter']);
-const eventBus  = useEventBus();
 
 const {
   toggleFilter,  filterAuthor,  reversePages,
@@ -28,7 +27,7 @@ const {
 emit('filter', filteredPages);
 
 function filter(i: number, v: boolean) {
-  emit('filter', filterAuthor(i, v)), eventBus.updateFooter();
+  emit('filter', filterAuthor(i, v));
 }
 
 function toggleAge() { emit('filter', reversePages()); }

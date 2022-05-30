@@ -1,52 +1,6 @@
 
 
-<script lang="ts" setup>
-import { onMounted, onUnmounted, ref } from "vue";
-import { useEventBus } from "@/state/event-bus";
-
-
-const { setFooterPos, debounceFooterPos, footRef }
-               = useFooterPosition();
-const eventBus = useEventBus();
-
-eventBus.on('update-footer', debounceFooterPos);
-
-onMounted(() => {
-  setFooterPos();
-  window.addEventListener('resize', debounceFooterPos);
-});
-
-onUnmounted(() => {
-  window.removeEventListener('resize', debounceFooterPos);
-  eventBus.off(debounceFooterPos);
-});
-
-function useFooterPosition() {
-  const footRef = ref<HTMLElement>();
-  const app = document.getElementById('App')!;
-
-  let timeout = 0;
-  function debounceFooterPos() {
-    footRef.value!.style.position = 'relative';
-    footRef.value!.style.bottom = 'auto';
-    clearTimeout(timeout);
-    timeout = setTimeout(setFooterPos, 30);
-  }
-
-  function setFooterPos() {
-    const footHeight   = footRef.value!.clientHeight;
-    const scrollOffset = footHeight + app.clientHeight;
-    const scrollArea   = footHeight + window.innerHeight
-    ;
-    if (scrollOffset <= scrollArea) {
-      footRef.value!.style.position = 'fixed';
-      footRef.value!.style.bottom = '0';
-    }
-  }
-
-  return { setFooterPos, debounceFooterPos, footRef };
-}
-</script>
+<script lang="ts" setup></script>
 
 
 

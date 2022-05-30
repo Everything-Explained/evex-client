@@ -19,10 +19,6 @@ export function useEventBus() {
     emit('update-menu', route, visibility);
   }
 
-  function updateFooter() {
-    emit('update-footer');
-  }
-
   function emit(ev: ValidEvents, ...args: any[]) {
     if (_events.includes(ev)) {
       _subscribers.forEach(sub => sub[0] == ev && sub[1](...args));
@@ -42,5 +38,5 @@ export function useEventBus() {
     );
   }
 
-  return { on, off, updateMenu, updateFooter, };
+  return { on, off, updateMenu };
 }
