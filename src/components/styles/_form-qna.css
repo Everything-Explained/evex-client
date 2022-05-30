@@ -46,16 +46,16 @@
 
 
 .qnaf__controls {
-  display               : grid;
-  grid-auto-flow        : row;
-  gap                   : 1rem;
-  grid-template-columns : repeat(3, 1fr);
-  margin-top            : 2rem;
+  display    : grid;
+  grid-auto-flow: row;
+  gap        : 1rem 1rem;
+  align-items: center;
+  grid-template-columns: minmax(100px, 200px) minmax(100px, 200px) minmax(250px, auto);
+  margin-top : 2rem;
 }
 
 
 .qnaf__validation-text {
-  margin-left : 0.5rem !important;
   color       : hsl(196, 11%, 40%);
   strong {
     font-size   : 1.3rem;
@@ -65,6 +65,6 @@
 
 
 .qnaf__error-text {
-  grid-column : 1/4;
-  margin      : auto;
+  grid-column: 1/4;
+  margin     : auto;
 }

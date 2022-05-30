@@ -2,6 +2,13 @@
 @media only screen and (--large-screen) {
   .qnaf__input { width: 100% }
   .qnaf__form  { width: 90%; }
+  .qnaf__validation-text {
+    grid-column: 1/4;
+  }
+  .qnaf__controls        {
+    margin-left: 1rem;
+    grid-template-columns: minmax(100px, 1fr) minmax(100px, 1fr) minmax(0, auto);
+  }
 }
 /*** 540px ***/
 @media only screen and (--medium-screen) {
@@ -10,8 +17,6 @@
   .qnaf__q               { font-size: 1.1rem; }
   .qnaf__q::before       { font-size: 1.1rem; margin-left: -1.2rem; }
   .qnaf__subtext         { font-size: 1rem; }
-  .qnaf__validation-text { margin: 0 auto !important; margin-top: 1rem !important; }
-  .qnaf__controls        { justify-content: center; }
 }
 /*** 420px ***/
 @media only screen and (--small-screen) {
