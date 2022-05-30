@@ -28,12 +28,12 @@ const props = defineProps({
   asset: { type: Boolean, default: false },
 });
 
-const { detectAssetSize, observeImage, imgRef, state, containerRef }
+const { detectImageAssetSize, observeImage, imgRef, state, containerRef }
   = useImageObserver(props)
 ;
 
 onMounted(() => {
-  detectAssetSize();
+  detectImageAssetSize();
   observeImage();
   // Reload image if src changes
   watch(() => props.src, () => {

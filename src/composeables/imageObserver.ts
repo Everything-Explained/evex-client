@@ -2,7 +2,11 @@ import { useDataCache } from "@/state/cache-state";
 import { computed, reactive, ref } from "vue";
 
 
-type IMGProps = { src: string; asset: boolean }
+type IMGProps = {
+  src: string;
+  /** Is the image loaded from our CMS */
+  asset: boolean
+}
 
 
 export function useImageObserver(props: IMGProps) {
@@ -19,11 +23,12 @@ export function useImageObserver(props: IMGProps) {
   });
 
   function isImageCached(uri: string) {
-    const uriSlug = uri ? uri.split('//', 2)[1] : uri;
+    if (!uri) return;
+    const uriSlug = uri.split('//', 2)[1];
     return state.cache.find(v => v.includes(uriSlug));
   }
 
-  function detectAssetSize() {
+  function detectImageAssetSize() {
     if (props.asset) {
       const [width, height] = state.activeSrc.split('/')[5].split('x').map(v => parseInt(v));
       // The current max-width style set on content container
@@ -62,5 +67,5 @@ export function useImageObserver(props: IMGProps) {
     observer.observe(containerRef.value!);
   }
 
-  return { state, imgRef, containerRef, observeImage, detectAssetSize };
+  return { state, imgRef, containerRef, observeImage, detectImageAssetSize };
 }
