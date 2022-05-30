@@ -52,7 +52,9 @@ export function useHTMLNodeParser(html: string) {
 
   function filterImageNodes(partialHTML: string) {
     const [nodeHTML, ...imagesHTML] = partialHTML.split(imageHTML);
-    const imgNodeData = imagesHTML.map(getImgNodeData);
+    const imgNodeData = imagesHTML.map(
+      html => ['img', html.trim().split('https:')[1].split('"')[0]]
+    );
     return nodeHTML.trim() ? [getNodeData(nodeHTML), ...imgNodeData] : imgNodeData;
   }
 
