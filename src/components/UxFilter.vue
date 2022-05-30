@@ -2,7 +2,6 @@
 
 <script lang="ts" setup>
 import { PropType } from "vue";
-import { useEventBus } from "@/state/event-bus";
 import { FilterData, usePageFilter } from "@/composeables/pageFilter";
 import UxCheckbox  from "./UxCheckbox.vue";
 import UxIcon      from "./UxIcon.vue";
