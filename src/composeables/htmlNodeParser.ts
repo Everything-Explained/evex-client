@@ -9,15 +9,19 @@ export function useHTMLNodeParser(html: string) {
     const partsLength = htmlParts.length;
     const nodes: string[][] = [];
 
-    htmlParts.forEach((p, i) => {
-      const isLastIndex = i == partsLength - 1;
-      if (isLastIndex) return nodes.push(...getNodesUsingP(p));
+    for (let i = 0; i < partsLength; i++) {
+      const p = htmlParts[i];
+
+      if (i == partsLength - 1) {
+        nodes.push(...getNodesUsingP(p));
+        break;
+      }
 
       if (p.includes('<blockquote>')) {
         const [html, bq] = p.split('<blockquote>');
         nodes.push(...getNodesUsingP(html), ['bq', bq]);
       }
-    });
+    }
 
     return nodes;
   }
@@ -28,7 +32,7 @@ export function useHTMLNodeParser(html: string) {
 
     for (const p of htmlParts) {
       if (!p.trim()) continue;
-      if (p.includes(youtubeHTML)) { nodes.push(filterVideoNodes(p)); continue; }
+      if (p.includes(youtubeHTML)) { nodes.push(filterVideoNodes(p));    continue; }
       if (p.includes(olHTML))      { nodes.push(...filterListNodes(p));  continue; }
       if (p.includes(imageHTML))   { nodes.push(...filterImageNodes(p)); continue; }
       nodes.push(getNodeData(p));
@@ -64,7 +68,6 @@ export function useHTMLNodeParser(html: string) {
   }
 
   const getNodeData     = (html: string, el = 'p') => [el, html.trim().substring(0, html.length - 5)];
-  const getImgNodeData  = (html: string)           => ['img', html.trim().split('https:')[1].split('"')[0]];
 
   return {
     getNodesUsingBQ,
