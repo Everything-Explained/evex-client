@@ -52,7 +52,7 @@ const { pages, pageTitle, activePage, goTo, isRunning, error: apiError }
                     = useStaticPager<Article>(options.uri, cfg.version);
 const titleRef      = computed(() => pageTitle.value || options.title);
 const filteredPages = ref<Article[]>([]);
-const activeContent  = ref(0);
+const activeContent  = ref(1);
 
 
 // When filter is disabled, we need to manually set pages
