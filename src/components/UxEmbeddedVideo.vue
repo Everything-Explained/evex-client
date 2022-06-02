@@ -2,7 +2,7 @@
 
 <script setup lang="ts">
 import { onMounted, PropType, ref } from "vue";
-
+import UxPreloader                  from "./UxPreloader.vue";
 
 
 const props = defineProps({
@@ -11,7 +11,9 @@ const props = defineProps({
 });
 
 const imgURL = ref('');
+const ytImg  = ref<HTMLElement>();
 const vidContainer = ref<HTMLElement>();
+const showPreloader = ref(true);
 
 if (props.api == 'youtube') {
   const ytIdRegex = /^[0-9A-Za-z_-]{10}[048AEIMQUYcgkosw]$/;
@@ -23,6 +25,9 @@ if (props.api == 'youtube') {
   imgURL.value = `https://img.youtube.com/vi/${props.id}/hqdefault.jpg`;
 
   onMounted(() => {
+    if (ytImg.value) ytImg.value.addEventListener('load', () => {
+      showPreloader.value = false;
+    });
     if (!vidContainer.value) throw Error('Missing Video Container');
   });
 }
@@ -46,7 +51,12 @@ function injectVideo() {
 <template>
   <div ref="vidContainer" class="ux-evid-container">
     <div class="overlay" @click="injectVideo">
-      <img :src="imgURL" alt="">
+      <ux-preloader v-if="showPreloader" type="image" />
+      <img
+        ref="ytImg"
+        :class="{ '--show': !showPreloader }"
+        :src="imgURL"
+      >
       <div class="play-btn" />
     </div>
   </div>
