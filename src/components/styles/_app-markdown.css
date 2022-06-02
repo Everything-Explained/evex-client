@@ -169,11 +169,16 @@
     li {
       margin-bottom: 0.5rem; }
   }
-  .ux-img__image {
+  .ux-img__image, .ux-img__preloader {
     display: block;
     margin: 20px auto;
     max-width: 97%;
     box-shadow : 0 0 10px 3px black;
+  }
+  .ux-img__preloader {
+    margin: 0 auto;
+    left: 50%;
+    transform: translateX(-50%);
   }
   /* ### Embeded Video Styles ### */
   & > span {

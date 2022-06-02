@@ -4,13 +4,8 @@
 }
 
 
-.preloader.ux-img__preloader {
-  position   : absolute;
-  top        : 50%;
-  left       : 50%;
-  transform  : translate(-50%, -50%);
-  min-width  : 150px;
-  min-height : 150px;
+.ux-img__preloader {
+  position   : absolute !important;
   transition : opacity 0.5s, visibility 0.5s;
 }
 
