@@ -10,8 +10,11 @@
                                     enlightenment, religion, & the paranormal.">
   <link rel="icon" href="/favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" type="text/css"
+        href="//fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400&display=swap">
   <style>
+    body, html {
+      background-color: hsl(204deg 12% 8%);
     }
     .conditions {
       position: absolute;
@@ -105,7 +108,7 @@
       content: 'opera';
     }
     .conditions .edge {
-      background-image: url("//upload.wikimedia.org/wikipedia/en/thumb/9/98/Microsoft_Edge_logo_%282019%29.svg/128px-Microsoft_Edge_logo_%282019%29.svg.png");
+      background-image: url("//upload.wikimedia.org/wikipedia/commons/9/98/Microsoft_Edge_logo_%282019%29.svg");
     }
     .conditions .edge:before {
       content: 'microsoft edge';
@@ -143,5 +146,7 @@
   </div>
   <main id="app" class="app"></main>
   <script type="module" src="/src/main.ts"></script>
+  <link rel="stylesheet" type="text/css"
+        href="//fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400&display=swap">
 </body>
 </html>
