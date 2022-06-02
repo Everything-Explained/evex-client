@@ -8,6 +8,7 @@ export const isDevelopment = !isProduction;
 export const isMobile = () => window.outerWidth <= 511;
 
 export const isAuthed = () => {
+  if (!navigator.cookieEnabled) return false;
   return !!(
        localStorage.getItem('userid')
     && localStorage.getItem('passcode') == 'yes'

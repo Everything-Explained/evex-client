@@ -5,9 +5,6 @@ import router from './router/router';
 import './styles/_main.css';
 import { useAPI } from './services/api_internal';
 
-const api = useAPI();
-api.init();
-
 
 const getElement = (id: string) => {
   return document.getElementById(id)!;
@@ -41,6 +38,9 @@ const cookiesAreEnabled = (() => {
 
 
 if (cookiesAreEnabled && browserIsSupported) {
+  const api = useAPI();
+  api.init();
+
   window['app'] = createApp(App)
     .use(router)
     .mount('#app')
