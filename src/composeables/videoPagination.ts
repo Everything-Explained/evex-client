@@ -18,13 +18,13 @@ export function useVideoPagination(allVideos: Ref<Video[]>) {
     const maxScrollDist = body.scrollHeight - window.innerHeight;
     const renderDist    = maxScrollDist - 700
     ;
-    if (body.scrollTop >= renderDist) {
+    if (window.scrollY >= renderDist) {
       displayVideoPage(visiblePages.value + 1);
     }
   }
 
-  document.body.addEventListener('scroll', renderVideos);
-  onUnmounted(() => document.body.removeEventListener('scroll', renderVideos));
+  window.addEventListener('scroll', renderVideos);
+  onUnmounted(() => window.removeEventListener('scroll', renderVideos));
 
   return { displayVideoPage, observedEl, videos: paginatedVideos };
 }
