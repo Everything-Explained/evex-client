@@ -180,13 +180,15 @@
     position: relative;
     margin: 0 auto;
     margin-top: 15px;
-    width: 90%;
+    width: clamp(250px, 90%, 480px);
+    max-height: 360px;
     display: block;
     overflow: hidden;
     & + p { margin-top: 15px; }
     .ux-evid-container {
       position       : relative;
       width          : 100%;
+      height         : auto;
       padding-top    : 56.25%;
       iframe {
         position : absolute;
