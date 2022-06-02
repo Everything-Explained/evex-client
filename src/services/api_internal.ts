@@ -36,34 +36,29 @@ const genUniqueID = () =>
     .reduce((pv, cv) => pv += cv.toString(36), '')
 ;
 
-const versions = localStorage.getItem('versions');
-
-const state = reactive({
-  userid        : localStorage.getItem('userid') || genUniqueID(),
-  isInitialized : false,
-  initializing  : false,
-  versions      : versions ? JSON.parse(versions) as APIVersions : undefined,
-  isLoading     : false,
-  isDebouncing  : false,
-});
-
 const sanitizeURLForEnv = (url: string) => {
-  return isProduction ? url : `//127.0.0.1:3003${url}`;
+  return isProduction ? url : `//localhost:3003${url}`;
 };
 
-const apiEndpoint =
-  wretch()
-    .url(sanitizeURLForEnv('/api'))
-    .auth(`Bearer ${state.userid || 'none'}`)
-;
-
+const state = reactive({
+  userid        : '',
+  isInitialized : false,
+  initializing  : false,
+  versions      : undefined as APIVersions | undefined,
+  isLoading     : false,
+  endPoint      : wretch().url(sanitizeURLForEnv('/api')),
+  isDebouncing  : false,
+});
 
 
 async function init() {
   state.initializing = true;
-  // Is always a valid userid
-  localStorage.setItem('userid', state.userid)
-  ;
+  state.userid = localStorage.getItem('userid') || genUniqueID();
+  const versions = localStorage.getItem('versions');
+  state.versions = versions ? JSON.parse(versions) as APIVersions : undefined;
+  state.endPoint = state.endPoint.auth(`Bearer ${state.userid || 'none'}`);
+  localStorage.setItem('userid', state.userid);
+
   const res =
     await API
       .get<APIVersions>('/auth/setup', { userid: state.userid })
@@ -121,8 +116,8 @@ function setupAPI(opts: APIOptions) {
     body.v = version || state.versions?.build.v || ''
   ;
   const api = (method == 'get')
-    ? apiEndpoint.url(URI).query(body)[method]()
-    : apiEndpoint.url(URI)[method](body)
+    ? state.endPoint.url(URI).query(body)[method]()
+    : state.endPoint.url(URI)[method](body)
   ;
   return api;
 }
