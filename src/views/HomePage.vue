@@ -4,6 +4,7 @@
     <transition name="fade" mode="out-in">
       <div v-if="pageContent" class="content">
         <render-html :html="pageContent" />
+        <ux-disqus />
         <page-footer />
       </div>
       <ux-preloader v-else />
@@ -23,6 +24,7 @@ import RenderHtml   from '@/components/RenderHtml.vue';
 import { useAPI } from '@/services/api_internal';
 import { ref } from 'vue';
 import UxPreloader from '@/components/UxPreloader.vue';
+import UxDisqus    from '@/components/UxDisqus.vue';
 
 const api = useAPI();
 const pageContent = ref('');

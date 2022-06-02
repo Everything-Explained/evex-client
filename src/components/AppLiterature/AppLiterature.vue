@@ -12,6 +12,7 @@ import UxPreloader  from '../UxPreloader.vue';
 import AppMarkdown  from "../AppMarkdown.vue";
 import AppLitCards  from "./AppLitCards.vue";
 import PageError    from '../PageError.vue';
+import UxDisqus     from "../UxDisqus.vue";
 
 
 export interface Article extends StaticPage {
@@ -132,6 +133,7 @@ onUnmounted(() => {
           :class="cfg.contentClass"
           v-html="activePage.content"
         />
+        <ux-disqus :uid="activePage.id.toString()" />
         <page-footer />
       </div>
       <div v-else-if="activeContent == 2 && activePage">
@@ -142,6 +144,7 @@ onUnmounted(() => {
           :class="cfg.contentClass"
           v-html="activePage.content"
         />
+        <ux-disqus :uid="activePage.id.toString()" />
         <page-footer />
       </div>
     </transition>

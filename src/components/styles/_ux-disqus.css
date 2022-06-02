@@ -1,0 +1,35 @@
+
+
+
+.disqus__reveal {
+  margin: 0 auto;
+  margin-top: 2rem;
+  max-width: 860px;
+  text-align: center;
+}
+
+.disqus__text {
+  display: inline-block;
+}
+
+.disqus__count {
+  display: inline-block;
+}
+
+
+
+.disqus__container {
+  margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 13px;
+  max-width: 860px;
+  visibility: hidden;
+  a {
+    color: hsl(203, 65%, 50%);
+  }
+  &.--show {
+    visibility: visible;
+  }
+}
+
+

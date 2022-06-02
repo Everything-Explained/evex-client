@@ -4,10 +4,24 @@ export type ISODateString = string;
 
 export type Route = RouteLocationNormalizedLoaded;
 
+type DisqusConfigOptions = {
+  reload: boolean;
+  page?: {
+    identifier: string;
+  },
+  config?: () => void;
+}
+
 declare global {
   interface Window {
     app: any;
     $router: Router;
+    DISQUSWIDGETS: {
+      getCount: (options: {reset: boolean}) => void;
+    },
+    DISQUS: {
+      reset: (options: DisqusConfigOptions) => void;
+    }
   }
 }
 
