@@ -68,8 +68,8 @@ function verifyEls(els: ExternalElements) {
 }
 
 function affixOnScroll() {
-  document.body.addEventListener('scroll', () => {
-    const scrollTop = document.body.scrollTop;
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
     const menu      = els.menu;
     const pos       = menu.style.position
     ;

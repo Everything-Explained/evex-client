@@ -22,7 +22,7 @@ const {
   openChangeLog,
 } = useVersionToast(body, '2021-08-26T21:28:00.237Z', 'a4-blueprint');
 
-useCustomScrollPos(body);
+useCustomScrollPos();
 
 
 function useVersionToast(body: Ref<HTMLElement>, releaseDate: ISODateString, changelogURI: string) {
@@ -75,7 +75,7 @@ function useVersionToast(body: Ref<HTMLElement>, releaseDate: ISODateString, cha
 }
 
 
-function useCustomScrollPos(body: Ref<HTMLElement>) {
+function useCustomScrollPos() {
   const router          = useRouter();
   const route           = useRoute();
   const managedPages: ManagedPages = [
@@ -86,11 +86,13 @@ function useCustomScrollPos(body: Ref<HTMLElement>) {
     { scrollPos: ref(0), url: '/changelog'          },
   ];
 
+  history.scrollRestoration = 'manual';
+
   watch(() => route.path, onRouteChange);
 
   async function onRouteChange() {
     await router.isReady();
-    checkForPages();
+    if (checkForPages()) return;
     setScrollTop(0);
   }
 
@@ -98,23 +100,27 @@ function useCustomScrollPos(body: Ref<HTMLElement>) {
     for (const page of managedPages) {
       if (route.path.includes(page.url)) {
         setScrollPos(page.scrollPos, page.url);
-        break;
+        return true;
       }
     }
+    return false;
   }
 
   function setScrollPos(posRef: Ref<number>, url: string) {
     // Look for sub-page
     if (route.path.includes(`${url}/`)) {
-      posRef.value = body.value.scrollTop;
-      setScrollTop(0); return;
+      posRef.value = window.scrollY;
+      setScrollTop(0);
+      return;
     }
     setScrollTop(posRef.value);
   }
 
   function setScrollTop(top: number) {
     // Wait for transition to complete before scrolling
-    setTimeout(() => body.value.scrollTop = top, 430);
+    setTimeout(() => {
+      window.scrollTo(0, top);
+    }, 450);
   }
 }
 
