@@ -13,7 +13,7 @@
 .red-form__yt-container {
   position   : relative;
   margin     : 0 auto;
-  width      : 90%;
+  width      : clamp(150px, 90%, 480px);
   display    : block;
   overflow   : hidden;
   .ux-evid-container {
