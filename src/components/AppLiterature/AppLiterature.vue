@@ -133,7 +133,7 @@ onUnmounted(() => {
           :class="cfg.contentClass"
           v-html="activePage.content"
         />
-        <ux-disqus :uid="activePage.id.toString()" />
+        <ux-disqus />
         <page-footer />
       </div>
       <div v-else-if="activeContent == 2 && activePage">
@@ -144,7 +144,7 @@ onUnmounted(() => {
           :class="cfg.contentClass"
           v-html="activePage.content"
         />
-        <ux-disqus :uid="activePage.id.toString()" />
+        <ux-disqus />
         <page-footer />
       </div>
     </transition>

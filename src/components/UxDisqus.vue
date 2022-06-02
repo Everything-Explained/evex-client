@@ -5,19 +5,12 @@ import { onMounted, ref } from 'vue';
 import UxButton from './UxButton.vue';
 
 
-const {uid} = defineProps({
-  uid: { type: String, required: true },
-})
 const doc             = document;
 const pageLocation    = cleanHref(doc.location.href);
 const disqusContainer = ref<HTMLElement>();
 const isLoading       = ref(false);
 const showButton      = ref(true);
 
-
-onMounted(() => {
-  window.DISQUSWIDGETS.getCount({ reset: true });
-});
 
 
 
@@ -36,10 +29,7 @@ function onViewComment() {
 function loadDisqus() {
   if (doc.getElementById('disqus_script')) {
     window.DISQUS.reset({
-      reload: true,
-      config: function() {
-        this.page!.identifier = uid;
-      }
+      reload: true
     });
     return;
   }
@@ -78,12 +68,8 @@ function cleanHref(href: string) {
       @click="onViewComment"
     >
       <div class="disqus__text">
-        View&nbsp;
+        View Comments
       </div>
-      <div
-        class="disqus__count disqus-comment-count"
-        :data-disqus-url="pageLocation"
-      />
     </ux-button>
   </div>
   <div ref="disqusContainer" class="disqus__container">
