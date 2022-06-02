@@ -40,7 +40,7 @@ export const routes: Array<RouteRecordRaw> = [
   },
   { path        : '/support',
     name        : 'support',
-    component   : () => import('@/views/Support.vue'),
+    component   : () => import('@/views/SupportPage.vue'),
     meta        : { cat: 'root', title: 'Support', visible: true }
   },
   { path        : '/changelog/:page?',
