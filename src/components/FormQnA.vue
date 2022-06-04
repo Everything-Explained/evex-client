@@ -149,7 +149,7 @@ function setFormError(err: { status: string; data: string; }) {
           BACK
         </ux-button>
         <ux-button
-          :theme="'attention'"
+          theme="attention"
           :disabled="!isValidated"
           :loading="isSubmitting"
           @click="submit"
