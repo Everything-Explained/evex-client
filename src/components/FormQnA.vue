@@ -143,7 +143,7 @@ function setFormError(err: { status: string; data: string; }) {
         <ux-button
           v-if="showBack"
           class="qnaf__back-button"
-          type="neutral"
+          theme="neutral"
           @click="$emit('back')"
         >
           BACK
