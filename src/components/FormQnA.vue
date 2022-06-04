@@ -78,7 +78,7 @@ function getReactiveQuestions() {
 
 function setFormError(err: { status: string; data: string; }) {
   formState.errorUpdate = Date.now();
-  formState.errorText = `Fatal Error: ${err.data}`;
+  formState.errorText = `FATAL ERROR: ${err.data}`;
 }
 </script>
 
