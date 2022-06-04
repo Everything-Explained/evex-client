@@ -125,9 +125,11 @@
     color         : var(--md-code-c);
     background    : var(--md-code-bg-c);
     text-shadow   : 1px 1px 0 black,
-                    2px 2px 0 black,
-                    3px 3px 0 black;
+                   -1px -1px 0 black,
+                   1px 0 0 black,
+                   0 1px 0 black;
     font-size     : 1.125rem;
+    letter-spacing: 1px;
     font-family   : Consolas, 'Courier New', Courier, monospace;
     white-space   : nowrap;
     word-spacing  : -3px;
