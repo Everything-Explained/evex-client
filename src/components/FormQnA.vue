@@ -20,7 +20,7 @@ interface ReactiveQuestions {
     answer: string;
     text: string;
     subtext?: string;
-  }[]
+  }[]|undefined;
 }
 
 
@@ -40,7 +40,7 @@ const nameRegex    = /^[a-z\s.]+$/i;
 const formID       = `qna/${props.id}`;
 const qnaCacheObj  = cache.getArrayData('qnaform').value[0] || {};
 const oldQuestions = qnaCacheObj[formID];
-const questions    = oldQuestions ? oldQuestions : getReactiveQuestions();
+const questions    = oldQuestions ?? getReactiveQuestions();
 const formData     = reactive({ name: '', email: '', });
 const formState    = reactive({ errorUpdate: 0, errorText: '' });
 
