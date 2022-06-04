@@ -83,11 +83,9 @@ export function useStaticPager<T extends StaticPage>(url: DataCacheArrayKeys, ve
     api
       .get<string>(`/data/${url}/${page.id}.mdhtml`, null, page.hash, 'static', 'text')
       .then(res => {
-        setTimeout(() => {
-          page.content = res.data;
-          activePage.value = page;
-          isGettingPageContent.value = false;
-        }, 500);
+        page.content = res.data;
+        activePage.value = page;
+        isGettingPageContent.value = false;
       });
   }
 
