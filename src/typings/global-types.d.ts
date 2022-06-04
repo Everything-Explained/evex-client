@@ -25,6 +25,12 @@ declare global {
   }
 }
 
+declare module 'vue' {
+  interface HTMLAttributes {
+    dataNum?: string;
+  }
+}
+
 declare module 'vue-router' {
   interface RouteMeta {
     cat: string;
