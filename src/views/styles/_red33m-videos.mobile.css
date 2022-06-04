@@ -9,12 +9,12 @@
   :root { --r3d-vid-width: 80%; }
   .red-vid__video {
     margin-right: 10px;
-    margin-bottom: 2px;
+    margin-bottom: 1rem;
   }
 }
 /*** 420px ***/
 @media only screen and (--small-screen) {
-  :root { --r3d-vid-width: 97% }
+  :root { --r3d-vid-width: 93% }
 }
 /*** 320px ***/
 @media only screen and (--tiny-screen) {
