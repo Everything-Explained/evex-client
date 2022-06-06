@@ -6,6 +6,10 @@
   background: var(--selection-bg-c);
 }
 
+:root {
+  --page-right-margin: 5px;
+}
+
 
 .app__container {
   display        : flex;
@@ -22,7 +26,7 @@
   top          : 0;
   left         : 0;
   right        : 0;
-  margin-right : 7px;
+  margin-right : var(--page-right-margin);
   height       : 3px;
   box-shadow   : 0 4px 5px 1px black;
   background   : var(--app-ribbon-c);
@@ -59,7 +63,7 @@
   position         : relative;
   top              : 0;
   left             : 0;
-  margin-right     : 7px;
+  margin-right     : var(--page-right-margin);
   height           : 8rem;
   box-shadow       : 0 4px 5px -1px black;
   border-bottom    : 3px solid var(--panel-c);
