@@ -14,7 +14,6 @@ type ManagedPages = Array<{ scrollPos: Ref<number>; url: string; }>;
 
 
 
-const body = computed(() => document.body);
 const {
   isToastVisible,
   isToastClosed,
@@ -25,7 +24,7 @@ const {
 useCustomScrollPos();
 
 
-function useVersionToast(body: Ref<HTMLElement>, releaseDate: ISODateString, changelogURI: string) {
+function useVersionToast(releaseDate: ISODateString, changelogURI: string) {
   if (localStorage.getItem('release-date') != releaseDate) {
     localStorage.setItem('release-date', releaseDate);
     localStorage.setItem('release-toast', 'open');
@@ -41,7 +40,7 @@ function useVersionToast(body: Ref<HTMLElement>, releaseDate: ISODateString, cha
 
   function hideToastOnScroll() {
     if (isToastClosed.value) return;
-    (body.value.scrollTop >= 40)
+    (window.scrollY >= 40)
       ? isToastHidden.value = true
       : isToastHidden.value = false
     ;
@@ -59,11 +58,11 @@ function useVersionToast(body: Ref<HTMLElement>, releaseDate: ISODateString, cha
 
   onMounted(() => {
     if (!isToastVisible.value) return;
-    body.value.addEventListener('scroll', hideToastOnScroll);
+    window.addEventListener('scroll', hideToastOnScroll);
   });
 
   onUnmounted(() => {
-    body.value.removeEventListener('scroll', hideToastOnScroll);
+    window.removeEventListener('scroll', hideToastOnScroll);
   });
 
   return {
