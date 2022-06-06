@@ -12,17 +12,19 @@
 .vw-chglog blockquote {
   position      : relative;
   margin        : 0 auto;
-  margin-bottom : 3rem;
+  margin-bottom : 2rem;
   z-index       : 1;
   width         : 90%;
   text-align    : left !important;
   li {
     position         : relative;
     margin-top       : 7px;
-    padding          : 15px 8px 15px 15px;
+    padding          : 0.5rem 8px 0.5rem 0.5rem;
     border-top       : 3px solid var(--body-bg-c);
     background-color : var(--sub-panel-c);
     word-spacing     : 1px;
+    border: 2px solid hsla(224, 100%, 92%, 0.054);
+    box-shadow: 0 0 0 2px hsla(0, 0%, 0%, 0.464);
     transition       : background var(--md-trans-speed);
     &:first-child {
       border-top-left-radius : 15px;
@@ -34,17 +36,11 @@
     &:last-child  {
       border-bottom-right-radius : 13px; }
   }
-  &::after {
-    position         : absolute;
-    z-index          : -1;
-    left             : 50%;
-    transform        : translateX(-50%);
-    bottom           : -10px;
-    width            : 90%;
-    height           : 100%;
-    content          : '';
-    background-color : hsl(197, 11%, 17%);
-    transition       : background var(--md-trans-speed); }
+  li + li {
+    margin-top: 0;
+    box-shadow: 0 0 0 2px hsla(0, 0%, 0%, 0.653);
+    // border-bottom: 2px solid black;
+  }
   &:hover {
     background-color : transparent;
     color            : var(--md-p-hov-c);
@@ -59,8 +55,6 @@
       color: var(--md-p-hov-i-c); }
     li {
       background-color: var(--sub-panel-hov-c); }
-    &::after {
-      background-color: hsl(30, 15%, 17%); }
     code {
       background-color : hsl(30, 15%, 23%);
       color            : var(--md-p-hov-b-c); }
