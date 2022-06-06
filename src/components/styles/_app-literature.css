@@ -5,21 +5,22 @@
 
 
 .lit__cards {
-  display         : flex;
-  margin          : 0 auto;
-  margin-top      : 15px;
-  flex-direction  : row;
-  flex-wrap       : wrap;
-  justify-content : center;
+  display               : inline-grid;
+  margin                : 20px 15px;
+  align-items           : start;
+  grid-template-columns : repeat(auto-fill, minmax(350px, 1fr));
+  grid-auto-rows        : auto;
+  gap                   : 1.5rem;
+  justify-items         : stretch;
   &.--expanded {
-    margin-top : 2rem;
+    grid-template-columns : 1fr;
+    gap: 2.3rem;
+    justify-items: center;
     max-width  : 1024px; }
 }
 
 
 .lit__card {
-  margin        : 20px 15px;
-  width         : 31%;
   align-self    : flex-start;
   overflow      : hidden;
   box-shadow    : 0 0 5px 2px hsl(197, 11%, 17%);
@@ -42,7 +43,6 @@
       color: hsl(30, 15%, 45%); }
   }
   &.--expanded {
-    margin-bottom : 30px;
     width         : 95%;
     & header {
       text-align : left;
