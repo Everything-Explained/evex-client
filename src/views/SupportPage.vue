@@ -51,7 +51,7 @@ function activateForm(type: number) {
   formType.value     = type;
   formID.value       = `${type}`;
   isFormActive.value = true;
-  document.body.scrollTo(0, 0);
+  window.scrollTo(0, 0);
 }
 
 function back()      { isFormActive.value = false; }
