@@ -47,7 +47,7 @@
     & header {
       text-align : left;
       font-size  : 1.5rem; }
-    & summary { line-height : 2rem; }
+    & summary { line-height : 1.6rem; }
     & footer {
       padding-left : 5px;
       text-align   : right;
@@ -57,7 +57,7 @@
   & header {
     position: relative;
     z-index          : 2;
-    padding          : 7px 7px 5px 10px;
+    padding          : 4px 7px 3px 10px;
     box-shadow       : 0 7px 15px -3px black;
     border-bottom    : 1px solid hsl(197, 11%, 25%);
     border-radius    : 7px 7px 0 0;
