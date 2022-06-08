@@ -51,7 +51,7 @@ export function usePageFilter(pages: FilterData[], isPersisting: boolean, areRev
       // Original pages must also reflect reverse order
       clonedPages.reverse();
       const pages = filteredPages.reverse().slice();
-      cache.updObjData('filter', 'reversed', !filterStore.reversed);
+      cache.updObjData('filter', 'reversed', !cache.getObjData('filter').value.reversed);
       return pages;
     },
 
