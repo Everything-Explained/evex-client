@@ -57,7 +57,7 @@
     }
   }
   & header {
-    position: relative;
+    position         : relative;
     z-index          : 2;
     padding          : 4px 7px 3px 10px;
     box-shadow       : 0 7px 15px -3px black;
@@ -72,6 +72,7 @@
     font-size        : 1.4rem;
     font-weight      : 400;
     color            :hsl(47, 75%, 63%);
+    user-select      : none;
     cursor           : pointer;
     transition       :
                        color var(--lit-transition-speed),
