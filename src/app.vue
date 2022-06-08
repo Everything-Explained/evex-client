@@ -7,6 +7,7 @@ import { useDate } from "./composeables/date";
 import { ISODateString } from "./typings/global-types";
 import AppMenu from "@/components/AppMenu.vue";
 import UxIcon from "./components/UxIcon.vue";
+import { useDataCache } from "./state/cache-state";
 
 
 
@@ -77,6 +78,8 @@ function useVersionToast(releaseDate: ISODateString, changelogURI: string) {
 function useCustomScrollPos() {
   const router          = useRouter();
   const route           = useRoute();
+  const cache           = useDataCache<string>();
+  const latestRoutes    = cache.getArrayData('routeHistory');
   const managedPages: ManagedPages = [
     { scrollPos: ref(0), url: '/blog'               },
     { scrollPos: ref(0), url: '/library/videos'     },
@@ -90,14 +93,18 @@ function useCustomScrollPos() {
   watch(() => route.path, onRouteChange);
 
   async function onRouteChange() {
+    manageRouteHistory();
     await router.isReady();
-    if (checkForPages()) return;
+    if (checkForPages()) {
+      return;
+    }
     setScrollTop(0);
   }
 
+
   function checkForPages() {
     for (const page of managedPages) {
-      if (route.path.includes(page.url)) {
+      if (route.path.includes(page.url) || latestRoutes.value[0].includes(page.url)) {
         setScrollPos(page.scrollPos, page.url);
         return true;
       }
@@ -105,21 +112,45 @@ function useCustomScrollPos() {
     return false;
   }
 
+
   function setScrollPos(posRef: Ref<number>, url: string) {
-    // Look for sub-page
-    if (route.path.includes(`${url}/`)) {
+    const lastRoute = latestRoutes.value[0];
+    const currentRoute = latestRoutes.value[1] ?? route.path;
+
+    if (lastRoute.includes(url) && !lastRoute.includes(`${url}/`)) {
       posRef.value = window.scrollY;
-      setScrollTop(0);
-      return;
     }
-    setScrollTop(posRef.value);
+
+    if (currentRoute.includes(`${url}/`) || currentRoute != url) {
+      setScrollTop(0);
+    }
+    else {
+      setScrollTop(posRef.value);
+    }
   }
+
 
   function setScrollTop(top: number) {
     // Wait for transition to complete before scrolling
     setTimeout(() => {
       window.scrollTo(0, top);
     }, 450);
+  }
+
+
+  /**
+   * Maintain an artificial route history where the array data
+   * `[lastPageURI, currentPageURI]` is saved inside the 'routeHistory'
+   * cache location.
+   */
+  function manageRouteHistory() {
+    const routeHistory = cache.getArrayData('routeHistory').value;
+    if (!routeHistory.length) {
+      cache.setArrayData('routeHistory', [route.path]);
+    }
+    else {
+      cache.setArrayData('routeHistory', [routeHistory.pop(), route.path]);
+    }
   }
 }
 

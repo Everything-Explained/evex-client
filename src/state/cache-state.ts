@@ -2,6 +2,7 @@ import { computed, reactive } from "vue";
 
 const stateOfArrays = reactive({
   'temp'                 : [],
+  'routeHistory'         : [],
   'lazyimg-data'         : [],
   'blog'                 : [],
   'changelog'            : [],
