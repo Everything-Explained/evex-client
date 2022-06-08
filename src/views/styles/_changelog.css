@@ -20,11 +20,11 @@
     position         : relative;
     margin-top       : 7px;
     padding          : 0.5rem 8px 0.5rem 0.5rem;
+    box-shadow       : 0 0 0 2px hsla(0, 0%, 0%, 0.464);
     border-top       : 3px solid var(--body-bg-c);
+    border           : 2px solid hsla(224, 100%, 92%, 0.054);
     background-color : var(--sub-panel-c);
     word-spacing     : 1px;
-    border: 2px solid hsla(224, 100%, 92%, 0.054);
-    box-shadow: 0 0 0 2px hsla(0, 0%, 0%, 0.464);
     transition       : background var(--md-trans-speed);
     &:first-child {
       border-top-left-radius : 15px;
