@@ -14,7 +14,8 @@
   gap                   : 1.5rem;
   justify-items         : stretch;
   &.--expanded {
-    margin: 20px auto;
+    margin-left: auto;
+    margin-right: auto;
     grid-template-columns : 1fr;
     gap: 2.3rem;
     justify-items: center;
