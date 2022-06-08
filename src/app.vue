@@ -95,38 +95,32 @@ function useCustomScrollPos() {
   async function onRouteChange() {
     manageRouteHistory();
     await router.isReady();
-    if (checkForPages()) {
-      return;
-    }
-    setScrollTop(0);
+    setScrollPos();
   }
 
 
-  function checkForPages() {
-    for (const page of managedPages) {
-      if (route.path.includes(page.url) || latestRoutes.value[0].includes(page.url)) {
-        setScrollPos(page.scrollPos, page.url);
-        return true;
-      }
-    }
-    return false;
-  }
+  function setScrollPos() {
+    const lastRoute    = latestRoutes.value[0];
+    const currentRoute = route.path;
+    const currentPage  = findManagedPage(currentRoute);
+    const lastPage     = findManagedPage(lastRoute);
 
-
-  function setScrollPos(posRef: Ref<number>, url: string) {
-    const lastRoute = latestRoutes.value[0];
-    const currentRoute = latestRoutes.value[1] ?? route.path;
-
-    if (lastRoute.includes(url) && !lastRoute.includes(`${url}/`)) {
-      posRef.value = window.scrollY;
+    if (lastPage && !lastRoute.includes(`${currentRoute}/`)) {
+      lastPage.scrollPos.value = window.scrollY;
     }
 
-    if (currentRoute.includes(`${url}/`) || currentRoute != url) {
+    // Sub-pages and un-managed pages
+    if (currentRoute.includes(`${currentRoute}/`) || !currentPage) {
       setScrollTop(0);
     }
     else {
-      setScrollTop(posRef.value);
+      setScrollTop(currentPage.scrollPos.value);
     }
+  }
+
+
+  function findManagedPage(url: string) {
+    return managedPages.find(page => page.url.includes(url));
   }
 
 
@@ -146,7 +140,7 @@ function useCustomScrollPos() {
   function manageRouteHistory() {
     const routeHistory = cache.getArrayData('routeHistory').value;
     if (!routeHistory.length) {
-      cache.setArrayData('routeHistory', [route.path]);
+      cache.setArrayData('routeHistory', ['', route.path]);
     }
     else {
       cache.setArrayData('routeHistory', [routeHistory.pop(), route.path]);
