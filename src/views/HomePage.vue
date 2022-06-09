@@ -30,7 +30,7 @@ const cache = useDataCache<string>();
 const homePageCache = cache.getData('home-page');
 const pageContent = ref('');
 
-if (homePageCache) {
+if (homePageCache.value) {
   pageContent.value = homePageCache.value;
 }
 else {
