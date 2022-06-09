@@ -23,15 +23,24 @@ import RenderHtml   from '@/components/RenderHtml.vue';
 import { useAPI } from '@/services/api_internal';
 import { ref } from 'vue';
 import UxPreloader from '@/components/UxPreloader.vue';
+import { useDataCache } from '@/state/cache-state';
 
 const api = useAPI();
+const cache = useDataCache<string>();
+const homePageCache = cache.getData('home-page');
 const pageContent = ref('');
 
-api
-  .get<any>('/data/standalone/home.json', null, api.state.versions?.home.v, 'static')
-  .then(res => {
-    pageContent.value = res.data.content;
-  });
+if (homePageCache) {
+  pageContent.value = homePageCache.value;
+}
+else {
+  api
+    .get<any>('/data/standalone/home.json', null, api.state.versions?.home.v, 'static')
+    .then(res => {
+      cache.setData('home-page', res.data.content);
+      pageContent.value = res.data.content;
+    });
+}
 
 </script>
 
