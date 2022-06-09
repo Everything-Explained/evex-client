@@ -7,10 +7,10 @@ const stateOfArrays = reactive({
   'blog'                 : [],
   'changelog'            : [],
   'qnaform'              : [],
-  'library/literature'   : [],
-  'red33m/literature'    : [],
-  '/data/red33m/videos'  : [],
-  '/data/library/videos' : [],
+  'literature/public'    : [],
+  'literature/red33m'    : [],
+  '/data/videos/red33m'  : [],
+  '/data/videos/public'  : [],
 });
 
 const stateOfObjects = reactive({

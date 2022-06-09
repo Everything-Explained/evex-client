@@ -6,7 +6,7 @@ import { useAPI } from "@/services/api_internal";
 
 
 const options: AppLitOptions = {
-  uri   : 'red33m/literature',
+  uri   : 'literature/red33m',
   title : 'RED33M Literature',
   version : useAPI().state.versions?.r3dLit.v
 };

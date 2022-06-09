@@ -19,7 +19,7 @@ type VideoCategory = { name: string; desc: string; videos: Video[] };
 
 const { setDynPages, goTo, activePage, }     = useDynamicPager('library/videos');
 const { videos: categories, isLoadingVideos} = useVideos<VideoCategory>(
-  '/data/library/videos',
+  '/data/videos/public',
   (vidCats) => {
     setDynPages(vidCats.map(cat => ({ name: cat.name, data: cat.videos })));
   }
