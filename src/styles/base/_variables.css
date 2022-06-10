@@ -59,8 +59,8 @@
   --md-p-bg-c           : var(--sub-panel-c);
   --md-p-bg-hov-c       : var(--sub-panel-hov-c);
   --md-p-bxs-c          : hsla(0, 0%, 0%, 0.4);
-  --md-b-c              : hsl(197, 23%, 95%);
-  --md-p-hov-b-c        : hsl(30, 30%, 95%);
+  --md-b-c              : hsl(197, 23%, 89%);
+  --md-p-hov-b-c        : hsl(30, 30%, 94%);
   --md-i-c              : hsl(0, 100%, 75%);
   --md-p-hov-i-c        : hsl(47, 77%, 67%);
   --md-b-i-c            : hsl(197, 45%, 69%);
