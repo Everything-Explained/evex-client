@@ -1,17 +1,23 @@
 
 
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue';
+import { onUnmounted, ref } from 'vue';
 import UxButton from './UxButton.vue';
 
 
 const doc             = document;
-const pageLocation    = cleanHref(doc.location.href);
 const disqusContainer = ref<HTMLElement>();
 const isLoading       = ref(false);
 const showButton      = ref(true);
+const disqusThread    = ref<HTMLElement>();
 
 
+onUnmounted(() => {
+  if (disqusThread.value) {
+    // Prevent element from being cached between pages
+    disqusThread.value.innerHTML = '';
+  }
+});
 
 
 function onViewComment() {
@@ -45,14 +51,6 @@ function injectDisqusScript() {
   doc.head.appendChild(script);
 }
 
-
-function cleanHref(href: string) {
-  if (href[href.length - 1] == '/') {
-    return href.substring(0, href.length - 1);
-  }
-  return href;
-}
-
 </script>
 
 
@@ -73,7 +71,7 @@ function cleanHref(href: string) {
     </ux-button>
   </div>
   <div ref="disqusContainer" class="disqus__container">
-    <div id="disqus_thread" />
+    <div id="disqus_thread" ref="disqusThread" />
   </div>
 </template>
 
