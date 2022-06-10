@@ -38,7 +38,7 @@
   }
   li + li {
     margin-top: 0;
-    box-shadow: 0 0 0 2px hsla(0, 0%, 0%, 0.653);
+    box-shadow: 0 0 0 2px hsla(0, 0%, 0%, 0.464), 0px -4px 0 -2px hsla(0, 0%, 0%, 0.642);
     // border-bottom: 2px solid black;
   }
   &:hover {
