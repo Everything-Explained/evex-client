@@ -28,12 +28,12 @@ export const routes: Array<RouteRecordRaw> = [
     component   : Blog,
     meta        : { cat: 'root', title: 'Blog', visible: true }
   },
-  { path        : '/library/videos/:uri?',
+  { path        : '/videos/public/:uri?',
     name        : 'lib-videos',
     component   : Videos,
     meta        : { cat: 'root', title: 'Videos', visible: true }
   },
-  { path        : '/library/literature/:page?',
+  { path        : '/literature/public/:page?',
     name        : 'lib-lit',
     component   : Literature,
     meta        : { cat: 'root', title: 'Literature', visible: true }
@@ -53,13 +53,13 @@ export const routes: Array<RouteRecordRaw> = [
     component   : Red33mLogin,
     meta        : { cat: 'RED33M', title: 'Login', visible: !isAuthed() || isDevelopment }
   },
-  { path        : '/red33m/videos',
+  { path        : '/videos/red33m',
     name        : 'red-videos',
     component   : R3dVideos,
     beforeEnter : isAuthedGuard,
     meta        : { cat: 'RED33M', catVisible: isAuthed(), title: 'Videos', visible: isAuthed() }
   },
-  { path        : '/red33m/literature/:page?',
+  { path        : '/literature/red33m/:page?',
     name        : 'red-lit',
     component   : r3d_litVue,
     beforeEnter : isAuthedGuard,
