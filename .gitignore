@@ -5,6 +5,8 @@ src/styles/fonts/font-files
 test.md
 
 # Built Files/Folders
+build/*.js
+build/scripts/*.js
 /dist
 /release
 src/views/**/*.json
