@@ -10,6 +10,7 @@ export default defineConfig({
     },
   },
   build: {
+    minify: 'terser',
     terserOptions: {
       toplevel: true,
       ecma: 2020,
