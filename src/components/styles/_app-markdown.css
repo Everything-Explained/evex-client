@@ -84,6 +84,7 @@
 
 .md {
   blockquote {
+    position: relative;
     text-align: center;
     & > p {
       margin           : 2.7rem auto;
