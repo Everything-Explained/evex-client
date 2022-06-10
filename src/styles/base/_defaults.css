@@ -23,6 +23,10 @@ body {
 a {
   word-wrap: break-word;
   overflow-wrap: break-word;
+}
+sup {
+  color: var(--md-p-hov-i-c);
+}
 
 @font-face {
   font-family  : 'Pique N Meex';
