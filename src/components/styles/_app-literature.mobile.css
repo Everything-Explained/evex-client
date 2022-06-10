@@ -1,8 +1,8 @@
-@media only screen and (max-width: 1024px) {
-}
+// @media only screen and (max-width: 1024px) {
+// }
 /*** 768px ***/
-@media only screen and (--large-screen) {
-}
+// @media only screen and (--large-screen) {
+// }
 /*** 540px ***/
 @media only screen and (--medium-screen) {
   .lit__cards {
