@@ -80,7 +80,7 @@ const back      = () => setState('isAccepted',  false);
 const submitted = () => setState('isSubmitted', true);
 
 function setState(name: keyof typeof formState, val: boolean) {
-  formState[name] = val, document.body.scrollTo(0, 0);
+  formState[name] = val, window.scrollTo(0, 0);
 }
 
 </script>
