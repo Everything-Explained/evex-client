@@ -17,7 +17,7 @@ import UxPreloader         from '@/components/UxPreloader.vue';
 type VideoCategory = { name: string; desc: string; videos: Video[] };
 
 
-const { setDynPages, goTo, activePage, }     = useDynamicPager('library/videos');
+const { setDynPages, goTo, activePage, }     = useDynamicPager('videos/public');
 const { videos: categories, isLoadingVideos} = useVideos<VideoCategory>(
   '/data/videos/public',
   (vidCats) => {
