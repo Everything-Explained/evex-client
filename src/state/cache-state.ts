@@ -24,6 +24,7 @@ const stateOfObjects = reactive({
 });
 
 const stateOfPrimitives = reactive({
+  'home-page'          : '',
   'titlebar-menu-open' : false,
 });
 
