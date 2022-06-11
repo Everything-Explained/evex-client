@@ -24,7 +24,7 @@
     font-size: 1.17rem;
     text-align: left;
   }
-  .lit__card.--expanded header { padding: 5px 10px; }
+  .lit__card.--expanded header { padding-bottom: 2px; }
   .lit__card.--expanded summary { line-height: 1.5rem; }
   .lit__card article,
   .lit-expanded .lit__card article { font-size: 1.07rem; line-height: 1.2rem; }
