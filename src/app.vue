@@ -20,7 +20,7 @@ const {
   isToastClosed,
   closeToast,
   openChangeLog,
-} = useVersionToast(body, '2021-08-26T21:28:00.237Z', 'a4-blueprint');
+} = useVersionToast('2022-06-10T19:48:28.467Z', 'a5--discovery');
 
 useCustomScrollPos();
 

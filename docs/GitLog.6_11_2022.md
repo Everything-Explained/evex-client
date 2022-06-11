@@ -1,4 +1,4 @@
-# GitLog (6/10/2022)
+# GitLog (6/11/2022)
 
 ## Feat
 * support new CMS build process ([c336c8e](https://github.com/Everything-Explained/web-client/commit/c336c8e)) `5-16-2022`
@@ -20,6 +20,9 @@
 
 **preloader**
 * add image placeholder animation ([ac86ba2](https://github.com/Everything-Explained/web-client/commit/ac86ba2)) `6-2-2022`
+
+**LitCards**
+* hide 12 hour time on small devices ([8aea371](https://github.com/Everything-Explained/web-client/commit/8aea371)) `6-11-2022`
 
 ---
 
@@ -43,6 +46,7 @@
 **api_internal**
 * update version structure to reflect build changes ([6a90edf](https://github.com/Everything-Explained/web-client/commit/6a90edf)) `5-23-2022`
 * `init()` should initialize all required data ([4e1d1b5](https://github.com/Everything-Explained/web-client/commit/4e1d1b5)) `6-2-2022`
+* init state was incorrectly implemented ([1bf026c](https://github.com/Everything-Explained/web-client/commit/1bf026c)) `6-11-2022`
 
 **home**
 * request page using `static` option ([7d1175b](https://github.com/Everything-Explained/web-client/commit/7d1175b)) `5-26-2022`
@@ -58,6 +62,8 @@
 * forgot to apply default style ([da4603d](https://github.com/Everything-Explained/web-client/commit/da4603d)) `6-8-2022`
 * prevent header text selection ([d530b6b](https://github.com/Everything-Explained/web-client/commit/d530b6b)) `6-8-2022`
 * overlooked `expanded` style margin overwrite ([207933d](https://github.com/Everything-Explained/web-client/commit/207933d)) `6-8-2022`
+* header bottom margin too large on mobile ([7735557](https://github.com/Everything-Explained/web-client/commit/7735557)) `6-11-2022`
+* prevent summary text from overlapping border ([7966fbd](https://github.com/Everything-Explained/web-client/commit/7966fbd)) `6-11-2022`
 
 **videos**
 * "content" should be "summary" ([654f347](https://github.com/Everything-Explained/web-client/commit/654f347)) `5-26-2022`
@@ -134,6 +140,7 @@
 
 ## Docs
 * add commit syntax docs ([4ce20d0](https://github.com/Everything-Explained/web-client/commit/4ce20d0)) `6-10-2022`
+* create latest Git log from Gilmer compilation ([7245e2f](https://github.com/Everything-Explained/web-client/commit/7245e2f)) `6-10-2022`
 
 ---
 
