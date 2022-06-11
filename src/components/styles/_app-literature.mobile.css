@@ -16,6 +16,9 @@
     width: 93%;
     font-size: 1.10rem;
   }
+  .lit-card__time {
+    display: none;
+  }
   .lit__card header,
   .lit__card.--expanded header {
     font-size: 1.17rem;
