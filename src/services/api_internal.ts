@@ -41,21 +41,21 @@ const sanitizeURLForEnv = (url: string) => {
 };
 
 const state = reactive({
-  userid        : '',
-  isInitialized : false,
-  initializing  : false,
-  versions      : undefined as APIVersions | undefined,
-  isLoading     : false,
-  endPoint      : wretch().url(sanitizeURLForEnv('/api')),
-  isDebouncing  : false,
+  userid         : '',
+  isInitializing : false,
+  versions       : undefined as APIVersions | undefined,
+  isLoading      : false,
+  endPoint       : wretch().url(sanitizeURLForEnv('/api')),
+  isDebouncing   : false,
 });
 
 
+
 async function init() {
-  state.initializing = true;
+  state.isInitializing = true;
   state.userid = localStorage.getItem('userid') || genUniqueID();
   const versions = localStorage.getItem('versions');
-  state.versions = versions ? JSON.parse(versions) as APIVersions : undefined;
+  state.versions = versions && versions.includes('{') ? JSON.parse(versions) as APIVersions : undefined;
   state.endPoint = state.endPoint.auth(`Bearer ${state.userid || 'none'}`);
   localStorage.setItem('userid', state.userid);
 
@@ -75,14 +75,15 @@ async function init() {
       state.versions = res.data;
     }
   }
-  state.isInitialized = true;
+  state.isInitializing = false;
 }
 
 
 function callAPI<T>(opts: APIOptions): Promise<APIResponse<T>> {
-  checkInitialization();
   return new Promise((rs, rj) => {
-    if (debounceOnPending(rs, () => callAPI(opts))) return;
+    if (!state.isInitializing) {
+      if (debounceOnPending(rs, () => callAPI(opts))) return;
+    }
     state.isLoading = true;
     const api = setupAPI(opts);
     const sendServerIsOffline = () =>
@@ -123,18 +124,11 @@ function setupAPI(opts: APIOptions) {
 }
 
 
-function checkInitialization() {
-  if (!state.isInitialized && !state.initializing) {
-    const err = Error('useAPI() is NOT initialized');
-    console.error(err);
-    throw err;
-  }
-}
-
-
 function debounceOnPending(rs: (val: any) => void, cb: () => Promise<any>) {
-  const isPending = state.isLoading || state.isDebouncing;
-  if (isPending) { debounce(100, () => rs(cb())); return true; }
+  if (state.isInitializing) {
+    debounce(100, () => rs(cb()));
+    return true;
+  }
   return false;
 }
 
@@ -164,7 +158,7 @@ export function useAPI() {
     init,
     debounce,
     ...API,
-    isPending: computed(() => state.isDebouncing || state.isLoading),
+    isPending: computed(() => state.isDebouncing || state.isLoading || state.isInitializing),
     state
   };
 }
