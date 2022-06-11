@@ -83,7 +83,7 @@
   & summary {
     position: relative;
     height           : auto;
-    padding          : 5px 0 5px 3px;
+    padding          : 5px 3px 5px 3px;
     box-shadow       : 0 2px 8px 3px hsla(0, 0%, 0%, 0.9);
     background-color : hsl(197, 11%, 11%);
     color            : var(--body-c);
