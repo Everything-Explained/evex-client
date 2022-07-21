@@ -1,6 +1,6 @@
 import { reactive, computed } from "vue";
 import { isProduction } from "../globals";
-import wretch from 'wretch';
+import wretch, { WretcherResponse } from 'wretch';
 import { ISODateString } from "@/typings/global-types";
 
 
@@ -86,26 +86,39 @@ function callAPI<T>(opts: APIOptions): Promise<APIResponse<T>> {
     }
     state.isLoading = true;
     const api = setupAPI(opts);
-    const sendServerIsOffline = () =>
-      rj({ status: 521, data: 'Server is Offline' } as APIResponse<string>)
-    ;
     api
       .fetchError(sendServerIsOffline) // Catches Network Errors
       .error(521, sendServerIsOffline) // Cloudflare tells us server is down
-      .res(async (res) => rs({
-        status: res.status,
-        data: opts.method == 'get'
-                ? opts.dataType == 'text' ? await res.text() : await res.json()
-                : await res.text()
-      }))
-      .catch((err: APIErrorResp) => {
-        rj({
-          status : err.status,
-          data   : err.message } as APIResponse<string>
-        );
-      })
+      .res(resolve)
+      .catch(reject)
       .finally(() => state.isLoading = false)
     ;
+
+    function sendServerIsOffline() {
+      rj({ status: 521, data: 'Server is Offline' } as APIResponse<string>);
+    }
+
+    async function resolve(res: WretcherResponse) {
+      rs({
+        status: res.status,
+        data: (
+          opts.method == 'get'
+            ? opts.dataType == 'text' ? await res.text() : await res.json()
+            : await res.text()
+        )
+      });
+    }
+
+    function reject(err: APIErrorResp) {
+      rj({
+        status : err.status,
+        data: (
+          err.message.includes('{')
+            ? JSON.parse(err.message)
+            : err.message
+        )
+      });
+    }
   });
 }
 

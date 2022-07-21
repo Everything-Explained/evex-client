@@ -26,8 +26,8 @@ const errorText       = ref('');
 const errorUpdVal     = ref(0);
 const loginSuccess    = ref(false);
 
-function setError(res: APIResponse<string>) {
-  errorText.value = res.data, errorUpdVal.value = Date.now();
+function setError(res: APIResponse<{ message: string }>) {
+  errorText.value = res.data.message, errorUpdVal.value = Date.now();
 }
 
 function submit(e: MouseEvent) {

@@ -76,9 +76,9 @@ function getReactiveQuestions() {
   return props.questions.map(q => reactive({ ...q, answer: q.answer || ''}));
 }
 
-function setFormError(err: { status: string; data: string; }) {
+function setFormError(err: { status: string; data: any; }) {
   formState.errorUpdate = Date.now();
-  formState.errorText = `FATAL ERROR: ${err.data}`;
+  formState.errorText = `FATAL ERROR: ${err.data.message}`;
 }
 </script>
 
