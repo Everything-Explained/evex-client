@@ -37,7 +37,7 @@ const genUniqueID = () =>
 ;
 
 const sanitizeURLForEnv = (url: string) => {
-  return isProduction ? url : `//localhost:3003${url}`;
+  return isProduction ? url : `//localhost:3001${url}`;
 };
 
 const state = reactive({
@@ -61,7 +61,7 @@ async function init() {
 
   const res =
     await API
-      .get<APIVersions>('/auth/setup', { userid: state.userid })
+      .get<APIVersions>('/auth/setup', {})
       .catch((err: APIResponse<string>) => {
         return err;
       })
