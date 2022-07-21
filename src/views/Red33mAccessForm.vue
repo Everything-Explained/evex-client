@@ -160,7 +160,7 @@ function setState(name: keyof typeof formState, val: boolean) {
         </ux-text>
         <form-qna
           id="red33m"
-          :type="3"
+          :type="0"
           name-label="Name or Preferred Title"
           :questions="questions"
           :show-back="true"

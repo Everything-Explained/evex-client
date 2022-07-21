@@ -154,10 +154,11 @@ function submitted() { isSubmitted.value = true; }
       </div>
       <div v-else-if="!isSubmitted">
         <div class="support__content">
+          <!-- We add 1 to type because Red33m form is 0 -->
           <form-qna
             :id="'support' + formID"
             :questions="questions"
-            :type="formType"
+            :type="formType + 1"
             :name-label="'Name or Preferred Title'"
             :show-back="true"
             :minchars="70"
