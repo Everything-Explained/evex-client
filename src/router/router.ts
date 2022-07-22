@@ -3,7 +3,7 @@ import { createRouter,
          RouteRecordRaw } from 'vue-router';
 import { isAuthed, isAuthedGuard, isDevelopment }  from '@/globals';
 import Home               from '@/views/HomePage.vue';
-import i404               from '@/views/404Error.vue';
+import httpError404       from '@/views/404Error.vue';
 import R3dVideos          from '@/views/Red33mVideos.vue';
 import Blog               from '@/views/BlogPage.vue';
 import Videos             from '@/views/LibraryVideos.vue';
@@ -70,9 +70,14 @@ export const routes: Array<RouteRecordRaw> = [
     component   : red33mForm,
     meta        : { cat: 'Accessory', catVisible: isDevelopment, title: 'R3D Form', visible: true }
   },
+  { path        : '/403',
+    name        : '403',
+    component   : () => import('@/views/403Error.vue'),
+    meta        : { cat: 'Accessory', title: '401', visible: isDevelopment }
+  },
   { path        : '/:pathMatch(.*)*',
     name        : '404',
-    component   : i404,
+    component   : httpError404,
     meta        : { cat: 'Accessory', title: '404', visible: isDevelopment }
   }
 ];

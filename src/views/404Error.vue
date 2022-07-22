@@ -2,6 +2,7 @@
 
 <script lang='ts' setup>
 import PageTitlebar from '@/components/PageTitlebar.vue';
+import PageFooter from '@/components/PageFooter.vue';
 </script>
 
 
@@ -9,12 +10,13 @@ import PageTitlebar from '@/components/PageTitlebar.vue';
 
 
 <template>
-  <div class="i404__error-container">
+  <div class="http-error__container">
     <page-titlebar>Page Not Found</page-titlebar>
-    <h1 class="i404__h1">
-      <span class="i404__fail-text">Oops</span>, is there
-      <span class="i404__info-text">supposed</span> to be a page here?
+    <h1 class="http-error__h1">
+      <span class="http-error__fail-color">Oops</span>, is there
+      <span class="http-error__info-color">supposed</span> to be a page here?
     </h1>
+    <page-footer />
   </div>
 </template>
 

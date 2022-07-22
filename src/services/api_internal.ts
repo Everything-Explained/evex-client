@@ -2,6 +2,7 @@ import { reactive, computed } from "vue";
 import { isProduction } from "../globals";
 import wretch, { WretcherResponse } from 'wretch';
 import { ISODateString } from "@/typings/global-types";
+import { useEventBus } from "@/state/event-bus";
 
 
 export interface APIResponse<T> {
@@ -89,6 +90,14 @@ function callAPI<T>(opts: APIOptions): Promise<APIResponse<T>> {
     api
       .fetchError(sendServerIsOffline) // Catches Network Errors
       .error(521, sendServerIsOffline) // Cloudflare tells us server is down
+      .forbidden(() => {
+        const eventBus = useEventBus();
+        localStorage.setItem('passcode', 'no');
+        eventBus.updateMenu('red-videos', false);
+        eventBus.updateMenu('red-lit', false);
+        eventBus.updateMenu('red-login', true);
+        window.$router.push('/403');
+      })
       .res(resolve)
       .catch(reject)
       .finally(() => state.isLoading = false)
