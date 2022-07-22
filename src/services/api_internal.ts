@@ -82,7 +82,7 @@ async function init() {
 
 function callAPI<T>(opts: APIOptions): Promise<APIResponse<T>> {
   return new Promise((rs, rj) => {
-    if (!state.isInitializing) {
+    if (opts.URI != '/auth/setup') {
       if (debounceOnPending(rs, () => callAPI(opts))) return;
     }
     state.isLoading = true;
