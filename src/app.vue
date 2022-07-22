@@ -83,9 +83,9 @@ function useCustomScrollPos() {
   const managedPages: ManagedPages = [
     { scrollPos: ref(0), url: '/blog/public'        },
     { scrollPos: ref(0), url: '/blog/red33m'        },
-    { scrollPos: ref(0), url: '/library/videos'     },
-    { scrollPos: ref(0), url: '/library/literature' },
-    { scrollPos: ref(0), url: '/red33m/literature'  },
+    { scrollPos: ref(0), url: '/videos/public'     },
+    { scrollPos: ref(0), url: '/literature/public'  },
+    { scrollPos: ref(0), url: '/literature/red33m'  },
     { scrollPos: ref(0), url: '/changelog'          },
   ];
 
