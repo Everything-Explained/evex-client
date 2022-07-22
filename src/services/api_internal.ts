@@ -28,7 +28,7 @@ interface APIOptions {
 
 type APIReqType    = 'dynamic'|'static';
 type RequestBody   = { [key: string]: string|number|boolean|Array<any> }
-type APIVersionNames = 'build'|'blog'|'chglog'|'home'|'libLit'|'libVid'|'r3dLit'|'r3dVid';
+type APIVersionNames = 'build'|'pubBlog'|'r3dBlog'|'chglog'|'home'|'libLit'|'libVid'|'r3dLit'|'r3dVid';
 export type APIVersions = Record<APIVersionNames, { v: string; n: ISODateString; }>;
 
 const genUniqueID = () =>

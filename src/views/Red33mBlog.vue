@@ -6,11 +6,11 @@ import { useAPI } from "@/services/api_internal";
 
 
 const options: AppLitOptions = {
-  uri          : 'blog/public',
-  title        : 'Blog Entries',
+  uri          : 'blog/red33m',
+  title        : 'RED33M Blog',
   expanded     : true,
   reverseOrder : true,
-  version      : useAPI().state.versions?.pubBlog.v,
+  version      : useAPI().state.versions?.r3dBlog.v,
 };
 
 </script>
@@ -19,7 +19,11 @@ const options: AppLitOptions = {
 
 
 
-<template><app-literature :options="options" /></template>
+<template>
+  <div class="r3d-blog">
+    <app-literature :options="options" />
+  </div>
+</template>
 
 
 

@@ -5,7 +5,8 @@ import { isAuthed, isAuthedGuard, isDevelopment }  from '@/globals';
 import Home               from '@/views/HomePage.vue';
 import httpError404       from '@/views/404Error.vue';
 import R3dVideos          from '@/views/Red33mVideos.vue';
-import Blog               from '@/views/PublicBlog.vue';
+import PublicBlog         from '@/views/PublicBlog.vue';
+import Red33mBlog         from '@/views/Red33mBlog.vue';
 import Videos             from '@/views/LibraryVideos.vue';
 import Literature         from '@/views/LibraryLiterature.vue';
 import Red33mLogin        from '@/views/Red33mLogin.vue';
@@ -23,9 +24,9 @@ export const routes: Array<RouteRecordRaw> = [
     component   : Home,
     meta        : { cat: 'root', title: 'Home', visible: true }
   },
-  { path        : '/blog/:page?',
+  { path        : '/blog/public/:page?',
     name        : 'blog',
-    component   : Blog,
+    component   : PublicBlog,
     meta        : { cat: 'root', title: 'Blog', visible: true }
   },
   { path        : '/videos/public/:uri?',
@@ -53,20 +54,26 @@ export const routes: Array<RouteRecordRaw> = [
     component   : Red33mLogin,
     meta        : { cat: 'RED33M', title: 'Login', visible: !isAuthed() || isDevelopment }
   },
+  { path        : '/blog/red33m/:page?',
+    name        : 'r3d-blog',
+    component   : Red33mBlog,
+    beforeEnter : isAuthedGuard,
+    meta        : { cat: 'RED33M', catVisible: isAuthed(), title: 'Blog', visible: isAuthed() }
+  },
   { path        : '/videos/red33m',
-    name        : 'red-videos',
+    name        : 'r3d-videos',
     component   : R3dVideos,
     beforeEnter : isAuthedGuard,
-    meta        : { cat: 'RED33M', catVisible: isAuthed(), title: 'Videos', visible: isAuthed() }
+    meta        : { cat: 'RED33M', title: 'Videos', visible: isAuthed() }
   },
   { path        : '/literature/red33m/:page?',
-    name        : 'red-lit',
+    name        : 'r3d-lit',
     component   : r3d_litVue,
     beforeEnter : isAuthedGuard,
     meta        : { cat: 'RED33M', title: 'Literature', visible: isAuthed() }
   },
   { path        : '/red33m/form',
-    name        : 'red-form',
+    name        : 'r3d-form',
     component   : red33mForm,
     meta        : { cat: 'Accessory', catVisible: isDevelopment, title: 'R3D Form', visible: true }
   },
