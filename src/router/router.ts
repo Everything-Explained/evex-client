@@ -18,11 +18,15 @@ import changelogVue       from '@/views/ChangelogPage.vue';
 
 
 export const routes: Array<RouteRecordRaw> = [
-  { path        : '/home',
-    alias       : '/',
+  { path        : '/',
     name        : 'home',
     component   : Home,
     meta        : { cat: 'root', title: 'Home', visible: true }
+  },
+  { path        : '/home',
+    name        : 'home-redirect',
+    redirect    : '/',
+    meta        : { cat: 'root', title: 'Home', visible: false }
   },
   { path        : '/blog/public/:page?',
     name        : 'blog',
