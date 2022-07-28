@@ -1,7 +1,7 @@
 
 
 <script lang="ts" setup>
-import { computed, ref, watch, watchEffect } from "vue";
+import { computed, ref, watch } from "vue";
 import useVideos           from "@/composeables/videos";
 import { useDynamicPager } from "@/composeables/dynamicPager";
 import { useDate }         from "@/composeables/date";
@@ -95,9 +95,10 @@ function toAuthors(authors: string[], video: Video) {
               <h2>Contributing Authors</h2>
               <div class="desc --authors">
                 <ul>
-                  <li v-for="(author, j) of getAuthors(cat.videos)"
-                      :key="j"
-                      :class="{ '--is-ethan': isEthan(author) }"
+                  <li
+                    v-for="(author, j) of getAuthors(cat.videos)"
+                    :key="j"
+                    :class="{ '--is-ethan': isEthan(author) }"
                   >
                     {{ author }}
                   </li>
@@ -110,12 +111,16 @@ function toAuthors(authors: string[], video: Video) {
                 </span>
               </h2>
               <div class="desc">
-                <a :href="toYouTubeLink(getLatestVideo(cat.videos).id)"
-                   target="_blank"
+                <a
+                  :href="toYouTubeLink(getLatestVideo(cat.videos).id)"
+                  target="_blank"
                 >{{ getLatestVideo(cat.videos).title }}</a>
                 <br>
-                <span :class="['latest-author',
-                               { '--is-ethan': isEthan(getLatestVideo(cat.videos).author) }]"
+                <span
+                  :class="[
+                    'latest-author',
+                    { '--is-ethan': isEthan(getLatestVideo(cat.videos).author) }
+                  ]"
                 > ~ {{ getLatestVideo(cat.videos).author }}</span>
               </div>
             </div>
