@@ -10,29 +10,26 @@ import PageFooter   from "@/components/PageFooter.vue";
 import UxVideo      from "@/components/UxVideo.vue";
 import UxFilter     from "@/components/UxFilter.vue";
 import UxPreloader  from '@/components/UxPreloader.vue';
-import { ref } from "vue";
 
 
-const videos         = ref<Video[]>([]);
-const maxStartVideos = isMobile() ? 10 : 30;
-const pagination     = useVideoPagination(videos);
-const observedEl     = pagination.observedEl;
 
-const { isLoadingVideos } = useVideos<Video>(
-  '/data/videos/red33m',
-  (v) => {
-    videos.value = v;
-    displayPage();
-  }
-);
+
+
+const {
+  isPending,
+  videos
+} = useVideos<Video>('/data/videos/red33m');
+
+const {
+  observedEl,
+  paginatedVideos,
+  displayVideoPage
+} = useVideoPagination(videos);
+
 
 function onFilter(filteredVideos: Video[]) {
   videos.value = filteredVideos;
-  displayPage();
-}
-
-function displayPage() {
-  pagination.displayVideoPage(1, maxStartVideos);
+  displayVideoPage(1, isMobile() ? 10 : 30);
 }
 
 </script>
@@ -47,7 +44,7 @@ function displayPage() {
       RED33M Videos
     </page-titlebar>
     <transition name="fade" mode="out-in">
-      <ux-preloader v-if="isLoadingVideos" />
+      <ux-preloader v-if="isPending" />
       <div v-else>
         <ux-filter
           :age-only="true"
@@ -57,7 +54,7 @@ function displayPage() {
         />
         <div ref="observedEl" class="red-vid__list">
           <ux-video
-            v-for="(v, i) of pagination.videos.value"
+            v-for="(v, i) of paginatedVideos"
             :key="i"
             :video-id="v.id"
             :date="v.date"
@@ -68,7 +65,7 @@ function displayPage() {
           </ux-video>
         </div>
         <!-- Loading footer before videos 'fixes' it to bottom -->
-        <page-footer v-if="pagination.videos.value.length" />
+        <page-footer v-if="paginatedVideos.length" />
       </div>
     </transition>
   </div>

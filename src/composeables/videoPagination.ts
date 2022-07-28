@@ -26,5 +26,5 @@ export function useVideoPagination(allVideos: Ref<Video[]>) {
   window.addEventListener('scroll', renderVideos);
   onUnmounted(() => window.removeEventListener('scroll', renderVideos));
 
-  return { displayVideoPage, observedEl, videos: paginatedVideos };
+  return { displayVideoPage, observedEl, paginatedVideos };
 }

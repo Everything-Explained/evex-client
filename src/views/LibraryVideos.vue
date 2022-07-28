@@ -1,7 +1,7 @@
 
 
 <script lang="ts" setup>
-import { computed, ref, watch } from "vue";
+import { computed, ref, watch, watchEffect } from "vue";
 import useVideos           from "@/composeables/videos";
 import { useDynamicPager } from "@/composeables/dynamicPager";
 import { useDate }         from "@/composeables/date";
@@ -14,16 +14,35 @@ import UxVideo             from "@/components/UxVideo.vue";
 import UxPreloader         from '@/components/UxPreloader.vue';
 
 
+
+
+
 type VideoCategory = { name: string; desc: string; videos: Video[] };
 
 
-const { setDynPages, goTo, activePage, }     = useDynamicPager('videos/public');
-const { videos: categories, isLoadingVideos} = useVideos<VideoCategory>(
-  '/data/videos/public',
-  (vidCats) => {
-    setDynPages(vidCats.map(cat => ({ name: cat.name, data: cat.videos })));
-  }
-);
+const {
+  setDynPages,
+  goTo,
+  activePage,
+} = useDynamicPager('videos/public');
+
+const {
+  videos: categories,
+  isPending,
+  isCached,
+} = useVideos<VideoCategory>('/data/videos/public');
+
+
+if (isCached) {
+  setDynPages(categories.value.map(cat => ({ name: cat.name, data: cat.videos })));
+} else {
+  watch(isPending, (isPending) => {
+    if (isPending == false) {
+      setDynPages(categories.value.map(cat => ({ name: cat.name, data: cat.videos })));
+    }
+  });
+}
+
 
 // Prevent loading of inherently cached videos
 watch(() => activePage.value, (page) => {
@@ -58,12 +77,13 @@ function toAuthors(authors: string[], video: Video) {
       :text="title"
     />
     <transition name="fade" mode="out-in">
-      <ux-preloader v-if="isLoadingVideos" />
+      <ux-preloader v-if="isPending" />
       <div v-else-if="categories.length && !activePage">
         <div class="lib-vid__category-list">
-          <div v-for="(cat, i) of categories"
-               :key="i"
-               class="lib-vid__category-container"
+          <div
+            v-for="(cat, i) of categories"
+            :key="i"
+            class="lib-vid__category-container"
           >
             <div class="lib-vid__category">
               <h1 @click="goTo(cat.name)">
