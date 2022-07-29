@@ -3,32 +3,32 @@ import { useRouter } from "vue-router";
 import { useURI } from "./URI";
 
 
-type DynamicPage = {
+type DynamicPage<T> = {
   title: string;
   uri  : string;
-  data : any[];
+  data : T;
 }
 
-type URIMap = { [key: string]: DynamicPage; }
+type URIMap<T> = { [key: string]: DynamicPage<T>; }
 
 
 
-export function useDynamicPager(url: string) {
+export function useDynamicPager<T>(url: string, param: string) {
   const router      = useRouter();
   const route       = router.currentRoute;
-  const currentURI  = computed(() => route.value.params.uri);
-  const pageMap     = {} as URIMap;
-  const activePage  = ref<DynamicPage>();
+  const currentURI  = computed(() => route.value.params[param]);
+  const pageMap     = {} as URIMap<T>;
+  const activePage  = ref<DynamicPage<T>>();
 
   watch(() => route.value.params, onRouteChange);
 
   function onRouteChange(params: any) {
     if (!route.value.path.includes(url)) return;
-    if (!params.uri) { activePage.value = undefined; return; }
+    if (!params[param]) { activePage.value = undefined; return; }
     if (currentURI.value) setActivePage();
   }
 
-  function setDynPages(pages: { name: string; data: any[]; }[]) {
+  function setDynPages(pages: { name: string; data: T; }[]) {
     pages.forEach((page) => {
       pageMap[page.name] = {
         title: page.name,

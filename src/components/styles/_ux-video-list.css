@@ -1,0 +1,37 @@
+
+
+
+.vid-list__videos {
+  display         : flex;
+  margin-top      : 20px;
+  flex-flow       : row wrap;
+  justify-content : center;
+  gap             : 2rem 1rem;
+
+  .hidden-item {
+    visibility : hidden;
+    flex       : 1 1 370px;
+    min-width  : auto;
+    max-width  : 480px;
+    content    : '';
+  }
+
+  .video {
+    flex      : 1 1 370px;
+    min-width : auto;
+    max-width : 480px;
+
+    .title {
+      font-size: clamp(1.1rem, 4vw, 1.25rem);
+    }
+
+    .timestamp, .author {
+      font-size: clamp(0.95rem, 3.5vw, 1.15rem);
+    }
+  }
+}
+
+
+
+
+

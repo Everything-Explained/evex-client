@@ -13,6 +13,7 @@ import Red33mLogin        from '@/views/Red33mLogin.vue';
 import red33mForm         from '@/views/Red33mAccessForm.vue';
 import r3d_litVue         from '@/views/Red33mLiterature.vue';
 import changelogVue       from '@/views/ChangelogPage.vue';
+import AppVideos          from '@/components/AppVideos.vue';
 
 
 
@@ -33,7 +34,7 @@ export const routes: Array<RouteRecordRaw> = [
     component   : PublicBlog,
     meta        : { cat: 'root', title: 'Blog', visible: true }
   },
-  { path        : '/videos/public/:uri?',
+  { path        : '/videos/public/:category?/:id?',
     name        : 'lib-videos',
     component   : Videos,
     meta        : { cat: 'root', title: 'Videos', visible: true }
@@ -64,7 +65,7 @@ export const routes: Array<RouteRecordRaw> = [
     beforeEnter : isAuthedGuard,
     meta        : { cat: 'RED33M', catVisible: isAuthed(), title: 'Blog', visible: isAuthed() }
   },
-  { path        : '/videos/red33m',
+  { path        : '/videos/red33m/:id?',
     name        : 'r3d-videos',
     component   : R3dVideos,
     beforeEnter : isAuthedGuard,
@@ -100,8 +101,8 @@ const router = createRouter({
 });
 
 
-// Hack for when dynamically injected HTML links navigate to
-// internal pages.
+// Hack for globally manipulating router; dynamically injected
+// HTML links use this to navigate to internal pages.
 window.$router = router;
 
 

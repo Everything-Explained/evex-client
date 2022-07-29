@@ -20,7 +20,7 @@ defineProps({
   <div v-if="type == 'ripple'" :class="['preloader', { 'page': page }]" />
   <div
     v-else-if="type == 'image'"
-    :class="['.preloader', 'preloader__image-wrapper']"
+    :class="['preloader__image-wrapper']"
   >
     <div class="preloader__image-placeholder" />
   </div>

@@ -6,6 +6,7 @@ import { useDate } from "@/composeables/date";
 import { isEthan } from "@/composeables/globals";
 import UxIcon from '@/components/UxIcon.vue';
 import UxImg  from "./UxImg.vue";
+import UxBullet from "./UxBullet.vue";
 
 
 const props             = defineProps({
@@ -17,7 +18,7 @@ const props             = defineProps({
 const { videoId, summary } = toRefs(props);
 const descState         = ref(false);
 const thumbnailRef      = computed(() =>
-  `//img.youtube.com/vi/${videoId.value}/0.jpg`
+  `//i.ytimg.com/vi/${videoId.value}/hqdefault.jpg`
 );
 
 function openVideo() {
@@ -27,8 +28,14 @@ function openVideo() {
   );
 }
 
-function setDescState(state: 'closed'|'open') {
+function setDescState(e: MouseEvent, state: 'closed'|'open') {
+  stopPropagation(e);
   descState.value = state == 'open';
+}
+
+function stopPropagation(e: MouseEvent) {
+  e.stopPropagation();
+  e.stopImmediatePropagation();
 }
 
 </script>
@@ -43,9 +50,6 @@ function setDescState(state: 'closed'|'open') {
       <ux-img :src="thumbnailRef" class="ux-video__thumb" />
     </div>
     <div class="ux-video__widget-container">
-      <div :class="['ux-video__widget timestamp', { '--open': descState }]">
-        {{ useDate(date).toRelativeTime() }}
-      </div>
       <ux-icon
         :class="[
           'ux-video__widget video-link',
@@ -61,13 +65,13 @@ function setDescState(state: 'closed'|'open') {
           { '--open': descState }
         ]"
         type="info"
-        @click="setDescState('open')"
+        @click="setDescState($event, 'open')"
       />
-      <div :class="['ux-video__desc', { '--open': descState }]">
+      <div :class="['ux-video__desc', { '--open': descState }]" @click="stopPropagation($event)">
         <ux-icon
           class="close-desc"
           type="cross"
-          @click="setDescState('closed')"
+          @click="setDescState($event, 'closed')"
         />
         <div class="text">
           <h1>Description</h1>
@@ -79,8 +83,14 @@ function setDescState(state: 'closed'|'open') {
       <div class="title">
         <slot />
       </div>
-      <div v-if="author" :class="['author', { '--is-ethan': isEthan(author) }]">
-        <ux-icon type="user" class="author__icon" /> {{ author }}
+      <div class="details">
+        <div v-if="author" class="author">
+          <ux-icon type="user" :class="['author__icon', { '--is-ethan': isEthan(author)}]" /> {{ author }}
+        </div>
+        <span v-if="author">&nbsp;<ux-bullet class="bullet" />&nbsp;</span>
+        <div class="timestamp">
+          {{ useDate(date).toRelativeTime() }}
+        </div>
       </div>
     </div>
   </div>

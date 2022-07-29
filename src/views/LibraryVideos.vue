@@ -24,7 +24,7 @@ const {
   setDynPages,
   goTo,
   activePage,
-} = useDynamicPager('videos/public');
+} = useDynamicPager<Video[]>('videos/public', 'category');
 
 const {
   videos: categories,

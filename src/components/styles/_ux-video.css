@@ -136,24 +136,34 @@
 .ux-video__info {
   position: relative;
   .title {
-    height           : 3.35rem;
-    padding          : 0 0.3rem;
-    overflow         : hidden;
-    border-top       : 2px dashed var(--body-bg-c);
-    background-color : hsl(197, 11%, 12%); }
+    overflow    : hidden;
+    padding-left: 5px;
+    max-height  : 3.35rem;
+    font-weight : 400;
+    color       : hsl(197, 20%, 85%);
+  }
+  .details {
+    margin-top : 5px;
+    padding-left: 5px;
+    font-size  : 1.07rem;
+    color      : hsl(197, 15%, 70%);
+  }
+  .timestamp {
+    display: inline;
+  }
+  .bullet {
+    color: hsl(197, 20%, 80%);
+  }
   .author {
-    float            : right;
-    padding          : 0.2rem 0.5rem 0.2rem 0.5rem;
+    display: inline;
     border-top       : 2px dashed var(--body-bg-c);
-    background-color : hsl(197, 11%, 12%);
-    font-size        : 1.1rem;
-    font-weight      : 400;
-    color            : hsl(197, 20%, 87%);
-    &.--is-ethan {
-      color: hsl(0, 100%, 70%); }
   }
   .author__icon {
-    top: 0.15rem;
-    color: var(--body-c); }
+    position: relative;
+    top: 0.14rem;
+    color: var(--body-c);
+    &.--is-ethan {
+      color: hsl(0, 100%, 73%); }
+  }
 
 }

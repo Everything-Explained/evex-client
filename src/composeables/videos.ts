@@ -7,18 +7,20 @@ export default function useVideos<T>(uri: DataCacheArrayKeys) {
   const dataCache = useDataCache<T>();
   const api       = useAPI();
   const videos    = ref(dataCache.getArrayData(uri).value) as Ref<T[]>;
+  const isPending = ref(true);
 
   if (!videos.value.length) {
     api
       .get<T[]>(uri, null, 'static')
       .then(res => {
-        dataCache.setArrayData(uri, res.data);
         videos.value = res.data;
+        dataCache.setArrayData(uri, res.data);
+        isPending.value = false;
       });
   }
 
   return {
-    isPending: api.isPending,
+    isPending,
     isCached: !!videos.value.length,
     videos,
   };

@@ -22,6 +22,8 @@ declare global {
     DISQUS: {
       reset: (options: DisqusConfigOptions) => void;
     }
+    YT: any;
+    onYouTubeIframeAPIReady: () => void;
   }
 }
 

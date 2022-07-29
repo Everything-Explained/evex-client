@@ -10,6 +10,8 @@ const stateOfArrays = reactive({
   'qnaform'              : [],
   'literature/public'    : [],
   'literature/red33m'    : [],
+  'videos/public'        : [],
+  'videos/red33m'        : [],
   '/data/videos/red33m'  : [],
   '/data/videos/public'  : [],
   'ux-filter'            : [],
@@ -22,6 +24,7 @@ const stateOfObjects = reactive({
 const stateOfPrimitives = reactive({
   'home-page'          : '',
   'titlebar-menu-open' : false,
+  'red33m-video-list'  : 1,
 });
 
 export type DataCacheObjKeys   = keyof typeof stateOfObjects;
