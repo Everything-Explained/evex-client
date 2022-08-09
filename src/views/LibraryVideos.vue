@@ -130,6 +130,7 @@ function toAuthors(authors: string[], video: Video) {
       </div>
       <div v-else-if="activePage">
         <ux-filter
+          id="videos/public"
           :items="activePage.data"
           :persist="false"
           @filter="onFilter"

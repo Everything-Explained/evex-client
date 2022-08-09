@@ -8,28 +8,31 @@ import UxIcon      from "./UxIcon.vue";
 import UxToggle    from "./UxToggle.vue";
 
 
-const { items, persist, reverseOrder }
+const { id, items, reverseOrder }
                 = defineProps({
+  id:           { type: String as PropType<string>,      required: true              },
   ageOnly:      { type: Boolean as PropType<boolean>,    default: false,             },
   reverseOrder: { type: Boolean as PropType<boolean>,    default: false,             },
   items:        { type: Array as PropType<FilterData[]>, default: [] as FilterData[] },
-  persist:      { type: Boolean as PropType<boolean>,    default: true               },
 });
-const emit      = defineEmits(['filter']);
+const emit      = defineEmits(['filter', 'age-toggled']);
 
 const {
-  toggleFilter,  filterAuthor,  reversePages,
-  authors,       isFilterOpen,  areItemsReversed,
-  filteredPages, authorIndexMap,
-} = usePageFilter(items, persist, reverseOrder);
+  toggleFilter,  filterAuthor,  reverseItems,
+  authors,       isFilterOpen,  isFilterReversed,
+  filteredItems, authorIndexMap,
+} = usePageFilter(id, items, reverseOrder);
 
-emit('filter', filteredPages);
+emit('filter', filteredItems);
 
 function filter(i: number, v: boolean) {
   emit('filter', filterAuthor(i, v));
 }
 
-function toggleAge() { emit('filter', reversePages()); }
+function toggleAge() {
+  emit('age-toggled');
+  emit('filter', reverseItems());
+}
 
 </script>
 
@@ -42,7 +45,7 @@ function toggleAge() { emit('filter', reversePages()); }
     <fieldset :class="['ux-filter__fieldset', { '--visible': isFilterOpen }]">
       <legend>Filter</legend>
       <ux-toggle
-        :init-state="areItemsReversed"
+        :init-state="isFilterReversed"
         left-text="Oldest"
         right-text="Latest"
         @toggle="toggleAge"

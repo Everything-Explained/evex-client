@@ -1,9 +1,9 @@
 
 
 <script lang="ts" setup>
-import { computed, onUnmounted, PropType, ref, watch } from "vue";
+import { computed, PropType, ref, watch } from "vue";
 import { StaticPage, useStaticPager } from "@/composeables/staticPager";
-import { DataCacheArrayKeys, DataCacheFilterObj, useDataCache } from "@/state/cache-state";
+import { DataCacheArrayKeys } from "@/state/cache-state";
 import PageTitlebar from "@/components/PageTitlebar.vue";
 import PageFooter   from "../PageFooter.vue";
 import RenderHtml   from "../RenderHtml.vue";
@@ -47,7 +47,6 @@ const defaultOptions: AppLitOptions = {
   contentClass      : ''
 };
 const cfg           = Object.assign(defaultOptions, options);
-const cache         = useDataCache<DataCacheFilterObj>();
 const { pages, pageTitle, activePage, goTo, isRunning, error: apiError }
                     = useStaticPager<Article>(options.uri, cfg.version);
 const titleRef      = computed(() => pageTitle.value || options.title);
@@ -77,11 +76,6 @@ function onFilter(pages: Article[]) {
 }
 
 
-onUnmounted(() => {
-  // Reset filter on page navigation
-  cache.updObjData('filter', 'isPersisting', false);
-});
-
 </script>
 
 
@@ -104,6 +98,7 @@ onUnmounted(() => {
       <div v-else-if="!activePage" class="lit-cards__container">
         <ux-filter
           v-if="cfg.showFilter"
+          :id="cfg.uri"
           :items="pages"
           :reverse-order="cfg.reverseOrder"
           @filter="onFilter"

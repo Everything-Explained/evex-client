@@ -1,7 +1,20 @@
 
-import { DataCacheFilterObj, useDataCache } from "@/state/cache-state";
+import { useDataCache } from "@/state/cache-state";
 import { ref } from "vue";
 
+
+
+
+
+export interface FilterCacheData {
+  id             : string;
+  items          : FilterData[];
+  isOpen         : boolean;
+  reversed       : boolean;
+  authors        : string[];
+  authorIndexMap : number[];
+  volatile       : boolean;
+}
 
 export interface FilterData {
   // Allow ignorable props
@@ -11,75 +24,79 @@ export interface FilterData {
 }
 
 
-export function usePageFilter(pages: FilterData[], isPersisting: boolean, areReversed = false) {
-  const cache            = useDataCache<DataCacheFilterObj>();
-  const filterStore      = cache.getObjData('filter').value;
-  const clonedPages      = pages.slice();
-  const authors          = getAuthors(clonedPages);
-  const isFilterOpen     = ref(filterStore.isPersisting && filterStore.isOpen || false);
-  const areItemsReversed =
-    filterStore.isPersisting
-      ? areReversed ? !filterStore.reversed : filterStore.reversed
-      : areReversed
-  ;
-  const authorIndexMap   =
-    filterStore.isPersisting
-      ? filterStore.authorIndexMap
-      : authors.map((a, i) => i)
-  ;
-  let filteredPages      =
-    filterStore.isPersisting
-      ? filterStore.pages
-      : clonedPages.slice()
-  ;
+export function usePageFilter(id: string, items: FilterData[], areReversed = false) {
+  const cache            = useDataCache<FilterCacheData>();
+  const filterArray      = cache.getArrayData('ux-filter');
+  const clonedItems      = items.slice();
+  const filterData       = tryCreateData();
+  const isFilterOpen     = ref(filterData.isOpen);
+  const isFilterReversed = filterData.reversed;
+  const authorIndexMap   = filterData.authorIndexMap;
+  const authors          = filterData.authors;
 
-  if (filterStore.isPersisting && filterStore.reversed) {
-    clonedPages.reverse();
-  }
+  // Items from parent are always in default order
+  if (filterData.reversed) { clonedItems.reverse(); }
 
-  cache.updObjData('filter', 'isPersisting', isPersisting);
-  cache.updObjData('filter', 'authorIndexMap', authorIndexMap);
-  cache.updObjData('filter', 'pages', filteredPages);
 
   return {
+    isFilterOpen,
+    isFilterReversed,
+    filteredItems: filterData.items,
+    authors,
+    authorIndexMap,
+
     toggleFilter: () => {
       isFilterOpen.value = !isFilterOpen.value;
-      cache.updObjData('filter', 'isOpen', isFilterOpen.value);
+      filterData.isOpen = isFilterOpen.value;
     },
 
-    reversePages: () => {
-      // Original pages must also reflect reverse order
-      clonedPages.reverse();
-      const pages = filteredPages.reverse().slice();
-      cache.updObjData('filter', 'reversed', !cache.getObjData('filter').value.reversed);
-      return pages;
+    reverseItems: () => {
+      clonedItems.reverse();
+      filterData.items.reverse();
+      filterData.reversed = !filterData.reversed;
+      //* Slice (new object) so Vue knows to update Ref
+      return filterData.items.slice();
     },
 
     filterAuthor: (index: number, val: boolean) => {
       if (val)  authorIndexMap.push(index);
-      if (!val) authorIndexMap.splice(authorIndexMap.indexOf(index), 1)
-      ;
-      cache.updObjData('filter', 'authorIndexMap', authorIndexMap);
-      filteredPages = clonedPages.filter(item => {
+      if (!val) authorIndexMap.splice(authorIndexMap.indexOf(index), 1);
+
+      filterData.items = clonedItems.filter(item => {
         return authorIndexMap.some(i => authors[i] == item.author);
       });
-      cache.updObjData('filter', 'pages', filteredPages);
-      return filteredPages;
+      //* Slice (new object) so Vue knows to update Ref
+      return filterData.items.slice();
     },
-
-    authors,
-    isFilterOpen,
-    filteredPages,
-    authorIndexMap,
-    areItemsReversed,
   };
-}
 
 
+  function tryCreateData() {
+    const data = filterArray.value.find(d => d.id == id);
+    if (data) { return data; }
 
-function getAuthors(pages: FilterData[]) {
-  return pages.reduce((authors, cpg) => {
-    if (authors.includes(cpg.author)) return authors;
-    authors.push(cpg.author);         return authors;
-  }, [] as string[]);
+    const authors = getAuthors();
+    const newData: FilterCacheData = {
+      id,
+      items          : items.slice(),
+      isOpen         : false,
+      reversed       : areReversed,
+      authors,
+      authorIndexMap : authors.map((a, i) => i),
+      volatile       : true,
+    };
+    filterArray.value.push(newData);
+    cache.setArrayData('ux-filter', filterArray.value);
+    return newData;
+  }
+
+  function getAuthors() {
+    return items.reduce((authors, cpg) => {
+      if (authors.includes(cpg.author)) {
+        return authors;
+      }
+      authors.push(cpg.author);
+      return authors;
+    }, [] as string[]);
+  }
 }
