@@ -81,9 +81,11 @@ function useCustomScrollPos() {
   const cache           = useDataCache<string>();
   const latestRoutes    = cache.getArrayData('routeHistory');
   const managedPages: ManagedPages = [
+    { scrollPos: ref(0), url: '/'                   },
     { scrollPos: ref(0), url: '/blog/public'        },
     { scrollPos: ref(0), url: '/blog/red33m'        },
-    { scrollPos: ref(0), url: '/videos/public'     },
+    { scrollPos: ref(0), url: '/videos/public'      },
+    { scrollPos: ref(0), url: '/videos/red33m'      },
     { scrollPos: ref(0), url: '/literature/public'  },
     { scrollPos: ref(0), url: '/literature/red33m'  },
     { scrollPos: ref(0), url: '/changelog'          },

@@ -6,7 +6,6 @@ html {
   font-weight     : 300;
   text-rendering  : optimizeLegibility;
   background      : var(--body-bg-c);
-  scroll-behavior : smooth;
 
 
   -webkit-font-smoothing  : subpixel-antialiased;

@@ -92,7 +92,7 @@ export function useStaticPager<T extends StaticPage>(url: DataCacheArrayKeys, ve
 
   function goTo(uri: string) {
     router.push(`/${url}/${uri}`);
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
   }
 
 
