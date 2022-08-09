@@ -57,7 +57,9 @@ const activeContent  = ref(1);
 // When filter is disabled, we need to manually set pages
 if (!cfg.showFilter) {
   !pages.value.length
-    ? watch(() => isRunning.value, (isRunning) => !isRunning && onFilter(pages.value))
+    ? watch(() => isRunning.value, (isRunning) => {
+      !isRunning && onFilter(pages.value);
+    })
     : onFilter(pages.value)
   ;
 }

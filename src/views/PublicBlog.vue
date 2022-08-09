@@ -19,7 +19,9 @@ const options: AppLitOptions = {
 
 
 
-<template><app-literature :options="options" /></template>
+<template>
+  <app-literature :options="options" />
+</template>
 
 
 

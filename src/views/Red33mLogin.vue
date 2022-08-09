@@ -2,7 +2,6 @@
 
 <script lang='ts' setup>
 import { ref } from "vue";
-import { useRouter } from "vue-router";
 import { APIResponse, useAPI } from "@/services/api_internal";
 import useInputValidation from "@/composeables/inputValidation";
 import PageTitlebar from "@/components/PageTitlebar.vue";
@@ -16,7 +15,6 @@ import { useEventBus } from "@/state/event-bus";
 
 const api             = useAPI();
 const {isPending}     = api;
-const router          = useRouter();
 const {isValidated, validate}
                       = useInputValidation(1);
 const eventBus        = useEventBus();

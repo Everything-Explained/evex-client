@@ -132,7 +132,6 @@ function toAuthors(authors: string[], video: Video) {
         <ux-filter
           id="videos/public"
           :items="activePage.data"
-          :persist="false"
           @filter="onFilter"
         />
         <div class="lib-vid__video-list">
