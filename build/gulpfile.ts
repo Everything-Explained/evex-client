@@ -16,4 +16,8 @@ task('release',
   )
 );
 
+task('build',
+  series(compileClient)
+);
+
 
