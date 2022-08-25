@@ -60,6 +60,7 @@ function onAgeToggled() { page = 1; }
       :id="id"
       :age-only="true"
       :items="videos"
+      :is-volatile="false"
       @age-toggled="onAgeToggled"
       @filter="filterVideos"
     />
