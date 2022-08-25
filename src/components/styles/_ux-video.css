@@ -1,10 +1,25 @@
 
 .ux-video {
   position: relative;
+  border-radius: 10px 10px 10px 10px;
+  background-color: hsl(197, 13%, 11%);
+  box-shadow: 2px 2px 15px -1px hsla(0, 0%, 0%, 0.45);
+  transition: box-shadow 200ms ease;
+  &:hover {
+    box-shadow: 2px 2px 15px 1px hsla(0, 0%, 0%, 0.75);
+    background-color: var(--sub-panel-hov-c);
+    .title {
+      color: var(--md-p-hov-b-c);
+    }
+    .details {
+      color: hsl(30, 10%, 55%);
+    }
+  }
 }
 
 .ux-video__thumb-container {
   position: relative;
+  cursor: pointer;
 }
 
 .ux-video__thumb-container::before {
@@ -14,7 +29,6 @@
   content     : '';
 }
 
-
 .ux-video__thumb {
   position : absolute;
   top      : 0;
@@ -22,6 +36,7 @@
   right    : 0;
   bottom   : 0;
   overflow : hidden;
+  border-radius: 10px 10px 0 0;
 
   img {
     position : relative;
@@ -29,108 +44,6 @@
     width  : 100%; }
 }
 
-
-.ux-video__widget-container {
-  position    : absolute;
-  top         : 0;
-  padding-top : 56.25%;
-  width       : 100%;
-}
-
-
-.ux-video__widget {
-  position         : absolute;
-  padding          : 5px;
-  font-size        : 1.7rem;
-  border-radius    : 5px;
-  background-color : var(--video-widget-bg-c);
-  color            : var(--video-widget-c);
-  user-select      : none;
-  cursor           : pointer;
-  transition       : color .3s, background .3s, opacity .3s;
-  z-index: 2;
-
-  &.timestamp {
-    top           : 0;
-    padding       : 1px 5px;
-    border-radius : 0;
-    font-size     : 1rem;
-    cursor        : default; }
-  &.video-link {
-    right        : 7px;
-    bottom       : 7px;
-    padding-left : 7px; }
-  &.desc   { top: 7px; right: 7px; }
-  &.--open { opacity: 0; }
-  &:hover {
-    background-color : var(--video-widget-bg-hov-c);
-    color            : var(--video-widget-hov-c); }
-}
-
-
-.ux-video__desc {
-  position         : absolute;
-  z-index          : 2;
-  top              : 0;
-  left             : 0;
-  right            : 0;
-  bottom           : 0;
-  padding          : 7px 3px 0 7px;
-  opacity          : 0;
-  outline          : 1px dotted transparent;
-  background-color : var(--video-desc-c);
-  font-size        : 1.07rem;
-  pointer-events   : none;
-  transition       : opacity .5s, outline .4s;
-  .close-desc {
-    position         : absolute;
-    z-index          : 2;
-    top              : 3px;
-    right            : 7px;
-    color            : var(--video-widget-c);
-    font-size        : 1.9rem;
-    user-select      : none;
-    cursor           : pointer;
-    transition       : color 0.3s;
-    &:hover {
-      background-color : transparent;
-      color            : var(--video-widget-close-hov-c); }
-  }
-  .text {
-    position: relative;
-    display        : flex;
-    flex-direction : column;
-    max-height     : 100%;
-    span   {
-      overflow-x: hidden;
-      overflow-y: auto; }
-    h1     {
-      margin-bottom : 5px;
-      border-bottom : 1px dotted var(--video-desc-head-bdr-c);
-      font-size     : 1.2rem;
-      font-weight   : 400;
-      color         : var(--video-desc-head-c); }
-    p      {
-      margin-bottom : 13px;
-      line-height   : 1.7rem; }
-    strong {
-      font-weight : 400;
-      color       : var(--video-desc-b-c); }
-    a:link, a:active, a:visited {
-      border-bottom : 1px solid var(--video-desc-link-bdr-c);
-      font-weight   : 400;
-      color         : var(--video-desc-link-c);
-      transition    : color .3s, border .3s; }
-    a:hover {
-      border-bottom : 1px solid var(--video-desc-link-bdr-hov-c);
-      color         : var(--video-desc-link-hov-c);
-    }
-  }
-  &.--open {
-    opacity        : 1;
-    outline        : 1px dotted var(--video-desc-outline-c);
-    pointer-events : all; }
-}
 
 
 .ux-video__info {
@@ -141,12 +54,15 @@
     max-height  : 3.35rem;
     font-weight : 400;
     color       : hsl(197, 20%, 85%);
+    transition: color 200ms ease;
   }
   .details {
-    margin-top : 5px;
-    padding-left: 5px;
-    font-size  : 1.07rem;
-    color      : hsl(197, 15%, 70%);
+    padding-top: 0.25rem;
+    padding-bottom: 0.5rem;
+    padding-left : 0.5rem;
+    font-size    : 1.07rem;
+    color        : hsl(198, 10%, 55%);
+    transition: color 200ms ease;
   }
   .timestamp {
     display: inline;

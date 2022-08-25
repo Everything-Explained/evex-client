@@ -1,7 +1,7 @@
 
 
 <script lang='ts' setup>
-import { computed, ref, toRefs } from "vue";
+import { computed, toRefs } from "vue";
 import { useDate } from "@/composeables/date";
 import { isEthan } from "@/composeables/globals";
 import UxIcon from '@/components/UxIcon.vue';
@@ -15,28 +15,16 @@ const props             = defineProps({
   date    : { type: String, default: '' },
   author  : { type: String, default: '' },
 });
-const { videoId, summary } = toRefs(props);
-const descState         = ref(false);
+
+defineEmits(['click']);
+
+const { videoId } = toRefs(props);
 const thumbnailRef      = computed(() =>
   `//i.ytimg.com/vi/${videoId.value}/hqdefault.jpg`
 );
-
-function openVideo() {
-  window.open(
-    `//www.youtube-nocookie.com/embed/${videoId.value}?rel=0`,
-    '_blank'
-  );
-}
-
-function setDescState(e: MouseEvent, state: 'closed'|'open') {
-  stopPropagation(e);
-  descState.value = state == 'open';
-}
-
-function stopPropagation(e: MouseEvent) {
-  e.stopPropagation();
-  e.stopImmediatePropagation();
-}
+const dateObj = useDate(props.date);
+const shortDate = dateObj.toShortDate();
+const relativeTime = dateObj.toRelativeTime();
 
 </script>
 
@@ -46,38 +34,8 @@ function stopPropagation(e: MouseEvent) {
 
 <template>
   <div class="ux-video">
-    <div class="ux-video__thumb-container">
+    <div class="ux-video__thumb-container" @click="$emit('click')">
       <ux-img :src="thumbnailRef" class="ux-video__thumb" />
-    </div>
-    <div class="ux-video__widget-container">
-      <ux-icon
-        :class="[
-          'ux-video__widget video-link',
-          { '--open': descState }
-        ]"
-        type="export"
-        @click="openVideo"
-      />
-      <ux-icon
-        v-if="summary"
-        :class="[
-          'ux-video__widget desc',
-          { '--open': descState }
-        ]"
-        type="info"
-        @click="setDescState($event, 'open')"
-      />
-      <div :class="['ux-video__desc', { '--open': descState }]" @click="stopPropagation($event)">
-        <ux-icon
-          class="close-desc"
-          type="cross"
-          @click="setDescState($event, 'closed')"
-        />
-        <div class="text">
-          <h1>Description</h1>
-          <span class="--default-scrollbar" v-html="summary" />
-        </div>
-      </div>
     </div>
     <div class="ux-video__info">
       <div class="title">
@@ -89,7 +47,11 @@ function stopPropagation(e: MouseEvent) {
         </div>
         <span v-if="author">&nbsp;<ux-bullet class="bullet" />&nbsp;</span>
         <div class="timestamp">
-          {{ useDate(date).toRelativeTime() }}
+          {{ relativeTime }}
+        </div>
+        &nbsp;<ux-bullet />&nbsp;
+        <div class="timestamp">
+          {{ shortDate }}
         </div>
       </div>
     </div>
