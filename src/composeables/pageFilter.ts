@@ -80,8 +80,8 @@ export function usePageFilter(id: string, items: FilterData[], config: FilterCon
 
   function tryCreateData() {
     // Clear volatile entries
-    cache.setArrayData('ux-filter', filterArray.value.filter(v => v.volatile == false));
     const data = filterArray.value.find(d => d.id == id);
+    cache.setArrayData('ux-filter', filterArray.value.filter(v => (v.volatile == false || data?.id == v.id )));
 
     if (data) { return data; }
 
