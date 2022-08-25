@@ -1,6 +1,10 @@
 
 
 
+.vid-list__container {
+  user-select: none;
+}
+
 .vid-list__videos {
   display         : flex;
   margin-top      : 20px;
