@@ -4,23 +4,8 @@
 }
 
 
-.red__video {
-  flex: 1 1 370px;
-  min-width: auto;
-  max-width: 480px;
-
-  .title {
-    font-size: clamp(1.1rem, 4vw, 1.25rem);
-  }
-
-  .timestamp, .author {
-    font-size: clamp(0.95rem, 3.5vw, 1.15rem);
-  }
-}
-
-
-
 .red__video-page {
+  padding-top: 1rem;
   .video-wrapper {
     position: relative;
     margin: 0 auto;
