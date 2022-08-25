@@ -67,7 +67,10 @@ export function useHTMLNodeParser(html: string) {
     return ['youtube', videoID];
   }
 
-  const getNodeData     = (html: string, el = 'p') => [el, html.trim().substring(0, html.length - 5)];
+  const getNodeData =
+    (html: string, el = 'p') =>
+      [el, html.trim().substring(0, html.trim().length - el.length - 3)]
+  ;
 
   return {
     getNodesUsingBQ,
