@@ -8,10 +8,11 @@ import UxIcon      from "./UxIcon.vue";
 import UxToggle    from "./UxToggle.vue";
 
 
-const { id, items, reverseOrder }
+const { id, items, reverseOrder, isVolatile }
                 = defineProps({
   id:           { type: String as PropType<string>,      required: true              },
   ageOnly:      { type: Boolean as PropType<boolean>,    default: false,             },
+  isVolatile:   { type: Boolean as PropType<boolean>,    default: true,              },
   reverseOrder: { type: Boolean as PropType<boolean>,    default: false,             },
   items:        { type: Array as PropType<FilterData[]>, default: [] as FilterData[] },
 });
@@ -21,7 +22,7 @@ const {
   toggleFilter,  filterAuthor,  reverseItems,
   authors,       isFilterOpen,  isFilterReversed,
   filteredItems, authorIndexMap,
-} = usePageFilter(id, items, reverseOrder);
+} = usePageFilter(id, items, { areReversed: reverseOrder, isVolatile,  });
 
 emit('filter', filteredItems);
 

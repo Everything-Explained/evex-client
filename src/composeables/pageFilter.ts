@@ -23,11 +23,18 @@ export interface FilterData {
   date: string;
 }
 
+type FilterConfig = {
+  areReversed?: boolean;
+  isVolatile?: boolean;
+}
 
-export function usePageFilter(id: string, items: FilterData[], areReversed = false) {
+
+export function usePageFilter(id: string, items: FilterData[], config: FilterConfig) {
   const cache            = useDataCache<FilterCacheData>();
   const filterArray      = cache.getArrayData('ux-filter');
   const clonedItems      = items.slice();
+  const areReversed      = config.areReversed ?? false;
+  const isVolatile       = config.isVolatile ?? true;
   const filterData       = tryCreateData();
   const isFilterOpen     = ref(filterData.isOpen);
   const isFilterReversed = filterData.reversed;
@@ -72,7 +79,10 @@ export function usePageFilter(id: string, items: FilterData[], areReversed = fal
 
 
   function tryCreateData() {
+    // Clear volatile entries
+    cache.setArrayData('ux-filter', filterArray.value.filter(v => v.volatile == false));
     const data = filterArray.value.find(d => d.id == id);
+
     if (data) { return data; }
 
     const authors = getAuthors();
@@ -83,7 +93,7 @@ export function usePageFilter(id: string, items: FilterData[], areReversed = fal
       reversed       : areReversed,
       authors,
       authorIndexMap : authors.map((a, i) => i),
-      volatile       : true,
+      volatile       : isVolatile,
     };
     filterArray.value.push(newData);
     cache.setArrayData('ux-filter', filterArray.value);
