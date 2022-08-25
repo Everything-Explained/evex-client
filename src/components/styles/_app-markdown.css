@@ -42,6 +42,7 @@
     transition      : text-decoration var(--md-trans-speed),
                       color var(--md-trans-speed); }
   p, ol {
+    position                : relative;
     display                 : block;
     margin-left             : 10px;
     margin-right            : 5px;
