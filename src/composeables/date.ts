@@ -51,10 +51,9 @@ export function useDate(date: Date|ISODateStr|MsDateFormat) {
       return `${ts.hours}:${ts.minutes} ${ts.amPM}`;
     },
 
-    /** Returns a date formatted in: mm-dd-yyyy */
+    /** Returns a date formatted in your locale, using month, day, and year */
     toShortDate() {
-      const ds = this.toDateStrings();
-      return `${ds.month}-${ds.day}-${ds.year}`;
+      return dateObj.toLocaleDateString();
     },
 
     toRelativeTime() {
