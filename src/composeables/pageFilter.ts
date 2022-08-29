@@ -41,7 +41,7 @@ export function usePageFilter(id: string, items: FilterData[], config: FilterCon
   const authorIndexMap   = filterData.authorIndexMap;
   const authors          = filterData.authors;
 
-  // Items from parent are always in default order
+  // Items from parent are always in order from oldest => latest
   if (filterData.reversed) { clonedItems.reverse(); }
 
 
@@ -79,8 +79,8 @@ export function usePageFilter(id: string, items: FilterData[], config: FilterCon
 
 
   function tryCreateData() {
-    // Clear volatile entries
     const data = filterArray.value.find(d => d.id == id);
+    // Clear volatile entries
     cache.setArrayData('ux-filter', filterArray.value.filter(v => (v.volatile == false || data?.id == v.id )));
 
     if (data) { return data; }
@@ -88,7 +88,8 @@ export function usePageFilter(id: string, items: FilterData[], config: FilterCon
     const authors = getAuthors();
     const newData: FilterCacheData = {
       id,
-      items          : items.slice(),
+      // Items from parent are always in order from oldest => latest
+      items          : areReversed ? items.slice().reverse() : items.slice(),
       isOpen         : false,
       reversed       : areReversed,
       authors,
