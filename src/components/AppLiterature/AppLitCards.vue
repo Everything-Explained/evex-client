@@ -43,33 +43,29 @@ const toURI = useURI;
       <header @click="goTo(toURI(card.title))">
         {{ card.title }}
       </header>
-      <summary>{{ card.summary }}</summary>
-      <footer>
-        <span v-if="showAuthor" class="lit-card__author">
-          <ux-icon type="user" />
-          <span
-            :class="[
-              'lit-card__author-text',
-              { '--is-ethan': isEthan(card.author) }
-            ]"
-          >{{ card.author.trim() }}</span>
-        </span>
-        <span class="lit-card__timestamp">
-          <span v-if="showFullDate" class="lit-card__full-datetime">
-            <span class="lit-card__date">
-              {{ useDate(card.date).toShortDate() }}
-            </span>
-            <span class="lit-card__time">
-              <ux-bullet />
-              {{ useDate(card.date).to12HourTime() }}
-            </span>
+      <summary>
+        {{ card.summary }}
+        <footer>
+          <span v-if="showAuthor" class="lit-card__author">
+            <span
+              :class="[
+                { '--is-ethan': isEthan(card.author) }
+              ]"
+            >{{ card.author.trim() }}</span>
+            <ux-icon type="user" />
           </span>
-          <span v-else class="lit-card__relative-time">
-            <ux-bullet />
-            {{ useDate(card.date).toRelativeTime() }}
+          <span class="lit-card__timestamp">
+            <span>
+              {{
+                showFullDate
+                  ? useDate(card.date).toFullDateTime()
+                  : useDate(card.date).toQuickRelativeTime()
+              }}
+            </span>
+            <ux-icon type="clock" />
           </span>
-        </span>
-      </footer>
+        </footer>
+      </summary>
     </div>
   </div>
 </template>

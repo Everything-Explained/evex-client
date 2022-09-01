@@ -22,7 +22,7 @@
  */
 
 @custom-media --large-screen  (max-width: 768px);
-@custom-media --medium-screen (max-width: 540px);
+@custom-media --medium-screen (max-width: 570px);
 @custom-media --small-screen  (max-width: 420px);
 @custom-media --tiny-screen   (max-width: 320px);
 
@@ -33,12 +33,18 @@
   --accent-3-c   : hsl(161, 67%, 73%); /* Magic Mint */
   --accent-4-c   : hsl(47, 50%, 50%);  /* Gold */
 
+  --f-sz-18: 1.125rem;
+  --f-sz-19: 1.1875rem;
+  --f-sz-20: 1.25rem;
+  --f-sz-23: 1.4375rem;
+  --f-sz-24: 1.5rem;
+
   --panel-c              : hsl(197, 11%, 25%);
   --panel-hov-c          : hsl(197, 11%, 30%);
   --sub-panel-c          : hsl(197, 11%, 12%);
   --sub-panel-hov-c      : hsl(30, 15%, 11%);
 
-  --body-f-sz            : 1em;
+  --body-f-sz            : 16px;
   --body-bg-c            : hsl(197, 11%, 8%);
   --body-c               : hsl(197, 11%, 80%);
   --body-dark-c          : hsl(197, 11%, 65%);
@@ -50,9 +56,7 @@
 
 
   /*** Markdown ***/
-  --md-f-sz             : 1.27rem;
-  --md-mobile-f-sz      : 1.15rem;
-  --md-mobile-sm-f-sz   : 0.97rem;
+  --md-f-sz             : clamp(var(--f-sz-18), calc(0.8rem + 0.9vw), var(--f-sz-20));
   --md-head-c           : hsl(197, 20%, 80%);
   --md-c                : var(--body-c);
   --md-p-hov-c          : hsl(30, 15%, 87%);
@@ -84,7 +88,7 @@
 
 
   /*** App Styles ***/
-  --app-ribbon-c            : hsl(0, 100%, 64%);
+  --app-ribbon-c            : hsl(0, 100%, 60%);
   --app-head-f-sz           : 5rem;
   --app-head-c              : var(--app-ribbon-c);
   --app-titlebar-c          : hsl(197, 20%, 87%);

@@ -7,17 +7,19 @@
 .lit__cards {
   position              : relative;
   display               : grid;
-  margin                : 40px 15px 20px 15px;
+  margin-top            : 40px;
+  padding: 0 0.5rem 0 1rem;
   align-items           : start;
-  grid-template-columns : repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns : repeat(auto-fill, minmax(540px, 1fr));
   grid-auto-rows        : auto;
-  gap                   : 1.5rem;
+  column-gap: 1.125rem;
+  row-gap: 1.5rem;
   justify-items         : stretch;
   &.--expanded {
     margin-left: auto;
     margin-right: auto;
     grid-template-columns : 1fr;
-    gap: 2.3rem;
+    gap: 1rem 0rem;
     justify-items: center;
     max-width  : 1024px; }
 }
@@ -25,52 +27,43 @@
 
 .lit__card {
   align-self    : flex-start;
-  overflow      : hidden;
-  box-shadow    : 0 0 5px 2px hsl(197, 11%, 17%);
-  border        : 3px solid black;
-  border-radius : 10px 10px 0 0;
   font-size     : 1.2rem;
   transition    : box-shadow var(--lit-transition-speed);
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
   &:hover {
-    box-shadow : 0 0 5px 2px hsl(30, 15%, 19%);
-    & header {
-      border-color     : hsl(30, 15%, 27%);
-      background-color : hsl(30, 15%, 16%);
-      color            : hsl(47, 100%, 65%); }
-    & summary {
-      background-color : hsl(30, 15%, 11%);
-      color            : hsl(30, 15%, 85%); }
-    & footer {
-      background-color : hsl(30, 15%, 8%); }
-    & .ux-icon, .lit-card__timestamp {
-      color: hsl(30, 15%, 45%); }
-  }
-  &.--expanded {
-    width         : 95%;
-    & header {
-      text-align : left;
-      font-size  : 1.5rem; }
-    & summary { line-height : 1.6rem; }
-    & footer {
-      padding-left : 5px;
-      text-align   : right;
-      & .lit-card__author { float: left; }
-    }
+    // box-shadow : 0 0 5px 2px hsl(30, 15%, 19%);
+    // & header {
+    //   border-color     : hsl(30, 15%, 27%);
+    //   background-color : hsl(30, 15%, 16%);
+    //   color            : hsl(47, 100%, 65%); }
+    // & summary {
+    //   background-color : hsl(30, 15%, 11%);
+    //   color            : hsl(30, 15%, 85%); }
+    // & footer {
+    //   background-color : hsl(30, 15%, 8%); }
+    // & .ux-icon, .lit-card__timestamp {
+    //   color: hsl(30, 15%, 45%); }
   }
   & header {
     position         : relative;
-    z-index          : 2;
+    z-index          : 1;
     padding          : 4px 7px 3px 10px;
-    box-shadow       : 0 7px 15px -3px black;
-    border-bottom    : 1px solid hsl(197, 11%, 25%);
-    border-radius    : 7px 7px 0 0;
-    background-color : hsl(197, 13%, 15%);
-    text-align       : center;
+    border-top-left-radius: 10px;
+    background: hsl(197, 13%, 15%);
+    background: linear-gradient(
+      90deg,
+      hsl(197, 12%, 17%) 0%,
+      hsl(197, 12%, 17%) 20%,
+      rgba(18,21,23,1) 100%
+    );
+    // text-align       : center;
     text-shadow      :
                        1px 1px 0 black,
                        2px 2px 0 black
                       ;
-    font-size        : 1.4rem;
+    font-size        : clamp(var(--f-sz-20), calc(0.7rem + 1.7vw), var(--f-sz-24));
     font-weight      : 400;
     color            :hsl(47, 75%, 63%);
     user-select      : none;
@@ -79,22 +72,66 @@
                        color var(--lit-transition-speed),
                        background var(--lit-transition-speed),
                        border var(--lit-transition-speed)
-                     ;}
+                     ;
+    &::before {
+      position: absolute;
+      content: '';
+      background: linear-gradient(
+          90deg,
+          rgba(18,21,23,1) 0%,
+          rgba(0,0,0,1) 35%,
+          rgba(0,0,0,1) 65%,
+          rgba(18,21,23,1) 100%
+      );
+      top: -0.15rem;
+      left: 0;
+      height: 0.07rem;
+      width: 100%;
+      z-index: -1;
+      filter: blur(0.275rem)
+    }
+  }
   & summary {
     position: relative;
-    height           : auto;
-    padding          : 5px 3px 5px 3px;
-    box-shadow       : 0 2px 8px 3px hsla(0, 0%, 0%, 0.9);
+    z-index: 1;
+    border-bottom-left-radius: 10px;
+    padding          : 5px 0 5px 3px;
+    font-size: var(--md-f-sz);
+    line-height: 1.4375rem;
     background-color : hsl(197, 11%, 11%);
+    background: linear-gradient(
+      90deg,
+      hsl(197, 13%, 11%) 0%,
+      hsl(197, 13%, 11%) 15%,
+      hsl(204, 12%, 8%) 100%
+    );
     color            : var(--body-c);
     transition       : background var(--lit-transition-speed),
-                       color var(--lit-transition-speed);}
+                       color var(--lit-transition-speed);
+    // Card Shadow
+    &::before {
+      position: absolute;
+      content: '';
+      background: rgb(18,21,23);
+      background: linear-gradient(
+                    90deg,
+                    rgba(18,21,23,1) 0%,
+                    rgba(0,0,0,1) 35%,
+                    rgba(0,0,0,1) 65%,
+                    rgba(18,21,23,1) 100%
+      );
+      bottom: -0.2rem;
+      height: 0.11rem;
+      width: 100%;
+      z-index: -1;
+      filter: blur(0.2rem)
+    }
+  }
   & footer {
-    padding       : 5px 0.7rem 2px 0.7rem;
+    padding-top   : 0.75rem;
     border-radius : 0 0 7px 7px;
-    text-align    : center;
+    font-size: clamp(1rem, calc(0.3rem + 1.9vw), var(--f-sz-18));
     font-weight   : 400;
-    color         : hsl(197, 11%, 35%);
     transition    : background var(--lit-transition-speed),
                     border var(--lit-transition-speed);}
   & .ux-icon {
@@ -106,24 +143,26 @@
     transition   : color var(--lit-transition-speed); }
 }
 
-
-.lit-card__author-text {
-  text-shadow : 1px 1px 0 black,
-                2px 2px 0 black;
-  color       : hsl(197, 20%, 87%);
-  &.--is-ethan {
-    color : hsl(0, 100%, 72%); }
+.lit-card__author {
+  display: block;
+  width: 100%;
+  text-align: right;
+  & span {
+    color : hsl(197, 20%, 87%);
+    padding-right: 0.125rem;
+    &.--is-ethan {
+      color : hsl(0, 100%, 72%);
+    }
+  }
 }
-
 
 .lit-card__timestamp {
-  padding-left: 0.5ch;
-  text-shadow : 0    0   1px black,
-                1px  1px 1px black,
-                2px  2px 2px black,
-               -1px -1px 1px black;
-  font-weight : 400;
+  display: block;
+  width: 100%;
+  text-align: right;
+  color         : hsl(197, 13%, 40%);
   transition  : color var(--lit-transition-speed);
+  & span {
+    padding-right: 0.125rem;
+  }
 }
-
-.lit-card__date { padding-right: 5px; }

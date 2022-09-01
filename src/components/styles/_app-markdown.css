@@ -8,11 +8,10 @@
     margin-left    : 3rem;
     margin-bottom  : 0.3rem;
     color          : var(--md-head-c);
-    font-variant   : small-caps;
     font-weight    : 300;
     letter-spacing : 1px; }
   h1 {
-    font-size: 2rem; }
+    font-size: clamp(1.4rem, 4vw, 2rem); }
   h2, h3 {
     font-size: 1.7rem; }
 }
@@ -44,16 +43,21 @@
   p, ol {
     position                : relative;
     display                 : block;
-    margin-left             : 10px;
-    margin-right            : 5px;
-    padding                 : 7px 13px;
-    line-height             : 27px;
-    background              : var(--md-p-bg-c);
+    padding                 : 3px 3px 3px 5px;
+    line-height             : clamp(1.375rem, 5vw, 1.75rem);
     border-top-right-radius : 6.5px;
     border-top-left-radius  : 3.5px;
     transition              : background var(--md-trans-speed),
                               color var(--md-trans-speed); }
   p {
+    background: rgb(18,21,23);
+    background: linear-gradient(
+                  90deg,
+                  rgba(18,21,23,1) 0%,
+                  rgba(27,32,34,1) 30%,
+                  rgba(27,32,34,1) 70%,
+                  rgba(18,21,23,1) 100%
+    );
     & + p {
       margin-top: 15px; }
     &:empty {
@@ -66,7 +70,24 @@
   }
   & > p {
     margin-bottom : 7px;
-    box-shadow    : 0 10px 7px -5px var(--md-p-bxs-c);
+    z-index: 1;
+    &::before {
+      position: absolute;
+      content: '';
+      background: rgb(18,21,23);
+      background: linear-gradient(
+                    90deg,
+                    rgba(18,21,23,1) 0%,
+                    rgba(0,0,0,1) 30%,
+                    rgba(0,0,0,1) 70%,
+                    rgba(18,21,23,1) 100%
+      );
+      bottom: -0.31rem;
+      height: 0.15rem;
+      width: 100%;
+      z-index: -1;
+      filter: blur(0.17rem);
+    }
     &:hover {
       background-color : var(--md-p-bg-hov-c);
       color            : var(--md-p-hov-c);
@@ -86,19 +107,37 @@
 .md {
   blockquote {
     position: relative;
+    display: inline-block;
+    margin: 2rem auto 2.7rem auto;
+    left: 50%;
+    transform: translateX(-50%);
     text-align: center;
+    z-index: 1;
+    &::before {
+      position: absolute;
+      content: '';
+      background: rgb(18,21,23);
+      background: linear-gradient(
+                    90deg,
+                    rgba(18,21,23,1) 0%,
+                    rgba(0,0,0,1) 30%,
+                    rgba(0,0,0,1) 70%,
+                    rgba(18,21,23,1) 100%
+      );
+      bottom: -0.3rem;
+      height: 0.15rem;
+      width: 105%;
+      z-index: -1;
+      filter: blur(0.37rem);
+    }
     & > p {
-      margin           : 2.7rem auto;
+      // margin           : 2.7rem auto;
       display          : inline-block;
       padding          : 8px 2.3rem 8px 2.5rem;
       color            : var(--md-bq-c);
-      max-width        : 85%;
       font-size        : 1.4rem;
       text-align       : left;
-      background-color : var(--md-bq-bg-c);
       quotes           : '“' '”';
-      border           : 4px solid var(--md-bq-bdr-c);
-      outline          : 2px solid var(--md-bq-outline-c);
       // Should be used as an authors name at the end of a blockquote
       i, em {
         display        : block;
@@ -184,7 +223,7 @@
     left: 50%;
     transform: translateX(-50%);
   }
-  /* ### Embeded Video Styles ### */
+  /* ### Embedded Video Styles ### */
   & > span {
     position: relative;
     margin: 0 auto;

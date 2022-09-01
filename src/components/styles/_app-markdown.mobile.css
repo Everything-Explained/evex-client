@@ -1,12 +1,4 @@
 @media only screen and (--large-screen) {
-  .md-simple, .md { font-size: var(--md-mobile-f-sz); }
-
-  .md-simple p, .md p {
-    padding     : 7px 10px;
-    line-height : 22px;
-  }
-  .md-simple > p, .md > p { margin: auto 7px 7px 7px; }
-
   .md blockquote > p { font-size : 1.38rem; }
 }
 
@@ -23,29 +15,21 @@
     width: 93%;
     padding-bottom: calc(93% / (16 / 9));
   }
-  .md-header h1, .md-header h2, .md-header h3,
-  .md h1, .md h2, .md h3 {
-    font-size: 1.5rem;
-    margin-left: 1.5rem;
-  }
 }
 
 /*** 420px ***/
 @media only screen and (--small-screen) {
-  .md-header h1, .md-header h2, .md-header h3,
-  .md h1, .md h2, .md h3 { font-size: 1.4rem; }
+  // .md-header h1, .md-header h2, .md-header h3,
+  // .md h1, .md h2, .md h3 { font-size: 1.4rem; }
 }
 
 
 @media only screen and (--tiny-screen) {
-  .md-simple, .md { font-size : var(--md-mobile-sm-f-sz); }
 
-  .md-simple > p, .md > p {
-    padding-top    : 3px;
-    padding-bottom : 3px;
-    line-height    : 20px;
-  }
-  .md-simple > p, .md > p { margin: auto 5px 5px 5px; }
+  // .md-simple > p, .md > p {
+  //   line-height    : 20px;
+  // }
+  // .md-simple > p, .md > p { margin: auto 5px 5px 5px; }
 
   .md blockquote > p {
     font-size   : 1.1rem;
