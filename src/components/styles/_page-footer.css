@@ -48,6 +48,10 @@
     font-size      : 1rem;
     font-family    : 'Consolas', 'Courier New', Courier, monospace;
     color          : var(--body-c); }
+  .pipe {
+    padding-left: 7px;
+    padding-right: 7px;
+  }
   a:link, a:visited, a:active {
     text-decoration : underline;
     color           : var(--body-c);
