@@ -131,7 +131,7 @@ function useCustomScrollPos() {
     // Wait for transition to complete before scrolling
     setTimeout(() => {
       window.scrollTo(0, top);
-    }, 450);
+    }, 350);
   }
 
 
