@@ -1,6 +1,6 @@
 
 :root {
-  --lit-transition-speed: .17s ease;
+  --lit-transition-speed: 250ms ease;
 }
 
 
@@ -28,25 +28,33 @@
 .lit__card {
   align-self    : flex-start;
   font-size     : 1.2rem;
-  transition    : box-shadow var(--lit-transition-speed);
   margin-left: auto;
   margin-right: auto;
   width: 100%;
   &:hover {
-    // box-shadow : 0 0 5px 2px hsl(30, 15%, 19%);
-    // & header {
-    //   border-color     : hsl(30, 15%, 27%);
-    //   background-color : hsl(30, 15%, 16%);
-    //   color            : hsl(47, 100%, 65%); }
-    // & summary {
-    //   background-color : hsl(30, 15%, 11%);
-    //   color            : hsl(30, 15%, 85%); }
-    // & footer {
-    //   background-color : hsl(30, 15%, 8%); }
-    // & .ux-icon, .lit-card__timestamp {
-    //   color: hsl(30, 15%, 45%); }
+    header {
+      color            : hsl(47, 100%, 65%);
+      background: linear-gradient(
+        90deg,
+        hsl(30, 12%, 17%) 0%,
+        hsl(30, 12%, 17%) 20%,
+        rgba(18,21,23,1) 100%
+      );
+    }
+    summary {
+      color            : hsl(30, 15%, 85%);
+      background: linear-gradient(
+        90deg,
+      hsl(30, 15%, 11%) 0%,
+      hsl(30, 15%, 11%) 15%,
+      hsl(204, 12%, 8%) 100%
+      )
+    }
+    & .ux-icon, .lit-card__timestamp {
+      color: hsl(30, 15%, 45%);
+    }
   }
-  & header {
+  header {
     position         : relative;
     z-index          : 1;
     padding          : 4px 7px 3px 10px;
@@ -58,7 +66,6 @@
       hsl(197, 12%, 17%) 20%,
       rgba(18,21,23,1) 100%
     );
-    // text-align       : center;
     text-shadow      :
                        1px 1px 0 black,
                        2px 2px 0 black
@@ -68,11 +75,7 @@
     color            :hsl(47, 75%, 63%);
     user-select      : none;
     cursor           : pointer;
-    transition       :
-                       color var(--lit-transition-speed),
-                       background var(--lit-transition-speed),
-                       border var(--lit-transition-speed)
-                     ;
+    transition: color var(--lit-transition-speed);
     &::before {
       position: absolute;
       content: '';
@@ -91,7 +94,7 @@
       filter: blur(0.275rem)
     }
   }
-  & summary {
+  summary {
     position: relative;
     z-index: 1;
     border-bottom-left-radius: 10px;
@@ -106,8 +109,7 @@
       hsl(204, 12%, 8%) 100%
     );
     color            : var(--body-c);
-    transition       : background var(--lit-transition-speed),
-                       color var(--lit-transition-speed);
+    transition: color var(--lit-transition-speed);
     // Card Shadow
     &::before {
       position: absolute;
@@ -127,20 +129,20 @@
       filter: blur(0.2rem)
     }
   }
-  & footer {
+  footer {
     padding-top   : 0.75rem;
     border-radius : 0 0 7px 7px;
     font-size: clamp(1rem, calc(0.3rem + 1.9vw), var(--f-sz-18));
     font-weight   : 400;
-    transition    : background var(--lit-transition-speed),
-                    border var(--lit-transition-speed);}
-  & .ux-icon {
+  }
+  .ux-icon {
     position     : relative;
     top          : 2px;
     left         : 3px;
     margin-right : 7px;
     color        : hsl(197, 11%, 40%);
-    transition   : color var(--lit-transition-speed); }
+    transition: color var(--lit-transition-speed);
+  }
 }
 
 .lit-card__author {
@@ -161,7 +163,7 @@
   width: 100%;
   text-align: right;
   color         : hsl(197, 13%, 40%);
-  transition  : color var(--lit-transition-speed);
+  transition: color var(--lit-transition-speed);
   & span {
     padding-right: 0.125rem;
   }
