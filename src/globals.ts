@@ -4,6 +4,13 @@ export const isProduction =
   (() => process.env.NODE_ENV == 'production')()
 ;
 
+export type EmailRecipients = 'ethan'|'jason';
+
+export const emailRecipients: EmailRecipients[] = [
+  'ethan',
+  'jason',
+];
+
 export const isDevelopment = !isProduction;
 export const isMobile = () => window.outerWidth <= 511;
 
@@ -22,6 +29,11 @@ export function isAuthedGuard(
 ) {
   if (!isAuthed()) return next('/red33m/login');
   next();
+}
+
+
+export function getEmail(name: EmailRecipients) {
+  return name + ['.org','x','e','-','v','e','@'].reverse().join('');
 }
 
 
