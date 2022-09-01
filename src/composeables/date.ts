@@ -56,6 +56,25 @@ export function useDate(date: Date|ISODateStr|MsDateFormat) {
       return dateObj.toLocaleDateString();
     },
 
+    toFullDateTime() {
+      return new Intl.DateTimeFormat(undefined, {
+        month: 'short',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit',
+        year: 'numeric',
+      }).format(dateObj);
+    },
+
+    toQuickRelativeTime() {
+      const relativeTime = this.toRelativeTime();
+      const secondsSinceThen = Math.floor((Date.now() - dateObj.getTime()) / 1000);
+      if (secondsSinceThen >= timeSpan.week) {
+        return this.toFullDateTime();
+      }
+      return relativeTime;
+    },
+
     toRelativeTime() {
       if (!Intl || !Intl.RelativeTimeFormat)
         return this.toShortDate() // Support old iOS version
@@ -73,6 +92,7 @@ export function useDate(date: Date|ISODateStr|MsDateFormat) {
           return rtf.format(-relNum, span);
         }
       }
+      throw Error('toRelativeTime()::No time span found');
     },
 
     toDaysOldFromNow() {
