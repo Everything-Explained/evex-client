@@ -69,7 +69,7 @@
   top              : 0;
   left             : 0;
   margin-right     : var(--page-right-margin);
-  height           : 8rem;
+  height           : clamp(1rem, 19vw, 10rem);
   box-shadow       : 0 4px 5px -1px black;
   border-bottom    : 3px solid var(--panel-c);
   background-color : var(--body-bg-c); }
@@ -78,10 +78,10 @@
     left        : 0;
     right       : 0;
     height      : 100%;
-    padding-top : 10px;
+    padding-top : clamp(0rem, 1.7vw, 1rem);
     margin      : 0 auto;
     text-align  : center;
-    font-size   : var(--app-head-f-sz);
+    font-size   : clamp(1rem, 11.3vw, 6rem);
     font-family : 'Pique N Meex';
     text-shadow : 1px 1px 0 black,
                   2px  0  0 black,
