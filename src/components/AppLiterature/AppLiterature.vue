@@ -13,6 +13,7 @@ import AppMarkdown  from "../AppMarkdown.vue";
 import AppLitCards  from "./AppLitCards.vue";
 import PageError    from '../PageError.vue';
 import UxDisqus     from "../UxDisqus.vue";
+import { emailRecipients, getEmail } from "@/globals";
 
 
 export interface Article extends StaticPage {
@@ -69,6 +70,13 @@ if (!cfg.showFilter) {
 // such that the transition animation is triggered.
 let contentCount = -1;
 watch(() => activePage.value, () => {
+  if (activePage.value?.content) {
+    emailRecipients.forEach(r => {
+      const email = getEmail(r);
+      const emailLink = `<a href="mailto:${email}?subject=EvEx - Website Feedback">${email}</a>`;
+      activePage.value!.content = activePage.value!.content.replaceAll(`@${r}@`, emailLink);
+    });
+  }
   activeContent.value = contentCount++ % 2 == 0 ? 1 : 2;
 });
 
@@ -76,7 +84,6 @@ watch(() => activePage.value, () => {
 function onFilter(pages: Article[]) {
   filteredPages.value = pages;
 }
-
 
 </script>
 
