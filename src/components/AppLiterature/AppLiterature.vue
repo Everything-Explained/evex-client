@@ -48,11 +48,10 @@ const defaultOptions: AppLitOptions = {
   contentClass      : ''
 };
 const cfg           = Object.assign(defaultOptions, options);
-const { pages, pageTitle, activePage, goTo, isRunning, error: apiError }
+const { pages, activePage, goTo, isRunning, error: apiError }
                     = useStaticPager<Article>(options.uri, cfg.version);
-const titleRef      = computed(() => pageTitle.value || options.title);
+const titleRef      = computed(() => activePage.value?.title || options.title);
 const filteredPages = ref<Article[]>([]);
-const activeContent  = ref(1);
 
 
 // When filter is disabled, we need to manually set pages
@@ -64,21 +63,6 @@ if (!cfg.showFilter) {
     : onFilter(pages.value)
   ;
 }
-
-
-// A trick to toggle between two identical content elements
-// such that the transition animation is triggered.
-let contentCount = -1;
-watch(() => activePage.value, () => {
-  if (activePage.value?.content) {
-    emailRecipients.forEach(r => {
-      const email = getEmail(r);
-      const emailLink = `<a href="mailto:${email}?subject=EvEx - Website Feedback">${email}</a>`;
-      activePage.value!.content = activePage.value!.content.replaceAll(`@${r}@`, emailLink);
-    });
-  }
-  activeContent.value = contentCount++ % 2 == 0 ? 1 : 2;
-});
 
 
 function onFilter(pages: Article[]) {
@@ -120,33 +104,13 @@ function onFilter(pages: Article[]) {
         />
         <page-footer />
       </div>
-      <!--
-           THE FOLLOWING DUPLICATE CODE IS NECESSARY
-
-           A trick is being utilized here to trigger the animation
-           from the transition element, when a link navigates to a
-           page within the same URL root.
-
-           (i.e. blog entry link navigates to another blog entry)
-      -->
-      <div v-else-if="activeContent == 1 && activePage">
-        <render-html v-if="cfg.useCustomRenderer" :html="activePage.content" />
+      <div v-else-if="activePage">
+        <render-html v-if="cfg.useCustomRenderer" :html="activePage.data!" />
         <app-markdown
           v-else
           :simple="false"
           :class="cfg.contentClass"
-          v-html="activePage.content"
-        />
-        <ux-disqus />
-        <page-footer />
-      </div>
-      <div v-else-if="activeContent == 2 && activePage">
-        <render-html v-if="cfg.useCustomRenderer" :html="activePage.content" />
-        <app-markdown
-          v-else
-          :simple="false"
-          :class="cfg.contentClass"
-          v-html="activePage.content"
+          :html="activePage.data"
         />
         <ux-disqus />
         <page-footer />

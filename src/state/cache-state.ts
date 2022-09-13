@@ -14,6 +14,7 @@ const stateOfArrays = reactive({
   'videos/red33m'        : [],
   '/data/videos/red33m'  : [],
   '/data/videos/public'  : [],
+  'page-content'         : [],
   'ux-filter'            : [],
 });
 

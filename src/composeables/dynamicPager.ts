@@ -3,17 +3,17 @@ import { useRouter } from "vue-router";
 import { useURI } from "./URI";
 
 
-type DynamicPage<T> = {
+export type DynamicPage<T> = {
   title: string;
   uri  : string;
-  data : T;
+  data : T|undefined;
 }
 
 type URIMap<T> = { [key: string]: DynamicPage<T>; }
 
 
 
-export function useDynamicPager<T>(url: string, param: string) {
+export function useDynamicPager<T>(url: string, param: string, cb?: (page?: DynamicPage<T>) => Promise<T|undefined>) {
   const router      = useRouter();
   const route       = router.currentRoute;
   const currentURI  = computed(() => route.value.params[param]);
@@ -22,11 +22,16 @@ export function useDynamicPager<T>(url: string, param: string) {
 
   watch(() => route.value.params, onRouteChange);
 
+
   function onRouteChange(params: any) {
     if (!route.value.path.includes(url)) return;
-    if (!params[param]) { activePage.value = undefined; return; }
+    if (!params[param]) {
+      activePage.value = undefined;
+      return;
+    }
     if (currentURI.value) setActivePage();
   }
+
 
   function setDynPages(pages: { name: string; data: T; }[]) {
     pages.forEach((page) => {
@@ -40,16 +45,19 @@ export function useDynamicPager<T>(url: string, param: string) {
     if (currentURI.value) setActivePage();
   }
 
-  function setActivePage() {
-    activePage.value =
-      Object
-        .values(pageMap)
-        .find(p => p.uri == currentURI.value)
-    ;
-    if (!activePage.value) {
+
+  async function setActivePage() {
+    const activePageObj = Object.values(pageMap).find(p => p.uri == currentURI.value);
+    if (!activePageObj) {
       router.push('/404');
+      return;
     }
+    if (cb) {
+      activePageObj.data = await cb(activePageObj);
+    }
+    activePage.value = activePageObj;
   }
+
 
   function goTo(pageName: string) {
     const currentPage = pageMap[pageName];

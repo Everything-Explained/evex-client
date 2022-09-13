@@ -4,7 +4,6 @@
 import { PropType } from 'vue';
 import { useDate } from "@/composeables/date";
 import { isEthan } from "@/composeables/globals";
-import UxBullet from '../UxBullet.vue';
 import UxIcon from '../UxIcon.vue';
 import { useURI } from '@/composeables/URI';
 
@@ -40,7 +39,7 @@ const toURI = useURI;
       :key="i"
       :class="['lit__card', { '--expanded': expanded }]"
     >
-      <header @click="goTo(toURI(card.title))">
+      <header @click="goTo(card.title)">
         {{ card.title }}
       </header>
       <summary>

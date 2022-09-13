@@ -1,9 +1,7 @@
 import { APIResponse, useAPI } from "@/services/api_internal";
 import { DataCacheArrayKeys, useDataCache } from "@/state/cache-state";
-import { computed } from "@vue/reactivity";
-import { ref, watch } from "vue";
-import { useRouter } from "vue-router";
-import { useURI } from "./URI";
+import { ref } from "vue";
+import { DynamicPage, useDynamicPager } from "./dynamicPager";
 
 export interface StaticPage {
   id: number;
@@ -14,26 +12,33 @@ export interface StaticPage {
   date: string;
 }
 
+interface PageContent {
+  title: string;
+  hash: string;
+  data: string;
+}
+
 export function useStaticPager<T extends StaticPage>(url: DataCacheArrayKeys, version = '') {
-  const router     = useRouter();
   const dataCache  = useDataCache<T>();
+  const contentCache = useDataCache<PageContent>();
   const api        = useAPI();
-  const route      = router.currentRoute;
-  const activePage = ref<T|null>();
-  const pageURI    = route.value.params.page as string|undefined;
   const pages      = dataCache.getArrayData(url);
+  const pageContentStore = contentCache.getArrayData('page-content').value;
   const pageTitle  = ref('');
   const error      = ref<APIResponse<string>|null>(null);
-  const isGettingPageContent = ref(false);
+
+  const { goTo, setDynPages, activePage } = useDynamicPager<string>(url, 'page', getPageContent);
 
   // Only retrieve pages when Cache is empty
-  if (!pages.value.length) {
+  if (pages.value.length) {
+    setDynPages(pages.value.map(p => ({ name: p.title, data: '' })));
+  }
+  else {
     api
       .get<StaticPage[]>(`/data/${url}`, null, version, 'static')
       .then(res => {
         dataCache.setArrayData(url, res.data);
-        // If URL points to a specific page on load
-        if (pageURI) displayPage(pageURI);
+        setDynPages(res.data.map(d => ({ name: d.title, data: '' })));
       })
       .catch((err: APIResponse<string>) => {
         error.value = err;
@@ -41,58 +46,17 @@ export function useStaticPager<T extends StaticPage>(url: DataCacheArrayKeys, ve
     ;
   }
 
-  // An edge case when navigating away from a custom
-  // route, then backing the history to that same custom route.
-  if (pages.value.length && pageURI) displayPage(pageURI);
-
-  watch(() => route.value.params, onRouteChange);
-
-
-  function onRouteChange(params: any) {
-    if (!route.value.path.includes(url)) return;
-    if (!params.page) {
-      activePage.value = null;
-      pageTitle.value = '';
-      return;
+  async function getPageContent(pageRef?: DynamicPage<string>): Promise<string|undefined> {
+    if (!pageRef) return undefined;
+    const page = pages.value.find(p => p.title == pageRef.title);
+    if (!page) return undefined;
+    const cachedContent = pageContentStore.find(p => p.hash == page.hash);
+    const pageContent = cachedContent ?? await api.get<string>(`/data/${url}/${page.id}.mdhtml`, null, page.hash, 'static', 'text');
+    if (!cachedContent) {
+      pageContentStore.push({ title: page.title, hash: page.hash, data: pageContent.data});
+      contentCache.setArrayData('page-content', pageContentStore);
     }
-    displayPage(params.page as string);
-  }
-
-
-  function displayPage(uri: string) {
-    const page = pages.value.find(page => useURI(page.title) == uri);
-
-    if (!page) {
-      router.push('/404');
-      return;
-    }
-
-    pageTitle.value = page.title;
-
-    if (page.content) {
-      activePage.value = page;
-      return;
-    }
-
-    isGettingPageContent.value = true;
-    getPageContent(page);
-  }
-
-
-  function getPageContent(page: T) {
-    api
-      .get<string>(`/data/${url}/${page.id}.mdhtml`, null, page.hash, 'static', 'text')
-      .then(res => {
-        page.content = res.data;
-        activePage.value = page;
-        isGettingPageContent.value = false;
-      });
-  }
-
-
-  function goTo(uri: string) {
-    router.push(`/${url}/${uri}`);
-    // window.scrollTo(0, 0);
+    return pageContent.data;
   }
 
 
@@ -102,6 +66,6 @@ export function useStaticPager<T extends StaticPage>(url: DataCacheArrayKeys, ve
     activePage,
     pageTitle,
     error,
-    isRunning: computed(() => api.isPending.value || isGettingPageContent.value),
+    isRunning: api.isPending,
   };
 }
