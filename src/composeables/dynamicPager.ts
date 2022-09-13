@@ -46,6 +46,9 @@ export function useDynamicPager<T>(url: string, param: string) {
         .values(pageMap)
         .find(p => p.uri == currentURI.value)
     ;
+    if (!activePage.value) {
+      router.push('/404');
+    }
   }
 
   function goTo(pageName: string) {
