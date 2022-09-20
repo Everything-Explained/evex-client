@@ -1,5 +1,4 @@
-import { ref, computed } from "@vue/reactivity";
-
+import { ref, computed } from 'vue';
 
 export default function useInputValidation(inputs: number) {
   const ids = ref<string[]>([]);
@@ -9,10 +8,9 @@ export default function useInputValidation(inputs: number) {
       if (v && !~inputIndex) ids.value.push(id);
       if (!v && ~inputIndex) ids.value.splice(inputIndex, 1);
       if (ids.value.length > inputs)
-        throw Error('useFormValidation::Too Many Fields')
-      ;
+        throw Error('useFormValidation::Too Many Fields');
     },
-    isValidated : computed(() => ids.value.length == inputs),
-    remaining   : computed(() => inputs - ids.value.length),
+    isValidated: computed(() => ids.value.length == inputs),
+    remaining: computed(() => inputs - ids.value.length),
   };
 }

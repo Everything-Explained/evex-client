@@ -92,7 +92,7 @@ function submitted() { isSubmitted.value = true; }
             communal benefits appeals to your vision, then consider becoming one of our beloved
             benefactors!
           </ux-text>
-          <ux-text class="support__patreon">
+          <ux-text custom-class="support__patreon">
             <span class="md-bold">Support our <b>ORG</b> on</span>
             <a href="https://www.patreon.com/user?u=10855808&fan_landing=true" target="_blank">
               <img
@@ -169,7 +169,7 @@ function submitted() { isSubmitted.value = true; }
         <page-footer />
       </div>
       <div v-else>
-        <ux-text class="support__submitted-text" type="block">
+        <ux-text custom-class="support__submitted-text" type="block">
           Thank you for your interest in our content! Our team will try to get
           back to you <strong>within 7 days</strong> for our response.
         </ux-text>

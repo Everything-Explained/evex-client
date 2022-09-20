@@ -62,7 +62,7 @@ function submit(e: MouseEvent) {
     />
     <transition name="fade" mode="out-in">
       <div v-if="!loginSuccess" class="red-login">
-        <ux-text type="block" class="red-login__disclaimer">
+        <ux-text type="block" custom-class="red-login__disclaimer">
           This page contains sensitive content which <em>requires authentication</em>.
           If you have a passcode, use the form below to grant yourself access.
           <br><br>
@@ -98,18 +98,18 @@ function submit(e: MouseEvent) {
           </ux-button>
           <br>
           <form-error
-            class="error"
+            custom-class="error"
             :update="errorUpdVal"
             :text="errorText"
           />
         </form>
         <br>
-        <ux-text type="span-block" class="red-login__disclaimer">
+        <ux-text type="span-block" custom-class="red-login__disclaimer">
           <strong>NOTE:</strong> Do not clear your browser cache, otherwise you
           will need to enter the code again, when you come back to this page
           later.
         </ux-text>
-        <ux-text type="span-block" class="red-login__disclaimer">
+        <ux-text type="span-block" custom-class="red-login__disclaimer">
           <strong>CAVEAT:</strong> The passcode will only be saved for <em>this device</em>.
           In order to view this content on your other devices:
           <strong>computer, phone, tablet, etc...</strong>

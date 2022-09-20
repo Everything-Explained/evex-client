@@ -1,33 +1,19 @@
+<script lang="ts" setup>
+import AppMarkdown from './AppMarkdown.vue';
 
-
-<script lang='ts' setup>
-import AppMarkdown from "./AppMarkdown.vue";
-
-
-const props       = defineProps({
-  type:  { type: String,  default: 'text' },
-  class: { type: String,  default: ''     },
+const props = defineProps({
+  type: { type: String, default: 'text' },
+  customClass: { type: String, default: '' },
 });
-const textType    = ['text', 'block', 'header', 'span-block', 'link'];
+const textType = ['text', 'block', 'header', 'span-block', 'link'];
 const isSpanBlock = props.type == 'span-block';
-const customClass = props.class;
 
 if (!textType.includes(props.type))
-  throw Error(`ee-text:: Invalid type ${props.type} `)
-;
-
+  throw Error(`ee-text:: Invalid type ${props.type} `);
 </script>
 
-
-
-
-
 <template>
-  <app-markdown
-    v-if="type == 'header'"
-    :header="true"
-    :class="customClass"
-  >
+  <app-markdown v-if="type == 'header'" :header="true" :class="customClass">
     <h1><slot /></h1>
   </app-markdown>
   <app-markdown v-else-if="type == 'block'" :class="customClass">
@@ -35,17 +21,8 @@ if (!textType.includes(props.type))
   </app-markdown>
   <app-markdown
     v-else
-    :class="[
-      'ux-text',
-      customClass,
-      { '--block': isSpanBlock }
-    ]"
+    :class="['ux-text', customClass, { '--block': isSpanBlock }]"
   >
     <slot />
   </app-markdown>
 </template>
-
-
-
-
-

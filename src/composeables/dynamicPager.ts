@@ -1,27 +1,27 @@
-import { computed, ref, watch } from "vue";
-import { useRouter } from "vue-router";
-import { useURI } from "./URI";
-
+import { computed, ref, watch } from 'vue';
+import { useRouter } from 'vue-router';
+import { useURI } from './URI';
 
 export type DynamicPage<T> = {
   title: string;
-  uri  : string;
-  data : T|undefined;
-}
+  uri: string;
+  data: T | undefined;
+};
 
-type URIMap<T> = { [key: string]: DynamicPage<T>; }
+type URIMap<T> = { [key: string]: DynamicPage<T> };
 
-
-
-export function useDynamicPager<T>(url: string, param: string, cb?: (page?: DynamicPage<T>) => Promise<T|undefined>) {
-  const router      = useRouter();
-  const route       = router.currentRoute;
-  const currentURI  = computed(() => route.value.params[param]);
-  const pageMap     = {} as URIMap<T>;
-  const activePage  = ref<DynamicPage<T>>();
+export function useDynamicPager<T>(
+  url: string,
+  param: string,
+  cb?: (page?: DynamicPage<T>) => Promise<T | undefined>
+) {
+  const router = useRouter();
+  const route = router.currentRoute;
+  const currentURI = computed(() => route.value.params[param]);
+  const pageMap = {} as URIMap<T>;
+  const activePage = ref<DynamicPage<T>>();
 
   watch(() => route.value.params, onRouteChange);
-
 
   function onRouteChange(params: any) {
     if (!route.value.path.includes(url)) return;
@@ -32,22 +32,22 @@ export function useDynamicPager<T>(url: string, param: string, cb?: (page?: Dyna
     if (currentURI.value) setActivePage();
   }
 
-
-  function setDynPages(pages: { name: string; data: T; }[]) {
+  function setDynPages(pages: { name: string; data: T }[]) {
     pages.forEach((page) => {
       pageMap[page.name] = {
         title: page.name,
         uri: useURI(page.name),
-        data: page.data
+        data: page.data,
       };
     });
     // If route is already pointing to page
     if (currentURI.value) setActivePage();
   }
 
-
   async function setActivePage() {
-    const activePageObj = Object.values(pageMap).find(p => p.uri == currentURI.value);
+    const activePageObj = Object.values(pageMap).find(
+      (p) => p.uri == currentURI.value
+    );
     if (!activePageObj) {
       router.push('/404');
       return;
@@ -57,7 +57,6 @@ export function useDynamicPager<T>(url: string, param: string, cb?: (page?: Dyna
     }
     activePage.value = activePageObj;
   }
-
 
   function goTo(pageName: string) {
     const currentPage = pageMap[pageName];
@@ -69,6 +68,5 @@ export function useDynamicPager<T>(url: string, param: string, cb?: (page?: Dyna
     activePage.value = currentPage;
   }
 
-  return { setDynPages, goTo, activePage, };
+  return { setDynPages, goTo, activePage };
 }
-

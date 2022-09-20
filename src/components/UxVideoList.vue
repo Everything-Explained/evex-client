@@ -1,5 +1,3 @@
-
-
 <script lang="ts" setup>
 import { onUnmounted, ref } from 'vue';
 import { useVideoPagination } from '@/composeables/videoPagination';
@@ -10,14 +8,9 @@ import UxFilter from './UxFilter.vue';
 import { isMobile } from '@/globals';
 import { useDataCache } from '@/state/cache-state';
 
-
-
-
-
-
 const props = defineProps({
-  videos : { type: Array as PropType<Video[]>, required: true },
-  id     : { type: String, required: true },
+  videos: { type: Array as PropType<Video[]>, required: true },
+  id: { type: String, required: true },
 });
 
 defineEmits(['click-video']);
@@ -25,11 +18,8 @@ defineEmits(['click-video']);
 // Can no longer be updated by parent
 const videos = ref(props.videos);
 
-const {
-  paginatedVideos,
-  displayVideoPage,
-  getPageNum,
-} = useVideoPagination(videos);
+const { paginatedVideos, displayVideoPage, getPageNum } =
+  useVideoPagination(videos);
 
 const cache = useDataCache<number>();
 let page = cache.getData('red33m-video-list').value;
@@ -38,21 +28,16 @@ onUnmounted(() => {
   cache.setData('red33m-video-list', getPageNum());
 });
 
-
-
 function filterVideos(filteredVideos: Video[]) {
   videos.value = filteredVideos;
   cache.setData('red33m-video-list', page);
   displayVideoPage(page, isMobile() ? 10 : 30);
 }
 
-function onAgeToggled() { page = 1; }
-
+function onAgeToggled() {
+  page = 1;
+}
 </script>
-
-
-
-
 
 <template>
   <div class="vid-list__container">
@@ -85,14 +70,3 @@ function onAgeToggled() { page = 1; }
     </div>
   </div>
 </template>
-
-
-
-
-
-
-
-
-
-
-

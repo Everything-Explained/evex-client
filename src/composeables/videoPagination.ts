@@ -1,16 +1,10 @@
-
-
-import { isMobile } from "@/globals";
-import { Video } from "@/typings/global-types";
-import { onUnmounted, Ref, ref } from "vue";
-
-
-
-
+import { isMobile } from '@/globals';
+import { Video } from '@/typings/global-types';
+import { onUnmounted, Ref, ref } from 'vue';
 
 export function useVideoPagination(allVideos: Ref<Video[]>) {
   const paginatedVideos = ref<Video[]>([]);
-  const visiblePages    = ref(0);
+  const visiblePages = ref(0);
 
   window.addEventListener('scroll', renderVideos);
   onUnmounted(() => window.removeEventListener('scroll', renderVideos));
@@ -27,8 +21,9 @@ export function useVideoPagination(allVideos: Ref<Video[]>) {
     }
   }
 
-  return { displayVideoPage, paginatedVideos, getPageNum: () => visiblePages.value };
+  return {
+    displayVideoPage,
+    paginatedVideos,
+    getPageNum: () => visiblePages.value,
+  };
 }
-
-
-

@@ -1,43 +1,30 @@
-
-
-<script lang='ts' setup>
+<script lang="ts" setup>
 import { PropType } from 'vue';
-import { useDate } from "@/composeables/date";
-import { isEthan } from "@/composeables/globals";
+import { useDate } from '@/composeables/date';
+import { isEthan } from '@/composeables/globals';
 import UxIcon from '../UxIcon.vue';
-import { useURI } from '@/composeables/URI';
-
 
 interface LitCard {
-  title   : string;
-  summary : string;
-  author  : string;
-  date    : string;
+  title: string;
+  summary: string;
+  author: string;
+  date: string;
 }
 
-
-const {expanded} = defineProps({
-  cards        : { type: Array as PropType<LitCard[]>, required: true },
-  expanded     : { type: Boolean, default: false },
-  showAuthor   : { type: Boolean, default: true  },
-  goTo         : { type: Function, required: true },
+defineProps({
+  cards: { type: Array as PropType<LitCard[]>, required: true },
+  showFullDate: { type: Boolean, default: false },
+  showAuthor: { type: Boolean, default: true },
+  goTo: { type: Function, required: true },
 });
-
-const showFullDate = expanded;
-const toURI = useURI;
-
 </script>
 
-
-
-
-
 <template>
-  <div :class="['lit__cards', { '--expanded': expanded }]">
+  <div :class="['lit__cards', { '--expanded': showFullDate }]">
     <div
       v-for="(card, i) of cards"
       :key="i"
-      :class="['lit__card', { '--expanded': expanded }]"
+      :class="['lit__card', { '--expanded': showFullDate }]"
     >
       <header @click="goTo(card.title)">
         {{ card.title }}
@@ -46,11 +33,9 @@ const toURI = useURI;
         {{ card.summary }}
         <footer>
           <span v-if="showAuthor" class="lit-card__author">
-            <span
-              :class="[
-                { '--is-ethan': isEthan(card.author) }
-              ]"
-            >{{ card.author.trim() }}</span>
+            <span :class="[{ '--is-ethan': isEthan(card.author) }]">{{
+              card.author.trim()
+            }}</span>
             <ux-icon type="user" />
           </span>
           <span class="lit-card__timestamp">
@@ -68,11 +53,3 @@ const toURI = useURI;
     </div>
   </div>
 </template>
-
-
-
-
-
-
-
-

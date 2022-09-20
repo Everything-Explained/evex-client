@@ -1,4 +1,4 @@
-import { RouteLocationNormalizedLoaded, Router } from "vue-router";
+import { RouteLocationNormalizedLoaded, Router } from 'vue-router';
 
 export type ISODateString = string;
 
@@ -8,20 +8,20 @@ type DisqusConfigOptions = {
   reload: boolean;
   page?: {
     identifier: string;
-  },
+  };
   config?: () => void;
-}
+};
 
 declare global {
   interface Window {
     app: any;
     $router: Router;
     DISQUSWIDGETS: {
-      getCount: (options: {reset: boolean}) => void;
-    },
+      getCount: (options: { reset: boolean }) => void;
+    };
     DISQUS: {
       reset: (options: DisqusConfigOptions) => void;
-    }
+    };
     YT: any;
     onYouTubeIframeAPIReady: () => void;
   }
@@ -42,11 +42,10 @@ declare module 'vue-router' {
   }
 }
 
-
 export interface Video {
-  id      : string;
-  title   : string;
-  author  : string;
-  summary : string;
-  date    : ISODateString;
+  id: string;
+  title: string;
+  author: string;
+  summary: string;
+  date: ISODateString;
 }

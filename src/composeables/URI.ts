@@ -3,6 +3,5 @@ export function useURI(str: string) {
     .toLowerCase()
     .replace(/\s/g, '-')
     .replaceAll('α', 'a')
-    .replace(/[^a-z0-9-]+/g, '')
-  ;
+    .replace(/[^a-z0-9-]+/g, '');
 }

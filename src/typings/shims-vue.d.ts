@@ -7,6 +7,6 @@ declare module '*.vue' {
 declare const process: {
   env: {
     /** Vite-injected environment variable */
-    NODE_ENV: string
-  }
+    NODE_ENV: string;
+  };
 };

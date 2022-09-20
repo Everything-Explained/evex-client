@@ -1,91 +1,83 @@
-
-
 <script lang="ts" setup>
-import { computed, PropType, ref, watch } from "vue";
-import { StaticPage, useStaticPager } from "@/composeables/staticPager";
-import { DataCacheArrayKeys } from "@/state/cache-state";
-import PageTitlebar from "@/components/PageTitlebar.vue";
-import PageFooter   from "../PageFooter.vue";
-import RenderHtml   from "../RenderHtml.vue";
-import UxFilter     from "../UxFilter.vue";
-import UxPreloader  from '../UxPreloader.vue';
-import AppMarkdown  from "../AppMarkdown.vue";
-import AppLitCards  from "./AppLitCards.vue";
-import PageError    from '../PageError.vue';
-import UxDisqus     from "../UxDisqus.vue";
-import { emailRecipients, getEmail } from "@/globals";
-
+import { computed, PropType, ref, watch } from 'vue';
+import { StaticPage, useStaticPager } from '@/composeables/staticPager';
+import { DataCacheArrayKeys } from '@/state/cache-state';
+import PageTitlebar from '@/components/PageTitlebar.vue';
+import PageFooter from '../PageFooter.vue';
+import RenderHtml from '../RenderHtml.vue';
+import UxFilter from '../UxFilter.vue';
+import UxPreloader from '../UxPreloader.vue';
+import AppMarkdown from '../AppMarkdown.vue';
+import AppLitCards from './AppLitCards.vue';
+import PageError from '../PageError.vue';
+import UxDisqus from '../UxDisqus.vue';
+import { emailRecipients, getEmail } from '@/globals';
 
 export interface Article extends StaticPage {
   summary: string;
 }
 
 export interface AppLitOptions {
-  uri               : DataCacheArrayKeys;
-  title             : string;
-  showFilter        ?: boolean;
-  expanded          ?: boolean;
-  reverseOrder      ?: boolean;
-  showAuthor        ?: boolean;
-  useCustomRenderer ?: boolean;
-  contentClass      ?: string;
-  version           ?: string;
+  uri: DataCacheArrayKeys;
+  title: string;
+  showFilter?: boolean;
+  expanded?: boolean;
+  reverseOrder?: boolean;
+  showAuthor?: boolean;
+  useCustomRenderer?: boolean;
+  contentClass?: string;
+  version?: string;
 }
 
-
-const {options} = defineProps({
-  options: { type: Object as PropType<AppLitOptions>, required: true }
+const props = defineProps({
+  options: { type: Object as PropType<AppLitOptions>, required: true },
 });
 
 const defaultOptions: AppLitOptions = {
-  uri               : 'temp',
-  title             : '',
-  showFilter        : true,
-  expanded          : false,
-  reverseOrder      : false,
-  showAuthor        : true,
-  useCustomRenderer : true,
-  contentClass      : ''
+  uri: 'temp',
+  title: '',
+  showFilter: true,
+  expanded: false,
+  reverseOrder: false,
+  showAuthor: true,
+  useCustomRenderer: true,
+  contentClass: '',
 };
-const cfg           = Object.assign(defaultOptions, options);
-const { pages, activePage, goTo, isRunning, error: apiError }
-                    = useStaticPager<Article>(options.uri, cfg.version);
-const titleRef      = computed(() => activePage.value?.title || options.title);
+const cfg = Object.assign(defaultOptions, props.options);
+const {
+  pages,
+  activePage,
+  goTo,
+  isRunning,
+  error: apiError,
+} = useStaticPager<Article>(props.options.uri, cfg.version);
+const titleRef = computed(() => activePage.value?.title || props.options.title);
 const filteredPages = ref<Article[]>([]);
-
 
 // When filter is disabled, we need to manually set pages
 if (!cfg.showFilter) {
   !pages.value.length
-    ? watch(() => isRunning.value, (isRunning) => {
-      !isRunning && onFilter(pages.value);
-    })
-    : onFilter(pages.value)
-  ;
+    ? watch(
+        () => isRunning.value,
+        (isRunning) => {
+          !isRunning && onFilter(pages.value);
+        }
+      )
+    : onFilter(pages.value);
 }
-
 
 function onFilter(pages: Article[]) {
   filteredPages.value = pages;
 }
-
 </script>
-
-
-
-
 
 <template>
   <div class="lit">
-    <page-titlebar
-      :ease-in="350"
-      :ease-out="350"
-      :text="titleRef"
-    />
+    <page-titlebar :ease-in="350" :ease-out="350" :text="titleRef" />
     <transition name="fade" mode="out-in">
       <ux-preloader v-if="isRunning" />
       <page-error v-else-if="apiError" class="error">
-        {{ apiError.data }}<br>
+        {{ apiError.data }}<br />
         Try again later...
       </page-error>
       <div v-else-if="!activePage" class="lit-cards__container">
@@ -100,7 +92,7 @@ function onFilter(pages: Article[]) {
           :cards="filteredPages"
           :go-to="goTo"
           :show-author="cfg.showAuthor"
-          :expanded="cfg.expanded"
+          :show-full-date="cfg.expanded"
         />
         <page-footer />
       </div>
@@ -118,9 +110,3 @@ function onFilter(pages: Article[]) {
     </transition>
   </div>
 </template>
-
-
-
-
-
-

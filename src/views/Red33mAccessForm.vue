@@ -109,7 +109,7 @@ function setState(name: keyof typeof formState, val: boolean) {
           <ux-text
             v-for="(risk, i) of risks"
             :key="i"
-            class="red-form__list-item"
+            custom-class="red-form__list-item"
             type="block"
           >
             <ul><li v-html="risk" /></ul>
@@ -119,13 +119,13 @@ function setState(name: keyof typeof formState, val: boolean) {
             <ux-embedded-video id="qskMClpUmvk" api="youtube" />
           </div>
           <br>
-          <ux-text class="red-form__begin-text" type="block">
+          <ux-text custom-class="red-form__begin-text" type="block">
             <em>This application is meant to gauge you on the following:</em>
           </ux-text>
           <ux-text
             v-for="(aptitude, i) of aptitudes"
             :key="i"
-            class="red-form__list-item"
+            custom-class="red-form__list-item"
             type="block"
           >
             <ul><li v-html="aptitude" /></ul>
@@ -173,7 +173,7 @@ function setState(name: keyof typeof formState, val: boolean) {
       </div>
 
       <div v-else>
-        <ux-text class="red-form__submitted-text" type="block">
+        <ux-text custom-class="red-form__submitted-text" type="block">
           <strong>Thank you for your interest in this exclusive content.</strong> Our team will get back to
           you as soon as possible. Whatever the results may be, <em>do not take them personally</em>.<br><br>
 

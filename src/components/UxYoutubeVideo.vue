@@ -1,29 +1,19 @@
-
-
 <script lang="ts" setup>
-import { computed } from '@vue/reactivity';
+import { computed } from 'vue';
 import { onMounted, PropType, ref } from 'vue';
 import UxPreloader from './UxPreloader.vue';
 
-
-
-
-
-
 const props = defineProps({
-  id: { type: String as PropType<string>, default: 'M7lc1UVf-VE' }
+  id: { type: String as PropType<string>, default: 'M7lc1UVf-VE' },
 });
 
 const isInjecting = ref(true);
 const isPlayerLoading = ref(true);
-const showPreloader = computed(() => isInjecting.value || isPlayerLoading.value);
-
+const showPreloader = computed(
+  () => isInjecting.value || isPlayerLoading.value
+);
 
 onMounted(tryInjectYTAPI);
-
-
-
-
 
 function tryInjectYTAPI() {
   const scriptID = 'ytScript';
@@ -47,34 +37,25 @@ function tryInjectYTAPI() {
   document.head.appendChild(scriptEl);
 }
 
-
 function createPlayer() {
   new window.YT.Player('YTVideo', {
     videoId: props.id,
     playerVars: {
-      'playsinline': 1
+      playsinline: 1,
     },
     events: {
       onReady: (e: any) => {
         isPlayerLoading.value = false;
         e.target.playVideo();
-      }
-    }
+      },
+    },
   });
 }
 </script>
 
-
-
-
-
 <template>
   <div class="ytvideo__container">
-    <ux-preloader
-      v-if="showPreloader"
-      :page="false"
-      type="image"
-    />
+    <ux-preloader v-if="showPreloader" :page="false" type="image" />
     <iframe
       id="YTVideo"
       :class="['ytvideo__video video']"
@@ -86,10 +67,3 @@ function createPlayer() {
     />
   </div>
 </template>
-
-
-
-
-
-
-

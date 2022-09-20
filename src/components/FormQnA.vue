@@ -1,48 +1,44 @@
+<script lang="ts" setup>
+import { PropType, reactive } from 'vue';
+import useInputValidation from '@/composeables/inputValidation';
+import { useAPI } from '@/services/api_internal';
+import { useDataCache } from '@/state/cache-state';
+import UxButton from './UxButton.vue';
+import FormError from './FormError.vue';
+import UxInput from './UxInput.vue';
+import UxText from './UxText.vue';
 
-
-<script lang='ts' setup>
-import { PropType, reactive } from "@vue/runtime-core";
-import useInputValidation     from "@/composeables/inputValidation";
-import { useAPI }             from "@/services/api_internal";
-import { useDataCache }       from "@/state/cache-state";
-import UxButton               from "./UxButton.vue";
-import FormError              from "./FormError.vue";
-import UxInput                from "./UxInput.vue";
-import UxText                 from "./UxText.vue";
-
-
-
-
-export type FormQuestion = { text: string; subtext?: string; answer?: string; }
+export type FormQuestion = { text: string; subtext?: string; answer?: string };
 
 interface ReactiveQuestions {
-  [key: string]: {
-    answer: string;
-    text: string;
-    subtext?: string;
-  }[]|undefined;
+  [key: string]:
+    | {
+        answer: string;
+        text: string;
+        subtext?: string;
+      }[]
+    | undefined;
 }
 
-
-const props        = defineProps({
-  id        : { type: String  as PropType<string>, required: true                   },
-  type      : { type: Number  as PropType<number>, required: true                   },
-  questions : { type: Array   as PropType<FormQuestion[]>,     default: () => []    },
-  nameLabel : { type: String  as PropType<string>,             default: 'Your Name' },
-  showBack  : { type: Boolean as PropType<boolean>,            default: false       },
-  minchars  : { type: Number  as PropType<number>,             default: 100         },
-  maxchars  : { type: Number  as PropType<number>,             default: 500         },
+const props = defineProps({
+  id: { type: String as PropType<string>, required: true },
+  type: { type: Number as PropType<number>, required: true },
+  questions: { type: Array as PropType<FormQuestion[]>, default: () => [] },
+  nameLabel: { type: String as PropType<string>, default: 'Your Name' },
+  showBack: { type: Boolean as PropType<boolean>, default: false },
+  minchars: { type: Number as PropType<number>, default: 100 },
+  maxchars: { type: Number as PropType<number>, default: 500 },
 });
-const emit         = defineEmits(['back', 'submitted']);
-const api          = useAPI();
-const cache        = useDataCache<ReactiveQuestions>();
-const nameRegex    = /^[a-z\s.]+$/i;
-const formID       = `qna/${props.id}`;
-const qnaCacheObj  = cache.getArrayData('qnaform').value[0] || {};
+const emit = defineEmits(['back', 'submitted']);
+const api = useAPI();
+const cache = useDataCache<ReactiveQuestions>();
+const nameRegex = /^[a-z\s.]+$/i;
+const formID = `qna/${props.id}`;
+const qnaCacheObj = cache.getArrayData('qnaform').value[0] || {};
 const oldQuestions = qnaCacheObj[formID];
-const questions    = oldQuestions ?? getReactiveQuestions();
-const formData     = reactive({ name: '', email: '', });
-const formState    = reactive({ errorUpdate: 0, errorText: '' });
+const questions = oldQuestions ?? getReactiveQuestions();
+const formData = reactive({ name: '', email: '' });
+const formState = reactive({ errorUpdate: 0, errorText: '' });
 
 if (!props.questions.length) throw Error('<form-qna>::Missing Questions');
 if (!oldQuestions) {
@@ -50,15 +46,16 @@ if (!oldQuestions) {
   cache.setArrayData('qnaform', [qnaCacheObj]);
 }
 
-const { remaining, validate, isValidated }
-                   = useInputValidation(2 + props.questions.length);
+const { remaining, validate, isValidated } = useInputValidation(
+  2 + props.questions.length
+);
 const isSubmitting = api.isPending;
 
 function submit() {
   const qData = {
     ...formData,
     type: props.type,
-    questions: questions.map(q => ({ text: q.text, answer: q.answer }))
+    questions: questions.map((q) => ({ text: q.text, answer: q.answer })),
   };
   api
     .post('/form/qna', qData)
@@ -68,23 +65,18 @@ function submit() {
       cache.setArrayData('qnaform', [qnaCacheObj]);
       emit('submitted');
     })
-    .catch(setFormError)
-  ;
+    .catch(setFormError);
 }
 
 function getReactiveQuestions() {
-  return props.questions.map(q => reactive({ ...q, answer: q.answer || ''}));
+  return props.questions.map((q) => reactive({ ...q, answer: q.answer || '' }));
 }
 
-function setFormError(err: { status: string; data: any; }) {
+function setFormError(err: { status: string; data: any }) {
   formState.errorUpdate = Date.now();
   formState.errorText = `FATAL ERROR: ${err.data.message}`;
 }
 </script>
-
-
-
-
 
 <template>
   <div class="qnaf ux__page-container">
@@ -101,7 +93,7 @@ function setFormError(err: { status: string; data: any; }) {
       >
         {{ nameLabel }}
       </ux-input>
-      <br>
+      <br />
 
       <ux-input
         v-model="formData.email"
@@ -111,20 +103,12 @@ function setFormError(err: { status: string; data: any; }) {
       >
         E-Mail
       </ux-input>
-      <br>
+      <br />
 
-      <div
-        v-for="(q, i) of questions"
-        :key="i"
-        class="qnaf__q-block"
-      >
+      <div v-for="(q, i) of questions" :key="i" class="qnaf__q-block">
         <div class="qnaf__q-container">
-          <span
-            :data-num="i + 1 + '⁍'"
-            class="qnaf__q md"
-            v-html="q.text"
-          />
-          <br>
+          <span :data-num="i + 1 + '⁍'" class="qnaf__q md" v-html="q.text" />
+          <br />
           <div v-if="q.subtext" class="qnaf__subtext">
             {{ q.subtext }}
           </div>
@@ -156,12 +140,12 @@ function setFormError(err: { status: string; data: any; }) {
         >
           SUBMIT
         </ux-button>
-        <ux-text v-if="remaining > 0" class="qnaf__validation-text">
+        <ux-text v-if="remaining > 0" custom-class="qnaf__validation-text">
           <strong>{{ remaining }}</strong> field(s) require(s) attention
         </ux-text>
         <form-error
           v-else
-          class="qnaf__error-text"
+          custom-class="qnaf__error-text"
           :update="formState.errorUpdate"
           :text="formState.errorText"
         />
@@ -169,10 +153,3 @@ function setFormError(err: { status: string; data: any; }) {
     </div>
   </div>
 </template>
-
-
-
-
-
-
-

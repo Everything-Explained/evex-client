@@ -1,28 +1,32 @@
-
-
 <script lang="ts" setup>
-import { PropType } from "vue";
-import { FilterData, usePageFilter } from "@/composeables/pageFilter";
-import UxCheckbox  from "./UxCheckbox.vue";
-import UxIcon      from "./UxIcon.vue";
-import UxToggle    from "./UxToggle.vue";
+import { PropType } from 'vue';
+import { FilterData, usePageFilter } from '@/composeables/pageFilter';
+import UxCheckbox from './UxCheckbox.vue';
+import UxIcon from './UxIcon.vue';
+import UxToggle from './UxToggle.vue';
 
-
-const { id, items, reverseOrder, isVolatile }
-                = defineProps({
-  id:           { type: String as PropType<string>,      required: true              },
-  ageOnly:      { type: Boolean as PropType<boolean>,    default: false,             },
-  isVolatile:   { type: Boolean as PropType<boolean>,    default: true,              },
-  reverseOrder: { type: Boolean as PropType<boolean>,    default: false,             },
-  items:        { type: Array as PropType<FilterData[]>, default: [] as FilterData[] },
+const props = defineProps({
+  id: { type: String as PropType<string>, required: true },
+  ageOnly: { type: Boolean as PropType<boolean>, default: false },
+  isVolatile: { type: Boolean as PropType<boolean>, default: true },
+  reverseOrder: { type: Boolean as PropType<boolean>, default: false },
+  items: { type: Array as PropType<FilterData[]>, default: [] as FilterData[] },
 });
-const emit      = defineEmits(['filter', 'age-toggled']);
+const emit = defineEmits(['filter', 'age-toggled']);
 
 const {
-  toggleFilter,  filterAuthor,  reverseItems,
-  authors,       isFilterOpen,  isFilterReversed,
-  filteredItems, authorIndexMap,
-} = usePageFilter(id, items, { areReversed: reverseOrder, isVolatile,  });
+  toggleFilter,
+  filterAuthor,
+  reverseItems,
+  authors,
+  isFilterOpen,
+  isFilterReversed,
+  filteredItems,
+  authorIndexMap,
+} = usePageFilter(props.id, props.items, {
+  areReversed: props.reverseOrder,
+  isVolatile: props.isVolatile,
+});
 
 emit('filter', filteredItems);
 
@@ -34,12 +38,7 @@ function toggleAge() {
   emit('age-toggled');
   emit('filter', reverseItems());
 }
-
 </script>
-
-
-
-
 
 <template>
   <div class="ux-filter">
@@ -77,11 +76,3 @@ function toggleAge() {
     </div>
   </div>
 </template>
-
-
-
-
-
-
-
-

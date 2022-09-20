@@ -1,16 +1,12 @@
-
-
 <script lang="ts" setup>
 import { onUnmounted, ref } from 'vue';
 import UxButton from './UxButton.vue';
 
-
-const doc             = document;
+const doc = document;
 const disqusContainer = ref<HTMLElement>();
-const isLoading       = ref(false);
-const showButton      = ref(true);
-const disqusThread    = ref<HTMLElement>();
-
+const isLoading = ref(false);
+const showButton = ref(true);
+const disqusThread = ref<HTMLElement>();
 
 onUnmounted(() => {
   if (disqusThread.value) {
@@ -18,7 +14,6 @@ onUnmounted(() => {
     disqusThread.value.innerHTML = '';
   }
 });
-
 
 function onViewComment() {
   isLoading.value = true;
@@ -31,17 +26,15 @@ function onViewComment() {
   }, 600);
 }
 
-
 function loadDisqus() {
   if (doc.getElementById('disqus_script')) {
     window.DISQUS.reset({
-      reload: true
+      reload: true,
     });
     return;
   }
   injectDisqusScript();
 }
-
 
 function injectDisqusScript() {
   const script = doc.createElement('script');
@@ -50,12 +43,7 @@ function injectDisqusScript() {
   script.setAttribute('data-timestamp', `${Date.now()}`);
   doc.head.appendChild(script);
 }
-
 </script>
-
-
-
-
 
 <template>
   <div class="disqus__reveal">
@@ -65,18 +53,10 @@ function injectDisqusScript() {
       theme="attention"
       @click="onViewComment"
     >
-      <div class="disqus__text">
-        View Comments
-      </div>
+      <div class="disqus__text">View Comments</div>
     </ux-button>
   </div>
   <div ref="disqusContainer" class="disqus__container">
     <div id="disqus_thread" ref="disqusThread" />
   </div>
 </template>
-
-
-
-
-
-

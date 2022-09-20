@@ -1,41 +1,38 @@
-import { computed, reactive } from "vue";
+import { computed, reactive } from 'vue';
 
 const stateOfArrays = reactive({
-  'temp'                 : [],
-  'routeHistory'         : [],
-  'lazyimg-data'         : [],
-  'blog/public'          : [],
-  'blog/red33m'          : [],
-  'changelog'            : [],
-  'qnaform'              : [],
-  'literature/public'    : [],
-  'literature/red33m'    : [],
-  'videos/public'        : [],
-  'videos/red33m'        : [],
-  '/data/videos/red33m'  : [],
-  '/data/videos/public'  : [],
-  'page-content'         : [],
-  'ux-filter'            : [],
+  temp: [],
+  routeHistory: [],
+  'lazyimg-data': [],
+  'blog/public': [],
+  'blog/red33m': [],
+  changelog: [],
+  qnaform: [],
+  'literature/public': [],
+  'literature/red33m': [],
+  'videos/public': [],
+  'videos/red33m': [],
+  '/data/videos/red33m': [],
+  '/data/videos/public': [],
+  'page-content': [],
+  'ux-filter': [],
 });
 
-const stateOfObjects = reactive({
-
-});
+const stateOfObjects = reactive({});
 
 const stateOfPrimitives = reactive({
-  'home-page'          : '',
-  'titlebar-menu-open' : false,
-  'red33m-video-list'  : 1,
+  'home-page': '',
+  'titlebar-menu-open': false,
+  'red33m-video-list': 1,
 });
 
-export type DataCacheObjKeys   = keyof typeof stateOfObjects;
+export type DataCacheObjKeys = keyof typeof stateOfObjects;
 export type DataCacheArrayKeys = keyof typeof stateOfArrays;
-export type DataCacheKeys      = keyof typeof stateOfPrimitives;
+export type DataCacheKeys = keyof typeof stateOfPrimitives;
 
 // NOTE: We are assuming that all contained non-primitive types will
 //       NOT be mutated. E.g. [Object, Object] or { foo: ['bar'] }
 export function useDataCache<T>() {
-
   function setArrayData(key: DataCacheArrayKeys, val: any[]) {
     catchMissingState(key as string, stateOfArrays);
     (stateOfArrays[key] as any[]) = val.slice();
@@ -46,7 +43,7 @@ export function useDataCache<T>() {
     (stateOfArrays[key] as any[]).push(val);
   }
 
-  function getArrayData (key: DataCacheArrayKeys) {
+  function getArrayData(key: DataCacheArrayKeys) {
     catchMissingState(key as string, stateOfArrays);
     return computed(() => (stateOfArrays[key]?.slice() || []) as T[]);
   }
@@ -72,14 +69,14 @@ export function useDataCache<T>() {
   //   return computed(() => ({ ...(stateOfObjects[key] as any) } as T));
   // }
 
-  function setData (key: DataCacheKeys, val: string|boolean|number) {
+  function setData(key: DataCacheKeys, val: string | boolean | number) {
     catchMissingState(key as string, stateOfPrimitives);
     (stateOfPrimitives[key] as any) = val;
   }
 
-  function getData (key: DataCacheKeys) {
+  function getData(key: DataCacheKeys) {
     catchMissingState(key as string, stateOfPrimitives);
-    return computed(() => (stateOfPrimitives[key] as any) as T);
+    return computed(() => stateOfPrimitives[key] as any as T);
   }
 
   function catchMissingState(key: string, state: any) {
@@ -87,10 +84,11 @@ export function useDataCache<T>() {
   }
 
   return {
-    setArrayData, updArrayData, getArrayData,
+    setArrayData,
+    updArrayData,
+    getArrayData,
     // setObjData,   updObjData,   getObjData,
-    setData,                    getData,
-   };
+    setData,
+    getData,
+  };
 }
-
-
