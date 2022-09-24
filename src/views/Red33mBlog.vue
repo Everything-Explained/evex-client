@@ -11,6 +11,7 @@ const options: AppLitOptions = {
   expanded     : true,
   reverseOrder : true,
   version      : useAPI().state.versions?.r3dBlog.v,
+  isRed33m: true,
 };
 
 </script>
