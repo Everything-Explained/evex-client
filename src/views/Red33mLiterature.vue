@@ -9,6 +9,7 @@ const options: AppLitOptions = {
   uri   : 'literature/red33m',
   title : 'RED33M Literature',
   version : useAPI().state.versions?.r3dLit.v
+  isRed33m: true,
 };
 
 </script>
