@@ -21,11 +21,9 @@
 
 .app__ribbon {
   display      : block;
-  position     : sticky;
+  position     : relative;
   z-index      : 10;
-  top          : 0;
-  left         : 0;
-  right        : 0;
+  width: 100%;
   margin-right : var(--page-right-margin);
   height       : 3px;
   box-shadow   : 0 4px 5px 1px black;
