@@ -11,7 +11,6 @@ import AppMarkdown from '../AppMarkdown.vue';
 import AppLitCards from './AppLitCards.vue';
 import PageError from '../PageError.vue';
 import UxDisqus from '../UxDisqus.vue';
-import { emailRecipients, getEmail } from '@/globals';
 
 export interface Article extends StaticPage {
   summary: string;
@@ -20,6 +19,7 @@ export interface Article extends StaticPage {
 export interface AppLitOptions {
   uri: DataCacheArrayKeys;
   title: string;
+  isRed33m?: boolean;
   showFilter?: boolean;
   expanded?: boolean;
   reverseOrder?: boolean;
@@ -36,6 +36,7 @@ const props = defineProps({
 const defaultOptions: AppLitOptions = {
   uri: 'temp',
   title: '',
+  isRed33m: false,
   showFilter: true,
   expanded: false,
   reverseOrder: false,
@@ -73,7 +74,12 @@ function onFilter(pages: Article[]) {
 
 <template>
   <div class="lit">
-    <page-titlebar :ease-in="350" :ease-out="350" :text="titleRef" />
+    <page-titlebar
+      :is-red33m="options.isRed33m"
+      :ease-in="350"
+      :ease-out="350"
+      :text="titleRef"
+    />
     <transition name="fade" mode="out-in">
       <ux-preloader v-if="isRunning" />
       <page-error v-else-if="apiError" class="error">
