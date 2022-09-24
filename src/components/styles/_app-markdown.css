@@ -30,8 +30,6 @@
     transition  : background var(--md-trans-speed), color var(--md-trans-speed); }
   i, em {
     color       : var(--md-i-c);
-    font-style  : normal;
-    font-weight : 400;
     transition  : background var(--md-trans-speed), color var(--md-trans-speed); }
   a:link, a:active, a:visited {
     color           : var(--md-link-c);
