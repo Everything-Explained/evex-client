@@ -63,6 +63,8 @@ function createVideoPages() {
 <template>
   <div class="temp">
     <page-titlebar
+      :no-fade="true"
+      :is-red33m="true"
       :ease-in="350"
       :ease-out="350"
       :text="title"
