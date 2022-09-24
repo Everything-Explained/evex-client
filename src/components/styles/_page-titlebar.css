@@ -1,40 +1,114 @@
-.pg-titlebar {
+
+@media only screen and (--large-screen) {
+  .pg-titlebar__text {
+    text-align: left;
+  }
+}
+
+.titlebar-container {
   position         : sticky;
   top              : 0;
   z-index          : 5;
-  padding          : 0.45rem 0 0.3rem 0;
-  box-shadow       : 0 10px 8px -3px black;
+}
+
+.titlebar-ribbon {
+  position: relative;
+  z-index: 2;
+  height: 1px;
+  width: 100%;
+  box-shadow: 0 1px 5px 1px black;
+  background: linear-gradient(
+    90deg,
+    rgba(27, 32, 34,1) 0%,
+   hsl(200, 15%, 73%) 30%,
+   hsl(200, 15%, 73%) 70%,
+   rgba(27, 32, 34,1) 100%
+ );
+ &.bottom {
+  top: 0;
+  margin-bottom: 50px;
+ }
+ &.red33m {
+  background: linear-gradient(
+    90deg,
+    hsl(47, 100%, 12%) 0%,
+   hsl(47, 100%, 47%) 30%,
+   hsl(47, 100%, 47%) 70%,
+   hsl(47, 100%, 12%) 100%
+ );
+ }
+}
+
+.pg-titlebar {
+  position: relative;
+  padding          : 8px 0 5px 0;
   overflow         : visible;
+  box-shadow       : 0 1px 7px 1px black;
   text-align       : center;
-  font-size        : 1.7rem;
+  font-size        : clamp(1.25rem, 4vw, 1.7rem);
   font-weight      : 300;
-  background-color : var(--app-titlebar-bg-c);
+  background       : var(--app-titlebar-bg-c);
   color            : var(--app-titlebar-c);
+  z-index: 1;
+  &.red33m {
+    background:linear-gradient(
+      90deg,
+      hsla(47, 100%, 7%, 0.91) 0%,
+     hsla(47, 100%, 17%, 0.91) 40%,
+     hsla(47, 100%, 17%, 0.91) 60%,
+     hsla(47, 100%, 7%, 0.91) 100%
+   );
+  }
+}
+
+.titlebar-content-fader {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  height: 70px;
+  width: 100%;
+  background: linear-gradient(180deg, rgba(18,21,23,1) 0%, rgba(18,21,23,0) 100%);
+  pointer-events: none;
+  z-index: -1;
 }
 
 
 .pg-titlebar__text {
   padding-right: 5px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  margin-left: clamp(2.575rem, 8vw, 3.3rem);
+  text-align: center;
+  text-shadow: 3px 3px 0 black,
+                2px  0  0 black,
+                0   3px 0 black;
   overflow: hidden;
+  &.red33m {
+    color: hsl(47, 100%, 67%);
+  }
 }
 
 
 .pg-titlebar__menu-icon {
   position   : absolute;
-  top        : 0.45rem; left: 10px;
+  top        : clamp(0.4rem, 1.4vw, 0.45rem);
+  left       : 10px;
   z-index    : 2;
   opacity    : 1;
-  font-size  : 2rem;
+  font-size  : clamp(1.6rem, 5vw, 2.175rem);
   text-shadow: 2px 2px 1px black;
   color      : var(--app-titlebar-icon-c);
   cursor     : pointer;
   transition : opacity .3s, color .3s;
   &:hover {
-    color: var(--app-titlebar-icon-hov-c); }
+    color: var(--app-titlebar-icon-hov-c);
+  }
   &.--menu-open {
     opacity        : 0;
     pointer-events : none;
     user-select    : none; }
+  &.red33m {
+    color: hsl(47, 70%, 50%);
+    &:hover {
+      color: var(--app-titlebar-icon-hov-c);
+    }
+  }
 }

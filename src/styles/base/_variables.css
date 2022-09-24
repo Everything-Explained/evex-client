@@ -91,10 +91,16 @@
   --app-ribbon-c            : hsl(0, 100%, 60%);
   --app-head-f-sz           : 5rem;
   --app-head-c              : var(--app-ribbon-c);
-  --app-titlebar-c          : hsl(197, 20%, 87%);
-  --app-titlebar-bg-c       : hsla(197, 11%, 12%, 0.9);
-  --app-titlebar-icon-c     : hsl(197, 11%, 60%);
-  --app-titlebar-icon-hov-c : hsl(0, 70%, 64%);
+  --app-titlebar-c          : hsl(197, 20%, 90%);
+  --app-titlebar-bg-c       : linear-gradient(
+                                 90deg,
+                                 hsla(197, 11%, 13%, 0.91) 0%,
+                                hsla(201, 12%, 29%, 0.91) 40%,
+                                hsla(201, 12%, 29%, 0.91) 60%,
+                                hsla(197, 11%, 13%, 0.91) 100%
+                              );
+  --app-titlebar-icon-c     : hsl(197, 20%, 75%);
+  --app-titlebar-icon-hov-c : var(--app-ribbon-c);
 
 
   /*** Footer ***/
