@@ -5,8 +5,6 @@
 
 @media only screen and (--medium-screen) {
   .md blockquote > p {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
     font-size : 1.28rem;
     width: 90%;
   }
