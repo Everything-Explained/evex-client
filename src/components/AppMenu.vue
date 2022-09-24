@@ -95,7 +95,10 @@ function closeMenu() {
     <ul>
       <template v-for="(map, i) of routeMap" :key="i">
         <template v-if="map.visible">
-          <li v-if="map.name != 'root'" class="app-menu__category">
+          <li
+            v-if="map.name != 'root'"
+            :class="['app-menu__category', { red33m: map.isRed33m }]"
+          >
             {{ map.name }}
           </li>
           <template v-for="(route, j) of map.routes" :key="j">

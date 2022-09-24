@@ -173,19 +173,25 @@
 
 
   /*** Menu ***/
-  --menu-bg-c              : hsla(197, 11%, 6.5%, 0.70);
+  --menu-bg-c              : hsla(197, 12%, 8%, 0.85);
   --menu-bxs-c             : hsla(0, 0%, 0%, 0.85);
-  --menu-header-c          : hsl(197, 20%, 83%);
-  --menu-header-bg-c       : var(--sub-panel-c);
+  --menu-header-c          : var(--app-titlebar-c);
+  --menu-header-bg-c       : linear-gradient(
+                              90deg,
+                              hsl(197, 11%, 12%) 0%,
+                              hsl(201, 12%, 23%) 30%,
+                              hsl(201, 12%, 23%) 70%,
+                              hsl(197, 11%, 12%) 100%
+                            );
   --menu-exit-icon-c       : hsl(197, 12%, 70%);
   --menu-exit-icon-hov-c   : var(--app-ribbon-c);
   --menu-item-c            : var(--md-c);
-  --menu-item-hov-c        : hsl(197, 11%, 88%);
-  --menu-item-bdr-c        : var(--panel-c);
-  --menu-item-bdr-hov-c    : hsl(197, 11%, 75%);
-  --menu-active-item-c     : hsl(47, 80%, 63%);
+  --menu-item-hov-c        : hsl(47, 100%, 63%);;
+  --menu-item-bdr-c        : hsla(0, 0%, 0%, 0);
+  --menu-item-bdr-hov-c    : hsl(47, 100%, 63%);;
+  --menu-active-item-c     : hsl(47, 100%, 60%);
   --menu-active-item-bg-c  : var(--sub-panel-hov-c);
-  --menu-active-item-bdr-c : hsl(47, 80%, 63%);
+  --menu-active-item-bdr-c : hsl(47, 100%, 63%);
 
 
   /*** Video ***/

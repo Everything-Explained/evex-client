@@ -11,6 +11,7 @@ type Route = {
 type RouteCategory = {
   name: string;
   visible: boolean;
+  isRed33m: boolean;
   routes: Route[];
 };
 
@@ -28,6 +29,7 @@ export function useRouteMap() {
         reactive({
           name: route.meta.cat,
           visible: route.meta.catVisible ?? true,
+          isRed33m: route.meta.cat.includes('RED33M'),
           routes: [r],
         })
       );
