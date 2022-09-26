@@ -49,14 +49,16 @@
   font-weight      : 300;
   background       : var(--app-titlebar-bg-c);
   color            : var(--app-titlebar-c);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   z-index: 1;
   &.red33m {
     background:linear-gradient(
       90deg,
-      hsla(47, 100%, 7%, 0.91) 0%,
-     hsla(47, 100%, 17%, 0.91) 40%,
-     hsla(47, 100%, 17%, 0.91) 60%,
-     hsla(47, 100%, 7%, 0.91) 100%
+      hsla(47, 100%, 7%, 0.89) 0%,
+     hsla(47, 100%, 17%, 0.89) 40%,
+     hsla(47, 100%, 17%, 0.89) 60%,
+     hsla(47, 100%, 7%, 0.89) 100%
    );
   }
 }
@@ -106,7 +108,7 @@
     pointer-events : none;
     user-select    : none; }
   &.red33m {
-    color: hsl(47, 70%, 50%);
+    color: hsl(47, 90%, 55%);
     &:hover {
       color: var(--app-titlebar-icon-hov-c);
     }

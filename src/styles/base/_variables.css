@@ -36,18 +36,19 @@
   --f-sz-18: 1.125rem;
   --f-sz-19: 1.1875rem;
   --f-sz-20: 1.25rem;
+  --f-sz-22: 1.375rem;
   --f-sz-23: 1.4375rem;
   --f-sz-24: 1.5rem;
 
-  --panel-c              : hsl(197, 11%, 25%);
-  --panel-hov-c          : hsl(197, 11%, 30%);
-  --sub-panel-c          : hsl(197, 11%, 12%);
+  --panel-c              : hsl(197, 12%, 25%);
+  --panel-hov-c          : hsl(197, 12%, 30%);
+  --sub-panel-c          : hsl(197, 12%, 12%);
   --sub-panel-hov-c      : hsl(30, 15%, 11%);
 
   --body-f-sz            : 16px;
-  --body-bg-c            : hsl(197, 11%, 8%);
-  --body-c               : hsl(197, 11%, 80%);
-  --body-dark-c          : hsl(197, 11%, 65%);
+  --body-bg-c            : hsl(197, 12%, 8%);
+  --body-c               : hsl(197, 12%, 80%);
+  --body-dark-c          : hsl(197, 12%, 65%);
   --selection-bg-c       : hsla(197, 9%, 30%, 0.993);
   --scrollbar-c          : var(--panel-c);
   --scrollbar-hov-c      : hsl(197, 9%, 43%);
@@ -65,19 +66,20 @@
   --md-p-bxs-c          : hsla(0, 0%, 0%, 0.4);
   --md-b-c              : hsl(197, 23%, 89%);
   --md-p-hov-b-c        : hsl(30, 30%, 94%);
-  --md-i-c              : hsl(0, 100%, 75%);
+  --md-i-c              : hsl(47, 77%, 60%);
   --md-p-hov-i-c        : hsl(47, 77%, 67%);
   --md-b-i-c            : hsl(197, 45%, 69%);
   --md-link-c           : var(--md-b-c);
   --md-link-hov-c       : var(--md-p-hov-i-c);
   --md-p-hov-link-c     : var(--md-p-hov-b-c);
-  --md-link-bdr-c       : hsl(0, 100%, 73%);
+  --md-link-bdr-c       : var(--app-ribbon-c);
   --md-p-hov-link-bdr-c : var(--md-link-hov-c);
-  --md-bq-c             : hsl(47, 68%, 61%);
+  --md-bq-c             : hsl(197, 15%, 88%);
   --md-bq-bg-c          : hsl(197, 20%, 5%);
   --md-bq-bdr-c         : black;
   --md-bq-outline-c     : hsl(197, 11%, 12%);
-  --md-bq-quote-c       : hsl(197, 11%, 65%);
+  --md-bq-quote-c       : var(--app-ribbon-c);
+  --md-bq-author-c      : hsl(47, 100%, 60%);
   --md-bullet-c         : var(--md-head-c);
   --md-bullet-hov-c     : hsl(47, 100%, 50%);
   --md-code-c           : var(--md-b-c);
@@ -94,10 +96,10 @@
   --app-titlebar-c          : hsl(197, 20%, 90%);
   --app-titlebar-bg-c       : linear-gradient(
                                  90deg,
-                                 hsla(197, 11%, 13%, 0.91) 0%,
-                                hsla(201, 12%, 29%, 0.91) 40%,
-                                hsla(201, 12%, 29%, 0.91) 60%,
-                                hsla(197, 11%, 13%, 0.91) 100%
+                                 hsla(197, 11%, 13%, 0.89) 0%,
+                                hsla(201, 12%, 29%, 0.89) 40%,
+                                hsla(201, 12%, 29%, 0.89) 60%,
+                                hsla(197, 11%, 13%, 0.89) 100%
                               );
   --app-titlebar-icon-c     : hsl(197, 20%, 75%);
   --app-titlebar-icon-hov-c : var(--app-ribbon-c);
