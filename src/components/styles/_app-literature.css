@@ -1,6 +1,6 @@
 
 :root {
-  --lit-transition-speed: 250ms ease;
+  --lit-transition-speed: 200ms ease;
 }
 
 
@@ -19,7 +19,7 @@
     margin-left: auto;
     margin-right: auto;
     grid-template-columns : 1fr;
-    gap: 1rem 0rem;
+    gap: 1.75rem 0rem;
     justify-items: center;
     max-width  : 1024px; }
 }
@@ -42,7 +42,7 @@
       );
     }
     summary {
-      color            : hsl(30, 15%, 85%);
+      color            : var(--md-p-hov-c);
       background: linear-gradient(
         90deg,
       hsl(30, 15%, 11%) 0%,
