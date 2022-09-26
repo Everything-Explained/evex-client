@@ -8,9 +8,13 @@
 .vid-list__videos {
   display         : flex;
   margin-top      : 20px;
+  padding-left: clamp(1px, 0.67vw, 10px);
+  padding-right: clamp(1px, 0.67vw, 10px);
   flex-flow       : row wrap;
   justify-content : center;
-  gap             : 2rem 1rem;
+  align-items: flex-start;
+  row-gap: clamp(1rem, 3.5vw, 1.75rem);
+  column-gap: 1rem;
 
   .hidden-item {
     visibility : hidden;
