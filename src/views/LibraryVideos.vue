@@ -1,30 +1,22 @@
-
-
 <script lang="ts" setup>
-import { computed, ref, watch } from "vue";
-import useVideos           from "@/composeables/videos";
-import { useDynamicPager } from "@/composeables/dynamicPager";
-import { useDate }         from "@/composeables/date";
-import { isEthan }         from "@/composeables/globals";
-import { Video }           from "@/typings/global-types";
-import PageTitlebar        from "@/components/PageTitlebar.vue";
-import PageFooter          from "@/components/PageFooter.vue";
-import UxFilter            from "@/components/UxFilter.vue";
-import UxVideo             from "@/components/UxVideo.vue";
-import UxPreloader         from '@/components/UxPreloader.vue';
-
-
-
-
+import { computed, ref, watch } from 'vue';
+import useVideos from '@/composeables/videos';
+import { useDynamicPager } from '@/composeables/dynamicPager';
+import { useDate } from '@/composeables/date';
+import { isEthan } from '@/composeables/globals';
+import { Video } from '@/typings/global-types';
+import PageTitlebar from '@/components/PageTitlebar.vue';
+import PageFooter from '@/components/PageFooter.vue';
+import UxFilter from '@/components/UxFilter.vue';
+import UxVideo from '@/components/UxVideo.vue';
+import UxPreloader from '@/components/UxPreloader.vue';
 
 type VideoCategory = { name: string; desc: string; videos: Video[] };
 
-
-const {
-  setDynPages,
-  goTo,
-  activePage,
-} = useDynamicPager<Video[]>('videos/public', 'category');
+const { setDynPages, goTo, activePage } = useDynamicPager<Video[]>(
+  'videos/public',
+  'category'
+);
 
 const {
   videos: categories,
@@ -32,50 +24,50 @@ const {
   isCached,
 } = useVideos<VideoCategory>('/data/videos/public');
 
-
 if (isCached) {
-  setDynPages(categories.value.map(cat => ({ name: cat.name, data: cat.videos })));
+  setDynPages(
+    categories.value.map((cat) => ({ name: cat.name, data: cat.videos }))
+  );
 } else {
   watch(isPending, (isPending) => {
     if (isPending == false) {
-      setDynPages(categories.value.map(cat => ({ name: cat.name, data: cat.videos })));
+      setDynPages(
+        categories.value.map((cat) => ({ name: cat.name, data: cat.videos }))
+      );
     }
   });
 }
 
-
 // Prevent loading of inherently cached videos
-watch(() => activePage.value, (page) => {
-  if (!page?.data) { visibleVideos.value = []; }
-});
+watch(
+  () => activePage.value,
+  (page) => {
+    if (!page?.data) {
+      visibleVideos.value = [];
+    }
+  }
+);
 
 const visibleVideos = ref<Video[]>([]);
-const title         = computed(() => activePage.value?.title || 'Video Categories');
+const title = computed(() => activePage.value?.title || 'Video Categories');
 
-const onFilter       = (videos: Video[]) => visibleVideos.value = videos;
-const getAuthors     = (videos: Video[]) => videos.reduce(toAuthors, [] as string[]);
+const onFilter = (videos: Video[]) => (visibleVideos.value = videos);
+const getAuthors = (videos: Video[]) =>
+  videos.reduce(toAuthors, [] as string[]);
 const getLatestVideo = (videos: Video[]) => videos[videos.length - 1];
-const toYouTubeLink  = (id: string)      => `//www.youtube-nocookie.com/embed/${id}?rel=0`;
+const toYouTubeLink = (id: string) =>
+  `//www.youtube-nocookie.com/embed/${id}?rel=0`;
 
 function toAuthors(authors: string[], video: Video) {
   if (authors.includes(video.author)) return authors;
   authors.push(video.author);
   return authors;
 }
-
 </script>
-
-
-
-
 
 <template>
   <div class="lib-vid">
-    <page-titlebar
-      :ease-in="350"
-      :ease-out="350"
-      :text="title"
-    />
+    <page-titlebar :ease-in="350" :ease-out="350" :text="title" />
     <transition name="fade" mode="out-in">
       <ux-preloader v-if="isPending" />
       <div v-else-if="categories.length && !activePage">
@@ -107,21 +99,28 @@ function toAuthors(authors: string[], video: Video) {
               <h2>
                 Latest Video
                 <span class="timestamp">
-                  {{ useDate(getLatestVideo(cat.videos).date).toRelativeTime() }}
+                  {{
+                    useDate(getLatestVideo(cat.videos).date).toRelativeTime()
+                  }}
                 </span>
               </h2>
               <div class="desc">
                 <a
                   :href="toYouTubeLink(getLatestVideo(cat.videos).id)"
                   target="_blank"
-                >{{ getLatestVideo(cat.videos).title }}</a>
-                <br>
+                  >{{ getLatestVideo(cat.videos).title }}</a
+                >
+                <br />
                 <span
                   :class="[
                     'latest-author',
-                    { '--is-ethan': isEthan(getLatestVideo(cat.videos).author) }
+                    {
+                      '--is-ethan': isEthan(getLatestVideo(cat.videos).author),
+                    },
                   ]"
-                > ~ {{ getLatestVideo(cat.videos).author }}</span>
+                >
+                  ~ {{ getLatestVideo(cat.videos).author }}</span
+                >
               </div>
             </div>
           </div>
@@ -152,10 +151,3 @@ function toAuthors(authors: string[], video: Video) {
     </transition>
   </div>
 </template>
-
-
-
-
-
-
-
