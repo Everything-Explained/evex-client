@@ -65,7 +65,7 @@ export function useDate(date: Date | ISODateStr | MsDateFormat) {
       }).format(dateObj);
     },
 
-    toQuickRelativeTime() {
+    toHybridTime() {
       const relativeTime = this.toRelativeTime();
       const secondsSinceThen = Math.floor(
         (Date.now() - dateObj.getTime()) / 1000

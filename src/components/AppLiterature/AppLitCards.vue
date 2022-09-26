@@ -43,7 +43,7 @@ defineProps({
               {{
                 showFullDate
                   ? useDate(card.date).toFullDateTime()
-                  : useDate(card.date).toQuickRelativeTime()
+                  : useDate(card.date).toHybridTime()
               }}
             </span>
             <ux-icon type="clock" />
