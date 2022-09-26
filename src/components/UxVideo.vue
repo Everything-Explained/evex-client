@@ -20,8 +20,7 @@ const thumbnailRef = computed(
   () => `//i.ytimg.com/vi/${videoId.value}/hqdefault.jpg`
 );
 const dateObj = useDate(props.date);
-const shortDate = dateObj.toShortDate();
-const relativeTime = dateObj.toRelativeTime();
+const relativeTime = dateObj.toHybridTime();
 </script>
 
 <template>
@@ -44,10 +43,6 @@ const relativeTime = dateObj.toRelativeTime();
         <span v-if="author">&nbsp;<ux-bullet class="bullet" />&nbsp;</span>
         <div class="timestamp">
           {{ relativeTime }}
-        </div>
-        &nbsp;<ux-bullet />&nbsp;
-        <div class="timestamp">
-          {{ shortDate }}
         </div>
       </div>
     </div>
