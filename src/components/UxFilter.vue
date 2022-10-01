@@ -1,9 +1,26 @@
 <script lang="ts" setup>
-import { PropType } from 'vue';
-import { FilterData, usePageFilter } from '@/composeables/pageFilter';
+import { PropType, ref } from 'vue';
 import UxCheckbox from './UxCheckbox.vue';
 import UxIcon from './UxIcon.vue';
 import UxToggle from './UxToggle.vue';
+import { useDataCache } from '@/state/cache-state';
+
+export interface FilterCacheData {
+  id: string;
+  items: FilterData[];
+  isOpen: boolean;
+  reversed: boolean;
+  authors: string[];
+  authorIndexMap: number[];
+  volatile: boolean;
+}
+
+export interface FilterData {
+  // Allow ignorable props
+  [key: string]: any;
+  author: string;
+  date: string;
+}
 
 const props = defineProps({
   id: { type: String as PropType<string>, required: true },
@@ -14,21 +31,85 @@ const props = defineProps({
 });
 const emit = defineEmits(['filter', 'age-toggled']);
 
-const {
-  toggleFilter,
-  filterAuthor,
-  reverseItems,
-  authors,
-  isFilterOpen,
-  isFilterReversed,
-  filteredItems,
-  authorIndexMap,
-} = usePageFilter(props.id, props.items, {
-  areReversed: props.reverseOrder,
-  isVolatile: props.isVolatile,
-});
+const cache = useDataCache<FilterCacheData>();
+const filterArray = cache.getArrayData('ux-filter');
+const clonedItems = props.items.slice();
+const areReversed = props.reverseOrder ?? false;
+const isVolatile = props.isVolatile ?? true;
+const filterData = tryCreateData();
+const isFilterOpen = ref(filterData.isOpen);
+const isFilterReversed = filterData.reversed;
+const authorIndexMap = filterData.authorIndexMap;
+const authors = filterData.authors;
 
-emit('filter', filteredItems);
+// Items from parent are always in order from oldest => latest
+if (filterData.reversed) {
+  clonedItems.reverse();
+}
+
+function tryCreateData() {
+  const data = filterArray.value.find((d) => d.id == props.id);
+  // Clear volatile entries
+  cache.setArrayData(
+    'ux-filter',
+    filterArray.value.filter((v) => v.volatile == false || data?.id == v.id)
+  );
+
+  if (data) {
+    return data;
+  }
+
+  const authors = getAuthors();
+  const newData: FilterCacheData = {
+    id: props.id,
+    // Items from parent are always in order from oldest => latest
+    items: areReversed ? props.items.slice().reverse() : props.items.slice(),
+    isOpen: false,
+    reversed: areReversed,
+    authors,
+    authorIndexMap: authors.map((a, i) => i),
+    volatile: isVolatile,
+  };
+  filterArray.value.push(newData);
+  cache.setArrayData('ux-filter', filterArray.value);
+  return newData;
+}
+
+function getAuthors() {
+  return props.items.reduce((authors, cpg) => {
+    if (authors.includes(cpg.author)) {
+      return authors;
+    }
+    authors.push(cpg.author);
+    return authors;
+  }, [] as string[]);
+}
+
+function filterAuthor(index: number, val: boolean) {
+  if (val) authorIndexMap.push(index);
+  if (!val) authorIndexMap.splice(authorIndexMap.indexOf(index), 1);
+
+  filterData.items = clonedItems.filter((item) => {
+    return authorIndexMap.some((i) => authors[i] == item.author);
+  });
+  //* Slice (new object) so Vue knows to update Ref
+  return filterData.items.slice();
+}
+
+function toggleFilter() {
+  isFilterOpen.value = !isFilterOpen.value;
+  filterData.isOpen = isFilterOpen.value;
+}
+
+function reverseItems() {
+  clonedItems.reverse();
+  filterData.items.reverse();
+  filterData.reversed = !filterData.reversed;
+  //* Slice (new object) so Vue knows to update Ref
+  return filterData.items.slice();
+}
+
+emit('filter', filterData.items);
 
 function filter(i: number, v: boolean) {
   emit('filter', filterAuthor(i, v));
