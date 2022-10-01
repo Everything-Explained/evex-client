@@ -10,9 +10,14 @@ export function useVideoPagination(allVideos: Ref<Video[]>) {
   onUnmounted(() => window.removeEventListener('scroll', renderVideos));
 
   function displayVideoPage(page: number, amount = isMobile() ? 5 : 30) {
-    if (allVideos.value.length == paginatedVideos.value.length) return;
+    const maxPagesDisplayed =
+      allVideos.value.length == paginatedVideos.value.length;
+
     visiblePages.value = page;
-    paginatedVideos.value = allVideos.value.slice(0, page * amount);
+
+    paginatedVideos.value = maxPagesDisplayed
+      ? allVideos.value.slice()
+      : allVideos.value.slice(0, page * amount);
   }
 
   function renderVideos() {
