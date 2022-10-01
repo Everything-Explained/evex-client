@@ -3,7 +3,7 @@ import PageTitlebar from '@/components/PageTitlebar.vue';
 import PageFooter from '@/components/PageFooter.vue';
 import useVideos from '@/composeables/videos';
 import { Video } from '@/typings/global-types';
-import { computed, ref, watch } from 'vue';
+import { computed, watch } from 'vue';
 import { DataCacheArrayKeys } from '@/state/cache-state';
 import { useDynamicPager } from '@/composeables/dynamicPager';
 import UxText from '@/components/UxText.vue';
@@ -24,7 +24,6 @@ const { setDynPages, goTo, activePage } = useDynamicPager<Video>(
 );
 
 const title = computed(() => activePage.value?.data?.title || 'Red33m Videos');
-const isLoadingAPI = ref(false);
 
 createVideoPages();
 
@@ -55,7 +54,7 @@ function createVideoPages() {
       :text="title"
     />
     <transition name="fade" mode="out-in">
-      <ux-preloader v-if="isLoadingAPI || !videos.length" />
+      <ux-preloader v-if="!videos.length" />
       <div v-else-if="!activePage || !activePage.data">
         <ux-video-list
           id="red33m-video-list"
