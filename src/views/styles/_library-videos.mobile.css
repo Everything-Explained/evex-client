@@ -2,23 +2,28 @@
 @media only screen and (--large-screen) {
   :root { --lib-vid-width: 47%; }
   .lib-vid__video .title {
-    height    : 3.1rem;
-    font-size : 1.07rem;
+    font-size : 1.1rem;
+  }
+  .lib-vid__video {
+    .title, .details {
+      padding-left: 5px;
+    }
+    .details {
+      font-size: 1rem;
+    }
   }
   .cat_video-tray { margin-top: 2.3rem; }
   .lib-vid__category-container {
-    margin-right : 14px;
     min-width    : 80%;
     max-width    : 80%;
   }
 }
 /*** 540px ***/
 @media only screen and (--medium-screen) {
-  :root { --lib-vid-width: 95%; }
+  :root { --lib-vid-width: 100%; }
   .lib-vid__category-container {
-    min-width    : 96%;
-    max-width    : 96%;
-    margin-right : 14px;
+    min-width    : 93%;
+    max-width    : 93%;
   }
   .lib-vid__category h1             { font-size: 1.27rem; }
   .lib-vid__category h2             { font-size: 1.17rem; }

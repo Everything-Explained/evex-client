@@ -146,7 +146,6 @@
 .lib-vid__video-list {
   display         : flex;
   margin-top      : 3rem;
-  margin-right    : -15px;
   flex-wrap       : wrap;
   flex-direction  : row;
   justify-content : space-evenly;
@@ -155,7 +154,6 @@
 
 :root { --lib-vid-width: 380px; }
 .lib-vid__video {
-  margin-right  : 10px;
   margin-bottom : 1.3rem;
   max-width     : var(--lib-vid-width);
   min-width     : var(--lib-vid-width);

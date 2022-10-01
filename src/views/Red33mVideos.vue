@@ -64,7 +64,7 @@ function createVideoPages() {
         />
         <page-footer />
       </div>
-      <div v-else class="red__video-page">
+      <div v-else class="ux-video__video-page">
         <div class="video-wrapper">
           <ux-youtube-video :id="activePage.data.id" />
         </div>
