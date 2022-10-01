@@ -1,62 +1,81 @@
 <script lang="ts" setup>
-import { computed, ref, watch } from 'vue';
+import { computed, Ref, ref, watch } from 'vue';
 import useVideos from '@/composeables/videos';
-import { useDynamicPager } from '@/composeables/dynamicPager';
+import { DynamicPage, useDynamicPager } from '@/composeables/dynamicPager';
 import { useDate } from '@/composeables/date';
 import { isEthan } from '@/composeables/globals';
 import { Video } from '@/typings/global-types';
 import PageTitlebar from '@/components/PageTitlebar.vue';
 import PageFooter from '@/components/PageFooter.vue';
-import UxFilter from '@/components/UxFilter.vue';
-import UxVideo from '@/components/UxVideo.vue';
 import UxPreloader from '@/components/UxPreloader.vue';
+import UxVideoList from '@/components/UxVideoList.vue';
+import { useRouter } from 'vue-router';
+import UxDisqus from '@/components/UxDisqus.vue';
+import UxText from '@/components/UxText.vue';
+import UxYoutubeVideo from '@/components/UxYoutubeVideo.vue';
 
 type VideoCategory = { name: string; desc: string; videos: Video[] };
 
-const { setDynPages, goTo, activePage } = useDynamicPager<Video[]>(
-  'videos/public',
-  'category'
-);
-
+const router = useRouter();
 const {
   videos: categories,
   isPending,
   isCached,
 } = useVideos<VideoCategory>('/data/videos/public');
 
-if (isCached) {
-  setDynPages(
-    categories.value.map((cat) => ({ name: cat.name, data: cat.videos }))
+const {
+  setDynPages: setDynCategories,
+  goTo: goToCategory,
+  activePage,
+} = useDynamicPager<Video[]>('videos/public', 'category', router);
+
+const title = computed(() => activePage.value?.title || 'Video Categories');
+const videos = computed(() => activePage.value?.data);
+const goToVideoPage = ref<(pageName: string) => void>(() => void 0);
+const activeVideoPage = ref<Ref<DynamicPage<Video> | undefined>>();
+
+createVideoPages();
+watch(activePage, (page) => {
+  if (!page || !page.data) return;
+  const pager = useDynamicPager<Video>(
+    `videos/public/${page.uri}`,
+    'id',
+    router
   );
-} else {
+  pager.setDynPages(page.data.map((d) => ({ name: d.id, data: d })));
+  goToVideoPage.value = pager.goTo;
+  activeVideoPage.value = pager.activePage;
+});
+
+function createVideoPages() {
+  const configurePages = () => {
+    setDynCategories(
+      categories.value.map((cat) => ({ name: cat.name, data: cat.videos }))
+    );
+  };
+
+  if (isCached) {
+    return configurePages();
+  }
+
   watch(isPending, (isPending) => {
-    if (isPending == false) {
-      setDynPages(
-        categories.value.map((cat) => ({ name: cat.name, data: cat.videos }))
-      );
+    if (!isPending) {
+      configurePages();
     }
   });
 }
 
-// Prevent loading of inherently cached videos
-watch(
-  () => activePage.value,
-  (page) => {
-    if (!page?.data) {
-      visibleVideos.value = [];
-    }
-  }
-);
+function getAuthors(videos: Video[]) {
+  return videos.reduce(toAuthors, [] as string[]);
+}
 
-const visibleVideos = ref<Video[]>([]);
-const title = computed(() => activePage.value?.title || 'Video Categories');
+function getLatestVideo(videos: Video[]) {
+  return videos[videos.length - 1];
+}
 
-const onFilter = (videos: Video[]) => (visibleVideos.value = videos);
-const getAuthors = (videos: Video[]) =>
-  videos.reduce(toAuthors, [] as string[]);
-const getLatestVideo = (videos: Video[]) => videos[videos.length - 1];
-const toYouTubeLink = (id: string) =>
-  `//www.youtube-nocookie.com/embed/${id}?rel=0`;
+function toYouTubeLink(id: string) {
+  return `//www.youtube-nocookie.com/embed/${id}?rel=0`;
+}
 
 function toAuthors(authors: string[], video: Video) {
   if (authors.includes(video.author)) return authors;
@@ -67,10 +86,15 @@ function toAuthors(authors: string[], video: Video) {
 
 <template>
   <div class="lib-vid">
-    <page-titlebar :ease-in="350" :ease-out="350" :text="title" />
+    <page-titlebar
+      :no-fade="true"
+      :ease-in="350"
+      :ease-out="350"
+      :text="title"
+    />
     <transition name="fade" mode="out-in">
-      <ux-preloader v-if="isPending" />
-      <div v-else-if="categories.length && !activePage">
+      <ux-preloader v-if="!categories.length" />
+      <div v-else-if="!activePage">
         <div class="lib-vid__category-list">
           <div
             v-for="(cat, i) of categories"
@@ -78,7 +102,7 @@ function toAuthors(authors: string[], video: Video) {
             class="lib-vid__category-container"
           >
             <div class="lib-vid__category">
-              <h1 @click="goTo(cat.name)">
+              <h1 @click="goToCategory(cat.name)">
                 {{ cat.name }}
               </h1>
               <div class="desc">
@@ -127,25 +151,26 @@ function toAuthors(authors: string[], video: Video) {
         </div>
         <page-footer />
       </div>
-      <div v-else-if="activePage">
-        <ux-filter
-          id="videos/public"
-          :items="activePage.data"
-          @filter="onFilter"
+      <div v-else-if="activePage && videos?.length && !activeVideoPage?.value">
+        <ux-video-list
+          :id="activePage.title"
+          :videos="videos"
+          @click-video="goToVideoPage"
         />
-        <div class="lib-vid__video-list">
-          <ux-video
-            v-for="(v, j) of visibleVideos"
-            :key="j"
-            class="lib-vid__video"
-            :video-id="v.id"
-            :desc="v.summary"
-            :date="v.date"
-            :author="v.author"
-          >
-            {{ v.title }}
-          </ux-video>
+        <page-footer />
+      </div>
+      <div v-else-if="activeVideoPage?.value" class="ux-video__video-page">
+        <div class="video-wrapper">
+          <ux-youtube-video :id="activeVideoPage.value.data?.id" />
         </div>
+        <ux-text type="block">
+          <span
+            v-if="activeVideoPage.value.data?.summary"
+            v-html="activeVideoPage.value.data.summary"
+          />
+          <span v-else>No Description...</span>
+        </ux-text>
+        <ux-disqus />
         <page-footer />
       </div>
     </transition>

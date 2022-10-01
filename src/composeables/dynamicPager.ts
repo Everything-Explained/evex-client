@@ -1,5 +1,5 @@
 import { computed, ref, watch } from 'vue';
-import { useRouter } from 'vue-router';
+import { Router } from 'vue-router';
 import { useURI } from './URI';
 
 export type DynamicPage<T> = {
@@ -13,9 +13,9 @@ type URIMap<T> = { [key: string]: DynamicPage<T> };
 export function useDynamicPager<T>(
   url: string,
   param: string,
+  router: Router,
   cb?: (page?: DynamicPage<T>) => Promise<T | undefined>
 ) {
-  const router = useRouter();
   const route = router.currentRoute;
   const currentURI = computed(() => route.value.params[param]);
   const pageMap = {} as URIMap<T>;

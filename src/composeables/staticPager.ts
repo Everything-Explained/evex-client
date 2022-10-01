@@ -1,6 +1,7 @@
 import { APIResponse, useAPI } from '@/services/api_internal';
 import { DataCacheArrayKeys, useDataCache } from '@/state/cache-state';
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 import { DynamicPage, useDynamicPager } from './dynamicPager';
 
 export interface StaticPage {
@@ -33,6 +34,7 @@ export function useStaticPager<T extends StaticPage>(
   const { goTo, setDynPages, activePage } = useDynamicPager<string>(
     url,
     'page',
+    useRouter(),
     getPageContent
   );
 

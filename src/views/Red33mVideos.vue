@@ -11,6 +11,7 @@ import UxDisqus from '@/components/UxDisqus.vue';
 import UxPreloader from '@/components/UxPreloader.vue';
 import UxYoutubeVideo from '@/components/UxYoutubeVideo.vue';
 import UxVideoList from '@/components/UxVideoList.vue';
+import { useRouter } from 'vue-router';
 
 const uri: DataCacheArrayKeys = 'videos/red33m';
 
@@ -18,7 +19,8 @@ const { isPending, videos, isCached } = useVideos<Video>(`/data/${uri}`);
 
 const { setDynPages, goTo, activePage } = useDynamicPager<Video>(
   'videos/red33m',
-  'id'
+  'id',
+  useRouter()
 );
 
 const title = computed(() => activePage.value?.data?.title || 'Red33m Videos');
