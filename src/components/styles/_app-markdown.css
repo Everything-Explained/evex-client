@@ -110,9 +110,9 @@
   blockquote {
     position: relative;
     display: inline-block;
-    width: 80%;
     margin: 2rem auto 2.7rem auto;
     left: 50%;
+    width: 70%;
     transform: translateX(-50%);
     text-align: center;
     z-index: 1;
