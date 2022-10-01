@@ -16,6 +16,7 @@ const stateOfArrays = reactive({
   '/data/videos/public': [],
   'page-content': [],
   'ux-filter': [],
+  'video-list-cache': [],
 });
 
 const stateOfObjects = reactive({});

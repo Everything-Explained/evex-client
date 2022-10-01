@@ -1,12 +1,14 @@
 <script lang="ts" setup>
 import { onUnmounted, ref } from 'vue';
 import { useVideoPagination } from '@/composeables/videoPagination';
-import { Video } from '@/typings/global-types.js';
+import { Video } from '@/typings/global-types';
 import { PropType } from 'vue';
 import UxVideo from './UxVideo.vue';
 import UxFilter from './UxFilter.vue';
 import { isMobile } from '@/globals';
 import { useDataCache } from '@/state/cache-state';
+
+type VideoListCache = { id: string; page: number };
 
 const props = defineProps({
   videos: { type: Array as PropType<Video[]>, required: true },
@@ -21,21 +23,32 @@ const videos = ref(props.videos);
 const { paginatedVideos, displayVideoPage, getPageNum } =
   useVideoPagination(videos);
 
-const cache = useDataCache<number>();
-let page = cache.getData('red33m-video-list').value;
+const cache = useDataCache<VideoListCache>();
+const pageCache = cache.getArrayData('video-list-cache').value;
+const pageObj = tryGetPageObjFromCache();
+
+function tryGetPageObjFromCache() {
+  const pageObj = pageCache.find((d) => d.id == props.id);
+  if (pageObj) return pageObj;
+  const newPageObj = { id: props.id, page: 1 };
+  pageCache.push(newPageObj);
+  cache.setArrayData('video-list-cache', pageCache);
+  return newPageObj;
+}
 
 onUnmounted(() => {
-  cache.setData('red33m-video-list', getPageNum());
+  pageObj.page = getPageNum();
+  cache.setArrayData('video-list-cache', pageCache);
 });
 
 function filterVideos(filteredVideos: Video[]) {
   videos.value = filteredVideos;
-  cache.setData('red33m-video-list', page);
-  displayVideoPage(page, isMobile() ? 10 : 30);
+  cache.setArrayData('video-list-cache', pageCache);
+  displayVideoPage(pageObj.page, isMobile() ? 10 : 30);
 }
 
 function onAgeToggled() {
-  page = 1;
+  pageObj.page = 1;
 }
 </script>
 
