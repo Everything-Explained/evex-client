@@ -29,10 +29,15 @@ const {
   activePage,
 } = useDynamicPager<Video[]>('videos/public', 'category', router);
 
-const title = computed(() => activePage.value?.title || 'Video Categories');
 const videos = computed(() => activePage.value?.data);
 const goToVideoPage = ref<(pageName: string) => void>(() => void 0);
 const activeVideoPage = ref<Ref<DynamicPage<Video> | undefined>>();
+const title = computed(
+  () =>
+    activeVideoPage.value?.value?.data?.title ||
+    activePage.value?.title ||
+    'Video Categories'
+);
 
 createVideoPages();
 watch(activePage, (page) => {
