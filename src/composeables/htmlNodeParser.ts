@@ -61,6 +61,11 @@ export function useHTMLNodeParser(html: string) {
       : listHTML.trimStart().substring(1).trim();
     const listNodeData = getNodeData(cleanList, 'ol');
     if (attrib) listNodeData.push(attrib.split('"')[1]);
+    if (pHTML.includes(imageHTML)) {
+      const nodes = filterImageNodes(pHTML);
+      nodes.push(listNodeData);
+      return nodes;
+    }
     return [getNodeData(pHTML), listNodeData];
   }
 
