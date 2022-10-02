@@ -12,6 +12,7 @@ type VideoListCache = { id: string; page: number };
 
 const props = defineProps({
   videos: { type: Array as PropType<Video[]>, required: true },
+  showAuthor: { type: Boolean, default: false },
   id: { type: String, required: true },
 });
 
@@ -69,6 +70,7 @@ function onAgeToggled() {
         :video-id="v.id"
         :date="v.date"
         :summary="v.summary"
+        :author="showAuthor ? v.author : ''"
         class="video"
         @click="$emit('click-video', v.id)"
       >
