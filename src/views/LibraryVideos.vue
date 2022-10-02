@@ -160,6 +160,7 @@ function toAuthors(authors: string[], video: Video) {
         <ux-video-list
           :id="activePage.title"
           :videos="videos"
+          :show-author="true"
           @click-video="goToVideoPage"
         />
         <page-footer />
