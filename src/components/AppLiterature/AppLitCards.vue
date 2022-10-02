@@ -33,10 +33,11 @@ defineProps({
         {{ card.summary }}
         <footer>
           <span v-if="showAuthor" class="lit-card__author">
-            <span :class="[{ '--is-ethan': isEthan(card.author) }]">{{
-              card.author.trim()
-            }}</span>
-            <ux-icon type="user" />
+            <span>{{ card.author.trim() }}</span>
+            <ux-icon
+              :class="['author__icon', { '--is-ethan': isEthan(card.author) }]"
+              type="user"
+            />
           </span>
           <span class="lit-card__timestamp">
             <span>

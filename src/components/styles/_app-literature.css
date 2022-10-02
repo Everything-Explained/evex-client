@@ -50,8 +50,11 @@
       hsl(204, 12%, 8%) 100%
       )
     }
-    & .ux-icon, .lit-card__timestamp {
+    footer {
       color: hsl(30, 15%, 45%);
+      .lit-card__author {
+        color: hsl(30, 15%, 70%);
+      }
     }
   }
   header {
@@ -132,16 +135,16 @@
   footer {
     padding-top   : 0.75rem;
     border-radius : 0 0 7px 7px;
+    color         : hsl(197, 13%, 40%);
     font-size: clamp(1rem, calc(0.3rem + 1.9vw), var(--f-sz-18));
     font-weight   : 400;
+    transition: color var(--lit-transition-speed);
   }
   .ux-icon {
     position     : relative;
     top          : 2px;
-    left         : 3px;
     margin-right : 7px;
-    color        : hsl(197, 11%, 40%);
-    transition: color var(--lit-transition-speed);
+    padding-left: 5px;
   }
 }
 
@@ -149,12 +152,10 @@
   display: block;
   width: 100%;
   text-align: right;
+  color: hsl(197, 12%, 60%);
+  transition: color var(--lit-transition-speed);
   & span {
-    color : hsl(197, 20%, 87%);
     padding-right: 0.125rem;
-    &.--is-ethan {
-      color : hsl(0, 100%, 72%);
-    }
   }
 }
 
@@ -162,9 +163,7 @@
   display: block;
   width: 100%;
   text-align: right;
-  color         : hsl(197, 13%, 40%);
-  transition: color var(--lit-transition-speed);
   & span {
-    padding-right: 0.125rem;
+    padding-right: 0.25rem;
   }
 }
