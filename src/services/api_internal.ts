@@ -139,7 +139,7 @@ function callAPI<T>(opts: APIOptions): Promise<APIResponse<T>> {
 function setupAPI(opts: APIOptions) {
   const { URI, method, body, type, version } = opts;
   if ((type || 'dynamic') == 'static')
-    body.v = version || state.versions?.build.v || '';
+    body.v = Math.floor(Math.random() * 10000).toString() || version || state.versions?.build.v || '';
   const api =
     method == 'get'
       ? state.endPoint.url(URI).query(body)[method]()

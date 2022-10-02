@@ -18,9 +18,3 @@
   .qnaf__q::before       { font-size: 1.1rem; margin-left: -1.2rem; }
   .qnaf__subtext         { font-size: 1rem; }
 }
-/*** 420px ***/
-@media only screen and (--small-screen) {
-}
-/*** 320px ***/
-@media only screen and (--tiny-screen) {
-}

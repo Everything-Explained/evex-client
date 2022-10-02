@@ -2,7 +2,8 @@
 .ux-filter {
   position: relative;
   margin: 20px auto;
-  width: 20rem;
+  max-width: 25rem;
+  min-width: 15rem;
 }
 
 
@@ -25,7 +26,7 @@
   legend {
     padding          : 0 5px 0 7px;
     background-color : var(--toggle-legend-bg-c);
-    font-size        : 1.3rem;
+    font-size        : clamp(1.25rem, 5vw, 1.375rem);
     font-weight      : 400;
     word-spacing     : 2px;
     letter-spacing   : 1px;
@@ -39,7 +40,7 @@
   right            : 0.8rem;
   padding-right    : 5px;
   background-color : var(--body-bg-c);
-  font-size        : 1.3rem;
+  font-size        : clamp(1.125rem, 5vw, 1.375rem);
   font-variant     : small-caps;
   font-weight      : 400;
   color            : var(--toggle-legend-c);

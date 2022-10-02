@@ -41,11 +41,6 @@
 }
 
 
-.ux-input__area {
-  font-size: 1.45rem;
-}
-
-
 .ux-input__text,
 .ux-input__area {
   width          : 100%;
@@ -85,6 +80,7 @@
   line-height   : 2rem;
   font-weight   : 300;
   font-family   : 'Nunito Sans';
+  font-size     : clamp(1.33rem, 4vw, 1.45rem);
   resize        : none;
   &::placeholder {
     font-weight : 400;

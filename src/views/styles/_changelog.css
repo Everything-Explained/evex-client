@@ -2,8 +2,8 @@
   position     : relative;
   margin       : 2rem auto -0.7rem auto;
   padding-left : 2rem;
-  width        : 90%;
-  color        : hsl(47, 90%, 65%);
+  width        : 100%;
+  color        : hsl(50, 100%, 60%);
 
   &:first-child { margin-top: 2rem; }
 }
@@ -12,9 +12,9 @@
 .vw-chglog blockquote {
   position      : relative;
   margin        : 0 auto;
-  margin-bottom : 3rem;
+  margin-bottom : clamp(2rem, 4.5vw, 3rem);
   z-index       : 1;
-  width         : 90%;
+  width         : 100%;
   text-align    : left !important;
   li {
     position         : relative;

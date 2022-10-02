@@ -18,7 +18,7 @@
 
 .md-simple,
 .md {
-  width       : clamp(200px, 95vw, 960px);
+  width       : clamp(200px, 97vw, 960px);
   margin      : 0 auto;
   margin-top  : 10px;
   font-weight : 300;
@@ -219,17 +219,16 @@
   & > ol {
     padding-left     : 2.5rem;
     list-style       : decimal;
-    background: linear-gradient(
-      90deg,
-      hsl(204, 12%, 8%) 0%,
-      hsl(204, 12%, 6.5%) 30%,
-      hsl(204, 12%, 6.5%) 70%,
-      hsl(204, 12%, 8%) 100%
-    );
+    background: hsl(204, 12%, 8%);
     color            : hsl(197, 12%, 73%);
     box-shadow       : none;
     li {
-      margin-bottom: 0.5rem; }
+      margin-bottom: 0.5rem;
+      &::marker {
+        color: hsl(50, 100%, 60%);
+        font-weight: 400;
+      }
+    }
   }
   .ux-img__image, .ux-img__preloader {
     display: block;

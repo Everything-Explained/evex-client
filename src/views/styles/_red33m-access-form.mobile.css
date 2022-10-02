@@ -11,9 +11,3 @@
   .red-form__submitted-text   { width: 98%; }
   .red-form__submitted-text p { width: 95%; margin: 0 auto !important; }
 }
-/*** 420px ***/
-@media only screen and (--small-screen) {
-}
-/*** 320px ***/
-@media only screen and (--tiny-screen) {
-}

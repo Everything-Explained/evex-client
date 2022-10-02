@@ -4,8 +4,6 @@
   .app__ribbon { margin-right: 0; }
   .app__header { margin-right: 0; }
   .app__body   { margin-right: 0; }
-  .app__toast          { font-size: 1.3rem; }
-  .app__toast .ux-icon { font-size: 1.75rem; }
   .--default-scrollbar,
   .--subtle-scrollbar {
     scrollbar-width: 0;
@@ -14,14 +12,10 @@
   .--default-scrollbar::-webkit-scrollbar,
   .--subtle-scrollbar::-webkit-scrollbar {
     width         : 0;
-    height        : 8px;
-    background    : var(--scrollbar-track-c);
-    border-radius : 3px;
   }
 
 }
 /*** 540px ***/
 @media only screen and (--medium-screen) {
   .app__toast-buffer.--show { height: 3.2rem; }
-  .app__toast               { padding-left: 5px; padding-right: 40px; }
 }

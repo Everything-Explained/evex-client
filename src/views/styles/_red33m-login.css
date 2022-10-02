@@ -8,15 +8,13 @@
 
 
 .red-login__disclaimer {
-  margin-top: 20px;
-  width: 70%;
+  max-width: 740px;
 }
 
 
 .red-login__form {
   margin     : 0 auto;
   margin-top : 30px;
-  width      : 500px;
   text-align : center;
   .passcode {
     width          : 150px;

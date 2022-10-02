@@ -13,10 +13,11 @@
   align-items     : center;
   margin          : 2rem auto !important;
   font-size       : 1.4rem;
-  img, a {
-    width         : var(--patreon-width);
-    height        : calc(var(--patreon-width) * 0.20);
-    border-bottom : 1px solid hsl(357, 100%, 63%); }
+  a { border: none; }
+  img {
+    width         : clamp(120px, 45vw, 200px);
+    border-bottom : 1px solid hsl(357, 100%, 63%);
+  }
 }
 
 
@@ -26,7 +27,6 @@
 
 
 .support__submitted-text {
-  margin-top : 5vh;
-  width      : 70%;
+  max-width: 700px;
 }
 

@@ -35,7 +35,9 @@
   position: relative;
   height: 0;
   transition: height 0.2s; }
-  .app__toast-buffer.--show { height: 2.3rem; }
+  .app__toast-buffer.--show {
+    height: 2.3rem;
+  }
 
 
 .app__toast {
@@ -44,10 +46,12 @@
   transform   : translateY(-100%);
   top         : 0;
   left        : 0;
-  right       : var(--page-right-margin);
+  right       : 0;
+  padding-left: 5px;
+  padding-right: 40px;
   background  : var(--app-ribbon-c);
   text-align  : center;
-  font-size   : 1.7rem;
+  font-size   : clamp(1.3rem, 4vw, 1.7rem);
   font-weight : 400;
   color       : hsl(197, 100%, 99%);
   cursor      : pointer;
@@ -59,7 +63,8 @@
     position  : absolute;
     top       : 0;
     right     : 3px;
-    font-size : 2.3rem;}
+    font-size : clamp(1.75rem, 5.5vw, 2.3rem);
+  }
 
 
 .app__header {
