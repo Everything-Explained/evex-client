@@ -47,7 +47,9 @@ function activateForm(type: number) {
   formType.value = type;
   formID.value = `${type}`;
   isFormActive.value = true;
-  // window.scrollTo(0, 0);
+  setTimeout(() => {
+    window.scrollTo(0, 0);
+  }, 450);
 }
 
 function back() {
