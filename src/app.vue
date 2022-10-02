@@ -116,7 +116,10 @@ function useCustomScrollPos() {
     // Wait for transition to complete before scrolling
     setTimeout(() => {
       window.scrollTo(0, top);
-    }, 350);
+      // DO NOT LOWER this delay
+      // Red33m video list requires this delay in order to scroll
+      // back to where a user left off in the video list.
+    }, 450);
   }
 
   /**
