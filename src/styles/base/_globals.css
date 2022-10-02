@@ -4,7 +4,15 @@
 }
 
 .--is-ethan {
-  color: hsl(0, 100%, 70%);
+  color: hsl(0, 100%, 63%);
+}
+
+.author__icon {
+  color: hsl(50, 90%, 55%);
+  &.--is-ethan {
+    color: hsl(0, 100%, 63%);
+    font-weight: bold;
+  }
 }
 
 .underline {

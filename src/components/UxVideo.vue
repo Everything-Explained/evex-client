@@ -19,8 +19,6 @@ const { videoId } = toRefs(props);
 const thumbnailRef = computed(
   () => `//i.ytimg.com/vi/${videoId.value}/hqdefault.jpg`
 );
-const dateObj = useDate(props.date);
-const relativeTime = dateObj.toHybridTime();
 </script>
 
 <template>
@@ -34,15 +32,15 @@ const relativeTime = dateObj.toHybridTime();
       </div>
       <div class="details">
         <div v-if="author" class="author">
+          <span>{{ author.trim() }}</span>
           <ux-icon
-            type="user"
             :class="['author__icon', { '--is-ethan': isEthan(author) }]"
+            type="user"
           />
-          {{ author }}
         </div>
-        <span v-if="author">&nbsp;<ux-bullet class="bullet" />&nbsp;</span>
         <div class="timestamp">
-          {{ relativeTime }}
+          <span>{{ useDate(date).toHybridTime() }}</span>
+          <ux-icon type="clock" />
         </div>
       </div>
     </div>

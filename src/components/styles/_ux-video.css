@@ -61,9 +61,10 @@
     transition: color 200ms ease;
   }
   .details {
-    padding-top: 0.25rem;
+    padding-top: 0.35rem;
     padding-bottom: 0.5rem;
     padding-left : 0.5rem;
+    padding-right: 0.25rem;
     font-size    : 1.07rem;
     text-align: right;
     color        : hsl(197, 11%, 50%);;
@@ -89,23 +90,13 @@
       filter: blur(0.2rem)
     }
   }
-  .timestamp {
-    display: inline;
-    padding-right: 3px;
-  }
-  .bullet {
-    color: hsl(197, 20%, 80%);
-  }
   .author {
-    display: inline;
-    border-top       : 2px dashed var(--body-bg-c);
+    font-weight: 400;
   }
-  .author__icon {
+  .ux-icon {
     position: relative;
-    top: 0.14rem;
-    color: var(--body-c);
-    &.--is-ethan {
-      color: hsl(0, 100%, 73%); }
+    top: 2px;
+    padding-left: 5px;
   }
 
 }
