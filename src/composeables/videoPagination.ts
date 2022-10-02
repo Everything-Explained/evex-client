@@ -5,6 +5,7 @@ import { onUnmounted, Ref, ref } from 'vue';
 export function useVideoPagination(allVideos: Ref<Video[]>) {
   const paginatedVideos = ref<Video[]>([]);
   const visiblePages = ref(0);
+  const scrollLimit = isMobile() ? 1000 : 1500;
 
   window.addEventListener('scroll', renderVideos);
   onUnmounted(() => window.removeEventListener('scroll', renderVideos));
@@ -21,7 +22,10 @@ export function useVideoPagination(allVideos: Ref<Video[]>) {
   }
 
   function renderVideos() {
-    if (window.scrollY >= document.body.scrollHeight * 0.75) {
+    const deltaY =
+      document.body.scrollHeight - window.scrollY - window.innerHeight;
+
+    if (deltaY <= scrollLimit) {
       displayVideoPage(visiblePages.value + 1);
     }
   }
