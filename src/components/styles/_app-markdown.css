@@ -46,13 +46,14 @@
     border-top-right-radius : 6.5px;
     border-top-left-radius  : 3.5px;
     transition              : background var(--md-trans-speed),
-                              color var(--md-trans-speed); }
+                              color var(--md-trans-speed);
+  }
   p {
     background: linear-gradient(
                   90deg,
                   hsl(197, 12%, 8%) 0%,
-                  hsl(197, 12%, 12%) 20%,
-                  hsl(197, 12%, 12%) 80%,
+                  hsl(197, 12%, 14%) 20%,
+                  hsl(197, 12%, 14%) 80%,
                   hsl(197, 12%, 8%) 100%
     );
     & + p {
