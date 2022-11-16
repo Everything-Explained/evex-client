@@ -27,11 +27,11 @@
 @custom-media --tiny-screen   (max-width: 320px);
 
 :root {
-  --primary-c    : hsl(0, 100%, 63%);  /* Tart Orange */
-  --compliment-c : hsl(197, 41%, 60%); /* Maximum blue */
-  --accent-2-c   : hsl(30, 100%, 75%); /* apricot */
-  --accent-3-c   : hsl(161, 67%, 73%); /* Magic Mint */
-  --accent-4-c   : hsl(47, 50%, 50%);  /* Gold */
+  --primary-c: hsl(0deg 100% 63%);
+  --compliment-c : hsl(197deg 41% 60%);
+  --accent-2-c: hsl(30deg 100% 75%);
+  --accent-3-c: hsl(161deg 67% 73%);
+  --accent-4-c: hsl(47deg 50% 50%);
 
   --f-sz-18: 1.125rem;
   --f-sz-19: 1.1875rem;
@@ -40,206 +40,193 @@
   --f-sz-23: 1.4375rem;
   --f-sz-24: 1.5rem;
 
-  --panel-c              : hsl(197, 12%, 25%);
-  --panel-hov-c          : hsl(197, 12%, 30%);
-  --sub-panel-c          : hsl(197, 12%, 12%);
-  --sub-panel-hov-c      : hsl(30, 15%, 11%);
+  --panel-c: hsl(197deg 12% 25%);
+  --panel-hov-c: hsl(197deg 12% 30%);
+  --sub-panel-c: hsl(197deg 12% 12%);
+  --sub-panel-hov-c: hsl(30deg 15% 11%);
 
-  --body-f-sz            : 16px;
-  --body-bg-c            : hsl(197, 12%, 8%);
-  --body-c               : hsl(197, 12%, 80%);
-  --body-dark-c          : hsl(197, 12%, 65%);
-  --selection-bg-c       : hsla(197, 9%, 30%, 0.993);
-  --scrollbar-c          : var(--panel-c);
-  --scrollbar-hov-c      : hsl(197, 9%, 43%);
-  --scrollbar-track-c    : hsl(0, 0%, 0%);
-  --input-c              : hsl(161, 27%, 60%);
+  --body-f-sz: 16px;
+  --body-bg-c: hsl(197deg 12% 8%);
+  --body-c: hsl(197deg 12% 80%);
+  --body-dark-c: hsl(197deg 12% 65%);
+  --selection-bg-c: hsla(197deg 9% 30% / 0.993);
+  --scrollbar-c: var(--panel-c);
+  --scrollbar-hov-c: hsl(197deg 9% 43%);
+  --scrollbar-track-c: hsl(0deg 0% 0%);
+  --input-c: hsl(161deg 27% 60%);
 
 
-  /*** Markdown ***/
-  --md-f-sz             : clamp(var(--f-sz-18), calc(0.8rem + 0.9vw), var(--f-sz-20));
-  --md-head-c           : hsl(197, 20%, 80%);
-  --md-c                : var(--body-c);
-  --md-p-hov-c          : hsl(30, 15%, 87%);
-  --md-p-bg-c           : var(--sub-panel-c);
-  --md-p-bg-hov-c       : var(--sub-panel-hov-c);
-  --md-p-bxs-c          : hsla(0, 0%, 0%, 0.4);
-  --md-b-c              : hsl(197, 23%, 89%);
-  --md-p-hov-b-c        : hsl(30, 30%, 94%);
-  --md-i-c              : hsl(47, 77%, 60%);
-  --md-p-hov-i-c        : hsl(47, 77%, 67%);
-  --md-b-i-c            : hsl(197, 45%, 69%);
-  --md-link-c           : var(--md-b-c);
-  --md-link-hov-c       : var(--md-p-hov-i-c);
-  --md-p-hov-link-c     : var(--md-p-hov-b-c);
-  --md-link-bdr-c       : var(--app-ribbon-c);
+  --md-f-sz: clamp(var(--f-sz-18), calc(0.8rem + 0.9vw), var(--f-sz-20));
+  --md-head-c: hsl(197deg 20% 80%);
+  --md-c: var(--body-c);
+  --md-p-hov-c: hsl(30deg 15% 87%);
+  --md-p-bg-c: var(--sub-panel-c);
+  --md-p-bg-hov-c: var(--sub-panel-hov-c);
+  --md-p-bxs-c: hsla(0deg 0% 0% / 0.4);
+  --md-b-c: hsl(197deg 23% 89%);
+  --md-p-hov-b-c: hsl(30deg 30% 94%);
+  --md-i-c: hsl(47deg 77% 60%);
+  --md-p-hov-i-c: hsl(47deg 77% 67%);
+  --md-b-i-c: hsl(197deg 45% 69%);
+  --md-link-c: var(--md-b-c);
+  --md-link-hov-c: var(--md-p-hov-i-c);
+  --md-p-hov-link-c: var(--md-p-hov-b-c);
+  --md-link-bdr-c: var(--app-ribbon-c);
   --md-p-hov-link-bdr-c : var(--md-link-hov-c);
-  --md-bq-c             : hsl(197, 15%, 88%);
-  --md-bq-bg-c          : hsl(197, 20%, 5%);
-  --md-bq-bdr-c         : black;
-  --md-bq-outline-c     : hsl(197, 11%, 12%);
-  --md-bq-quote-c       : var(--app-ribbon-c);
-  --md-bq-author-c      : hsl(47, 100%, 60%);
-  --md-bullet-c         : var(--md-head-c);
-  --md-bullet-hov-c     : hsl(47, 100%, 50%);
-  --md-code-c           : var(--md-b-c);
-  --md-code-bg-c        : hsl(197, 11%, 19%);
-  --md-code-hov-c       : hsl(279, 20%, 80%);
-  --md-code-bg-hov-c    : hsl(278, 25%, 47%);
-  --md-img-bxs-c        : hsla(0, 0%, 0%, 0.4);
+  --md-bq-c: hsl(197deg 15% 88%);
+  --md-bq-bg-c: hsl(197deg 20% 5%);
+  --md-bq-bdr-c: black;
+  --md-bq-outline-c: hsl(197deg 11% 12%);
+  --md-bq-quote-c: var(--app-ribbon-c);
+  --md-bq-author-c: hsl(47deg 100% 60%);
+  --md-bullet-c: var(--md-head-c);
+  --md-bullet-hov-c: hsl(47deg 100% 50%);
+  --md-code-c: var(--md-b-c);
+  --md-code-bg-c: hsl(197deg 11% 19%);
+  --md-code-hov-c: hsl(279deg 20% 80%);
+  --md-code-bg-hov-c: hsl(278deg 25% 47%);
+  --md-img-bxs-c: hsla(0, 0%, 0%, 0.4);
+  --md-trans-speed: 0.18s;
 
 
-  /*** App Styles ***/
-  --app-ribbon-c            : hsl(0, 100%, 60%);
-  --app-head-f-sz           : 5rem;
-  --app-head-c              : var(--app-ribbon-c);
-  --app-titlebar-c          : hsl(197, 20%, 90%);
-  --app-titlebar-bg-c       : linear-gradient(
-                                 90deg,
-                                 hsla(197, 11%, 13%, 0.89) 0%,
-                                hsla(201, 12%, 29%, 0.89) 40%,
-                                hsla(201, 12%, 29%, 0.89) 60%,
-                                hsla(197, 11%, 13%, 0.89) 100%
-                              );
-  --app-titlebar-icon-c     : hsl(197, 20%, 75%);
+  --app-ribbon-c: hsl(0deg 100% 60%);
+  --app-head-f-sz: 5rem;
+  --app-head-c: var(--app-ribbon-c);
+  --app-titlebar-c: hsl(197deg 20% 90%);
+  --app-titlebar-bg-c: linear-gradient(
+                        90deg,
+                        hsla(197, 11%, 13%, 0.89) 0%,
+                        hsla(201, 12%, 29%, 0.89) 40%,
+                        hsla(201, 12%, 29%, 0.89) 60%,
+                        hsla(197, 11%, 13%, 0.89) 100%
+                      );
+  --app-titlebar-icon-c: hsl(197deg 20% 75%);
   --app-titlebar-icon-hov-c : var(--app-ribbon-c);
 
 
-  /*** Footer ***/
   --footer-bxs-c: hsla(0, 0%, 0%, 0.4);
-  --footer-copyright-c: hsl(197, 11%, 35%);
-  --footer-copyright-link-c: hsl(197, 11%, 50%);
-  --footer-copyright-link-hov-c: hsl(47, 50%, 60%);
+  --footer-copyright-c: hsl(197deg 11% 35%);
+  --footer-copyright-link-c: hsl(197deg 11% 50%);
+  --footer-copyright-link-hov-c: hsl(47deg 50% 60%);
 
 
-  /*** Preloader ***/
-  --preloader-bdr-c       : hsl(0, 100%, 76%);
-  --preloader-bxs-c       : hsl(0, 65%, 47%);
+  --preloader-bdr-c: hsl(0deg 100% 76%);
+  --preloader-bxs-c: hsl(0deg 65% 47%);
   --preloader-bxs-inset-c : var(--app-ribbon-c);
 
 
-  /*** Button - Disabled ***/
-  --button-disabled-c: hsl(197, 11%, 30%);
-  --button-disabled-bg-c: hsl(197, 11%, 15%);
+  --button-disabled-c: hsl(197deg 11% 30%);
+  --button-disabled-bg-c: hsl(197deg 11% 15%);
 
-  /*** Button - Neutral ***/
-  --button-neutral-c             : black;
-  --button-neutral-bg-c          : hsl(197, 11%, 68%);
-  --button-neutral-bg-hov-c      : hsl(197, 20%, 75%);
-  --button-neutral-bdr-c         : hsl(197, 20%, 90%);
-  --button-neutral-bxs-c         : hsla(197, 20%, 75%, 0.5);
-  --button-neutral-bxs-hov-c     : hsla(197, 20%, 75%, 0.8);
-  --button-neutral-loading-c     : hsla(0, 0%, 0%, 0.5);
-  --button-neutral-loading-bg-c  : hsl(197, 11%, 75%);
-  --button-neutral-loading-bdr-c : hsl(197, 11%, 78%);
+  --button-neutral-c: black;
+  --button-neutral-bg-c: hsl(197deg 11% 68%);
+  --button-neutral-bg-hov-c: hsl(197deg 20% 75%);
+  --button-neutral-bdr-c: hsl(197deg 20% 90%);
+  --button-neutral-bxs-c: hsla(197, 20%, 75%, 0.5);
+  --button-neutral-bxs-hov-c: hsla(197, 20%, 75%, 0.8);
+  --button-neutral-loading-c: hsla(0, 0%, 0%, 0.5);
+  --button-neutral-loading-bg-c: hsl(197deg 11% 75%);
+  --button-neutral-loading-bdr-c : hsl(197deg 11% 78%);
   --button-neutral-loading-bxs-c : var(--button-neutral-bxs-hov-c);
-  --button-neutral-loading-lgr-c : hsl(197, 20%, 85%);
+  --button-neutral-loading-lgr-c : hsl(197deg 20% 85%);
 
-  /*** Button - Attention ***/
-  --button-attention-c             : black;
-  --button-attention-bg-c          : hsl(47, 100%, 50%);
-  --button-attention-bg-hov-c      : hsl(47, 100%, 70%);
-  --button-attention-bdr-c         : hsl(47, 100%, 78%);
-  --button-attention-bxs-c         : hsla(47, 100%, 70%, 0.5);
-  --button-attention-bxs-hov-c     : hsla(47, 100%, 70%, 0.8);
-  --button-attention-loading-c     : hsla(0, 0%, 0%, 0.5);
-  --button-attention-loading-bg-c  : hsl(47, 100%, 78%);
-  --button-attention-loading-bdr-c : hsl(47, 100%, 75%);
+  --button-attention-c: black;
+  --button-attention-bg-c: hsl(47deg 100% 50%);
+  --button-attention-bg-hov-c: hsl(47deg 100% 70%);
+  --button-attention-bdr-c: hsl(47deg 100% 78%);
+  --button-attention-bxs-c: hsla(47, 100%, 70%, 0.5);
+  --button-attention-bxs-hov-c: hsla(47, 100%, 70%, 0.8);
+  --button-attention-loading-c: hsla(0, 0%, 0%, 0.5);
+  --button-attention-loading-bg-c: hsl(47deg 100% 78%);
+  --button-attention-loading-bdr-c : hsl(47deg 100% 75%);
   --button-attention-loading-bxs-c : var(--button-attention-bxs-hov-c);
-  --button-attention-loading-lgr-c : hsl(47, 100%, 47%);
+  --button-attention-loading-lgr-c : hsl(47deg 100% 47%);
 
-  /*** Button - Dangerous ***/
-  --button-dangerous-c             : white;
-  --button-dangerous-bg-c          : hsl(0, 100%, 60%);
-  --button-dangerous-bg-hov-c      : hsl(0, 100%, 65%);
-  --button-dangerous-bdr-c         : var(--button-dangerous-bg-hov-c);
-  --button-dangerous-bxs-c         : hsla(0, 100%, 63%, 0.7);
-  --button-dangerous-bxs-hov-c     : hsla(0, 100%, 65%, 0.9);
-  --button-dangerous-loading-c     : hsla(0, 100%, 100%, 0.6);
-  --button-dangerous-loading-bg-c  : hsl(0, 100%, 70%);
-  --button-dangerous-loading-bdr-c : hsl(0, 100%, 73%);
+  --button-dangerous-c: white;
+  --button-dangerous-bg-c: hsl(0deg 100% 60%);
+  --button-dangerous-bg-hov-c: hsl(0deg 100% 65%);
+  --button-dangerous-bdr-c: var(--button-dangerous-bg-hov-c);
+  --button-dangerous-bxs-c: hsla(0, 100%, 63%, 0.7);
+  --button-dangerous-bxs-hov-c: hsla(0, 100%, 65%, 0.9);
+  --button-dangerous-loading-c: hsla(0, 100%, 100%, 0.6);
+  --button-dangerous-loading-bg-c: hsl(0deg 100% 70%);
+  --button-dangerous-loading-bdr-c : hsl(0deg 100% 73%);
   --button-dangerous-loading-bxs-c : var(--button-dangerous-bxs-hov-c);
   --button-dangerous-loading-lgr-c : var(--app-ribbon-c);
 
-  /*** Text Input ***/
-  --input-label-c       : hsl(197, 11%, 65%);
-  --input-focus-c       : hsl(161, 45%, 65%);
+  --input-label-c: hsl(197deg 11% 65%);
+  --input-focus-c: hsl(161deg 45% 65%);
   --input-focus-label-c : var(--input-label-c);
-  --input-placeholder-c : hsl(197, 11%, 27%);
-  --input-bdr-c         : hsl(197, 11%, 27%);
-  --input-bar-c         : hsl(197, 11%, 33%);
-  --input-bar-valid-c   : hsl(161, 50%, 45%);
-  --input-valid-c       : hsl(161, 35%, 45%);
-  --input-metadata-c    : hsl(197, 11%, 40%);
-  --input-metadata-em-c : hsl(47, 80%, 60%);
+  --input-placeholder-c : hsl(197deg 11% 27%);
+  --input-bdr-c: hsl(197deg 11% 27%);
+  --input-bar-c: hsl(197deg 11% 33%);
+  --input-bar-valid-c: hsl(161deg 50% 45%);
+  --input-valid-c: hsl(161deg 35% 45%);
+  --input-metadata-c: hsl(197deg 11% 40%);
+  --input-metadata-em-c : hsl(47deg 80% 60%);
 
 
-  /*** Menu ***/
-  --menu-bg-c              : hsla(197, 12%, 8%, 0.85);
-  --menu-bxs-c             : hsla(0, 0%, 0%, 0.85);
-  --menu-header-c          : var(--app-titlebar-c);
-  --menu-header-bg-c       : linear-gradient(
-                              90deg,
-                              hsl(197, 11%, 12%) 0%,
-                              hsl(201, 12%, 23%) 30%,
-                              hsl(201, 12%, 23%) 70%,
-                              hsl(197, 11%, 12%) 100%
-                            );
-  --menu-exit-icon-c       : hsl(197, 12%, 70%);
-  --menu-exit-icon-hov-c   : var(--app-ribbon-c);
-  --menu-item-c            : var(--md-c);
-  --menu-item-hov-c        : hsl(47, 100%, 63%);;
-  --menu-item-bdr-c        : hsla(0, 0%, 0%, 0);
-  --menu-item-bdr-hov-c    : hsl(47, 100%, 63%);;
-  --menu-active-item-c     : hsl(47, 100%, 60%);
-  --menu-active-item-bg-c  : var(--sub-panel-hov-c);
-  --menu-active-item-bdr-c : hsl(47, 100%, 63%);
+  --menu-bg-c: hsla(197, 12%, 8%, 0.85);
+  --menu-bxs-c: hsla(0, 0%, 0%, 0.85);
+  --menu-header-c: var(--app-titlebar-c);
+  --menu-header-bg-c: linear-gradient(
+                        90deg,
+                        hsl(197deg 11% 12%) 0%,
+                        hsl(201deg 12% 23%) 30%,
+                        hsl(201deg 12% 23%) 70%,
+                        hsl(197deg 11% 12%) 100%
+                      );
+  --menu-exit-icon-c: hsl(197deg 12% 70%);
+  --menu-exit-icon-hov-c: var(--app-ribbon-c);
+  --menu-item-c: var(--md-c);
+  --menu-item-hov-c: hsl(47deg 100% 63%);;
+  --menu-item-bdr-c: hsla(0, 0%, 0%, 0);
+  --menu-item-bdr-hov-c: hsl(47deg 100% 63%);;
+  --menu-active-item-c: hsl(47deg 100% 60%);
+  --menu-active-item-bg-c: var(--sub-panel-hov-c);
+  --menu-active-item-bdr-c : hsl(47deg 100% 63%);
 
 
-  /*** Video ***/
-  --video-desc-c              : hsla(0, 0%, 0%, 0.85);
-  --video-desc-b-c            : var(--md-b-c);
-  --video-desc-link-c         : var(--md-b-c);
-  --video-desc-link-hov-c     : var(--menu-active-item-c);
-  --video-desc-link-bdr-c     : var(--md-b-c);
+  --video-desc-c: hsla(0, 0%, 0%, 0.85);
+  --video-desc-b-c: var(--md-b-c);
+  --video-desc-link-c: var(--md-b-c);
+  --video-desc-link-hov-c: var(--menu-active-item-c);
+  --video-desc-link-bdr-c: var(--md-b-c);
   --video-desc-link-bdr-hov-c : var(--menu-active-item-c);
-  --video-desc-outline-c      : hsl(197, 11%, 35%);
-  --video-desc-head-c         : var(--app-titlebar-c);
-  --video-desc-head-bdr-c     : hsl(197, 11%, 45%);
-  --video-widget-c            : var(--app-titlebar-c);
-  --video-widget-hov-c        : var(--menu-active-item-c);
-  --video-widget-bg-c         : hsla(0, 0%, 10%, 0.53);
-  --video-widget-bg-hov-c     : hsla(0, 0%, 10%, 0.7);
-  --video-widget-close-hov-c  : var(--menu-exit-icon-hov-c);
+  --video-desc-outline-c: hsl(197deg 11% 35%);
+  --video-desc-head-c: var(--app-titlebar-c);
+  --video-desc-head-bdr-c: hsl(197deg 11% 45%);
+  --video-widget-c: var(--app-titlebar-c);
+  --video-widget-hov-c: var(--menu-active-item-c);
+  --video-widget-bg-c: hsla(0, 0%, 10%, 0.53);
+  --video-widget-bg-hov-c: hsla(0, 0%, 10%, 0.7);
+  --video-widget-close-hov-c: var(--menu-exit-icon-hov-c);
 
-  /*** Toggle ***/
-  --toggle-fieldset-bdr-c: hsl(0, 100%, 70%);
-  --toggle-fieldset-bxs-c: hsl(0, 100%, 30%);
+  --toggle-fieldset-bdr-c: hsl(0deg 100% 70%);
+  --toggle-fieldset-bxs-c: hsl(0deg 100% 30%);
   --toggle-legend-bg-c: var(--body-bg-c);
-  --toggle-legend-c: hsl(197, 15%, 87%);
+  --toggle-legend-c: hsl(197deg 15% 87%);
   --toggle-inactive-c: var(--body-c);
-  --toggle-inactive-hov-c: hsl(47, 74%, 70%);
-  --toggle-inactive-bdr-c: hsl(197, 11%, 28%);
-  --toggle-inactive-bg-c: hsl(197, 11%, 18%);
+  --toggle-inactive-hov-c: hsl(47deg 74% 70%);
+  --toggle-inactive-bdr-c: hsl(197deg 11% 28%);
+  --toggle-inactive-bg-c: hsl(197deg 11% 18%);
   --toggle-active-c: black;
-  --toggle-active-bg-c: hsl(47, 74%, 49%);
-  --toggle-active-bdr-c: hsl(47, 74%, 70%);
-  --toggle-active-bxs-c: hsl(47, 100%, 62%);
+  --toggle-active-bg-c: hsl(47deg 74% 49%);
+  --toggle-active-bdr-c: hsl(47deg 74% 70%);
+  --toggle-active-bxs-c: hsl(47deg 100% 62%);
 
 
-  /*** Blog Styles ***/
-  --blog-entry-bg-c          : var(--sub-panel-c);
-  --blog-entry-bg-hov-c      : var(--sub-panel-hov-c);
-  --blog-entry-title-c       : hsl(47, 53%, 62%);
-  --blog-entry-title-hov-c   : var(--md-p-hov-i-c);
-  --blog-entry-stat-c        : hsl(197, 11%, 55%);
-  --blog-entry-hov-stat-c    : var(--md-p-hov-c);
-  --blog-entry-icon-c        : hsl(198, 11%, 66%);
-  --blog-entry-hov-icon-c    : var(--md-p-hov-i-c);
-  --blog-entry-hov-sum-c     : var(--md-p-hov-c);
+  --blog-entry-bg-c: var(--sub-panel-c);
+  --blog-entry-bg-hov-c: var(--sub-panel-hov-c);
+  --blog-entry-title-c: hsl(47deg 53% 62%);
+  --blog-entry-title-hov-c: var(--md-p-hov-i-c);
+  --blog-entry-stat-c: hsl(197deg 11% 55%);
+  --blog-entry-hov-stat-c: var(--md-p-hov-c);
+  --blog-entry-icon-c: hsl(198deg 11% 66%);
+  --blog-entry-hov-icon-c: var(--md-p-hov-i-c);
+  --blog-entry-hov-sum-c: var(--md-p-hov-c);
 
-  /*** red33m Styles ***/
   --red33m-video-hov-c: var(--menu-active-item-c);
 
-  --switch-off-c: hsl(0, 100%, 67%);
+  --switch-off-c: hsl(0deg 100% 67%);
 }
