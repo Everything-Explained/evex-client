@@ -44,11 +44,6 @@
   &:hover {
     background-color : transparent;
     color            : var(--md-p-hov-c);
-    a:link, a:active, a:visited {
-      color                 : var(--md-p-hov-link-c);
-      text-decoration-color : var(--md-p-hov-link-bdr-c); }
-    a:hover {
-      color: var(--md-link-hov-c); }
     strong {
       color: var(--md-p-hov-b-c); }
     em {
