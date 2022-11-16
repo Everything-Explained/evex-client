@@ -34,7 +34,7 @@ type APIVersionNames =
   | 'r3dBlog'
   | 'chglog'
   | 'home'
-  | 'libLit'
+  | 'pubLit'
   | 'libVid'
   | 'r3dLit'
   | 'r3dVid';

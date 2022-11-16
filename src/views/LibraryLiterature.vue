@@ -6,7 +6,7 @@ import { useAPI } from '@/services/api_internal';
 const options: AppLitOptions = {
   uri: 'literature/public',
   title: 'Library Literature',
-  version: useAPI().state?.versions?.libLit.v,
+  version: useAPI().state?.versions?.pubLit.v,
 };
 </script>
 
