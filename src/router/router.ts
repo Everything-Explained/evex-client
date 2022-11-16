@@ -1,16 +1,17 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import { isAuthed, isAuthedGuard, isDevelopment } from '@/globals'
-import Home from '@/views/HomePage.vue'
-import httpError404 from '@/views/404Error.vue'
-import R3dVideos from '@/views/Red33mVideos.vue'
-import PublicBlog from '@/views/PublicBlog.vue'
-import Red33mBlog from '@/views/Red33mBlog.vue'
-import Videos from '@/views/LibraryVideos.vue'
-import Literature from '@/views/LibraryLiterature.vue'
-import Red33mLogin from '@/views/Red33mLogin.vue'
-import red33mForm from '@/views/Red33mAccessForm.vue'
-import r3d_litVue from '@/views/Red33mLiterature.vue'
-import changelogVue from '@/views/ChangelogPage.vue'
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import { isAuthed, isAuthedGuard, isDevelopment } from '@/globals';
+import Home from '@/views/HomePage.vue';
+import httpError404 from '@/views/404Error.vue';
+import R3dVideos from '@/views/Red33mVideos.vue';
+import PublicBlog from '@/views/PublicBlog.vue';
+import Red33mBlog from '@/views/Red33mBlog.vue';
+import Videos from '@/views/LibraryVideos.vue';
+import Literature from '@/views/LibraryLiterature.vue';
+import Red33mLogin from '@/views/Red33mLogin.vue';
+import red33mForm from '@/views/Red33mAccessForm.vue';
+import r3d_litVue from '@/views/Red33mLiterature.vue';
+import changelogVue from '@/views/ChangelogPage.vue';
+import ToBeDeterminedVue from '@/components/ToBeDetermined.vue';
 
 export const routes: Array<RouteRecordRaw> = [
   {
@@ -37,7 +38,8 @@ export const routes: Array<RouteRecordRaw> = [
     meta: { cat: 'root', title: 'Blog', visible: true },
   },
   {
-    path: '/videos/public/:category?/:id?',
+    // path: '/videos/public/:category?/:id?',
+    path: '/videos/public',
     name: 'lib-videos',
     component: Videos,
     meta: { cat: 'root', title: 'Videos', visible: true },
@@ -83,7 +85,8 @@ export const routes: Array<RouteRecordRaw> = [
     },
   },
   {
-    path: '/videos/red33m/:id?',
+    // path: '/videos/red33m/:id?',
+    path: '/videos/red33m',
     name: 'r3d-videos',
     component: R3dVideos,
     beforeEnter: isAuthedGuard,
@@ -119,15 +122,15 @@ export const routes: Array<RouteRecordRaw> = [
     component: httpError404,
     meta: { cat: 'Accessory', title: '404', visible: isDevelopment },
   },
-]
+];
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
-})
+});
 
 // Hack for globally manipulating router; dynamically injected
 // HTML links use this to navigate to internal pages.
-window.$router = router
+window.$router = router;
 
-export default router
+export default router;

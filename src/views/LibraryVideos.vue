@@ -1,92 +1,93 @@
 <script lang="ts" setup>
-import { computed, Ref, ref, watch } from 'vue';
-import useVideos from '@/composeables/videos';
-import { DynamicPage, useDynamicPager } from '@/composeables/dynamicPager';
-import { useDate } from '@/composeables/date';
-import { isEthan } from '@/composeables/globals';
-import { Video } from '@/typings/global-types';
+// import { computed, Ref, ref, watch } from 'vue';
+// import useVideos from '@/composeables/videos';
+// import { DynamicPage, useDynamicPager } from '@/composeables/dynamicPager';
+// import { useDate } from '@/composeables/date';
+// import { isEthan } from '@/composeables/globals';
+// import { Video } from '@/typings/global-types';
 import PageTitlebar from '@/components/PageTitlebar.vue';
 import PageFooter from '@/components/PageFooter.vue';
-import UxPreloader from '@/components/UxPreloader.vue';
-import UxVideoList from '@/components/UxVideoList.vue';
-import { useRouter } from 'vue-router';
-import UxDisqus from '@/components/UxDisqus.vue';
-import UxText from '@/components/UxText.vue';
-import UxYoutubeVideo from '@/components/UxYoutubeVideo.vue';
+// import UxPreloader from '@/components/UxPreloader.vue';
+// import UxVideoList from '@/components/UxVideoList.vue';
+// import { useRouter } from 'vue-router';
+// import UxDisqus from '@/components/UxDisqus.vue';
+// import UxText from '@/components/UxText.vue';
+// import UxYoutubeVideo from '@/components/UxYoutubeVideo.vue';
+import ToBeDetermined from '@/components/ToBeDetermined.vue';
 
-type VideoCategory = { name: string; desc: string; videos: Video[] };
+// type VideoCategory = { name: string; desc: string; videos: Video[] };
 
-const router = useRouter();
-const {
-  videos: categories,
-  isPending,
-  isCached,
-} = useVideos<VideoCategory>('/data/videos/public');
+// const router = useRouter();
+// const {
+//   videos: categories,
+//   isPending,
+//   isCached,
+// } = useVideos<VideoCategory>('/data/videos/public');
 
-const {
-  setDynPages: setDynCategories,
-  goTo: goToCategory,
-  activePage,
-} = useDynamicPager<Video[]>('videos/public', 'category', router);
+// const {
+//   setDynPages: setDynCategories,
+//   goTo: goToCategory,
+//   activePage,
+// } = useDynamicPager<Video[]>('videos/public', 'category', router);
 
-const videos = computed(() => activePage.value?.data);
-const goToVideoPage = ref<(pageName: string) => void>(() => void 0);
-const activeVideoPage = ref<Ref<DynamicPage<Video> | undefined>>();
-const title = computed(
-  () =>
-    activeVideoPage.value?.value?.data?.title ||
-    activePage.value?.title ||
-    'Video Categories'
-);
+// const videos = computed(() => activePage.value?.data);
+// const goToVideoPage = ref<(pageName: string) => void>(() => void 0);
+// const activeVideoPage = ref<Ref<DynamicPage<Video> | undefined>>();
+// const title = computed(
+//   () =>
+//     activeVideoPage.value?.value?.data?.title ||
+//     activePage.value?.title ||
+//     'Video Categories'
+// );
 
-createVideoPages();
-watch(activePage, (page) => {
-  if (!page || !page.data) return;
-  const pager = useDynamicPager<Video>(
-    `videos/public/${page.uri}`,
-    'id',
-    router
-  );
-  pager.setDynPages(page.data.map((d) => ({ name: d.id, data: d })));
-  goToVideoPage.value = pager.goTo;
-  activeVideoPage.value = pager.activePage;
-});
+// createVideoPages();
+// watch(activePage, (page) => {
+//   if (!page || !page.data) return;
+//   const pager = useDynamicPager<Video>(
+//     `videos/public/${page.uri}`,
+//     'id',
+//     router
+//   );
+//   pager.setDynPages(page.data.map((d) => ({ name: d.id, data: d })));
+//   goToVideoPage.value = pager.goTo;
+//   activeVideoPage.value = pager.activePage;
+// });
 
-function createVideoPages() {
-  const configurePages = () => {
-    setDynCategories(
-      categories.value.map((cat) => ({ name: cat.name, data: cat.videos }))
-    );
-  };
+// function createVideoPages() {
+//   const configurePages = () => {
+//     setDynCategories(
+//       categories.value.map((cat) => ({ name: cat.name, data: cat.videos }))
+//     );
+//   };
 
-  if (isCached) {
-    return configurePages();
-  }
+//   if (isCached) {
+//     return configurePages();
+//   }
 
-  watch(isPending, (isPending) => {
-    if (!isPending) {
-      configurePages();
-    }
-  });
-}
+//   watch(isPending, (isPending) => {
+//     if (!isPending) {
+//       configurePages();
+//     }
+//   });
+// }
 
-function getAuthors(videos: Video[]) {
-  return videos.reduce(toAuthors, [] as string[]);
-}
+// function getAuthors(videos: Video[]) {
+//   return videos.reduce(toAuthors, [] as string[]);
+// }
 
-function getLatestVideo(videos: Video[]) {
-  return videos[videos.length - 1];
-}
+// function getLatestVideo(videos: Video[]) {
+//   return videos[videos.length - 1];
+// }
 
-function toYouTubeLink(id: string) {
-  return `//www.youtube-nocookie.com/embed/${id}?rel=0`;
-}
+// function toYouTubeLink(id: string) {
+//   return `//www.youtube-nocookie.com/embed/${id}?rel=0`;
+// }
 
-function toAuthors(authors: string[], video: Video) {
-  if (authors.includes(video.author)) return authors;
-  authors.push(video.author);
-  return authors;
-}
+// function toAuthors(authors: string[], video: Video) {
+//   if (authors.includes(video.author)) return authors;
+//   authors.push(video.author);
+//   return authors;
+// }
 </script>
 
 <template>
@@ -95,9 +96,11 @@ function toAuthors(authors: string[], video: Video) {
       :no-fade="true"
       :ease-in="350"
       :ease-out="350"
-      :text="title"
+      text="Video Categories"
     />
-    <transition name="fade" mode="out-in">
+    <ToBeDetermined />
+    <page-footer />
+    <!-- <transition name="fade" mode="out-in">
       <ux-preloader v-if="!categories.length" />
       <div v-else-if="!activePage">
         <div class="lib-vid__category-list">
@@ -179,6 +182,6 @@ function toAuthors(authors: string[], video: Video) {
         <ux-disqus />
         <page-footer />
       </div>
-    </transition>
+    </transition> -->
   </div>
 </template>
