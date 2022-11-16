@@ -1,7 +1,3 @@
-:root {
-  --md-trans-speed: 0.18s;
-}
-
 .md-header, .md {
   h1, h2, h3, h4, h5 {
     margin-top     : 3rem;
