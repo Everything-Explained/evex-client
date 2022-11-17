@@ -1,57 +1,50 @@
+
+
 .vw-chglog h1 {
   position     : relative;
-  margin       : 2rem auto -0.7rem auto;
-  padding-left : 2rem;
+  margin       : 2rem auto 0 auto;
+  padding-left : 2.3rem;
   width        : 100%;
   color        : hsl(50, 100%, 60%);
 
   &:first-child { margin-top: 2rem; }
 }
 
-
 .vw-chglog blockquote {
   position      : relative;
   margin        : 0 auto;
-  margin-bottom : clamp(2rem, 4.5vw, 3rem);
+  margin-bottom : 1.5rem;
   z-index       : 1;
-  width         : 100%;
+  width         : 100% !important;
   text-align    : left !important;
+  border-radius: 1rem 2rem 2rem 1rem;
+  background: linear-gradient(
+                  90deg,
+                  hsl(197, 12%, 8%) 0%,
+                  hsl(197, 12%, 14%) 0%,
+                  hsl(197, 12%, 14%) 70%,
+                  hsl(197, 12%, 8%) 100%
+    );
+  &::before {
+    background: linear-gradient(90deg, #121517, #000 30%, #000 70%, #121517);
+    bottom: -0.2rem;
+    content: '';
+    filter: blur(0.3rem);
+    height: 0.15rem;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+  }
   li {
     position         : relative;
-    margin-top       : 7px;
-    padding          : 0.5rem 8px 0.5rem 0.5rem;
-    box-shadow       : 0 0 0 2px hsla(0, 0%, 0%, 0.464);
-    border-top       : 3px solid var(--body-bg-c);
-    border           : 2px solid hsla(224, 100%, 92%, 0.054);
-    background-color : var(--sub-panel-c);
+    padding          : 0.55rem 0.5rem 0.25rem 0.5rem;
     word-spacing     : 1px;
     transition       : background var(--md-trans-speed);
     &:first-child {
-      border-top-left-radius : 15px;
-      strong:first-child {
-        text-shadow: 1px 1px 0 black,
-                    2px 2px 0 black,
-                    3px 3px 0 black; }
+      padding-top: 0.25rem;
     }
-    &:last-child  {
-      border-bottom-right-radius : 13px; }
   }
   li + li {
     margin-top: 0;
-    box-shadow: 0 0 0 2px hsla(0, 0%, 0%, 0.464), 0px -4px 0 -2px hsla(0, 0%, 0%, 0.642);
-    // border-bottom: 2px solid black;
-  }
-  &:hover {
-    background-color : transparent;
-    color            : var(--md-p-hov-c);
-    strong {
-      color: var(--md-p-hov-b-c); }
-    em {
-      color: var(--md-p-hov-i-c); }
-    li {
-      background-color: var(--sub-panel-hov-c); }
-    code {
-      background-color : hsl(30, 15%, 23%);
-      color            : var(--md-p-hov-b-c); }
   }
 }

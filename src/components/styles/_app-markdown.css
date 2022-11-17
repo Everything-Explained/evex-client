@@ -14,7 +14,7 @@
 
 .md-simple,
 .md {
-  width       : clamp(200px, 97vw, 960px);
+  width       : clamp(200px, 98vw, 960px);
   margin      : 0 auto;
   margin-top  : 10px;
   font-weight : 300;
@@ -169,15 +169,14 @@
   }
   code {
     display: inline-block;
-    padding       : 1px 10px 2px 10px;
+    padding       : 0 0.4rem;
     color         : var(--md-code-c);
     background    : var(--md-code-bg-c);
+    border-radius: 0.5rem;
     text-shadow   : 1px 1px 0 black,
                    -1px -1px 0 black,
                    1px 0 0 black,
                    0 1px 0 black;
-    font-size     : 1.125rem;
-    letter-spacing: 1px;
     font-family   : Consolas, 'Courier New', Courier, monospace;
     white-space   : nowrap;
     word-spacing  : -3px;
