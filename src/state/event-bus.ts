@@ -1,24 +1,13 @@
+import { StrictRouteName } from '@/router/router';
+
 type ValidEvents = 'update-footer' | 'update-menu';
-type MenuEventRoutes =
-  | 'home'
-  | 'blog'
-  | 'support'
-  | 'lib-lit'
-  | 'lib-videos'
-  | 'red-login'
-  | 'red-lit'
-  | 'red-videos'
-  | 'red-form'
-  | 'changelog'
-  | '404';
-type MenuEventCallback = (route: MenuEventRoutes, visibility: boolean) => void;
 type CallBack = (...args: any[]) => void;
 
 const _events = ['update-footer', 'update-menu'];
 const _subscribers: [event: string, cb: CallBack][] = [];
 
 export function useEventBus() {
-  function updateMenu(route: MenuEventRoutes, visibility: boolean) {
+  function updateMenu(route: StrictRouteName, visibility: boolean) {
     emit('update-menu', route, visibility);
   }
 

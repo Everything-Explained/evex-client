@@ -33,9 +33,10 @@ function submit(e: MouseEvent) {
       .then(() => {
         loginSuccess.value = true;
         localStorage.setItem('passcode', 'yes');
-        eventBus.updateMenu('red-videos', true);
-        eventBus.updateMenu('red-lit', true);
-        eventBus.updateMenu('red-login', false);
+        eventBus.updateMenu('r3d-blog', true);
+        eventBus.updateMenu('r3d-videos', true);
+        eventBus.updateMenu('r3d-lit', true);
+        eventBus.updateMenu('r3d-login', false);
       })
       .catch(setError);
   });

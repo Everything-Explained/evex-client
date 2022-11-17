@@ -1,3 +1,4 @@
+import { StrictRouteName } from '@/router/router';
 import { RouteLocationNormalizedLoaded, Router } from 'vue-router';
 
 export type ISODateString = string;
@@ -39,6 +40,7 @@ declare module 'vue-router' {
     catVisible?: boolean;
     title: string;
     visible: boolean;
+    name: StrictRouteName;
   }
 }
 

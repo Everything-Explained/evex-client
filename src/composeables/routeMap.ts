@@ -20,7 +20,7 @@ export function useRouteMap() {
   routes.forEach((route, i) => {
     if (!route.meta) return;
     const r: Route = reactive({
-      name: route.name!, // All routes have names
+      name: route.meta.name,
       title: route.meta.title,
       visible: route.meta.visible,
     });
