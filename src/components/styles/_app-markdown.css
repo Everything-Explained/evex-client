@@ -47,10 +47,10 @@
   p {
     background: linear-gradient(
                   90deg,
-                  hsla(197, 13%, 9%, 0.65) 0%,
+                  hsla(var(--u-body-bg-c), 0.65) 0%,
                   hsla(197, 12%, 16%, 0.65) 20%,
                   hsla(197, 12%, 16%, 0.65) 80%,
-                  hsla(197, 13%, 9%, 0.65) 100%
+                  hsla(var(--u-body-bg-c), 0.65) 100%
     );
     & + p {
       margin-top: 15px; }
@@ -86,10 +86,10 @@
     &:hover {
       background: linear-gradient(
         90deg,
-      hsla(197, 13%, 9%, 0.65) 0%,
+      hsla(var(--u-body-bg-c), 0.65) 0%,
       hsla(30, 15%, 14%, 0.65) 30%,
       hsla(30, 15%, 14%, 0.65) 70%,
-      hsla(197, 13%, 9%, 0.65) 100%
+      hsla(var(--u-body-bg-c), 0.65) 100%
       );
       color            : var(--md-p-hov-c);
       b, strong {
@@ -116,10 +116,10 @@
       background: rgb(18,21,23);
       background: linear-gradient(
                     90deg,
-                    hsl(197, 13%, 9%),
+                    hsl(197, 13%, 7.5%),
                     hsla(0, 0%, 0%, 0.5) 30%,
                     hsla(0, 0%, 0%, 0.5) 70%,
-                    hsl(197, 13%, 9%) 90%
+                    hsl(197, 13%, 7.5%) 90%
       );
       bottom: -0.1rem;
       height: 95%;
@@ -133,10 +133,10 @@
       width: 100%;
       background:      linear-gradient(
                           90deg,
-                          hsla(197, 13%, 9%, 0.65),
+                          hsla(var(--u-body-bg-c), 0.65),
                           hsla(197, 11%, 18%, 0.65) 20%,
                           hsla(197, 11%, 18%, 0.65) 80%,
-                          hsla(197, 13%, 9%, 0.65)
+                          hsla(var(--u-body-bg-c), 0.65)
                         );
       color            : var(--md-bq-c);
       font-size        : clamp(1.125rem, 4vw, 1.4rem);
@@ -219,7 +219,7 @@
       90deg,
       hsla(197, 13%, 6.5%, 0.65) 0%,
       hsla(197, 13%, 6.5%, 0.65) 80%,
-      hsla(197, 13%, 9%, 0.65) 100%
+      hsla(var(--u-body-bg-c), 0.65) 100%
     );
     padding: 0.375rem 0.625rem;
     border-radius: 1.275rem;

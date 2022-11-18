@@ -38,7 +38,7 @@
         90deg,
         hsla(30 12% 20% / 0.55) 0%,
         hsla(30 12% 20% / 0.55) 20%,
-        hsla(197 13% 9% / 0.75)
+        hsla(var(--u-body-bg-c), 0.75)
       );
     }
     summary {
@@ -47,7 +47,7 @@
         90deg,
       hsla(30 15% 11% / 0.65) 0%,
       hsla(30 15% 11% / 0.65) 15%,
-      hsla(197 13% 9% / 0.85) 100%
+      hsla(var(--u-body-bg-c), 0.85) 100%
       )
     }
     footer {
@@ -67,7 +67,7 @@
       90deg,
       hsla(197 12% 18% / 0.65) 0%,
       hsla(197 12% 18% / 0.65) 20%,
-      hsl(197 13% 9% / 0.7)
+      hsl(197 13% 7.5% / 0.7)
     );
     text-shadow      :
                        1px 1px 0 black,
@@ -109,7 +109,7 @@
       90deg,
       hsla(197 13% 12% / 0.75) 0%,
       hsla(197 13% 12% / 0.75) 15%,
-      hsla(197 13% 9% / 0.55) 100%
+      hsla(var(--u-body-bg-c), 0.55) 100%
     );
     color            : var(--body-c);
     transition: color var(--lit-transition-speed);

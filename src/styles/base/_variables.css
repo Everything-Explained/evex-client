@@ -46,7 +46,8 @@
   --sub-panel-hov-c: hsl(30deg 15% 11%);
 
   --body-f-sz: 16px;
-  --body-bg-c: hsl(197, 13%, 9%);
+  --body-bg-c: hsl(197, 13%, 7.5%);
+  --u-body-bg-c: 197, 13%, 7.5%;
   --body-c: hsl(197deg 12% 80%);
   --body-dark-c: hsl(197deg 12% 65%);
   --selection-bg-c: hsla(197deg 9% 30% / 0.993);

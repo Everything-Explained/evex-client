@@ -19,7 +19,7 @@ body {
   overflow-y: auto;
 }
 html, body {
-  background-color: hsl(197deg 13% 9%) !important;
+  background-color: var(--body-bg-c) !important;
 }
 a {
   word-wrap: break-word;
