@@ -30,6 +30,19 @@
   background   : var(--app-ribbon-c);
 }
 
+main::before {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  content: '';
+  background-image:  linear-gradient(hsla(197, 14%, 30%, 0.1) 2px, transparent 2px),
+    linear-gradient(90deg, hsla(197, 14%, 30%, 0.1) 2px, transparent 2px),
+    linear-gradient(hsla(197, 14%, 30%, 0.2) 1px, transparent 1px),
+    linear-gradient(90deg, hsla(197, 14%, 30%, 0.2) 1px, transparent 1px);
+  background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+  background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+  background-attachment: fixed;
+}
 
 .app__toast-buffer {
   position: relative;
@@ -73,7 +86,8 @@
   left             : 0;
   margin-right     : var(--page-right-margin);
   height           : clamp(1rem, 18vw, 10rem);
-  background-color : var(--body-bg-c); }
+  background-color : transparent;
+}
   .app__header .title {
     position    : absolute;
     left        : 0;
