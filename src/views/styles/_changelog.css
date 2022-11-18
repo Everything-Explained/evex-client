@@ -20,10 +20,10 @@
   border-radius: 1rem 2rem 2rem 1rem;
   background: linear-gradient(
                   90deg,
-                  hsl(197, 12%, 8%) 0%,
-                  hsl(197, 12%, 14%) 0%,
-                  hsl(197, 12%, 14%) 70%,
-                  hsl(197, 12%, 8%) 100%
+                  hsla(197, 13%, 9%, 0.65) 0%,
+                  hsla(197, 13%, 16%, 0.65) 0%,
+                  hsla(197, 13%, 16%, 0.65) 70%,
+                  hsla(197, 13%, 9%, 0.65) 100%
     );
   &::before {
     background: linear-gradient(90deg, #121517, #000 30%, #000 70%, #121517);
