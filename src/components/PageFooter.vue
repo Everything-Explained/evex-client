@@ -17,7 +17,7 @@ import UxEmail from './UxEmail.vue';
             class="email"
             name="jason"
             subject="EvEx - Website Feedback"
-            text="Feedback"
+            text="Site Feedback"
           />
         </sub>
       </sup>
