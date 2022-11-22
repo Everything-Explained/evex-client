@@ -1,48 +1,47 @@
 <script lang="ts" setup>
 import PageTitlebar from '@/components/PageTitlebar.vue';
 import PageFooter from '@/components/PageFooter.vue';
-// import useVideos from '@/composeables/videos';
-// import { Video } from '@/typings/global-types';
-// import { computed, watch } from 'vue';
-// import { DataCacheArrayKeys } from '@/state/cache-state';
-// import { useDynamicPager } from '@/composeables/dynamicPager';
-// import UxText from '@/components/UxText.vue';
-// import UxDisqus from '@/components/UxDisqus.vue';
-// import UxPreloader from '@/components/UxPreloader.vue';
-// import UxYoutubeVideo from '@/components/UxYoutubeVideo.vue';
-// import UxVideoList from '@/components/UxVideoList.vue';
-// import { useRouter } from 'vue-router';
-import ToBeDetermined from '@/components/ToBeDetermined.vue';
+import useVideos from '@/composeables/videos';
+import { Video } from '@/typings/global-types';
+import { computed, watch } from 'vue';
+import { DataCacheArrayKeys } from '@/state/cache-state';
+import { useDynamicPager } from '@/composeables/dynamicPager';
+import UxText from '@/components/UxText.vue';
+import UxDisqus from '@/components/UxDisqus.vue';
+import UxPreloader from '@/components/UxPreloader.vue';
+import UxYoutubeVideo from '@/components/UxYoutubeVideo.vue';
+import UxVideoList from '@/components/UxVideoList.vue';
+import { useRouter } from 'vue-router';
 
-// const uri: DataCacheArrayKeys = 'videos/red33m';
+const uri: DataCacheArrayKeys = 'videos/red33m';
 
-// const { isPending, videos, isCached } = useVideos<Video>(`/data/${uri}`);
+const { isPending, videos, isCached } = useVideos<Video>(`/data/${uri}`);
 
-// const { setDynPages, goTo, activePage } = useDynamicPager<Video>(
-//   'videos/red33m',
-//   'id',
-//   useRouter()
-// );
+const { setDynPages, goTo, activePage } = useDynamicPager<Video>(
+  'videos/red33m',
+  'id',
+  useRouter()
+);
 
-// const title = computed(() => activePage.value?.data?.title || 'Red33m Videos');
+const title = computed(() => activePage.value?.data?.title || 'Red33m Videos');
 
-// createVideoPages();
+createVideoPages();
 
-// function createVideoPages() {
-//   const configurePages = () => {
-//     setDynPages(videos.value.map((v) => ({ name: v.id, data: v })));
-//   };
+function createVideoPages() {
+  const configurePages = () => {
+    setDynPages(videos.value.map((v) => ({ name: v.id, data: v })));
+  };
 
-//   if (isCached) {
-//     return configurePages();
-//   }
+  if (isCached) {
+    return configurePages();
+  }
 
-//   watch(isPending, (isPending) => {
-//     if (!isPending) {
-//       configurePages();
-//     }
-//   });
-// }
+  watch(isPending, (isPending) => {
+    if (!isPending) {
+      configurePages();
+    }
+  });
+}
 </script>
 
 <template>
@@ -52,11 +51,11 @@ import ToBeDetermined from '@/components/ToBeDetermined.vue';
       :is-red33m="true"
       :ease-in="350"
       :ease-out="350"
-      text="Red33m Videos"
+      :text="title"
     />
-    <ToBeDetermined />
-    <page-footer />
-    <!-- <transition name="fade" mode="out-in">
+    <!-- <ToBeDetermined /> -->
+    <!-- <page-footer /> -->
+    <transition name="fade" mode="out-in">
       <ux-preloader v-if="!videos.length" />
       <div v-else-if="!activePage || !activePage.data">
         <ux-video-list
@@ -80,6 +79,6 @@ import ToBeDetermined from '@/components/ToBeDetermined.vue';
         <ux-disqus />
         <page-footer />
       </div>
-    </transition> -->
+    </transition>
   </div>
 </template>
