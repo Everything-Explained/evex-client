@@ -1,6 +1,7 @@
 
 .ux-video {
   position: relative;
+  border-radius: 0 0 0 0.75rem;
   z-index: 1;
   background: linear-gradient(
     90deg,
@@ -21,6 +22,16 @@
     }
   }
 }
+@media only screen and (--small-screen) {
+  .ux-video {
+    border-radius: 0;
+  }
+
+  .ux-video__thumb {
+    border-radius: 0;
+  }
+}
+
 
 .ux-video__thumb-container {
   position: relative;
@@ -41,6 +52,7 @@
   right    : 0;
   bottom   : 0;
   overflow : hidden;
+  border-radius: 0.75rem 0.75rem 0 0;
 
   img {
     position : relative;
