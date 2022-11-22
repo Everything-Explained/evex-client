@@ -3,10 +3,10 @@
   to   { opacity: 0.3; }
 }
 .fade-enter-active {
-  animation: fadeIn 0.4s;
+  animation: fadeIn 0.450s;
 }
 .fade-leave-active {
-  animation: fadeOut 0.4s;
+  animation: fadeOut 0.450s;
 }
 
 @keyframes fadeIn {
