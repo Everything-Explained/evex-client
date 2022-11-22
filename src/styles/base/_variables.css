@@ -82,8 +82,8 @@
   --md-bq-author-c: hsl(47deg 100% 60%);
   --md-bullet-c: var(--md-head-c);
   --md-bullet-hov-c: hsl(47deg 100% 50%);
-  --md-code-c: hsl(197deg 55% 75%);
-  --md-code-bg-c: hsl(190, 12%, 5.5%);
+  --md-code-c: hsl(260deg 100% 85%);
+  --md-code-bg-c: rgba(12, 15, 16, 0.701);
   --md-code-hov-c: hsl(279deg 20% 80%);
   --md-code-bg-hov-c: hsl(278deg 25% 47%);
   --md-img-bxs-c: hsla(0, 0%, 0%, 0.4);
