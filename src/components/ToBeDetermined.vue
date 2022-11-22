@@ -1,11 +1,22 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import PageFooter from './PageFooter.vue';
+import PageTitlebar from './PageTitlebar.vue';
+defineProps({
+  title: { type: String, default: 'Default Text' },
+  red33m: { type: Boolean, default: false },
+});
+</script>
 
 <template>
-  <h1>
-    Content<br />
-    Restructure<br />
-    Underway
-  </h1>
+  <div>
+    <PageTitlebar :is-red33m="red33m" :text="title" />
+    <h1>
+      Content<br />
+      Restructure<br />
+      Underway
+    </h1>
+    <PageFooter />
+  </div>
 </template>
 
 <style scoped>

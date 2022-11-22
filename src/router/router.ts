@@ -2,15 +2,18 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import { isAuthed, isAuthedGuard, isDevelopment } from '@/globals';
 import Home from '@/views/HomePage.vue';
 import httpError404 from '@/views/404Error.vue';
-import R3dVideos from '@/views/Red33mVideos.vue';
+// import R3dVideos from '@/views/Red33mVideos.vue';
 import PublicBlog from '@/views/PublicBlog.vue';
 import Red33mBlog from '@/views/Red33mBlog.vue';
-import Videos from '@/views/LibraryVideos.vue';
+// import Videos from '@/views/LibraryVideos.vue';
 import Literature from '@/views/LibraryLiterature.vue';
 import Red33mLogin from '@/views/Red33mLogin.vue';
 import red33mForm from '@/views/Red33mAccessForm.vue';
 import r3d_litVue from '@/views/Red33mLiterature.vue';
 import changelogVue from '@/views/ChangelogPage.vue';
+import ToBeDetermined from '@/components/ToBeDetermined.vue';
+import TempRed33mVid from '@/views/TempRed33mVid.vue';
+import TempLibVid from '@/views/TempLibVid.vue';
 
 export type StrictRouteName =
   | 'home'
@@ -56,7 +59,7 @@ export const routes: Array<RouteRecordRaw> = [
     // path: '/videos/public/:category?/:id?',
     path: '/videos/public',
     name: 'lib-videos',
-    component: Videos,
+    component: TempLibVid,
     meta: { cat: 'root', title: 'Videos', visible: true, name: 'lib-videos' },
   },
   {
@@ -105,7 +108,7 @@ export const routes: Array<RouteRecordRaw> = [
     // path: '/videos/red33m/:id?',
     path: '/videos/red33m',
     name: 'r3d-videos',
-    component: R3dVideos,
+    component: TempRed33mVid,
     beforeEnter: isAuthedGuard,
     meta: {
       cat: 'RED33M',
