@@ -19,6 +19,7 @@ export function useDynamicPager<T>(
   const route = router.currentRoute;
   const currentURI = computed(() => route.value.params[param]);
   const pageMap = {} as URIMap<T>;
+  const pageTitle = ref('');
   const activePage = ref<DynamicPage<T>>();
 
   watch(() => route.value.params, onRouteChange);
@@ -27,6 +28,7 @@ export function useDynamicPager<T>(
     if (!route.value.path.includes(url)) return;
     if (!params[param]) {
       activePage.value = undefined;
+      pageTitle.value = '';
       return;
     }
     if (currentURI.value) setActivePage();
@@ -52,6 +54,9 @@ export function useDynamicPager<T>(
       router.push('/404');
       return;
     }
+    // We don't want to wait for the active page callback
+    // before setting the page title.
+    pageTitle.value = activePageObj.title;
     if (cb) {
       activePageObj.data = await cb(activePageObj);
     }
@@ -68,5 +73,11 @@ export function useDynamicPager<T>(
     activePage.value = currentPage;
   }
 
-  return { setDynPages, goTo, activePage };
+  return {
+    setDynPages,
+    goTo,
+    activePage,
+    pageTitle,
+    hasURI: computed(() => currentURI.value!!),
+  };
 }

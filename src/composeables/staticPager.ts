@@ -28,15 +28,10 @@ export function useStaticPager<T extends StaticPage>(
   const api = useAPI();
   const pages = dataCache.getArrayData(url);
   const pageContentStore = contentCache.getArrayData('page-content').value;
-  const pageTitle = ref('');
   const error = ref<APIResponse<string> | null>(null);
 
-  const { goTo, setDynPages, activePage } = useDynamicPager<string>(
-    url,
-    'page',
-    useRouter(),
-    getPageContent
-  );
+  const { goTo, setDynPages, activePage, hasURI, pageTitle } =
+    useDynamicPager<string>(url, 'page', useRouter(), getPageContent);
 
   // Only retrieve pages when Cache is empty
   if (pages.value.length) {
@@ -87,6 +82,7 @@ export function useStaticPager<T extends StaticPage>(
     activePage,
     pageTitle,
     error,
+    hasURI,
     isRunning: api.isPending,
   };
 }

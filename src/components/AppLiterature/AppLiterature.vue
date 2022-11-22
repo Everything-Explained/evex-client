@@ -51,8 +51,10 @@ const {
   goTo,
   isRunning,
   error: apiError,
+  hasURI,
+  pageTitle,
 } = useStaticPager<Article>(props.options.uri, cfg.version);
-const titleRef = computed(() => activePage.value?.title || props.options.title);
+const titleRef = computed(() => pageTitle.value || props.options.title);
 const filteredPages = ref<Article[]>([]);
 
 // When filter is disabled, we need to manually set pages
@@ -86,7 +88,7 @@ function onFilter(pages: Article[]) {
         {{ apiError.data }}<br />
         Try again later...
       </page-error>
-      <div v-else-if="!activePage" class="lit-cards__container">
+      <div v-else-if="!activePage && !hasURI" class="lit-cards__container">
         <ux-filter
           v-if="cfg.showFilter"
           :id="cfg.uri"
