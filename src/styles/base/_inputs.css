@@ -3,7 +3,7 @@
 textarea {
     position          : relative;
     display           : block;
-    background-color  : var(--body-bg-c);
+    background-color  : hsla(var(--u-body-bg-c), 0.7);
     font-family       : "Verdana";
     border            : none;
     color             : var(--input-c);
