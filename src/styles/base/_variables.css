@@ -155,7 +155,7 @@
   --button-dangerous-loading-bxs-c : var(--button-dangerous-bxs-hov-c);
   --button-dangerous-loading-lgr-c : var(--app-ribbon-c);
 
-  --input-label-c: hsl(197deg 11% 65%);
+  --input-label-c: hsl(197deg 13% 90%);
   --input-focus-c: hsl(161deg 45% 65%);
   --input-focus-label-c : var(--input-label-c);
   --input-placeholder-c : hsl(197deg 11% 27%);
@@ -163,8 +163,8 @@
   --input-bar-c: hsl(197deg 11% 33%);
   --input-bar-valid-c: hsl(161deg 50% 45%);
   --input-valid-c: hsl(161deg 35% 45%);
-  --input-metadata-c: hsl(197deg 11% 40%);
-  --input-metadata-em-c : hsl(47deg 80% 60%);
+  --input-metadata-c: hsl(30deg 50% 50%);
+  --input-metadata-em-c : hsl(50deg 100% 60%);
 
 
   --menu-bg-c: hsla(197, 12%, 8%, 0.85);
