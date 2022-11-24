@@ -29,10 +29,10 @@
     position: absolute;
     border-radius: 0 0 0 1rem;
     background: linear-gradient(90deg, #000 30%, #000 80%, var(--body-bg-c));
-    bottom: -0.3rem;
+    bottom: -0.2rem;
     content: '';
     filter: blur(0.25rem);
-    height: 0.2rem;
+    height: 0.13rem;
     width: 100%;
     z-index: -1;
   }
