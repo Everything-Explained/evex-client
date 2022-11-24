@@ -48,6 +48,7 @@ function submit(e: MouseEvent) {
     <page-titlebar
       :ease-in="350"
       :ease-out="350"
+      :is-red33m="true"
       :class="['red-login__titlebar', { '--logged-in': loginSuccess }]"
       :text="loginSuccess ? 'RED33M Access Granted!' : 'RED33M Login'"
     />
