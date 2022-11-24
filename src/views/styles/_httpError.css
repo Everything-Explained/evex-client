@@ -12,7 +12,8 @@
 
 .http-error__disclaimer,
 .http-error__fail-color {
-  color : hsl(324, 100%, 75%);
+  color : hsl(284, 100%, 66%);
+  font-weight: bold;
 }
 .http-error__info-color {
   color : hsl(126, 70%, 70%);
