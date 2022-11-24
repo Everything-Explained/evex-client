@@ -8,6 +8,7 @@ textarea {
     border            : none;
     color             : var(--input-c);
     transition        : border 0.3s;
+    transform: translateZ(0);
     -webkit-transform : translateZ(0);
 }
 
