@@ -8,12 +8,13 @@ import Red33mBlog from '@/views/Red33mBlog.vue';
 // import Videos from '@/views/LibraryVideos.vue';
 import Literature from '@/views/LibraryLiterature.vue';
 import Red33mLogin from '@/views/Red33mLogin.vue';
-import red33mForm from '@/views/Red33mAccessForm.vue';
 import r3d_litVue from '@/views/Red33mLiterature.vue';
 import changelogVue from '@/views/ChangelogPage.vue';
 import ToBeDetermined from '@/components/ToBeDetermined.vue';
 import TempRed33mVid from '@/views/TempRed33mVid.vue';
 import TempLibVid from '@/views/TempLibVid.vue';
+// import Red33mAccessForm from '@/views/Red33mAccessForm.vue';
+import TempAccessForm from '@/views/TempAccessForm.vue'
 
 export type StrictRouteName =
   | 'home'
@@ -132,7 +133,7 @@ export const routes: Array<RouteRecordRaw> = [
   {
     path: '/red33m/form',
     name: 'r3d-form',
-    component: red33mForm,
+    component: TempAccessForm,
     meta: {
       cat: 'Accessory',
       catVisible: isDevelopment,
