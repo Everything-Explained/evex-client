@@ -102,7 +102,7 @@ function useCustomScrollPos() {
 
     // Sub-pages and un-managed pages
     if (currentRoute.includes(`${currentRoute}/`) || !currentPage) {
-      setScrollTop(0);
+      scrollToTitlebar();
     } else {
       setScrollTop(currentPage.scrollPos.value);
     }
@@ -110,6 +110,15 @@ function useCustomScrollPos() {
 
   function findManagedPage(url: string) {
     return managedPages.find((page) => page.url.includes(url));
+  }
+
+  function scrollToTitlebar() {
+    const ribbonHeight = 3;
+    const headerHeight = document.getElementById('AppHeader')!.clientHeight;
+    const toastBuffer = document.getElementById('ToastBuffer');
+    setScrollTop(
+      ribbonHeight + headerHeight + (toastBuffer ? toastBuffer.clientHeight : 0)
+    );
   }
 
   function setScrollTop(top: number) {
@@ -141,7 +150,10 @@ function useCustomScrollPos() {
 <template>
   <div id="App" class="app__container">
     <div class="app__ribbon" />
-    <div :class="['app__toast-buffer', { '--show': !isToastClosed }]" />
+    <div
+      id="ToastBuffer"
+      :class="['app__toast-buffer', { '--show': !isToastClosed }]"
+    />
     <div
       :class="['app__toast', { '--show': isToastVisible }]"
       @click="openChangeLog"
