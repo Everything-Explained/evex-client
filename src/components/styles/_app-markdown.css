@@ -39,8 +39,6 @@
     display                 : block;
     padding                 : 3px 0;
     line-height             : clamp(1.375rem, 5vw, 1.75rem);
-    border-top-right-radius : 6.5px;
-    border-top-left-radius  : 3.5px;
     transition              : background var(--md-trans-speed),
                               color var(--md-trans-speed);
   }
