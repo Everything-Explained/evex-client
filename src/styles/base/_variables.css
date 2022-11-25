@@ -50,7 +50,7 @@
   --u-body-bg-c: 197, 13%, 7.5%;
   --body-c: hsl(197deg 12% 80%);
   --body-dark-c: hsl(197deg 12% 65%);
-  --selection-bg-c: hsla(0deg 60% 30% / 0.993);
+  --selection-bg-c: hsl(0deg 60% 30%);
   --scrollbar-c: var(--panel-c);
   --scrollbar-hov-c: hsl(197deg 9% 43%);
   --scrollbar-track-c: hsl(0deg 0% 0%);
