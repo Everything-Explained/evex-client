@@ -4,7 +4,7 @@
   position     : relative;
   margin       : 2rem auto 0 auto;
   padding-left : 2.3rem;
-  width        : 100%;
+  width        : 97%;
   color        : hsl(50, 100%, 60%);
 
   &:first-child { margin-top: 2rem; }
@@ -15,7 +15,7 @@
   margin        : 0 auto;
   margin-bottom : 1.5rem;
   z-index       : 1;
-  width         : 100% !important;
+  width         : 97% !important;
   text-align    : left !important;
   border-radius: 1rem 2rem 2rem 1rem;
   background: linear-gradient(
@@ -49,3 +49,13 @@
     margin-top: 0;
   }
 }
+
+/*** 570px ***/
+@media only screen and (--medium-screen) {
+  .vw-chglog {
+    & blockquote, & h1 {
+      width: 100% !important;
+    }
+  }
+}
+
