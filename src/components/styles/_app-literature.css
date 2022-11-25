@@ -65,8 +65,8 @@
     background: hsl(197, 13%, 15%);
     background: linear-gradient(
       90deg,
-      hsla(197 13% 23% / 0.65) 0%,
-      hsla(197 13% 23% / 0.65) 20%,
+      hsla(197 13% 27% / 0.55) 0%,
+      hsla(197 13% 27% / 0.55) 20%,
       hsl(197 13% 7.5% / 0.7)
     );
     text-shadow      :

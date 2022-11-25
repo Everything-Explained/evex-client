@@ -46,8 +46,8 @@
     background: linear-gradient(
                   90deg,
                   hsla(var(--u-body-bg-c), 0.65) 0%,
-                  hsla(197, 12%, 16%, 0.65) 20%,
-                  hsla(197, 12%, 16%, 0.65) 80%,
+                  hsla(197, 12%, 18%, 0.55) 20%,
+                  hsla(197, 12%, 18%, 0.55) 80%,
                   hsla(var(--u-body-bg-c), 0.65) 100%
     );
     & + p {
