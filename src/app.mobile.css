@@ -1,9 +1,6 @@
 
 /*** 768px ***/
 @media only screen and (--large-screen) {
-  .app__ribbon { margin-right: 0; }
-  .app__header { margin-right: 0; }
-  .app__body   { margin-right: 0; }
   .--default-scrollbar,
   .--subtle-scrollbar {
     scrollbar-width: 0;

@@ -106,7 +106,7 @@ main::before {
 .app__body {
   position: relative;
   flex   : 1;
-  margin : 0 5px 0 0; }
+  margin : 0 0 0 0; }
   .app__body  .content {
     transition: opacity 0.3s; }
     .app__body .content.--menu-open {
