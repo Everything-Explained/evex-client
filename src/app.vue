@@ -128,9 +128,9 @@ function useCustomScrollPos() {
       const behavior = window.scrollY - top > maxTravel ? 'auto' : 'smooth';
       window.scrollTo({ top, behavior });
       // DO NOT LOWER this delay
-      // Red33m video list requires this delay in order to scroll
-      // back to where a user left off in the video list.
-    }, 450);
+      // Unless you also adjust the page transition speed as well
+      // TODO: grab delay from CSS variable
+    }, 350);
   }
 
   /**

@@ -78,8 +78,8 @@ function onFilter(pages: Article[]) {
   <div class="lit">
     <page-titlebar
       :is-red33m="options.isRed33m"
-      :ease-in="350"
-      :ease-out="350"
+      :ease-in="300"
+      :ease-out="300"
       :text="titleRef"
     />
     <transition name="fade" mode="out-in">
