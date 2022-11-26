@@ -124,7 +124,8 @@ function useCustomScrollPos() {
   function setScrollTop(top: number) {
     // Wait for transition to complete before scrolling
     setTimeout(() => {
-      const behavior = window.scrollY - top > 1200 ? 'auto' : 'smooth';
+      const maxTravel = window.innerHeight * 1.5;
+      const behavior = window.scrollY - top > maxTravel ? 'auto' : 'smooth';
       window.scrollTo({ top, behavior });
       // DO NOT LOWER this delay
       // Red33m video list requires this delay in order to scroll
