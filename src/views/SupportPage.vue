@@ -172,8 +172,13 @@ function submitted() {
       </div>
       <div v-else>
         <ux-text custom-class="support__submitted-text" type="block">
-          Thank you for your interest in our content! Our team will try to get
-          back to you <strong>within 7 days</strong> for our response.
+          <i>Thank you for your interest in our content!</i>
+          <br />
+          <br />
+          Our team will try to get back to you
+          <strong>within 7 days</strong> for our response. If you don't receive
+          a message from us within that alloted time, don't worry, it just means
+          we have a larger backlog than expected.
         </ux-text>
         <page-footer />
       </div>
