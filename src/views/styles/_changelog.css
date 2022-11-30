@@ -27,7 +27,7 @@
   &::before {
     position: absolute;
     border-radius: 0 0 0 1rem;
-    background: linear-gradient(90deg, #000 0%, #000 80%, var(--body-bg-c));
+    background: linear-gradient(90deg, var(--body-bg-c) 0%, #000 5%, #000 80%, var(--body-bg-c));
     bottom: -0.2rem;
     content: '';
     filter: blur(0.25rem);
