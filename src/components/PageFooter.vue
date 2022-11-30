@@ -5,6 +5,7 @@ import UxEmail from './UxEmail.vue';
 <template>
   <footer ref="footRef" class="pg-footer">
     <span class="pg-footer__version">
+      <sub>v</sub>
       α<sup
         >6<sub
           ><router-link :to="'/changelog/a6--vision'">vision</router-link></sub
@@ -23,7 +24,7 @@ import UxEmail from './UxEmail.vue';
       </sup>
     </span>
     <span class="pg-footer__copyright">
-      <span>Copyright &#169; 2020 - 2021</span><br />
+      <span>Copyright &#169; 2020 - 2022</span><br />
       <span>Everything Explained, Some Rights Reserved</span> <br />
       <a
         rel="license"
