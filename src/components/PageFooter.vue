@@ -5,7 +5,6 @@ import UxEmail from './UxEmail.vue';
 <template>
   <footer ref="footRef" class="pg-footer">
     <span class="pg-footer__version">
-      <sub>v</sub>
       α<sup
         >6<sub
           ><router-link :to="'/changelog/a6--vision'">vision</router-link></sub
