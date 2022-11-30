@@ -12,6 +12,7 @@
 
 .qnaf__q-block {
   margin-top: 2rem;
+  padding-left: 1.5rem;
   &:nth-child(odd) { margin-top: 1rem; }
  }
 
@@ -23,7 +24,7 @@
   &::before {
     position    : absolute;
     top         : -0.03rem;
-    margin-left : -1.5rem;
+    margin-left : -2.5rem;
     content     : attr(data-num);
     font-weight : 400;
     font-size   : 1.3rem;

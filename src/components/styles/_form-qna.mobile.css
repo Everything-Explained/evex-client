@@ -15,6 +15,6 @@
   .qnaf__form            { width: 95%; }
   .qnaf__q-container     { padding-left: 0.8rem; }
   .qnaf__q               { font-size: 1.1rem; }
-  .qnaf__q::before       { font-size: 1.1rem; margin-left: -1.2rem; }
+  // .qnaf__q::before       { font-size: 1.1rem; margin-left: -1.2rem; }
   .qnaf__subtext         { font-size: 1rem; }
 }
