@@ -7,42 +7,6 @@ import UxButton from '@/components/UxButton.vue';
 import UxText from '@/components/UxText.vue';
 import UxEmbeddedVideo from '@/components/UxEmbeddedVideo.vue';
 
-const risks = [
-  ' It can be especially toxic for those pursuing Enlightenment.',
-  ` It can be exceedingly difficult to understand even for those who have undergone
-high-level Awakenings. It’s <strong>guaranteed</strong> to be misunderstood and mis-contextualized
-by anyone who doesn’t at least have a conceptual understanding of Enlightenment.
-Understanding Enlightenment is a pre-requisite.
-`,
-
-  ` The content is <em>overtly illogical & contradictory</em>. Distributing logically-dissonant information
-like this puts the distributor in an unbalanced and potentially dangerous position
-of power that must be accounted for responsibly.
-`,
-
-  ` The topics discussed are <strong>unverifiable</strong> even through spiritual methods, let alone scientific
-evidence. This makes the distributor similar to an unquestionable religious authority and they
-<em>absolutely will not</em> supplant themselves in such a position publicly.
-`,
-
-  ` Before going unlisted, this content had about 30 initial subscribers and two of them openly contemplated
-suicide. <strong>1 in 15 is too irresponsible a risk</strong>.
-`,
-
-  ` This content can solicit <em>deep existential crises</em> but those weren’t the reasons for suicidal
-thoughts; it provides very compelling information about the hereafter, which can make some people desire
-to go there as soon as possible, while seeing very little reason to stay.
-`,
-
-  ` You may have a more difficult time finding purpose in life after viewing this material. For some,
-the content has left them feeling adrift while for others, it’s been credited as having
-“saved their lives.” This content is very extreme in that manner; it either greatly helps or hurts.
-`,
-
-  ` We feel that we should only choose to distribute this content to those who will find priceless value
-in it so as to not bring anyone harm.
-`,
-];
 const questions = [
   {
     text: 'What is your definition of Enlightenment (what does it mean to be Enlightened)?',
@@ -66,6 +30,36 @@ const questions = [
   {
     text: 'Do you think that egoic desires can be good or are they problematic by nature? Does \
            the ego provide any beneficial functions or is it inherently-destructive?',
+  },
+  {
+    text: 'Do you have a deep sense of life purpose? Are you set on a path or career that you’re \
+           passionate about?',
+  },
+  {
+    text: 'Do you have any specific altruistic tendencies that frequently crop up in your life? \
+           (for nonnative speakers, “altruistic” means selfless or focused on caring for others \
+           besides just yourself)',
+  },
+  {
+    text: 'Is your career-orientation aimed more towards finding a job or purpose you enjoy as an \
+           end in of itself? Or is it aimed at finding a career that’ll afford you the ability \
+           to spend time on the activities you enjoy?',
+  },
+  {
+    text: 'What’s your view on the intellect?',
+  },
+  {
+    text: 'What areas of study interest you the most? (e.g. physics, neuroscience, philosophy, \
+          psychology, math, religion etc.) Why do those specific subjects capture your interest?',
+  },
+  {
+    text: 'How do you normally engage people in discussions around your topic(s) of interest? If \
+           there’s a disagreement, do you attempt to reach a middle ground or to stand your ground? \
+           Can you ever think of situations in which the opposite to your approach is best? \
+           (stand-ground instead of middle-ground or vice versa)',
+  },
+  {
+    text: 'Does deep contemplation excite you?',
   },
 ] as FormQuestion[];
 const aptitudes = [
