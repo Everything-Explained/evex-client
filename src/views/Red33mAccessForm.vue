@@ -116,7 +116,7 @@ function setState(name: keyof typeof formState, val: boolean) {
           </ux-text>
           <br>
           <div class="red-form__yt-container">
-            <ux-embedded-video id="qskMClpUmvk" api="youtube" />
+            <ux-embedded-video id="0SU7HTREi-4" api="youtube" />
           </div>
           <br>
           <ux-text custom-class="red-form__begin-text" type="block">

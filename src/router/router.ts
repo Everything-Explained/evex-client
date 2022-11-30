@@ -13,7 +13,7 @@ import changelogVue from '@/views/ChangelogPage.vue';
 // import ToBeDetermined from '@/components/ToBeDetermined.vue';
 import TempRed33mVid from '@/views/TempRed33mVid.vue';
 import TempLibVid from '@/views/TempLibVid.vue';
-// import Red33mAccessForm from '@/views/Red33mAccessForm.vue';
+import Red33mAccessForm from '@/views/Red33mAccessForm.vue';
 import TempAccessForm from '@/views/TempAccessForm.vue';
 import TempRed33mLit from '@/views/TempRed33mLit.vue';
 
@@ -134,7 +134,7 @@ export const routes: Array<RouteRecordRaw> = [
   {
     path: '/red33m/form',
     name: 'r3d-form',
-    component: TempAccessForm,
+    component: Red33mAccessForm,
     meta: {
       cat: 'Accessory',
       catVisible: isDevelopment,
