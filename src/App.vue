@@ -10,7 +10,7 @@ import { useDataCache } from './state/cache-state';
 type ManagedPages = Array<{ scrollPos: Ref<number>; url: string }>;
 
 const { isToastVisible, isToastClosed, closeToast, openChangeLog } =
-  useVersionToast('2022-06-10T19:48:28.467Z', 'a5--discovery');
+  useVersionToast('2022-11-30T16:19:45.193Z', 'a6--vision');
 
 useCustomScrollPos();
 
