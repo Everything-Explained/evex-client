@@ -6,7 +6,7 @@ import httpError404 from '@/views/404Error.vue';
 import PublicBlog from '@/views/PublicBlog.vue';
 import Red33mBlog from '@/views/Red33mBlog.vue';
 // import Videos from '@/views/LibraryVideos.vue';
-import Literature from '@/views/LibraryLiterature.vue';
+// import Literature from '@/views/LibraryLiterature.vue';
 import Red33mLogin from '@/views/Red33mLogin.vue';
 import changelogVue from '@/views/ChangelogPage.vue';
 // import ToBeDetermined from '@/components/ToBeDetermined.vue';
@@ -14,6 +14,7 @@ import TempRed33mVid from '@/views/TempRed33mVid.vue';
 import TempLibVid from '@/views/TempLibVid.vue';
 import Red33mAccessForm from '@/views/Red33mAccessForm.vue';
 import Red33mLiterature from '@/views/Red33mLiterature.vue';
+import TempPublicLit from '@/views/TempPublicLit.vue';
 
 export type StrictRouteName =
   | 'home'
@@ -65,7 +66,7 @@ export const routes: Array<RouteRecordRaw> = [
   {
     path: '/literature/public/:page?',
     name: 'lib-lit',
-    component: Literature,
+    component: TempPublicLit,
     meta: { cat: 'root', title: 'Literature', visible: true, name: 'lib-lit' },
   },
   {
