@@ -1,6 +1,6 @@
 {
-  "name": "web_client",
-  "version": "0.0.0",
+  "name": "evex-client",
+  "version": "6.0.0",
   "scripts": {
     "dev": "vite --host --port 3000",
     "preview": "vite preview --port 3000",
