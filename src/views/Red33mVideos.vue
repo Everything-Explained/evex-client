@@ -30,7 +30,7 @@ const { setDynPages, goTo, activePage } = useDynamicPager<Video>(
   useRouter()
 );
 
-const title = computed(() => activePage.value?.data?.title || 'Red33m Videos');
+const title = computed(() => activePage.value?.data?.title || 'RED33M Videos');
 
 createVideoPages();
 
