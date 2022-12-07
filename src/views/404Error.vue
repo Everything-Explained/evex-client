@@ -1,13 +1,7 @@
-
-
-<script lang='ts' setup>
+<script lang="ts" setup>
 import PageTitlebar from '@/components/PageTitlebar.vue';
 import PageFooter from '@/components/PageFooter.vue';
 </script>
-
-
-
-
 
 <template>
   <div class="http-error__container">
@@ -19,10 +13,3 @@ import PageFooter from '@/components/PageFooter.vue';
     <page-footer />
   </div>
 </template>
-
-
-
-
-
-
-

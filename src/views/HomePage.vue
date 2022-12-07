@@ -11,15 +11,10 @@
   </div>
 </template>
 
-
-
-
-
-
-<script lang='ts' setup>
+<script lang="ts" setup>
 import PageTitlebar from '@/components/PageTitlebar.vue';
-import PageFooter   from '@/components/PageFooter.vue';
-import RenderHtml   from '@/components/RenderHtml.vue';
+import PageFooter from '@/components/PageFooter.vue';
+import RenderHtml from '@/components/RenderHtml.vue';
 import { useAPI } from '@/services/api_internal';
 import { ref } from 'vue';
 import UxPreloader from '@/components/UxPreloader.vue';
@@ -32,16 +27,17 @@ const pageContent = ref('');
 
 if (homePageCache.value) {
   pageContent.value = homePageCache.value;
-}
-else {
+} else {
   api
-    .get<any>('/data/standalone/home.json', null, api.state.versions?.home.v, 'static')
-    .then(res => {
+    .get<any>(
+      '/data/standalone/home.json',
+      null,
+      api.state.versions?.home.v,
+      'static'
+    )
+    .then((res) => {
       cache.setData('home-page', res.data.content);
       pageContent.value = res.data.content;
     });
 }
-
 </script>
-
-
