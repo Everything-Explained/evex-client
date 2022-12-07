@@ -13,15 +13,20 @@ import { useRouter } from 'vue-router';
 import UxDisqus from '@/components/UxDisqus.vue';
 import UxText from '@/components/UxText.vue';
 import UxYoutubeVideo from '@/components/UxYoutubeVideo.vue';
+import { useAPI } from '@/services/api_internal';
 
 type VideoCategory = { name: string; desc: string; videos: Video[] };
 
 const router = useRouter();
+const version = useAPI().state.versions?.libVid.v;
+if (!version) {
+  throw Error('Missing public video API version');
+}
 const {
   videos: categories,
   isPending,
   isCached,
-} = useVideos<VideoCategory>('/data/videos/public');
+} = useVideos<VideoCategory>('/data/videos/public', version);
 
 const {
   setDynPages: setDynCategories,

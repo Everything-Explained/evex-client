@@ -12,10 +12,17 @@ import UxPreloader from '@/components/UxPreloader.vue';
 import UxYoutubeVideo from '@/components/UxYoutubeVideo.vue';
 import UxVideoList from '@/components/UxVideoList.vue';
 import { useRouter } from 'vue-router';
+import { useAPI } from '@/services/api_internal';
 
 const uri: DataCacheArrayKeys = 'videos/red33m';
-
-const { isPending, videos, isCached } = useVideos<Video>(`/data/${uri}`);
+const version = useAPI().state.versions?.r3dVid.v;
+if (!version) {
+  throw Error('Missing RED33M video API version');
+}
+const { isPending, videos, isCached } = useVideos<Video>(
+  `/data/${uri}`,
+  version!
+);
 
 const { setDynPages, goTo, activePage } = useDynamicPager<Video>(
   'videos/red33m',
