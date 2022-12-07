@@ -79,9 +79,9 @@
   padding-right: 5px;
   margin-left: clamp(2.575rem, 8vw, 3.3rem);
   text-align: center;
-  text-shadow: 3px 3px 0 black,
-                2px  0  0 black,
-                0   3px 0 black;
+  text-shadow: 3px 3px 1px black,
+                2px  0  1px black,
+                0   3px 1px black;
   overflow: hidden;
   &.red33m {
     color: hsl(47, 100%, 67%);
