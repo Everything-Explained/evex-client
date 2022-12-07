@@ -2,14 +2,13 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import { isAuthed, isAuthedGuard, isDevelopment } from '@/globals';
 import Home from '@/views/HomePage.vue';
 import httpError404 from '@/views/404Error.vue';
-// import R3dVideos from '@/views/Red33mVideos.vue';
+import R3dVideos from '@/views/Red33mVideos.vue';
 import PublicBlog from '@/views/PublicBlog.vue';
 import Red33mBlog from '@/views/Red33mBlog.vue';
 // import Videos from '@/views/LibraryVideos.vue';
 import Literature from '@/views/LibraryLiterature.vue';
 import Red33mLogin from '@/views/Red33mLogin.vue';
 import changelogVue from '@/views/ChangelogPage.vue';
-import TempRed33mVid from '@/views/TempRed33mVid.vue';
 import TempLibVid from '@/views/TempLibVid.vue';
 import Red33mAccessForm from '@/views/Red33mAccessForm.vue';
 import Red33mLiterature from '@/views/Red33mLiterature.vue';
@@ -104,10 +103,9 @@ export const routes: Array<RouteRecordRaw> = [
     },
   },
   {
-    // path: '/videos/red33m/:id?',
-    path: '/videos/red33m',
+    path: '/videos/red33m/:id?',
     name: 'r3d-videos',
-    component: TempRed33mVid,
+    component: R3dVideos,
     beforeEnter: isAuthedGuard,
     meta: {
       cat: 'RED33M',
