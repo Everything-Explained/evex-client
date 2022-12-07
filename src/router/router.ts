@@ -6,7 +6,7 @@ import R3dVideos from '@/views/Red33mVideos.vue';
 import PublicBlog from '@/views/PublicBlog.vue';
 import Red33mBlog from '@/views/Red33mBlog.vue';
 // import Videos from '@/views/LibraryVideos.vue';
-import Literature from '@/views/LibraryLiterature.vue';
+import Literature from '@/views/PublicLiterature.vue';
 import Red33mLogin from '@/views/Red33mLogin.vue';
 import changelogVue from '@/views/ChangelogPage.vue';
 import TempLibVid from '@/views/TempLibVid.vue';
