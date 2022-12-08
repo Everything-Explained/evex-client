@@ -4,7 +4,7 @@ import { StaticPage, useStaticPager } from '@/composeables/staticPager';
 import { DataCacheArrayKeys } from '@/state/cache-state';
 import PageTitlebar from '@/components/PageTitlebar.vue';
 import PageFooter from '../PageFooter.vue';
-import RenderHtml from '../RenderMDHTML.vue';
+import RenderMdhtml from '../RenderMDHTML.vue';
 import UxFilter from '@/components/ux/UxFilter.vue';
 import UxPreloader from '@/components/ux/UxPreloader.vue';
 import AppMarkdown from '../AppMarkdown.vue';
@@ -105,7 +105,7 @@ function onFilter(pages: Article[]) {
         <page-footer />
       </div>
       <div v-else-if="activePage">
-        <render-html v-if="cfg.useCustomRenderer" :html="activePage.data!" />
+        <render-mdhtml v-if="cfg.useCustomRenderer" :html="activePage.data!" />
         <app-markdown
           v-else
           :simple="false"
