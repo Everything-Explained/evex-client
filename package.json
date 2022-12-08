@@ -7,15 +7,12 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
-    "vue": "^3.2.44",
-    "vue-router": "^4.1.5",
+    "vue": "^3.2.45",
+    "vue-router": "^4.1.6",
     "wretch": "^2.1.1"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.4",
-    "@types/gulp": "^4.0.9",
-    "@types/gulp-gzip": "0.0.31",
-    "@types/gulp-rename": "^2.0.1",
     "@types/node": "^16.11.56",
     "@typescript-eslint/parser": "^5.37.0",
     "@vitejs/plugin-vue": "^3.0.3",
@@ -27,14 +24,8 @@
     "axios": "^0.21.1",
     "cssnano": "^5.0.8",
     "cssnano-preset-advanced": "^5.1.4",
-    "del": "^6.0.0",
     "eslint": "^8.22.0",
     "eslint-plugin-vue": "^9.3.0",
-    "gulp": "^4.0.2",
-    "gulp-gzip": "^1.4.2",
-    "gulp-rename": "^2.0.0",
-    "msw": "^0.28.2",
-    "npm-run-all": "^4.1.5",
     "postcss": "^8.4.14",
     "postcss-css-variables": "^0.18.0",
     "postcss-custom-media": "^8.0.0",
