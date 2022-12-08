@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import AppMarkdown from './AppMarkdown.vue';
+import AppMarkdown from '@/components/AppMarkdown.vue';
 
 const props = defineProps({
   type: { type: String, default: 'text' },

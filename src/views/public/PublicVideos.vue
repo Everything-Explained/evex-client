@@ -7,12 +7,12 @@ import { isEthan } from '@/composeables/globals';
 import { Video } from '@/typings/global-types';
 import PageTitlebar from '@/components/PageTitlebar.vue';
 import PageFooter from '@/components/PageFooter.vue';
-import UxPreloader from '@/components/UxPreloader.vue';
-import UxVideoList from '@/components/UxVideoList.vue';
+import UxPreloader from '@/components/ux/UxPreloader.vue';
+import UxVideoList from '@/components/ux/UxVideoList.vue';
 import { useRouter } from 'vue-router';
-import UxDisqus from '@/components/UxDisqus.vue';
-import UxText from '@/components/UxText.vue';
-import UxYoutubeVideo from '@/components/UxYoutubeVideo.vue';
+import UxDisqus from '@/components/ux/UxDisqus.vue';
+import UxText from '@/components/ux/UxText.vue';
+import UxYoutubeVideo from '@/components/ux/UxYoutubeVideo.vue';
 import { useAPI } from '@/services/api_internal';
 
 type VideoCategory = { name: string; desc: string; videos: Video[] };

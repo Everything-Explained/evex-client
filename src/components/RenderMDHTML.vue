@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { PropType } from 'vue';
-import UxImg from './UxImg.vue';
+import UxImg from './ux/UxImg.vue';
 import AppMarkdown from './AppMarkdown.vue';
 import { useHTMLNodeParser } from '@/composeables/htmlNodeParser';
-import UxEmbeddedVideo from './UxEmbeddedVideo.vue';
+import UxEmbeddedVideo from './ux/UxEmbeddedVideo.vue';
 
 const props = defineProps({
   html: { type: String as PropType<string>, required: true },

@@ -3,10 +3,10 @@ import { PropType, reactive } from 'vue';
 import useInputValidation from '@/composeables/inputValidation';
 import { useAPI } from '@/services/api_internal';
 import { useDataCache } from '@/state/cache-state';
-import UxButton from './UxButton.vue';
+import UxButton from './ux/UxButton.vue';
 import FormError from './FormError.vue';
-import UxInput from './UxInput.vue';
-import UxText from './UxText.vue';
+import UxInput from './ux/UxInput.vue';
+import UxText from './ux/UxText.vue';
 
 export type FormQuestion = { text: string; subtext?: string; answer?: string };
 

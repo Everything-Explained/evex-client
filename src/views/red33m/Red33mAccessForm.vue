@@ -3,9 +3,9 @@ import { computed, reactive } from 'vue';
 import PageTitlebar from '@/components/PageTitlebar.vue';
 import PageFooter from '@/components/PageFooter.vue';
 import FormQna, { FormQuestion } from '@/components/FormQnA.vue';
-import UxButton from '@/components/UxButton.vue';
-import UxText from '@/components/UxText.vue';
-import UxEmbeddedVideo from '@/components/UxEmbeddedVideo.vue';
+import UxButton from '@/components/ux/UxButton.vue';
+import UxText from '@/components/ux/UxText.vue';
+import UxEmbeddedVideo from '@/components/ux/UxEmbeddedVideo.vue';
 
 const questions = [
   {

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import UxEmail from './UxEmail.vue';
+import UxEmail from './ux/UxEmail.vue';
 </script>
 
 <template>

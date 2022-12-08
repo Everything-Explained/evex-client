@@ -4,7 +4,7 @@ import { useRoute, useRouter } from 'vue-router';
 import { useDate } from './composeables/date';
 import { ISODateString } from './typings/global-types';
 import AppMenu from '@/components/AppMenu.vue';
-import UxIcon from './components/UxIcon.vue';
+import UxIcon from './components/ux/UxIcon.vue';
 import { useDataCache } from './state/cache-state';
 
 type ManagedPages = Array<{ scrollPos: Ref<number>; url: string }>;

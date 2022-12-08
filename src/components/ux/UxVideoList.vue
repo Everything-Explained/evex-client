@@ -3,8 +3,8 @@ import { onUnmounted, ref } from 'vue';
 import { useVideoPagination } from '@/composeables/videoPagination';
 import { Video } from '@/typings/global-types';
 import { PropType } from 'vue';
-import UxVideo from './UxVideo.vue';
-import UxFilter from './UxFilter.vue';
+import UxVideo from '@/components/ux/UxVideo.vue';
+import UxFilter from '@/components/ux/UxFilter.vue';
 import { isMobile } from '@/globals';
 import { useDataCache } from '@/state/cache-state';
 

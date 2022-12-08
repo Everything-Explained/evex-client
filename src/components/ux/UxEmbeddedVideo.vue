@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, PropType, ref } from 'vue';
-import UxPreloader from './UxPreloader.vue';
+import UxPreloader from '@/components/ux/UxPreloader.vue';
 
 const props = defineProps({
   id: { type: String as PropType<string>, required: true },

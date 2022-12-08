@@ -2,9 +2,8 @@
 import { computed, toRefs } from 'vue';
 import { useDate } from '@/composeables/date';
 import { isEthan } from '@/composeables/globals';
-import UxIcon from '@/components/UxIcon.vue';
-import UxImg from './UxImg.vue';
-import UxBullet from './UxBullet.vue';
+import UxIcon from '@/components/ux/UxIcon.vue';
+import UxImg from '@/components/ux/UxImg.vue';
 
 const props = defineProps({
   summary: { type: String, default: '' },

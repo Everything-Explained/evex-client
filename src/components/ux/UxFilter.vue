@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { PropType, ref } from 'vue';
-import UxCheckbox from './UxCheckbox.vue';
-import UxIcon from './UxIcon.vue';
-import UxToggle from './UxToggle.vue';
+import UxCheckbox from '@/components/ux/UxCheckbox.vue';
+import UxIcon from '@/components/ux/UxIcon.vue';
+import UxToggle from '@/components/ux/UxToggle.vue';
 import { useDataCache } from '@/state/cache-state';
 
 export interface FilterCacheData {

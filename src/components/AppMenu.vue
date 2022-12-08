@@ -3,7 +3,7 @@ import { onMounted, ref, watch } from 'vue';
 import { useDataCache } from '@/state/cache-state';
 import { useRouteMap } from '@/composeables/routeMap';
 import { useEventBus } from '@/state/event-bus';
-import UxIcon from '@/components/UxIcon.vue';
+import UxIcon from '@/components/ux/UxIcon.vue';
 
 interface ExternalElements {
   main: HTMLElement;

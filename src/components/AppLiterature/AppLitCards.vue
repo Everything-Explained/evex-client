@@ -2,7 +2,7 @@
 import { PropType } from 'vue';
 import { useDate } from '@/composeables/date';
 import { isEthan } from '@/composeables/globals';
-import UxIcon from '../UxIcon.vue';
+import UxIcon from '@/components/ux/UxIcon.vue';
 
 interface LitCard {
   title: string;

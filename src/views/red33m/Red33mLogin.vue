@@ -5,9 +5,9 @@ import useInputValidation from '@/composeables/inputValidation';
 import PageTitlebar from '@/components/PageTitlebar.vue';
 import PageFooter from '@/components/PageFooter.vue';
 import FormError from '@/components/FormError.vue';
-import UxButton from '@/components/UxButton.vue';
-import UxInput from '@/components/UxInput.vue';
-import UxText from '@/components/UxText.vue';
+import UxButton from '@/components/ux/UxButton.vue';
+import UxInput from '@/components/ux/UxInput.vue';
+import UxText from '@/components/ux/UxText.vue';
 import { useEventBus } from '@/state/event-bus';
 
 const api = useAPI();

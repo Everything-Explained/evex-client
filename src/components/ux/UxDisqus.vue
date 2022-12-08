@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { onUnmounted, ref } from 'vue';
-import UxButton from './UxButton.vue';
+import UxButton from '@/components/ux/UxButton.vue';
 
 const doc = document;
 const disqusContainer = ref<HTMLElement>();

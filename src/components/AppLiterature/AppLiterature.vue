@@ -4,13 +4,13 @@ import { StaticPage, useStaticPager } from '@/composeables/staticPager';
 import { DataCacheArrayKeys } from '@/state/cache-state';
 import PageTitlebar from '@/components/PageTitlebar.vue';
 import PageFooter from '../PageFooter.vue';
-import RenderHtml from '../RenderHtml.vue';
-import UxFilter from '../UxFilter.vue';
-import UxPreloader from '../UxPreloader.vue';
+import RenderHtml from '../RenderMDHTML.vue';
+import UxFilter from '@/components/ux/UxFilter.vue';
+import UxPreloader from '@/components/ux/UxPreloader.vue';
 import AppMarkdown from '../AppMarkdown.vue';
 import AppLitCards from './AppLitCards.vue';
 import PageError from '../PageError.vue';
-import UxDisqus from '../UxDisqus.vue';
+import UxDisqus from '@/components/ux/UxDisqus.vue';
 
 export interface Article extends StaticPage {
   summary: string;

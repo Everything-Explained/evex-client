@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useDataCache } from '@/state/cache-state';
-import UxIcon from '@/components/UxIcon.vue';
+import UxIcon from '@/components/ux/UxIcon.vue';
 
 const props = defineProps({
   easeIn: { type: Number, default: 400 },

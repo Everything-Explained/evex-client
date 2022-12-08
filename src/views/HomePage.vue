@@ -14,10 +14,10 @@
 <script lang="ts" setup>
 import PageTitlebar from '@/components/PageTitlebar.vue';
 import PageFooter from '@/components/PageFooter.vue';
-import RenderHtml from '@/components/RenderHtml.vue';
+import RenderHtml from '@/components/RenderMDHTML.vue';
 import { useAPI } from '@/services/api_internal';
 import { ref } from 'vue';
-import UxPreloader from '@/components/UxPreloader.vue';
+import UxPreloader from '@/components/ux/UxPreloader.vue';
 import { useDataCache } from '@/state/cache-state';
 
 const api = useAPI();
