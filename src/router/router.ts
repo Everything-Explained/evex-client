@@ -1,17 +1,17 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import { isAuthed, isAuthedGuard, isDevelopment } from '@/globals';
 import Home from '@/views/HomePage.vue';
-import httpError404 from '@/views/404Error.vue';
-import R3dVideos from '@/views/Red33mVideos.vue';
-import PublicBlog from '@/views/PublicBlog.vue';
-import Red33mBlog from '@/views/Red33mBlog.vue';
+import httpError404 from '@/views/errors/NotFoundError.vue';
+import R3dVideos from '@/views/red33m/Red33mVideos.vue';
+import PublicBlog from '@/views/public/PublicBlog.vue';
+import Red33mBlog from '@/views/red33m/Red33mBlog.vue';
 // import Videos from '@/views/LibraryVideos.vue';
-import Literature from '@/views/PublicLiterature.vue';
-import Red33mLogin from '@/views/Red33mLogin.vue';
+import Literature from '@/views/public/PublicLiterature.vue';
+import Red33mLogin from '@/views/red33m/Red33mLogin.vue';
 import changelogVue from '@/views/ChangelogPage.vue';
 import TempLibVid from '@/views/TempLibVid.vue';
-import Red33mAccessForm from '@/views/Red33mAccessForm.vue';
-import Red33mLiterature from '@/views/Red33mLiterature.vue';
+import Red33mAccessForm from '@/views/red33m/Red33mAccessForm.vue';
+import Red33mLiterature from '@/views/red33m/Red33mLiterature.vue';
 
 export type StrictRouteName =
   | 'home'
@@ -141,7 +141,7 @@ export const routes: Array<RouteRecordRaw> = [
   {
     path: '/403',
     name: '403',
-    component: () => import('@/views/403Error.vue'),
+    component: () => import('@/views/errors/ForbiddenError.vue'),
     meta: {
       cat: 'Accessory',
       title: '401',
