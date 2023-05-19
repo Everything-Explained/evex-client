@@ -12,6 +12,7 @@ import changelogVue from '@/views/ChangelogPage.vue';
 import TempLibVid from '@/views/TempLibVid.vue';
 import Red33mAccessForm from '@/views/red33m/Red33mAccessForm.vue';
 import Red33mLiterature from '@/views/red33m/Red33mLiterature.vue';
+import Red33mArchive from '@/views/red33m/Red33mArchive.vue';
 
 export type StrictRouteName =
   | 'home'
@@ -26,6 +27,7 @@ export type StrictRouteName =
   | 'r3d-blog'
   | 'r3d-videos'
   | 'r3d-form'
+  | 'r3d-archive'
   | '403'
   | '404';
 
@@ -112,6 +114,18 @@ export const routes: Array<RouteRecordRaw> = [
       title: 'Videos',
       visible: isAuthed(),
       name: 'r3d-videos',
+    },
+  },
+  {
+    path: '/videos/red33m-archive/:id?',
+    name: 'r3d-archive',
+    component: Red33mArchive,
+    beforeEnter: isAuthedGuard,
+    meta: {
+      cat: 'RED33M',
+      title: 'Archive',
+      visible: isAuthed(),
+      name: 'r3d-archive',
     },
   },
   {
