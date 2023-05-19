@@ -18,7 +18,7 @@ import { useAPI } from '@/services/api_internal';
 type VideoCategory = { name: string; desc: string; videos: Video[] };
 
 const router = useRouter();
-const version = useAPI().state.versions?.libVid.v;
+const version = useAPI().state.versions?.pubVid.v;
 if (!version) {
   throw Error('Missing public video API version');
 }
