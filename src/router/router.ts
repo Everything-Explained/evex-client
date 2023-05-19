@@ -5,11 +5,10 @@ import httpError404 from '@/views/errors/NotFoundError.vue';
 import R3dVideos from '@/views/red33m/Red33mVideos.vue';
 import PublicBlog from '@/views/public/PublicBlog.vue';
 import Red33mBlog from '@/views/red33m/Red33mBlog.vue';
-// import Videos from '@/views/LibraryVideos.vue';
+import Videos from '@/views/public/PublicVideos.vue';
 import Literature from '@/views/public/PublicLiterature.vue';
 import Red33mLogin from '@/views/red33m/Red33mLogin.vue';
 import changelogVue from '@/views/ChangelogPage.vue';
-import TempLibVid from '@/views/TempLibVid.vue';
 import Red33mAccessForm from '@/views/red33m/Red33mAccessForm.vue';
 import Red33mLiterature from '@/views/red33m/Red33mLiterature.vue';
 import Red33mArchive from '@/views/red33m/Red33mArchive.vue';
@@ -57,9 +56,9 @@ export const routes: Array<RouteRecordRaw> = [
   },
   {
     // path: '/videos/public/:category?/:id?',
-    path: '/videos/public',
+    path: '/videos/public/:category?/:id?',
     name: 'lib-videos',
-    component: TempLibVid,
+    component: Videos,
     meta: { cat: 'root', title: 'Videos', visible: true, name: 'lib-videos' },
   },
   {
