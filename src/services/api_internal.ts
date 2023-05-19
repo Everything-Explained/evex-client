@@ -35,9 +35,10 @@ type APIVersionNames =
   | 'chglog'
   | 'home'
   | 'pubLit'
-  | 'libVid'
+  | 'pubVid'
   | 'r3dLit'
-  | 'r3dVid';
+  | 'r3dVid'
+  | 'r3dArch';
 export type APIVersions = Record<
   APIVersionNames,
   { v: string; n: ISODateString }
@@ -102,9 +103,9 @@ function callAPI<T>(opts: APIOptions): Promise<APIResponse<T>> {
       .forbidden(() => {
         const eventBus = useEventBus();
         localStorage.setItem('passcode', 'no');
-        eventBus.updateMenu('red-videos', false);
-        eventBus.updateMenu('red-lit', false);
-        eventBus.updateMenu('red-login', true);
+        eventBus.updateMenu('r3d-videos', false);
+        eventBus.updateMenu('r3d-lit', false);
+        eventBus.updateMenu('r3d-login', true);
         window.$router.push('/403');
       })
       .res(resolve)
