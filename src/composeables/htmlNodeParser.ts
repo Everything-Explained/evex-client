@@ -1,6 +1,7 @@
 export function useHTMLNodeParser(html: string) {
   const imageHTML = '<img';
   const olHTML = '<ol';
+  const ulHTML = '<ul';
   const youtubeHTML = '<youtube';
 
   function getNodesUsingBQ() {
@@ -36,7 +37,11 @@ export function useHTMLNodeParser(html: string) {
         continue;
       }
       if (p.includes(olHTML)) {
-        nodes.push(...filterListNodes(p));
+        nodes.push(...filterOLNodes(p));
+        continue;
+      }
+      if (p.includes(ulHTML)) {
+        nodes.push(...filterULNodes(p));
         continue;
       }
       if (p.includes(imageHTML)) {
@@ -49,7 +54,7 @@ export function useHTMLNodeParser(html: string) {
     return nodes;
   }
 
-  function filterListNodes(partialHTML: string) {
+  function filterOLNodes(partialHTML: string) {
     const [pHTML, listHTML] = partialHTML.split(olHTML);
     // Some ordered lists need to "start" at a different number
     const attrib = listHTML.split('>', 1)[0].trim();
@@ -66,6 +71,13 @@ export function useHTMLNodeParser(html: string) {
       nodes.push(listNodeData);
       return nodes;
     }
+    return [getNodeData(pHTML), listNodeData];
+  }
+
+  function filterULNodes(partialHTML: string) {
+    const [pHTML, listHTML] = partialHTML.split(ulHTML);
+    const cleanList = listHTML.trimStart().substring(1).trim();
+    const listNodeData = getNodeData(cleanList, 'ul');
     return [getNodeData(pHTML), listNodeData];
   }
 

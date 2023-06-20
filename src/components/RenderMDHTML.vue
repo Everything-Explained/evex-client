@@ -24,6 +24,7 @@ const nodes = props.html.includes('<blockquote>')
         :start="n[2] || 1"
         v-html="n[1]"
       />
+      <ul v-else-if="'ul' == n[0]" :key="'ul' + i" v-html="n[1]" />
       <span v-else-if="'youtube' == n[0]" :key="'yt' + i">
         <ux-embedded-video :id="n[1]" api="youtube" />
       </span>
