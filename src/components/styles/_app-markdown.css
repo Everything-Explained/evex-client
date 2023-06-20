@@ -1,67 +1,86 @@
-.md-header, .md {
-  h1, h2, h3, h4, h5 {
-    margin-top     : 3rem;
-    margin-left    : 3rem;
-    margin-bottom  : 0.3rem;
-    color          : var(--md-head-c);
-    font-weight    : 300;
-    letter-spacing : 1px; }
+.md-header,
+.md {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    margin-top: 3rem;
+    margin-left: 3rem;
+    margin-bottom: 0.3rem;
+    color: var(--md-head-c);
+    font-weight: 300;
+    letter-spacing: 1px;
+  }
   h1 {
-    font-size: clamp(1.4rem, 4vw, 2rem); }
-  h2, h3 {
-    font-size: 1.7rem; }
+    font-size: clamp(1.4rem, 4vw, 2rem);
+  }
+  h2,
+  h3 {
+    font-size: 1.7rem;
+  }
 }
 
 .md-simple,
 .md {
-  width       : clamp(200px, 98vw, 960px);
-  margin      : 0 auto;
-  margin-top  : 10px;
-  font-weight : 300;
-  font-size   : var(--md-f-sz);
-  color       : var(--md-c);
-  b, strong {
-    font-weight : 400;
-    color       : var(--md-b-c);
-    transition  : background var(--md-trans-speed), color var(--md-trans-speed); }
-  i, em {
-    color       : var(--md-i-c);
-    transition  : background var(--md-trans-speed), color var(--md-trans-speed); }
-  a:link, a:active, a:visited {
-    color           : var(--md-link-c);
-    text-decoration : none;
-    font-weight     : 400;
-    text-decoration : underline var(--md-link-bdr-c);
-    transition      : text-decoration var(--md-trans-speed),
-                      color var(--md-trans-speed); }
-  p, ol {
-    position                : relative;
-    display                 : block;
-    padding                 : 3px 0;
-    line-height             : clamp(1.375rem, 5vw, 1.75rem);
-    transition              : background var(--md-trans-speed),
-                              color var(--md-trans-speed);
+  width: clamp(200px, 98vw, 960px);
+  margin: 0 auto;
+  margin-top: 10px;
+  font-weight: 300;
+  font-size: var(--md-f-sz);
+  color: var(--md-c);
+  b,
+  strong {
+    font-weight: 400;
+    color: var(--md-b-c);
+    transition: background var(--md-trans-speed), color var(--md-trans-speed);
+  }
+  i,
+  em {
+    color: var(--md-i-c);
+    transition: background var(--md-trans-speed), color var(--md-trans-speed);
+  }
+  a:link,
+  a:active,
+  a:visited {
+    color: var(--md-link-c);
+    text-decoration: none;
+    font-weight: 400;
+    text-decoration: underline var(--md-link-bdr-c);
+    transition: text-decoration var(--md-trans-speed),
+      color var(--md-trans-speed);
+  }
+  p,
+  ol {
+    position: relative;
+    display: block;
+    padding: 3px 0;
+    line-height: clamp(1.375rem, 5vw, 1.75rem);
+    transition: background var(--md-trans-speed), color var(--md-trans-speed);
   }
   p {
     background: linear-gradient(
-                  90deg,
-                  hsla(var(--u-body-bg-c), 0.65) 0%,
-                  hsla(197, 13%, 18%, 0.55) 15%,
-                  hsla(197, 13%, 18%, 0.55) 80%,
-                  hsla(var(--u-body-bg-c), 0.65) 100%
+      90deg,
+      hsla(var(--u-body-bg-c), 0.65) 0%,
+      hsla(197, 13%, 18%, 0.55) 15%,
+      hsla(197, 13%, 18%, 0.55) 80%,
+      hsla(var(--u-body-bg-c), 0.65) 100%
     );
     & + p {
-      margin-top: 15px; }
+      margin-top: 15px;
+    }
     &:empty {
-      display: none; }
+      display: none;
+    }
     /* Maintain height with floated images */
     &::after {
-      clear   : both;
-      content : '';
-      display : block; }
+      clear: both;
+      content: '';
+      display: block;
+    }
   }
   & > p {
-    margin-bottom : 7px;
+    margin-bottom: 7px;
     padding-left: clamp(5px, 1.5vw, 20px);
     padding-right: clamp(3px, 1vw, 10px);
     z-index: 1;
@@ -69,11 +88,11 @@
       position: absolute;
       content: '';
       background: linear-gradient(
-                    90deg,
-                    rgba(18,21,23,1) 0%,
-                    rgba(0,0,0,1) 30%,
-                    rgba(0,0,0,1) 70%,
-                    rgba(18,21,23,1) 100%
+        90deg,
+        rgba(18, 21, 23, 1) 0%,
+        rgba(0, 0, 0, 1) 30%,
+        rgba(0, 0, 0, 1) 70%,
+        rgba(18, 21, 23, 1) 100%
       );
       bottom: -0.2rem;
       height: 0.15rem;
@@ -84,16 +103,20 @@
     &:hover {
       background: linear-gradient(
         90deg,
-      hsla(var(--u-body-bg-c), 0.65) 0%,
-      hsla(30, 15%, 14%, 0.65) 30%,
-      hsla(30, 15%, 14%, 0.65) 70%,
-      hsla(var(--u-body-bg-c), 0.65) 100%
+        hsla(var(--u-body-bg-c), 0.65) 0%,
+        hsla(30, 15%, 14%, 0.65) 30%,
+        hsla(30, 15%, 14%, 0.65) 70%,
+        hsla(var(--u-body-bg-c), 0.65) 100%
       );
-      color            : var(--md-p-hov-c);
-      b, strong {
-        color: var(--md-p-hov-b-c); }
-      i, em {
-        color: var(--md-p-hov-i-c); }
+      color: var(--md-p-hov-c);
+      b,
+      strong {
+        color: var(--md-p-hov-b-c);
+      }
+      i,
+      em {
+        color: var(--md-p-hov-i-c);
+      }
     }
   }
 }
@@ -111,13 +134,13 @@
     &::before {
       position: absolute;
       content: '';
-      background: rgb(18,21,23);
+      background: rgb(18, 21, 23);
       background: linear-gradient(
-                    90deg,
-                    hsl(197, 13%, 7.5%),
-                    hsla(0, 0%, 0%, 0.5) 30%,
-                    hsla(0, 0%, 0%, 0.5) 70%,
-                    hsl(197, 13%, 7.5%) 90%
+        90deg,
+        hsl(197, 13%, 7.5%),
+        hsla(0, 0%, 0%, 0.5) 30%,
+        hsla(0, 0%, 0%, 0.5) 70%,
+        hsl(197, 13%, 7.5%) 90%
       );
       bottom: -0.1rem;
       height: 95%;
@@ -126,113 +149,141 @@
       filter: blur(10px);
     }
     & > p {
-      display          : inline-block;
-      padding          : 8px 2.3rem 8px 2.5rem;
+      display: inline-block;
+      padding: 8px 2.3rem 8px 2.5rem;
       width: 100%;
-      background:      linear-gradient(
-                          90deg,
-                          hsla(var(--u-body-bg-c), 0.65),
-                          hsla(197, 13%, 27%, 0.5) 20%,
-                          hsla(197, 13%, 27%, 0.5) 80%,
-                          hsla(var(--u-body-bg-c), 0.65)
-                        );
-      color            : var(--md-bq-c);
-      font-size        : clamp(1.125rem, 4vw, 1.4rem);
-      text-align       : left;
-      quotes           : '“' '”';
+      background: linear-gradient(
+        90deg,
+        hsla(var(--u-body-bg-c), 0.65),
+        hsla(197, 13%, 27%, 0.5) 20%,
+        hsla(197, 13%, 27%, 0.5) 80%,
+        hsla(var(--u-body-bg-c), 0.65)
+      );
+      color: var(--md-bq-c);
+      font-size: clamp(1.125rem, 4vw, 1.4rem);
+      text-align: left;
+      quotes: '“' '”';
       // Should be used as an authors name at the end of a blockquote
-      i, em {
-        display        : block;
-        margin-top     : 8px;
-        font-variant   : small-caps;
-        letter-spacing : 1px;
-        font-weight    : 400;
-        color          : var(--md-bq-author-c);
+      i,
+      em {
+        display: block;
+        margin-top: 8px;
+        font-variant: small-caps;
+        letter-spacing: 1px;
+        font-weight: 400;
+        color: var(--md-bq-author-c);
       }
-      &::before, &::after {
-        position       : absolute;
-        font-size      : clamp(5rem, 17vw, 6rem);
-        vertical-align : baseline;
-        color          : var(--md-bq-quote-c);
+      &::before,
+      &::after {
+        position: absolute;
+        font-size: clamp(5rem, 17vw, 6rem);
+        vertical-align: baseline;
+        color: var(--md-bq-quote-c);
       }
       &::before {
-        margin-top  : 20px;    // blockquote (margin-top)
-        margin-left : -2.5rem; // blockquote (padding-left * -1)
-        content     : open-quote; }
+        margin-top: 20px; // blockquote (margin-top)
+        margin-left: -2.5rem; // blockquote (padding-left * -1)
+        content: open-quote;
+      }
       &::after {
-        right   : 4px;
-        bottom  : -1.8rem;
-        content : close-quote; }
+        right: 4px;
+        bottom: -1.8rem;
+        content: close-quote;
+      }
     }
   }
   code {
     display: inline-block;
-    padding       : 0 0.4rem;
-    color         : var(--md-code-c);
-    background    : var(--md-code-bg-c);
+    padding: 0 0.4rem;
+    color: var(--md-code-c);
+    background: var(--md-code-bg-c);
     border-radius: 0.5rem;
-    text-shadow   : 1px 1px 0 black,
-                   -1px -1px 0 black,
-                   1px 0 0 black,
-                   0 1px 0 black;
-    font-family   : Consolas, 'Courier New', Courier, monospace;
-    white-space   : nowrap;
-    word-spacing  : -3px;
+    text-shadow: 1px 1px 0 black, -1px -1px 0 black, 1px 0 0 black,
+      0 1px 0 black;
+    font-family: Consolas, 'Courier New', Courier, monospace;
+    white-space: nowrap;
+    word-spacing: -3px;
   }
   & > p {
     ul {
       margin-left: 1rem;
       & > li::before {
-        content     : '\2022';
-        width       : 1rem;
-        font-size   : 1.5rem;
-        margin-left : -1rem;
-        color       : var(--md-bullet-c);
-        transition  : color var(--md-trans-speed); }
+        content: '\2022';
+        width: 1rem;
+        font-size: 1.5rem;
+        margin-left: -1rem;
+        color: var(--md-bullet-c);
+        transition: color var(--md-trans-speed);
+      }
     }
     & > img {
-      display    : block;
-      margin     : 10px auto;
-      max-width  : 100%;
-      min-height : 100%;
-      box-shadow : 0 0 10px 3px var(--md-img-bxs-c);
+      display: block;
+      margin: 10px auto;
+      max-width: 100%;
+      min-height: 100%;
+      box-shadow: 0 0 10px 3px var(--md-img-bxs-c);
       & + br {
-        display: none; }
+        display: none;
+      }
     }
     &:hover {
       code {
-        background : var(--md-code-bg-hov-c);
-        color      : var(--md-code-hov-c); }
+        background: var(--md-code-bg-hov-c);
+        color: var(--md-code-hov-c);
+      }
       li::before {
-        color: var(--md-bullet-hov-c); }
+        color: var(--md-bullet-hov-c);
+      }
+    }
+  }
+  & > ul {
+    padding-left: 2.5rem;
+    color: hsl(197, 12%, 73%);
+    list-style: disc;
+    box-shadow: none;
+    li {
+      background: linear-gradient(
+        90deg,
+        hsla(197, 13%, 6%, 0.7) 0%,
+        hsla(197, 13%, 6%, 0.7) 80%,
+        hsla(var(--u-body-bg-c), 0.65) 100%
+      );
+      padding: 0.375rem 0.625rem;
+      border-radius: 1.275rem;
+      margin-bottom: 0.5rem;
+      &::marker {
+        color: hsl(0, 100%, 71%);
+        font-weight: 400;
+      }
     }
   }
   & > ol {
-    padding-left     : 2.5rem;
-    list-style       : decimal;
-    color            : hsl(197, 12%, 73%);
-    box-shadow       : none;
+    padding-left: 2.5rem;
+    list-style: decimal;
+    color: hsl(197, 12%, 73%);
+    box-shadow: none;
     li {
-    background: linear-gradient(
-      90deg,
-      hsla(197, 13%, 6%, 0.7) 0%,
-      hsla(197, 13%, 6%, 0.7) 80%,
-      hsla(var(--u-body-bg-c), 0.65) 100%
-    );
-    padding: 0.375rem 0.625rem;
-    border-radius: 1.275rem;
-    margin-bottom: 0.5rem;
+      background: linear-gradient(
+        90deg,
+        hsla(197, 13%, 6%, 0.7) 0%,
+        hsla(197, 13%, 6%, 0.7) 80%,
+        hsla(var(--u-body-bg-c), 0.65) 100%
+      );
+      padding: 0.375rem 0.625rem;
+      border-radius: 1.275rem;
+      margin-bottom: 0.5rem;
       &::marker {
         color: hsl(50, 100%, 60%);
         font-weight: 400;
       }
     }
   }
-  .ux-img__image, .ux-img__preloader {
+  .ux-img__image,
+  .ux-img__preloader {
     display: block;
     margin: 20px auto;
     max-width: 97%;
-    box-shadow : 0 0 10px 3px black;
+    box-shadow: 0 0 10px 3px black;
   }
   .ux-img__preloader {
     margin: 0 auto;
@@ -248,25 +299,34 @@
     max-height: 360px;
     display: block;
     overflow: hidden;
-    & + p { margin-top: 15px; }
+    & + p {
+      margin-top: 15px;
+    }
     .ux-evid-container {
-      position       : relative;
-      width          : 100%;
-      height         : auto;
-      padding-top    : 56.25%;
+      position: relative;
+      width: 100%;
+      height: auto;
+      padding-top: 56.25%;
       iframe {
-        position : absolute;
-        top      : 0;
-        left     : 0;
-        width    : 100%;
-        height   : 100%; }
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
     }
   }
-
 }
 
 .md {
-  b, strong, i, em, dt, dd, code, blockquote {
+  b,
+  strong,
+  i,
+  em,
+  dt,
+  dd,
+  code,
+  blockquote {
     transition: color var(--md-trans-speed), background var(--md-trans-speed);
   }
 }
